@@ -10,4 +10,6 @@
 
 @interface VCRViewController : UIViewController
 
+@property (nonatomic, retain) IBOutlet UIWebView *webView;
+
 @end

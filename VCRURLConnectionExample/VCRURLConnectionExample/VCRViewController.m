@@ -9,17 +9,36 @@
 #import "VCRViewController.h"
 
 @interface VCRViewController () {
-    IBOutlet UIWebView *_webView;
+    NSURL *_url;
+    NSMutableData *_responseData;
+    NSString *_HTMLString;
 }
-
 @end
 
 @implementation VCRViewController
 
 - (void)viewDidAppear:(BOOL)animated {
-    NSURL *url = [NSURL URLWithString:@"http://www.iana.org/domains/example/"];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    [_webView loadRequest:request];
+    
+    _url = [[NSURL alloc] initWithString:@"http://www.iana.org/domains/example/"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:_url];
+    [_responseData release]; _responseData = nil;
+    [NSURLConnection connectionWithRequest:request delegate:self];
+}
+
+#pragma mark - NSURLConnectionDelegate
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    if (!_responseData) {
+        _responseData = [[NSMutableData alloc] initWithData:data];
+    } else {
+        [_responseData appendData:data];
+    }
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    [_HTMLString release]; _HTMLString = nil;
+    _HTMLString = [[NSString alloc] initWithData:_responseData encoding:NSUTF8StringEncoding];
+    [self.webView loadHTMLString:_HTMLString baseURL:_url];
 }
 
 @end

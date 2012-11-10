@@ -7,26 +7,27 @@
 //
 
 #import "VCRURLConnectionExampleTests.h"
+#import "VCRViewController.h"
+
+@interface VCRURLConnectionExampleTests () {
+    VCRViewController *_viewController;
+}
+@end
 
 @implementation VCRURLConnectionExampleTests
 
-- (void)setUp
-{
+- (void)setUp {
     [super setUp];
-    
-    // Set-up code here.
+    _viewController = [[VCRViewController alloc] initWithNibName:@"VCRViewController" bundle:[NSBundle mainBundle]];
 }
 
-- (void)tearDown
-{
-    // Tear-down code here.
-    
+- (void)tearDown {
     [super tearDown];
+    [_viewController release]; _viewController = nil;
 }
 
-- (void)testExample
-{
-    STFail(@"Unit tests are not implemented yet in VCRURLConnectionExampleTests");
+- (void)testExample {
+    [_viewController.webView.
 }
 
 @end
