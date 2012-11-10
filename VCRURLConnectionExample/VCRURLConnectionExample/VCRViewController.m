@@ -18,7 +18,14 @@
 
 @implementation VCRViewController
 
+@synthesize isLoaded = _isLoaded;
+
 - (void)viewDidAppear:(BOOL)animated {
+    [self load];
+    
+}
+
+- (void)load {
     _url = [[NSURL alloc] initWithString:@"http://www.iana.org/domains/example/"];
     NSURLRequest *request = [NSURLRequest requestWithURL:_url];
     self.HTMLString = nil;
@@ -39,6 +46,7 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     self.HTMLString = [[NSString alloc] initWithData:_responseData encoding:NSUTF8StringEncoding];
     [_webView loadHTMLString:_HTMLString baseURL:_url];
+    _isLoaded = YES;
 }
 
 @end

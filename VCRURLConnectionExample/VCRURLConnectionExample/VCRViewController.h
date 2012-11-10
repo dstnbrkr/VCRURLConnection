@@ -10,6 +10,9 @@
 
 @interface VCRViewController : UIViewController
 
+- (void)load;
+
 @property (nonatomic, retain) NSString *HTMLString;
+@property (readonly) BOOL isLoaded;
 
 @end

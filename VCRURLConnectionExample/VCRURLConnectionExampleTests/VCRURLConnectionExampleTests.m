@@ -27,7 +27,16 @@
 }
 
 - (void)testExample {
-    [_viewController.webView.
+    [_viewController load];
+    
+    while (!_viewController.isLoaded) {
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+        usleep(10000);
+    }
+    
+    NSString *html = _viewController.HTMLString;
+    STAssertFalse(html == nil, @"HTML should not be nil");
+    STAssertFalse([html rangeOfString:@"Example Domains"].location == NSNotFound, @"HTML should contain 'Example Domains'");
 }
 
 @end
