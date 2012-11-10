@@ -8,20 +8,20 @@
 
 #import "VCRViewController.h"
 
-@interface VCRViewController ()
+@interface VCRViewController () {
+    IBOutlet UIWebView *_webView;
+}
 
 @end
 
 @implementation VCRViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
