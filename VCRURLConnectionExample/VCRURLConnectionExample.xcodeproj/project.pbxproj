@@ -1,0 +1,461 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B38D8A2D164EF3ED0099F205 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B38D8A2C164EF3ED0099F205 /* UIKit.framework */; };
+		B38D8A2F164EF3ED0099F205 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B38D8A2E164EF3ED0099F205 /* Foundation.framework */; };
+		B38D8A31164EF3ED0099F205 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B38D8A30164EF3ED0099F205 /* CoreGraphics.framework */; };
+		B38D8A37164EF3ED0099F205 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B38D8A35164EF3ED0099F205 /* InfoPlist.strings */; };
+		B38D8A39164EF3ED0099F205 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B38D8A38164EF3ED0099F205 /* main.m */; };
+		B38D8A3D164EF3ED0099F205 /* VCRAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B38D8A3C164EF3ED0099F205 /* VCRAppDelegate.m */; };
+		B38D8A3F164EF3ED0099F205 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = B38D8A3E164EF3ED0099F205 /* Default.png */; };
+		B38D8A41164EF3ED0099F205 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B38D8A40164EF3ED0099F205 /* Default@2x.png */; };
+		B38D8A43164EF3ED0099F205 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B38D8A42164EF3ED0099F205 /* Default-568h@2x.png */; };
+		B38D8A46164EF3ED0099F205 /* VCRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B38D8A45164EF3ED0099F205 /* VCRViewController.m */; };
+		B38D8A49164EF3ED0099F205 /* VCRViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B38D8A47164EF3ED0099F205 /* VCRViewController.xib */; };
+		B38D8A51164EF3ED0099F205 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B38D8A50164EF3ED0099F205 /* SenTestingKit.framework */; };
+		B38D8A52164EF3ED0099F205 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B38D8A2C164EF3ED0099F205 /* UIKit.framework */; };
+		B38D8A53164EF3ED0099F205 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B38D8A2E164EF3ED0099F205 /* Foundation.framework */; };
+		B38D8A5B164EF3ED0099F205 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B38D8A59164EF3ED0099F205 /* InfoPlist.strings */; };
+		B38D8A5E164EF3ED0099F205 /* VCRURLConnectionExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B38D8A5D164EF3ED0099F205 /* VCRURLConnectionExampleTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B38D8A54164EF3ED0099F205 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B38D8A1F164EF3ED0099F205 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B38D8A27164EF3ED0099F205;
+			remoteInfo = VCRURLConnectionExample;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B38D8A28164EF3ED0099F205 /* VCRURLConnectionExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VCRURLConnectionExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B38D8A2C164EF3ED0099F205 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		B38D8A2E164EF3ED0099F205 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		B38D8A30164EF3ED0099F205 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		B38D8A34164EF3ED0099F205 /* VCRURLConnectionExample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "VCRURLConnectionExample-Info.plist"; sourceTree = "<group>"; };
+		B38D8A36164EF3ED0099F205 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B38D8A38164EF3ED0099F205 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B38D8A3A164EF3ED0099F205 /* VCRURLConnectionExample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VCRURLConnectionExample-Prefix.pch"; sourceTree = "<group>"; };
+		B38D8A3B164EF3ED0099F205 /* VCRAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VCRAppDelegate.h; sourceTree = "<group>"; };
+		B38D8A3C164EF3ED0099F205 /* VCRAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VCRAppDelegate.m; sourceTree = "<group>"; };
+		B38D8A3E164EF3ED0099F205 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		B38D8A40164EF3ED0099F205 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		B38D8A42164EF3ED0099F205 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		B38D8A44164EF3ED0099F205 /* VCRViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VCRViewController.h; sourceTree = "<group>"; };
+		B38D8A45164EF3ED0099F205 /* VCRViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VCRViewController.m; sourceTree = "<group>"; };
+		B38D8A48164EF3ED0099F205 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/VCRViewController.xib; sourceTree = "<group>"; };
+		B38D8A4F164EF3ED0099F205 /* VCRURLConnectionExampleTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VCRURLConnectionExampleTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B38D8A50164EF3ED0099F205 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		B38D8A58164EF3ED0099F205 /* VCRURLConnectionExampleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "VCRURLConnectionExampleTests-Info.plist"; sourceTree = "<group>"; };
+		B38D8A5A164EF3ED0099F205 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B38D8A5C164EF3ED0099F205 /* VCRURLConnectionExampleTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VCRURLConnectionExampleTests.h; sourceTree = "<group>"; };
+		B38D8A5D164EF3ED0099F205 /* VCRURLConnectionExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VCRURLConnectionExampleTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B38D8A25164EF3ED0099F205 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B38D8A2D164EF3ED0099F205 /* UIKit.framework in Frameworks */,
+				B38D8A2F164EF3ED0099F205 /* Foundation.framework in Frameworks */,
+				B38D8A31164EF3ED0099F205 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B38D8A4B164EF3ED0099F205 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B38D8A51164EF3ED0099F205 /* SenTestingKit.framework in Frameworks */,
+				B38D8A52164EF3ED0099F205 /* UIKit.framework in Frameworks */,
+				B38D8A53164EF3ED0099F205 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B38D8A1D164EF3ED0099F205 = {
+			isa = PBXGroup;
+			children = (
+				B38D8A32164EF3ED0099F205 /* VCRURLConnectionExample */,
+				B38D8A56164EF3ED0099F205 /* VCRURLConnectionExampleTests */,
+				B38D8A2B164EF3ED0099F205 /* Frameworks */,
+				B38D8A29164EF3ED0099F205 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B38D8A29164EF3ED0099F205 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B38D8A28164EF3ED0099F205 /* VCRURLConnectionExample.app */,
+				B38D8A4F164EF3ED0099F205 /* VCRURLConnectionExampleTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B38D8A2B164EF3ED0099F205 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B38D8A2C164EF3ED0099F205 /* UIKit.framework */,
+				B38D8A2E164EF3ED0099F205 /* Foundation.framework */,
+				B38D8A30164EF3ED0099F205 /* CoreGraphics.framework */,
+				B38D8A50164EF3ED0099F205 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B38D8A32164EF3ED0099F205 /* VCRURLConnectionExample */ = {
+			isa = PBXGroup;
+			children = (
+				B38D8A3B164EF3ED0099F205 /* VCRAppDelegate.h */,
+				B38D8A3C164EF3ED0099F205 /* VCRAppDelegate.m */,
+				B38D8A44164EF3ED0099F205 /* VCRViewController.h */,
+				B38D8A45164EF3ED0099F205 /* VCRViewController.m */,
+				B38D8A47164EF3ED0099F205 /* VCRViewController.xib */,
+				B38D8A33164EF3ED0099F205 /* Supporting Files */,
+			);
+			path = VCRURLConnectionExample;
+			sourceTree = "<group>";
+		};
+		B38D8A33164EF3ED0099F205 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B38D8A34164EF3ED0099F205 /* VCRURLConnectionExample-Info.plist */,
+				B38D8A35164EF3ED0099F205 /* InfoPlist.strings */,
+				B38D8A38164EF3ED0099F205 /* main.m */,
+				B38D8A3A164EF3ED0099F205 /* VCRURLConnectionExample-Prefix.pch */,
+				B38D8A3E164EF3ED0099F205 /* Default.png */,
+				B38D8A40164EF3ED0099F205 /* Default@2x.png */,
+				B38D8A42164EF3ED0099F205 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B38D8A56164EF3ED0099F205 /* VCRURLConnectionExampleTests */ = {
+			isa = PBXGroup;
+			children = (
+				B38D8A5C164EF3ED0099F205 /* VCRURLConnectionExampleTests.h */,
+				B38D8A5D164EF3ED0099F205 /* VCRURLConnectionExampleTests.m */,
+				B38D8A57164EF3ED0099F205 /* Supporting Files */,
+			);
+			path = VCRURLConnectionExampleTests;
+			sourceTree = "<group>";
+		};
+		B38D8A57164EF3ED0099F205 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B38D8A58164EF3ED0099F205 /* VCRURLConnectionExampleTests-Info.plist */,
+				B38D8A59164EF3ED0099F205 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B38D8A27164EF3ED0099F205 /* VCRURLConnectionExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B38D8A61164EF3ED0099F205 /* Build configuration list for PBXNativeTarget "VCRURLConnectionExample" */;
+			buildPhases = (
+				B38D8A24164EF3ED0099F205 /* Sources */,
+				B38D8A25164EF3ED0099F205 /* Frameworks */,
+				B38D8A26164EF3ED0099F205 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VCRURLConnectionExample;
+			productName = VCRURLConnectionExample;
+			productReference = B38D8A28164EF3ED0099F205 /* VCRURLConnectionExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B38D8A4E164EF3ED0099F205 /* VCRURLConnectionExampleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B38D8A64164EF3ED0099F205 /* Build configuration list for PBXNativeTarget "VCRURLConnectionExampleTests" */;
+			buildPhases = (
+				B38D8A4A164EF3ED0099F205 /* Sources */,
+				B38D8A4B164EF3ED0099F205 /* Frameworks */,
+				B38D8A4C164EF3ED0099F205 /* Resources */,
+				B38D8A4D164EF3ED0099F205 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B38D8A55164EF3ED0099F205 /* PBXTargetDependency */,
+			);
+			name = VCRURLConnectionExampleTests;
+			productName = VCRURLConnectionExampleTests;
+			productReference = B38D8A4F164EF3ED0099F205 /* VCRURLConnectionExampleTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B38D8A1F164EF3ED0099F205 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = VCR;
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Dustin Barker";
+			};
+			buildConfigurationList = B38D8A22164EF3ED0099F205 /* Build configuration list for PBXProject "VCRURLConnectionExample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = B38D8A1D164EF3ED0099F205;
+			productRefGroup = B38D8A29164EF3ED0099F205 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B38D8A27164EF3ED0099F205 /* VCRURLConnectionExample */,
+				B38D8A4E164EF3ED0099F205 /* VCRURLConnectionExampleTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B38D8A26164EF3ED0099F205 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B38D8A37164EF3ED0099F205 /* InfoPlist.strings in Resources */,
+				B38D8A3F164EF3ED0099F205 /* Default.png in Resources */,
+				B38D8A41164EF3ED0099F205 /* Default@2x.png in Resources */,
+				B38D8A43164EF3ED0099F205 /* Default-568h@2x.png in Resources */,
+				B38D8A49164EF3ED0099F205 /* VCRViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B38D8A4C164EF3ED0099F205 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B38D8A5B164EF3ED0099F205 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B38D8A4D164EF3ED0099F205 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B38D8A24164EF3ED0099F205 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B38D8A39164EF3ED0099F205 /* main.m in Sources */,
+				B38D8A3D164EF3ED0099F205 /* VCRAppDelegate.m in Sources */,
+				B38D8A46164EF3ED0099F205 /* VCRViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B38D8A4A164EF3ED0099F205 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B38D8A5E164EF3ED0099F205 /* VCRURLConnectionExampleTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B38D8A55164EF3ED0099F205 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B38D8A27164EF3ED0099F205 /* VCRURLConnectionExample */;
+			targetProxy = B38D8A54164EF3ED0099F205 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B38D8A35164EF3ED0099F205 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B38D8A36164EF3ED0099F205 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		B38D8A47164EF3ED0099F205 /* VCRViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B38D8A48164EF3ED0099F205 /* en */,
+			);
+			name = VCRViewController.xib;
+			sourceTree = "<group>";
+		};
+		B38D8A59164EF3ED0099F205 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B38D8A5A164EF3ED0099F205 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B38D8A5F164EF3ED0099F205 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		B38D8A60164EF3ED0099F205 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B38D8A62164EF3ED0099F205 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "VCRURLConnectionExample/VCRURLConnectionExample-Prefix.pch";
+				INFOPLIST_FILE = "VCRURLConnectionExample/VCRURLConnectionExample-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		B38D8A63164EF3ED0099F205 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "VCRURLConnectionExample/VCRURLConnectionExample-Prefix.pch";
+				INFOPLIST_FILE = "VCRURLConnectionExample/VCRURLConnectionExample-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		B38D8A65164EF3ED0099F205 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/VCRURLConnectionExample.app/VCRURLConnectionExample";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "VCRURLConnectionExample/VCRURLConnectionExample-Prefix.pch";
+				INFOPLIST_FILE = "VCRURLConnectionExampleTests/VCRURLConnectionExampleTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		B38D8A66164EF3ED0099F205 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/VCRURLConnectionExample.app/VCRURLConnectionExample";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "VCRURLConnectionExample/VCRURLConnectionExample-Prefix.pch";
+				INFOPLIST_FILE = "VCRURLConnectionExampleTests/VCRURLConnectionExampleTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B38D8A22164EF3ED0099F205 /* Build configuration list for PBXProject "VCRURLConnectionExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B38D8A5F164EF3ED0099F205 /* Debug */,
+				B38D8A60164EF3ED0099F205 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B38D8A61164EF3ED0099F205 /* Build configuration list for PBXNativeTarget "VCRURLConnectionExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B38D8A62164EF3ED0099F205 /* Debug */,
+				B38D8A63164EF3ED0099F205 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		B38D8A64164EF3ED0099F205 /* Build configuration list for PBXNativeTarget "VCRURLConnectionExampleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B38D8A65164EF3ED0099F205 /* Debug */,
+				B38D8A66164EF3ED0099F205 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B38D8A1F164EF3ED0099F205 /* Project object */;
+}
