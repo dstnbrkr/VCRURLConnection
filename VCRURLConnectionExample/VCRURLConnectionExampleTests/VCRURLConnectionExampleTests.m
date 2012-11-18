@@ -8,6 +8,7 @@
 
 #import "VCRURLConnectionExampleTests.h"
 #import "VCRViewController.h"
+#import "VCRURLConnection.h"
 
 @interface VCRURLConnectionExampleTests () {
     VCRViewController *_viewController;
@@ -27,6 +28,8 @@
 }
 
 - (void)testExample {
+    [VCRURLConnection setCassette:@"example"];
+
     [_viewController load];
     
     while (!_viewController.isFinishedLoading) {
