@@ -8,7 +8,7 @@
 
 #import "VCRURLConnectionExampleTests.h"
 #import "VCRViewController.h"
-#import "VCRURLConnection.h"
+#import "VCR.h"
 
 @interface VCRURLConnectionExampleTests () {
     VCRViewController *_viewController;
@@ -19,8 +19,8 @@
 
 - (void)setUp {
     [super setUp];
-    [VCRURLConnection setCassetteLibraryPath:@"cassettes"];
-    [VCRURLConnection start];
+    [VCR setCassetteLibraryPath:@"cassettes"];
+    [VCR start];
     _viewController = [[VCRViewController alloc] initWithNibName:@"VCRViewController" bundle:[NSBundle mainBundle]];
 }
 
@@ -30,7 +30,7 @@
 }
 
 - (void)testExample {
-    [VCRURLConnection setCassette:@"example"];
+    [VCR setCassette:@"example"];
 
     [_viewController load];
     

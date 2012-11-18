@@ -9,9 +9,9 @@
 #import "VCRCassette.h"
 #import <Foundation/Foundation.h>
 
-@interface VCRURLConnectionCassetteManager : NSObject
+@interface VCRCassetteManager : NSObject
 
-+ (VCRURLConnectionCassetteManager *)defaultManager;
++ (VCRCassetteManager *)defaultManager;
 
 - (void)setCassetteLibraryPath:(NSString *)path;
 

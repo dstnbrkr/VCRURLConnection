@@ -8,10 +8,10 @@
 
 #import "VCRCassetteManager.h"
 
-@implementation VCRURLConnectionCassetteManager
+@implementation VCRCassetteManager
 
-+ (VCRURLConnectionCassetteManager *)defaultManager {
-    static VCRURLConnectionCassetteManager *_defaultManager = nil;
++ (VCRCassetteManager *)defaultManager {
+    static VCRCassetteManager *_defaultManager = nil;
     static dispatch_once_t oncePredicate;
     dispatch_once(&oncePredicate, ^{
         _defaultManager = [[self alloc] init];

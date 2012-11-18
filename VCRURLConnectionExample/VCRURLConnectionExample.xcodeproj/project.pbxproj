@@ -23,9 +23,12 @@
 		B38D8A53164EF3ED0099F205 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B38D8A2E164EF3ED0099F205 /* Foundation.framework */; };
 		B38D8A5B164EF3ED0099F205 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B38D8A59164EF3ED0099F205 /* InfoPlist.strings */; };
 		B38D8A5E164EF3ED0099F205 /* VCRURLConnectionExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B38D8A5D164EF3ED0099F205 /* VCRURLConnectionExampleTests.m */; };
-		B3B0CAAA1659706000B91929 /* VCRURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B0CAA91659706000B91929 /* VCRURLConnection.m */; };
+		B3B0CAAA1659706000B91929 /* VCRURLConnectionPoser.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B0CAA91659706000B91929 /* VCRURLConnectionPoser.m */; };
 		B3B0CAAD1659707B00B91929 /* VCRCassette.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B0CAAC1659707B00B91929 /* VCRCassette.m */; };
 		B3B0CAB0165970F500B91929 /* VCRCassetteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B0CAAF165970F500B91929 /* VCRCassetteManager.m */; };
+		B3B0CAB316598EA600B91929 /* VCR.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B0CAB216598EA600B91929 /* VCR.m */; };
+		B3B0CAB6165996CC00B91929 /* NSURLConnection+VCR.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B0CAB5165996CC00B91929 /* NSURLConnection+VCR.m */; };
+		B3B0CAB916599B1400B91929 /* VCRConnectionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B0CAB816599B1400B91929 /* VCRConnectionDelegate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,12 +64,18 @@
 		B38D8A5A164EF3ED0099F205 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B38D8A5C164EF3ED0099F205 /* VCRURLConnectionExampleTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VCRURLConnectionExampleTests.h; sourceTree = "<group>"; };
 		B38D8A5D164EF3ED0099F205 /* VCRURLConnectionExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VCRURLConnectionExampleTests.m; sourceTree = "<group>"; };
-		B3B0CAA81659706000B91929 /* VCRURLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCRURLConnection.h; sourceTree = "<group>"; };
-		B3B0CAA91659706000B91929 /* VCRURLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCRURLConnection.m; sourceTree = "<group>"; };
+		B3B0CAA81659706000B91929 /* VCRURLConnectionPoser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCRURLConnectionPoser.h; sourceTree = "<group>"; };
+		B3B0CAA91659706000B91929 /* VCRURLConnectionPoser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCRURLConnectionPoser.m; sourceTree = "<group>"; };
 		B3B0CAAB1659707B00B91929 /* VCRCassette.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCRCassette.h; sourceTree = "<group>"; };
 		B3B0CAAC1659707B00B91929 /* VCRCassette.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCRCassette.m; sourceTree = "<group>"; };
 		B3B0CAAE165970F500B91929 /* VCRCassetteManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCRCassetteManager.h; sourceTree = "<group>"; };
 		B3B0CAAF165970F500B91929 /* VCRCassetteManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCRCassetteManager.m; sourceTree = "<group>"; };
+		B3B0CAB116598EA600B91929 /* VCR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCR.h; sourceTree = "<group>"; };
+		B3B0CAB216598EA600B91929 /* VCR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCR.m; sourceTree = "<group>"; };
+		B3B0CAB4165996CC00B91929 /* NSURLConnection+VCR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLConnection+VCR.h"; sourceTree = "<group>"; };
+		B3B0CAB5165996CC00B91929 /* NSURLConnection+VCR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLConnection+VCR.m"; sourceTree = "<group>"; };
+		B3B0CAB716599B1400B91929 /* VCRConnectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCRConnectionDelegate.h; sourceTree = "<group>"; };
+		B3B0CAB816599B1400B91929 /* VCRConnectionDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCRConnectionDelegate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,12 +182,18 @@
 		B3B0CAA61659705000B91929 /* VCRURLConnection */ = {
 			isa = PBXGroup;
 			children = (
-				B3B0CAA81659706000B91929 /* VCRURLConnection.h */,
-				B3B0CAA91659706000B91929 /* VCRURLConnection.m */,
+				B3B0CAB116598EA600B91929 /* VCR.h */,
+				B3B0CAB216598EA600B91929 /* VCR.m */,
+				B3B0CAA81659706000B91929 /* VCRURLConnectionPoser.h */,
+				B3B0CAA91659706000B91929 /* VCRURLConnectionPoser.m */,
 				B3B0CAAB1659707B00B91929 /* VCRCassette.h */,
 				B3B0CAAC1659707B00B91929 /* VCRCassette.m */,
 				B3B0CAAE165970F500B91929 /* VCRCassetteManager.h */,
 				B3B0CAAF165970F500B91929 /* VCRCassetteManager.m */,
+				B3B0CAB4165996CC00B91929 /* NSURLConnection+VCR.h */,
+				B3B0CAB5165996CC00B91929 /* NSURLConnection+VCR.m */,
+				B3B0CAB716599B1400B91929 /* VCRConnectionDelegate.h */,
+				B3B0CAB816599B1400B91929 /* VCRConnectionDelegate.m */,
 			);
 			name = VCRURLConnection;
 			path = ../VCRURLConnection;
@@ -306,9 +321,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				B38D8A5E164EF3ED0099F205 /* VCRURLConnectionExampleTests.m in Sources */,
-				B3B0CAAA1659706000B91929 /* VCRURLConnection.m in Sources */,
+				B3B0CAAA1659706000B91929 /* VCRURLConnectionPoser.m in Sources */,
 				B3B0CAAD1659707B00B91929 /* VCRCassette.m in Sources */,
 				B3B0CAB0165970F500B91929 /* VCRCassetteManager.m in Sources */,
+				B3B0CAB316598EA600B91929 /* VCR.m in Sources */,
+				B3B0CAB6165996CC00B91929 /* NSURLConnection+VCR.m in Sources */,
+				B3B0CAB916599B1400B91929 /* VCRConnectionDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
