@@ -10,4 +10,6 @@
 
 @interface VCRURLConnection : NSURLConnection
 
++ (void)setCassette:(NSString *)cassette;
+
 @end

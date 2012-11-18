@@ -10,4 +10,8 @@
 
 @implementation VCRURLConnection
 
++ (void)setCassette:(NSString *)cassette {
+    // FIXME
+}
+
 @end
