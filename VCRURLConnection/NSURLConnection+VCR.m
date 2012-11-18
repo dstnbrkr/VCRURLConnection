@@ -12,17 +12,12 @@
 
 @implementation NSURLConnection (VCR)
 
-- (id)VCR_initWithRequest:(NSURLRequest *)request
-                 delegate:(id<NSURLConnectionDelegate>)delegate {
-    
-    return [self VCR_original_initWithRequest:request delegate:delegate];
+- (id)VCR_original_initWithRequest:(NSURLRequest *)request delegate:(id<NSURLConnectionDelegate>)delegate {
+    return nil;
 }
 
-#pragma mark - Original implementations
-
-- (id)VCR_original_initWithRequest:(NSURLRequest *)request
-                         delegate:(id<NSURLConnectionDelegate>)delegate {
-    return nil;
+- (id)VCR_initWithRequest:(NSURLRequest *)request delegate:(id<NSURLConnectionDelegate>)delegate {
+    return [self VCR_original_initWithRequest:request delegate:delegate];
 }
 
 /*

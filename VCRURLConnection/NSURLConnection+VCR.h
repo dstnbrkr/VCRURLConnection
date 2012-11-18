@@ -10,4 +10,6 @@
 
 @interface NSURLConnection (VCR)
 
+- (id)VCR_original_initWithRequest:(NSURLRequest *)request delegate:(id<NSURLConnectionDelegate>)delegate;
+
 @end
