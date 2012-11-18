@@ -29,7 +29,7 @@
 - (void)testExample {
     [_viewController load];
     
-    while (!_viewController.isLoaded) {
+    while (!_viewController.isFinishedLoading) {
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
         usleep(10000);
     }

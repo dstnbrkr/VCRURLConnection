@@ -13,6 +13,6 @@
 - (void)load;
 
 @property (nonatomic, retain) NSString *HTMLString;
-@property (readonly) BOOL isLoaded;
+@property (readonly, getter = isFinishedLoading) BOOL finishedLoading;
 
 @end

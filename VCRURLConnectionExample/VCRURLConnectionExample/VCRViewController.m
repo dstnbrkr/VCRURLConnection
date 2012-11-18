@@ -18,7 +18,7 @@
 
 @implementation VCRViewController
 
-@synthesize isLoaded = _isLoaded;
+@synthesize finishedLoading = _isLoaded;
 
 - (void)viewDidAppear:(BOOL)animated {
     [self load];
