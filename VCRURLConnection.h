@@ -10,6 +10,7 @@
 
 @interface VCRURLConnection : NSURLConnection
 
++ (void)setCassetteLibraryPath:(NSString *)path;
 + (void)setCassette:(NSString *)cassette;
 
 @end
