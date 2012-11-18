@@ -46,6 +46,7 @@ static void VCRURLConnectionUnswizzle(SEL selector);
 
 @end
 
+// FIXME: don't allow this to be called twice (i.e. don't let new impls get stored as old)
 static void VCRURLConnectionSwizzle(SEL selector) {
     Method currMethod = class_getInstanceMethod([NSURLConnection class], selector);
     IMP currImplementation = method_getImplementation(currMethod);
