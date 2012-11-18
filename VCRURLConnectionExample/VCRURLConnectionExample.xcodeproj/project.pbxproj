@@ -446,6 +446,7 @@
 				B38D8A63164EF3ED0099F205 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B38D8A64164EF3ED0099F205 /* Build configuration list for PBXNativeTarget "VCRURLConnectionExampleTests" */ = {
 			isa = XCConfigurationList;
@@ -454,6 +455,7 @@
 				B38D8A66164EF3ED0099F205 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
