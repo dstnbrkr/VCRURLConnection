@@ -12,6 +12,7 @@
 #import <objc/runtime.h>
 
 static void VCRURLConnectionSwizzle(SEL selector);
+static void VCRURLConnectionUnswizzle(SEL selector);
 
 @implementation VCRURLConnection
 
@@ -28,7 +29,7 @@ static void VCRURLConnectionSwizzle(SEL selector);
 }
 
 + (void)stop {
-    
+    VCRURLConnectionUnswizzle(@selector(initWithRequest:delegate:));
 }
 
 #pragma mark - NSURLConnection original methods
@@ -56,9 +57,24 @@ static void VCRURLConnectionSwizzle(SEL selector) {
     Method oldMethod = class_getInstanceMethod([VCRURLConnection class], oldSelector);    
     method_setImplementation(oldMethod, currImplementation);
     
-    // replace current implementation
+    // replace current implementation with new
     SEL newSelector = NSSelectorFromString([NSString stringWithFormat:@"new_%@", selectorString]);
     Method newMethod = class_getInstanceMethod([VCRURLConnection class], newSelector);
     IMP newImplementation = method_getImplementation(newMethod);
     method_setImplementation(currMethod, newImplementation);
 }
+
+static void VCRURLConnectionUnswizzle(SEL selector) {
+    Method currMethod = class_getInstanceMethod([NSURLConnection class], selector);
+    
+    NSString *selectorString = NSStringFromSelector(selector);
+    
+    // get original implementation
+    SEL oldSelector = NSSelectorFromString([NSString stringWithFormat:@"old_%@", selectorString]);
+    Method oldMethod = class_getInstanceMethod([VCRURLConnection class], oldSelector);
+    IMP oldImplementation = method_getImplementation(oldMethod);
+    
+    // replace current implementation with old
+    method_setImplementation(currMethod, oldImplementation);
+}
+
