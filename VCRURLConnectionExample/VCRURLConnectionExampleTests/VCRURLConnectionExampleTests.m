@@ -20,6 +20,7 @@
 - (void)setUp {
     [super setUp];
     [VCRURLConnection setCassetteLibraryPath:@"cassettes"];
+    [VCRURLConnection start];
     _viewController = [[VCRViewController alloc] initWithNibName:@"VCRViewController" bundle:[NSBundle mainBundle]];
 }
 

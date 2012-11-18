@@ -8,10 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-@interface VCRURLConnection : NSURLConnection
+@interface VCRURLConnection : NSObject
 
 + (void)setCassetteLibraryPath:(NSString *)path;
 
 + (void)setCassette:(NSString *)cassette;
+
++ (void)start;
+
++ (void)stop;
 
 @end
