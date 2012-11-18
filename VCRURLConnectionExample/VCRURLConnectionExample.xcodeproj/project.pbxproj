@@ -25,6 +25,7 @@
 		B38D8A5E164EF3ED0099F205 /* VCRURLConnectionExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B38D8A5D164EF3ED0099F205 /* VCRURLConnectionExampleTests.m */; };
 		B3B0CAAA1659706000B91929 /* VCRURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B0CAA91659706000B91929 /* VCRURLConnection.m */; };
 		B3B0CAAD1659707B00B91929 /* VCRCassette.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B0CAAC1659707B00B91929 /* VCRCassette.m */; };
+		B3B0CAB0165970F500B91929 /* VCRCassetteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B0CAAF165970F500B91929 /* VCRCassetteManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,8 @@
 		B3B0CAA91659706000B91929 /* VCRURLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCRURLConnection.m; sourceTree = "<group>"; };
 		B3B0CAAB1659707B00B91929 /* VCRCassette.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCRCassette.h; sourceTree = "<group>"; };
 		B3B0CAAC1659707B00B91929 /* VCRCassette.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCRCassette.m; sourceTree = "<group>"; };
+		B3B0CAAE165970F500B91929 /* VCRCassetteManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCRCassetteManager.h; sourceTree = "<group>"; };
+		B3B0CAAF165970F500B91929 /* VCRCassetteManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCRCassetteManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +177,8 @@
 				B3B0CAA91659706000B91929 /* VCRURLConnection.m */,
 				B3B0CAAB1659707B00B91929 /* VCRCassette.h */,
 				B3B0CAAC1659707B00B91929 /* VCRCassette.m */,
+				B3B0CAAE165970F500B91929 /* VCRCassetteManager.h */,
+				B3B0CAAF165970F500B91929 /* VCRCassetteManager.m */,
 			);
 			name = VCRURLConnection;
 			path = ../VCRURLConnection;
@@ -303,6 +308,7 @@
 				B38D8A5E164EF3ED0099F205 /* VCRURLConnectionExampleTests.m in Sources */,
 				B3B0CAAA1659706000B91929 /* VCRURLConnection.m in Sources */,
 				B3B0CAAD1659707B00B91929 /* VCRCassette.m in Sources */,
+				B3B0CAB0165970F500B91929 /* VCRCassetteManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
