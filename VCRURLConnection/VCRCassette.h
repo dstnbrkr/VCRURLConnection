@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 Dustin Barker. All rights reserved.
 //
 
+#import "VCRResponse.h"
 #import <Foundation/Foundation.h>
 
 @interface VCRCassette : NSObject
@@ -17,5 +18,7 @@
 - (id)initWithData:(NSData *)data;
 
 - (id)initWithJSON:(id)json;
+
+- (VCRResponse *)responseForRequest:(NSURLRequest *)request;
 
 @end

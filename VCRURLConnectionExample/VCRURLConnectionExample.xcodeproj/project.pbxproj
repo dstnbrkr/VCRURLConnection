@@ -28,6 +28,7 @@
 		B3B0CAB316598EA600B91929 /* VCR.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B0CAB216598EA600B91929 /* VCR.m */; };
 		B3B0CAB6165996CC00B91929 /* NSURLConnection+VCR.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B0CAB5165996CC00B91929 /* NSURLConnection+VCR.m */; };
 		B3B0CAB916599B1400B91929 /* VCRConnectionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B0CAB816599B1400B91929 /* VCRConnectionDelegate.m */; };
+		B3B0CAC11659B20000B91929 /* VCRResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B0CAC01659B20000B91929 /* VCRResponse.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,8 @@
 		B3B0CAB5165996CC00B91929 /* NSURLConnection+VCR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLConnection+VCR.m"; sourceTree = "<group>"; };
 		B3B0CAB716599B1400B91929 /* VCRConnectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCRConnectionDelegate.h; sourceTree = "<group>"; };
 		B3B0CAB816599B1400B91929 /* VCRConnectionDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCRConnectionDelegate.m; sourceTree = "<group>"; };
+		B3B0CABF1659B20000B91929 /* VCRResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCRResponse.h; sourceTree = "<group>"; };
+		B3B0CAC01659B20000B91929 /* VCRResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCRResponse.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +192,8 @@
 				B3B0CAB5165996CC00B91929 /* NSURLConnection+VCR.m */,
 				B3B0CAB716599B1400B91929 /* VCRConnectionDelegate.h */,
 				B3B0CAB816599B1400B91929 /* VCRConnectionDelegate.m */,
+				B3B0CABF1659B20000B91929 /* VCRResponse.h */,
+				B3B0CAC01659B20000B91929 /* VCRResponse.m */,
 			);
 			name = VCRURLConnection;
 			path = ../VCRURLConnection;
@@ -321,6 +326,7 @@
 				B3B0CAB316598EA600B91929 /* VCR.m in Sources */,
 				B3B0CAB6165996CC00B91929 /* NSURLConnection+VCR.m in Sources */,
 				B3B0CAB916599B1400B91929 /* VCRConnectionDelegate.m in Sources */,
+				B3B0CAC11659B20000B91929 /* VCRResponse.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

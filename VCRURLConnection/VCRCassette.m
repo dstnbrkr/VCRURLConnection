@@ -32,4 +32,8 @@
     return self;
 }
 
+- (VCRResponse *)responseForRequest:(NSURLRequest *)request {
+    return nil;
+}
+
 @end

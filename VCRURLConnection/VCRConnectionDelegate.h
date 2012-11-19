@@ -9,9 +9,10 @@
 #import "VCRCassette.h"
 #import <Foundation/Foundation.h>
 
-@interface VCRConnectionDelegate : NSObject
+@interface VCRConnectionDelegate : NSObject<NSURLConnectionDelegate>
 
-@property (nonatomic, assign) id<NSURLConnectionDelegate> delegate;
+- (id)initWithDelegate:(id<NSURLConnectionDelegate>)delegate;
+
 @property (nonatomic, retain) VCRCassette *cassette;
 
 @end

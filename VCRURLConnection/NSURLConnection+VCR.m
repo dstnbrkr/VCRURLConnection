@@ -9,6 +9,7 @@
 #import "NSURLConnection+VCR.h"
 #import "VCRCassetteManager.h"
 #import "VCRConnectionDelegate.h"
+#import "VCRResponse.h"
 
 @implementation NSURLConnection (VCR)
 
@@ -16,27 +17,23 @@
     return nil;
 }
 
-- (id)VCR_initWithRequest:(NSURLRequest *)request delegate:(id<NSURLConnectionDelegate>)delegate {
-    return [self VCR_original_initWithRequest:request delegate:delegate];
-}
-
-/*
-    id self = nil;
-    
+- (id)VCR_initWithRequest:(NSURLRequest *)request delegate:(id<NSURLConnectionDelegate>)delegate {    
     VCRCassette *cassette = [[VCRCassetteManager defaultManager] cassette];
     VCRResponse *response = [cassette responseForRequest:request];
     if (response) {
         [self VCR_simulateResponse:response];
+        self = nil;
     } else {
-        VCRConnectionDelegate *vcrDelegate = [[VCRConnectionDelegate alloc] init];
-        vcrDelegate.delegate = delegate;
+        VCRConnectionDelegate *vcrDelegate = [[[VCRConnectionDelegate alloc] initWithDelegate:delegate] autorelease];
         vcrDelegate.cassette = cassette;
+        self = [self VCR_original_initWithRequest:request delegate:vcrDelegate];
     }
-*/
-/*
-- (void)VCR_simulateResponse:(VCRResponse *)response {
-    // FIXME: call the delegate methods
+    return self;
 }
-*/
+
+- (void)VCR_simulateResponse:(VCRResponse *)response {
+    NSLog(@"VCR_simulateResponse");
+}
+
 
 @end
