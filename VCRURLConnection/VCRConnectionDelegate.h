@@ -11,7 +11,7 @@
 
 @interface VCRConnectionDelegate : NSObject<NSURLConnectionDelegate>
 
-- (id)initWithDelegate:(id<NSURLConnectionDelegate>)delegate;
+- (id)initWithDelegate:(id<NSURLConnectionDataDelegate>)delegate;
 
 @property (nonatomic, retain) VCRCassette *cassette;
 

@@ -9,7 +9,8 @@
 #import "VCRConnectionDelegate.h"
 
 @interface VCRConnectionDelegateWrapper : NSObject<NSURLConnectionDelegate>
-@property (nonatomic, retain) id<NSURLConnectionDelegate> wrapped;
+@property (nonatomic, readonly) VCRResponse *response;
+@property (nonatomic, retain) id<NSURLConnectionDataDelegate> wrapped;
 @end
 
 
@@ -21,7 +22,7 @@
 
 @implementation VCRConnectionDelegate
 
-- (id)initWithDelegate:(id<NSURLConnectionDelegate>)delegate {
+- (id)initWithDelegate:(id<NSURLConnectionDataDelegate>)delegate {
     if ((self = [super init])) {
         _wrapper = [[VCRConnectionDelegateWrapper alloc] init];
         _wrapper.wrapped = delegate;
@@ -46,7 +47,15 @@
              
 @implementation VCRConnectionDelegateWrapper
 
+@synthesize response = _response;
 @synthesize wrapped = _wrapped;
+
+- (id)init {
+    if ((self = [super init])) {
+        _response = [[VCRResponse alloc] init];
+    }
+    return self;
+}
 
 - (void)dealloc {
     [_wrapped release];
@@ -54,14 +63,20 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-    // FIXME: record response
-    
-    [self forwardSelector:@selector(connection:didReceiveResponse:)];
+    [_response setURLResponse:response];
+    if ([_wrapped respondsToSelector:@selector(connection:didReceiveResponse:)]) {
+        [_wrapped connection:connection didReceiveResponse:response];
+    }
 }
 
-- (void)forwardSelector:(SEL)selector {
-    if ([_wrapped respondsToSelector:selector]) {
-        [_wrapped performSelector:selector];
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    if (!_response.responseData) {
+        _response.responseData = data;
+    } else {
+        // FIXME: append data
+    }
+    if ([_wrapped respondsToSelector:@selector(connection:didReceiveData:)]) {
+        [_wrapped connection:connection didReceiveData:data];
     }
 }
 

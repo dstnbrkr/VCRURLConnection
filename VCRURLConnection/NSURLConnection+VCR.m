@@ -17,7 +17,7 @@
     return nil;
 }
 
-- (id)VCR_initWithRequest:(NSURLRequest *)request delegate:(id<NSURLConnectionDelegate>)delegate {    
+- (id)VCR_initWithRequest:(NSURLRequest *)request delegate:(id<NSURLConnectionDataDelegate>)delegate {
     VCRCassette *cassette = [[VCRCassetteManager defaultManager] cassette];
     VCRResponse *response = [cassette responseForRequest:request];
     if (response) {
