@@ -10,7 +10,13 @@
 
 @interface VCRResponse : NSObject
 
-@property (nonatomic, retain) NSURLResponse *URLResponse;
+- (id)initWithJSON:(id)json;
+
+@property (nonatomic, retain) NSURL *url;
+
 @property (nonatomic, retain) NSData *responseData;
+
+// FIXME: readonly
+@property (nonatomic, retain) NSURLResponse *URLResponse;
 
 @end

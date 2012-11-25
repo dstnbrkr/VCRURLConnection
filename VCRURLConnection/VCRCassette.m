@@ -8,6 +8,7 @@
 
 #import "VCRCassette.h"
 #import "VCRCassette_Private.h"
+#import "VCRResponse.h"
 
 
 @implementation VCRCassette
@@ -21,23 +22,6 @@
     return [[[VCRCassette alloc] initWithData:data] autorelease];
 }
 
-- (id)initWithData:(NSData *)data {
-    id json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-    return [self initWithJSON:json];
-    
-}
-
-- (id)initWithJSON:(id)json {
-    if ((self = [self init])) {
-        for (id recording in json) {
-            NSURLRequest *request = VCRCassetteRequestForJSON(recording);
-            NSURLResponse *response = VCRCassetteResponseForJSON(recording);
-            [self.responseDictionary setObject:response forKey:request];
-        }
-    }
-    return self;
-}
-
 - (id)init {
     if ((self = [super init])) {
         self.responseDictionary = [NSMutableDictionary dictionary];
@@ -45,8 +29,33 @@
     return self;
 }
 
+- (id)initWithJSON:(id)json {
+    NSAssert(json != nil, @"Attempted to intialize VCRCassette with nil JSON");
+    if ((self = [self init])) {
+        for (id recording in json) {
+            NSURLRequest *request = VCRCassetteRequestForJSON(recording);
+            VCRResponse *response = [[[VCRResponse alloc] initWithJSON:recording] autorelease];
+            [self.responseDictionary setObject:response forKey:request];
+        }
+    }
+    return self;
+}
+
+- (id)initWithData:(NSData *)data {
+    NSError *error = nil;
+    id json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+    NSAssert([error code] == 0, @"Attempted to initialize VCRCassette with invalid JSON");
+    return [self initWithJSON:json];
+    
+}
+
 - (VCRResponse *)responseForRequest:(NSURLRequest *)request {
     return [self.responseDictionary objectForKey:request];
+}
+
+- (BOOL)isEqual:(VCRCassette *)cassette {
+    
+    return [self.responseDictionary isEqual:cassette.responseDictionary];
 }
 
 #pragma mark - Private
@@ -57,18 +66,6 @@ NSURL *VCRCassetteURLForJSON(id json) {
 
 NSURLRequest *VCRCassetteRequestForJSON(id json) {
     return [NSURLRequest requestWithURL:VCRCassetteURLForJSON(json)];
-}
-
-NSURLResponse *VCRCassetteResponseForJSON(id json) {
-    NSURL *url = VCRCassetteURLForJSON(json);
-    NSString *mimeType = @"text/plain";
-    NSInteger length = -1;
-    NSString *encoding = @"utf-8";
-    
-    return [[[NSURLResponse alloc] initWithURL:url
-                                      MIMEType:mimeType
-                         expectedContentLength:length
-                              textEncodingName:encoding] autorelease];
 }
 
 #pragma mark - Memory

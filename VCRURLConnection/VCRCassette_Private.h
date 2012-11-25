@@ -14,8 +14,6 @@ NSURL *VCRCassetteURLForJSON(id json);
 
 NSURLRequest *VCRCassetteRequestForJSON(id json);
 
-NSURLResponse *VCRCassetteResponseForJSON(id json);
-
 @property (nonatomic, retain) NSMutableDictionary *responseDictionary;
 
 @end
