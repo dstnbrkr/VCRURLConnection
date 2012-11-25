@@ -40,14 +40,6 @@
     STAssertThrows([VCRCassette cassetteWithURL:nil], @"Should throw exception when URL is nil");
 }
 
-// FIXME: test that initWithURL is just a proxy to initWithData
-
-// FIXME: test that initWithData is just a proxy to initWithJSON
-
-// FIXME: test that initWithJSON creates the expected cassette
-
-// FIXME: test with image data
-
 - (void)testInit {
     VCRCassette *cassette = [VCRCassette cassette];
     STAssertNotNil(cassette.responseDictionary, @"Must have response dictionary");
@@ -74,6 +66,8 @@
     NSData *data = [invalidJSON dataUsingEncoding:NSUTF8StringEncoding];
     STAssertThrows([[[VCRCassette alloc] initWithData:data] autorelease], @"Cannot init with invalid data");
 }
+
+// FIXME: test with image data
 
 - (void)testCassetteWithURL {
     NSURL *url = [NSURL fileURLWithPath:@"Fixtures/cassette-1.json"];
