@@ -54,7 +54,6 @@
 }
 
 - (BOOL)isEqual:(VCRCassette *)cassette {
-    
     return [self.responseDictionary isEqual:cassette.responseDictionary];
 }
 
