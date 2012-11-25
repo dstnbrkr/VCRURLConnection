@@ -1,0 +1,16 @@
+{
+    "cassette": {
+        "recordings": [
+            {
+                "request": {
+                    "url": "http://foo",
+                    "headers": [],
+                },
+                "response": {
+                    "headers": [],
+                    "body": "Cassette One Response for http://foo"
+                }
+            }
+        ]
+    }
+}
