@@ -10,8 +10,6 @@
 
 @interface VCRCassette ()
 
-NSURL *VCRCassetteURLForJSON(id json);
-
 NSURLRequest *VCRCassetteRequestForJSON(id json);
 
 @property (nonatomic, retain) NSMutableDictionary *responseDictionary;

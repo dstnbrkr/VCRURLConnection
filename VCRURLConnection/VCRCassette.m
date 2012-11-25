@@ -60,12 +60,9 @@
 
 #pragma mark - Private
 
-NSURL *VCRCassetteURLForJSON(id json) {
-    return [NSURL URLWithString:[json objectForKey:@"url"]];
-}
-
 NSURLRequest *VCRCassetteRequestForJSON(id json) {
-    return [NSURLRequest requestWithURL:VCRCassetteURLForJSON(json)];
+    NSURL *url = [NSURL URLWithString:[json objectForKey:@"url"]];
+    return [NSURLRequest requestWithURL:url];
 }
 
 #pragma mark - Memory

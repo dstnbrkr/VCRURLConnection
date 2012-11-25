@@ -31,7 +31,7 @@
 
 - (void)testVCRCassetteRequestForJSON {
     id json = self.recording1;
-    NSURL *url = VCRCassetteURLForJSON(json);
+    NSURL *url = [NSURL URLWithString:[json objectForKey:@"url"]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     STAssertEqualObjects(VCRCassetteRequestForJSON(json), request, @"Should create expected request");
 }
