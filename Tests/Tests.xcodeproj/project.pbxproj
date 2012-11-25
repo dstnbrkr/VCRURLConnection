@@ -45,6 +45,7 @@
 		B361B12D1662C39600A867EB /* VCRCassetteTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCRCassetteTests.h; sourceTree = "<group>"; };
 		B361B12E1662C39600A867EB /* VCRCassetteTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCRCassetteTests.m; sourceTree = "<group>"; };
 		B361B1341662C5C300A867EB /* cassette-1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "cassette-1.json"; path = "Fixtures/cassette-1.json"; sourceTree = SOURCE_ROOT; };
+		B361B1371662CFC500A867EB /* VCRCassette_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = VCRCassette_Private.h; path = ../VCRURLConnection/VCRCassette_Private.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +129,7 @@
 				B361B11E1662BEB500A867EB /* VCR.m */,
 				B361B11F1662BEB500A867EB /* VCRCassette.h */,
 				B361B1201662BEB500A867EB /* VCRCassette.m */,
+				B361B1371662CFC500A867EB /* VCRCassette_Private.h */,
 				B361B1211662BEB500A867EB /* VCRCassetteManager.h */,
 				B361B1221662BEB500A867EB /* VCRCassetteManager.m */,
 				B361B1231662BEB500A867EB /* VCRConnectionDelegate.h */,

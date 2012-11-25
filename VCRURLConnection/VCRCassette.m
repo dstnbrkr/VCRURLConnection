@@ -7,10 +7,8 @@
 //
 
 #import "VCRCassette.h"
+#import "VCRCassette_Private.h"
 
-@interface VCRCassette ()
-@property (nonatomic, retain) NSMutableDictionary *responseDictionary;
-@end
 
 @implementation VCRCassette
 
@@ -31,15 +29,9 @@
 
 - (id)initWithJSON:(id)json {
     if ((self = [self init])) {
-        NSArray *recordings = [json valueForKeyPath:@"cassette.recordings"];
-        
-        for (id recording in recordings) {
-            NSURL *url = [NSURL URLWithString:[recording valueForKeyPath:@"request.url"]];
-            NSURLRequest *request = [NSURLRequest requestWithURL:url];
-            NSURLResponse *response = [[NSURLResponse alloc] initWithURL:url
-                                                                MIMEType:@"text/plain"
-                                                   expectedContentLength:-1
-                                                        textEncodingName:@"utf8"];
+        for (id recording in json) {
+            NSURLRequest *request = VCRCassetteRequestForJSON(recording);
+            NSURLResponse *response = VCRCassetteResponseForJSON(recording);
             [self.responseDictionary setObject:response forKey:request];
         }
     }
@@ -55,6 +47,28 @@
 
 - (VCRResponse *)responseForRequest:(NSURLRequest *)request {
     return [self.responseDictionary objectForKey:request];
+}
+
+#pragma mark - Private
+
+NSURL *VCRCassetteURLForJSON(id json) {
+    return [NSURL URLWithString:[json objectForKey:@"url"]];
+}
+
+NSURLRequest *VCRCassetteRequestForJSON(id json) {
+    return [NSURLRequest requestWithURL:VCRCassetteURLForJSON(json)];
+}
+
+NSURLResponse *VCRCassetteResponseForJSON(id json) {
+    NSURL *url = VCRCassetteURLForJSON(json);
+    NSString *mimeType = @"text/plain";
+    NSInteger length = -1;
+    NSString *encoding = @"utf-8";
+    
+    return [[[NSURLResponse alloc] initWithURL:url
+                                      MIMEType:mimeType
+                         expectedContentLength:length
+                              textEncodingName:encoding] autorelease];
 }
 
 #pragma mark - Memory
