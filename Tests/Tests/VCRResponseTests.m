@@ -17,7 +17,9 @@
 
 - (void)setUp {
     [super setUp];
-    self.json = @{ @"url": @"http://foo", @"statusCode": @200, @"body": @"Foo Bar Baz" };
+    self.json = @{ @"url": @"http://foo",
+                   @"statusCode": @200,
+                   @"body": @"Foo Bar Baz" };
 }
 
 - (void)tearDown {

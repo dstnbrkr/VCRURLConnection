@@ -26,7 +26,7 @@
 - (NSHTTPURLResponse *)URLResponse {
     return [[[NSHTTPURLResponse alloc] initWithURL:self.url
                                         statusCode:self.statusCode
-                                       HTTPVersion:@"vcrResponse.httpVersion"
+                                       HTTPVersion:@"HTTP/1.1"         // FIXME: don't hardcode, but make default
                                       headerFields:nil] autorelease];
 }
 
