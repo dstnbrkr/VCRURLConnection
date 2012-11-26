@@ -27,8 +27,8 @@ static void VCRURLConnectionUnswizzle(SEL selector);
     [[VCRCassetteManager defaultManager] setCassetteLibraryPath:path];
 }
 
-+ (void)setCassette:(NSString *)cassette {
-    [[VCRCassetteManager defaultManager] setCurrentCassette:cassette];
++ (void)setCassetteURL:(NSURL *)url {
+    [[VCRCassetteManager defaultManager] setCurrentCassetteURL:url];
 }
 
 + (void)start {

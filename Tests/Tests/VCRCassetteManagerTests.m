@@ -8,6 +8,7 @@
 
 #import "VCRCassetteManagerTests.h"
 #import "VCRCassetteManager.h"
+#import "VCRCassette.h"
 
 
 @interface VCRCassetteManagerTests ()
@@ -31,9 +32,13 @@
     STAssertThrows([self.manager currentCassette], @"Cannot access currentCassette when it's not set");
 }
 
-- (void)testCurrentCassette {
-    [self.manager setCurrentCassette:@"foo"];
+- (void)testSetCurrentCassetteWithURL {
+    NSURL *url = [NSURL fileURLWithPath:@"Fixtures/cassette-1.json"];
     
+    VCRCassette *expectedCassette = [VCRCassette cassetteWithURL:url];
+    [self.manager setCurrentCassetteURL:url];
+    
+    STAssertEqualObjects(self.manager.currentCassette, expectedCassette, @"Should set cassette with URL");
 }
 
 @end

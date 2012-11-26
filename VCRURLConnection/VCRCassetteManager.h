@@ -15,9 +15,7 @@
 
 - (void)setCassetteLibraryPath:(NSString *)path;
 
-// FIXME: these are named like symmetrical methods, but aren't
-
-- (void)setCurrentCassette:(NSString *)name;
+- (void)setCurrentCassetteURL:(NSURL *)url;
 
 - (VCRCassette *)currentCassette;
 

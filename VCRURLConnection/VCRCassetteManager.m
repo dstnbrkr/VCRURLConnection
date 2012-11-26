@@ -7,6 +7,7 @@
 //
 
 #import "VCRCassetteManager.h"
+#import "VCRCassette.h"
 
 @interface VCRCassetteManager ()
 
@@ -26,19 +27,12 @@
     return _defaultManager;
 }
 
-- (void)setCurrentCassette:(NSString *)cassette {
-    NSURL *baseURL = [NSURL fileURLWithPath:self.cassetteLibraryPath];
-    NSURL *url = [baseURL URLByAppendingPathComponent:cassette];
-    
-    if ([[NSFileManager defaultManager] fileExistsAtPath:[url absoluteString]]) {
-        self.cassette = [VCRCassette cassetteWithURL:url];
-    } else {
-        self.cassette = [VCRCassette cassette];
-    }
+- (void)setCurrentCassetteURL:(NSURL *)url {
+    self.cassette = [VCRCassette cassetteWithURL:url];
 }
 
 - (VCRCassette *)currentCassette {
-    NSAssert(self.cassette != nil, @"VCRCassetteManager: current cassette not set!");
+    NSAssert(self.cassette != nil, @"VCRCassetteManager: no cassette has been set!");
     return self.cassette;
 }
 

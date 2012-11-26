@@ -12,7 +12,7 @@
 
 + (void)setCassetteLibraryPath:(NSString *)path;
 
-+ (void)setCassette:(NSString *)cassette;
++ (void)setCassetteURL:(NSURL *)url;
 
 + (void)start;
 
