@@ -20,7 +20,6 @@
 @implementation NSHTTPURLResponse (VCRConnectionTests)
 
 - (BOOL)VCR_isIsomorphic:(NSHTTPURLResponse *)response {
-    NSLog(@"%@ <> %@", self.URL, response.URL);
     return [self.URL isEqual:response.URL];
 }
 

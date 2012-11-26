@@ -23,4 +23,11 @@
     return [self.url isEqual:response.url] && [self.responseData isEqual:response.responseData];
 }
 
+- (NSHTTPURLResponse *)URLResponse {
+    return [[[NSHTTPURLResponse alloc] initWithURL:self.url
+                                        statusCode:self.statusCode
+                                       HTTPVersion:@"vcrResponse.httpVersion"
+                                      headerFields:nil] autorelease];
+}
+
 @end
