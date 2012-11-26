@@ -20,7 +20,6 @@
 @interface VCRURLConnectionTests ()
 @property (nonatomic, retain) VCRCassette *cassette;
 @property (nonatomic, retain) VCRURLConnectionTestDelegate *testDelegate;
-
 @end
 
 
