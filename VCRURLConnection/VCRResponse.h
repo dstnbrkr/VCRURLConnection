@@ -14,6 +14,8 @@
 
 @property (nonatomic, retain) NSURL *url;
 
+@property (nonatomic, assign) NSInteger statusCode;
+
 @property (nonatomic, retain) NSData *responseData;
 
 @property (nonatomic, retain) NSHTTPURLResponse *URLResponse;

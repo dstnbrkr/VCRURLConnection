@@ -13,6 +13,7 @@
 - (id)initWithJSON:(id)json {
     if ((self = [self init])) {
         self.url = [NSURL URLWithString:[json objectForKey:@"url"]];
+        self.statusCode = [[json objectForKey:@"statusCode"] intValue];
         self.responseData = [[json objectForKey:@"body"] dataUsingEncoding:NSUTF8StringEncoding];
     }
     return self;

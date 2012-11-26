@@ -17,7 +17,7 @@
 
 - (void)setUp {
     [super setUp];
-    self.json = @{ @"url": @"http://foo", @"body": @"Foo Bar Baz" };
+    self.json = @{ @"url": @"http://foo", @"statusCode": @200, @"body": @"Foo Bar Baz" };
 }
 
 - (void)tearDown {
@@ -30,6 +30,8 @@
     VCRResponse *response = [[[VCRResponse alloc] initWithJSON:json] autorelease];
     
     STAssertEqualObjects([response.url absoluteString], [json objectForKey:@"url"], @"");
+    
+    STAssertEquals(response.statusCode, [[json objectForKey:@"statusCode"] integerValue], @"");
     
     NSData *data = [[json objectForKey:@"body"] dataUsingEncoding:NSUTF8StringEncoding];
     STAssertEqualObjects(response.responseData, data, @"");
