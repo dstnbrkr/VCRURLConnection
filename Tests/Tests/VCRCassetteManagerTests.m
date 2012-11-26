@@ -35,7 +35,8 @@
 - (void)testSetCurrentCassetteWithURL {
     NSURL *url = [NSURL fileURLWithPath:@"Fixtures/cassette-1.json"];
     
-    VCRCassette *expectedCassette = [VCRCassette cassetteWithURL:url];
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    VCRCassette *expectedCassette = [[[VCRCassette alloc] initWithData:data] autorelease];
     [self.manager setCurrentCassetteURL:url];
     
     STAssertEqualObjects(self.manager.currentCassette, expectedCassette, @"Should set cassette with URL");

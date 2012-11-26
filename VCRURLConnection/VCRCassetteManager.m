@@ -28,7 +28,12 @@
 }
 
 - (void)setCurrentCassetteURL:(NSURL *)url {
-    self.cassette = [VCRCassette cassetteWithURL:url];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:[url path]]) {
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        self.cassette = [[VCRCassette alloc] initWithData:data];
+    } else {
+        self.cassette = [VCRCassette cassette];
+    }
 }
 
 - (VCRCassette *)currentCassette {

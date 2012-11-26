@@ -36,10 +36,6 @@
     STAssertEqualObjects(VCRCassetteRequestForJSON(json), request, @"Should create expected request");
 }
 
-- (void)testCassetteWithNilURL {
-    STAssertThrows([VCRCassette cassetteWithURL:nil], @"Should throw exception when URL is nil");
-}
-
 - (void)testInit {
     VCRCassette *cassette = [VCRCassette cassette];
     STAssertNotNil(cassette.responseDictionary, @"Must have response dictionary");
@@ -68,14 +64,6 @@
 }
 
 // FIXME: test with image data
-
-- (void)testCassetteWithURL {
-    NSURL *url = [NSURL fileURLWithPath:@"Fixtures/cassette-1.json"];
-    NSData *data = [NSData dataWithContentsOfURL:url];
-    VCRCassette *expectedCassette = [[[VCRCassette alloc] initWithData:data] autorelease];
-    VCRCassette *cassette = [VCRCassette cassetteWithURL:url];
-    STAssertEqualObjects(cassette, expectedCassette, @"");
-}
 
 - (void)testIsEqual {
     VCRCassette *cassette1 = [[[VCRCassette alloc] initWithJSON:self.recordings] autorelease];

@@ -13,8 +13,6 @@
 
 + (VCRCassette *)cassette;
 
-+ (VCRCassette *)cassetteWithURL:(NSURL *)url;
-
 - (id)initWithData:(NSData *)data;
 
 - (id)initWithJSON:(id)json;
