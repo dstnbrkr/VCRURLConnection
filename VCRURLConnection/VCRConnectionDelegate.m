@@ -24,6 +24,8 @@
 
 @implementation VCRConnectionDelegate
 
+@dynamic request;
+
 - (id)initWithDelegate:(id<NSURLConnectionDataDelegate>)delegate {
     if ((self = [super init])) {
         _wrapper = [[VCRConnectionDelegateWrapper alloc] init];
@@ -81,9 +83,7 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     [[[VCRCassetteManager defaultManager] currentCassette] setResponse:self.response forRequest:self.request];
-    
-    NSLog(@"response: %@", self.response.responseData);
-    
+        
     if ([_wrapped respondsToSelector:@selector(connectionDidFinishLoading:)]) {
         [_wrapped connectionDidFinishLoading:connection];
     }

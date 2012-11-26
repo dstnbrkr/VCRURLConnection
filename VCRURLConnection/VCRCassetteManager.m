@@ -28,17 +28,29 @@
 }
 
 - (void)setCurrentCassetteURL:(NSURL *)url {
-    if ([[NSFileManager defaultManager] fileExistsAtPath:[url path]]) {
-        NSData *data = [NSData dataWithContentsOfURL:url];
-        self.cassette = [[VCRCassette alloc] initWithData:data];
-    } else {
-        self.cassette = [VCRCassette cassette];
-    }
+    self.cassette = nil;
+    [url retain];
+    [_currentCassetteURL release];
+    _currentCassetteURL = url;
 }
 
 - (VCRCassette *)currentCassette {
-    NSAssert(self.cassette != nil, @"VCRCassetteManager: no cassette has been set!");
-    return self.cassette;
+    VCRCassette *cassette = self.cassette;
+    
+    NSURL *url = self.currentCassetteURL;
+    
+    if (cassette) {
+        // do nothing
+    } else if ([[NSFileManager defaultManager] fileExistsAtPath:[url path]]) {
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        cassette = [[VCRCassette alloc] initWithData:data];
+    } else {
+        cassette = [VCRCassette cassette];
+    }
+    
+    self.cassette = cassette;
+    
+    return cassette;
 }
 
 @end

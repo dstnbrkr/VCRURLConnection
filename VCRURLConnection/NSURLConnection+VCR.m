@@ -25,7 +25,7 @@
         self = nil;
     } else {
         VCRConnectionDelegate *vcrDelegate = [[[VCRConnectionDelegate alloc] initWithDelegate:delegate] autorelease];
-        vcrDelegate.request = request;
+        [vcrDelegate setRequest:request];
         vcrDelegate.cassette = cassette;
         self = [self VCR_original_initWithRequest:request delegate:vcrDelegate];
     }

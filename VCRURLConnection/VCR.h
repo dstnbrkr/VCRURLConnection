@@ -10,8 +10,6 @@
 
 @interface VCR : NSObject
 
-+ (void)setCassetteLibraryPath:(NSString *)path;
-
 + (void)setCassetteURL:(NSURL *)url;
 
 + (void)start;

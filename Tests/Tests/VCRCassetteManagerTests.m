@@ -28,10 +28,6 @@
     [super tearDown];
 }
 
-- (void)testCurrentCassetteWhenNil {
-    STAssertThrows([self.manager currentCassette], @"Cannot access currentCassette when it's not set");
-}
-
 - (void)testSetCurrentCassetteWithURL {
     NSURL *url = [NSURL fileURLWithPath:@"Fixtures/cassette-1.json"];
     
@@ -40,22 +36,6 @@
     [self.manager setCurrentCassetteURL:url];
     
     STAssertEqualObjects(self.manager.currentCassette, expectedCassette, @"Should set cassette with URL");
-}
-
-- (void)testSetCurrentCassetteWithNonExistentURL {
-    NSTimeInterval timestamp = [[NSDate date] timeIntervalSince1970];
-    NSString *path = [NSString stringWithFormat:@"/tmp/cassette-%f.json", timestamp];
-    NSURL *url = [NSURL fileURLWithPath:path];
-    
-    STAssertFalse([[NSFileManager defaultManager] fileExistsAtPath:path], @"File should not exist");
-    
-    [self.manager setCurrentCassetteURL:url];
-    STAssertNotNil(self.manager.currentCassette, @"Cassette should be set");
-}
-
-- (void)testSetCurrentCassetteWithUnwritableURL {
-    NSURL *url = [NSURL fileURLWithPath:@"/unwritable.json"];
-    STAssertThrows([self.manager setCurrentCassetteURL:url], @"Should not be able to set unwritable URL");
 }
 
 @end

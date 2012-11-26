@@ -13,12 +13,8 @@
 
 + (VCRCassetteManager *)defaultManager;
 
-- (void)setCassetteLibraryPath:(NSString *)path;
-
-- (void)setCurrentCassetteURL:(NSURL *)url;
-
 - (VCRCassette *)currentCassette;
 
-@property (nonatomic, retain) NSString *cassetteLibraryPath;
+@property (nonatomic, retain) NSURL *currentCassetteURL;
 
 @end

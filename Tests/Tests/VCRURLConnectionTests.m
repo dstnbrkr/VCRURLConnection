@@ -66,6 +66,8 @@
 
 // FIXME: test with enough data to fire connection:didReceiveData: times (test data appending)
 
+// FIXME: can start and stop VCR
+
 @end
 
 
