@@ -115,8 +115,6 @@
 
 // FIXME: can start and stop VCR
 
-// FIXME: test that connection:didFailWithError: is called when status code != 2xx
-
 - (void)testAsyncGetRequestWithErrorIsReplayed {
     id json = @[ @{ @"url": @"http://foo", @"statusCode": @404 } ];
     VCRCassette *cassette = [[[VCRCassette alloc] initWithJSON:json] autorelease];

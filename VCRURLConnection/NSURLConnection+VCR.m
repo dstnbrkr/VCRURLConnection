@@ -47,6 +47,14 @@
     if ([delegate respondsToSelector:@selector(connectionDidFinishLoading:)]) {
         [delegate connectionDidFinishLoading:self];
     }
+    
+    if ((vcrResponse.statusCode < 200 || 299 < vcrResponse.statusCode) &&
+        [delegate respondsToSelector:@selector(connection:didFailWithError:)]) {
+        
+        // FIXME: store details of NSError in VCRResponse and populate here
+        NSError *error = [[[NSError alloc] init] autorelease];
+        [delegate connection:self didFailWithError:error];
+    }
 }
 
 @end
