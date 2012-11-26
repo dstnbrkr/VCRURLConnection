@@ -114,6 +114,8 @@
 
 // FIXME: can start and stop VCR
 
+// FIXME: test that connection:didFailWithError: is called when status code != 2xx
+
 @end
 
 
