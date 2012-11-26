@@ -17,6 +17,8 @@
 
 @implementation VCRCassetteManager
 
+@dynamic currentCassette;
+
 + (VCRCassetteManager *)defaultManager {
     static VCRCassetteManager *_defaultManager = nil;
     static dispatch_once_t oncePredicate;
@@ -51,6 +53,10 @@
     self.cassette = cassette;
     
     return cassette;
+}
+
+- (void)setCurrentCassette:(VCRCassette *)cassette {
+    self.cassette = cassette;
 }
 
 @end

@@ -21,7 +21,9 @@
     VCRCassette *cassette = [[VCRCassetteManager defaultManager] currentCassette];
     VCRResponse *response = [cassette responseForRequest:request];
     if (response) {
-        [self VCR_simulateResponse:response];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self VCR_simulateResponse:response delegate:delegate];
+        });
         self = nil;
     } else {
         VCRConnectionDelegate *vcrDelegate = [[[VCRConnectionDelegate alloc] initWithDelegate:delegate] autorelease];
@@ -32,9 +34,19 @@
     return self;
 }
 
-- (void)VCR_simulateResponse:(VCRResponse *)response {
-    NSLog(@"VCR_simulateResponse");
+- (void)VCR_simulateResponse:(VCRResponse *)vcrResponse delegate:(id)delegate {
+    if ([delegate respondsToSelector:@selector(connection:didReceiveResponse:)]) {
+        NSURLResponse *response = [vcrResponse URLResponse];
+        [delegate connection:self didReceiveResponse:response];
+    }
+    
+    if ([delegate respondsToSelector:@selector(connection:didReceiveData:)]) {
+        [delegate connection:self didReceiveData:vcrResponse.responseData];
+    }
+    
+    if ([delegate respondsToSelector:@selector(connectionDidFinishLoading:)]) {
+        [delegate connectionDidFinishLoading:self];
+    }
 }
-
 
 @end

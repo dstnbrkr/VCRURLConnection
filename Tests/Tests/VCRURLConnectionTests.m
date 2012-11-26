@@ -39,7 +39,7 @@
     [super tearDown];
 }
 
-- (void)testAsyncConnectionRecordedAndReplayed {
+- (void)testAsyncConnectionIsRecorded {
     NSURL *url = [NSURL URLWithString:@"http://www.iana.org/domains/example/"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
@@ -55,13 +55,36 @@
         usleep(10000);
     }
     
-    // the response was recorded
     VCRResponse *recordedResponse = [self.cassette responseForRequest:request];
-    STAssertNotNil(recordedResponse, @"Should have recorded a response");
+    NSData *recordedData = recordedResponse.responseData;
+    STAssertNotNil(recordedResponse, @"Should have recorded response data");
     
     NSData *receivedData = self.testDelegate.data;
-    NSData *recordedData = recordedResponse.responseData;
-    STAssertEqualObjects(recordedData, receivedData, @"Recorded data should equal received data");
+    STAssertEqualObjects(recordedData, receivedData, @"Recorded data should equal recorded data");    
+}
+
+- (void)testAsyncConnectionIsReplayed {
+    id json = @[ @{ @"url": @"http://foo", @"body": @"Foo Bar Baz" } ];
+    VCRCassette *cassette = [[[VCRCassette alloc] initWithJSON:json] autorelease];
+    [[VCRCassetteManager defaultManager] setCurrentCassette:cassette];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://foo"]];
+    
+    // cassette has recording for request
+    VCRResponse *recordedResponse = [cassette responseForRequest:request];
+    STAssertNotNil(recordedResponse, @"Should have recorded response");
+
+    // make and playback request
+    [NSURLConnection connectionWithRequest:request delegate:self.testDelegate];
+
+    // wait for request to finish
+    while (![self.testDelegate isDone]) {
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+        usleep(10000);
+    }
+    
+    NSData *receivedData = self.testDelegate.data;
+    STAssertEqualObjects(recordedResponse.responseData, receivedData, @"Received data should equal recorded data");
 }
 
 // FIXME: test with enough data to fire connection:didReceiveData: times (test data appending)
