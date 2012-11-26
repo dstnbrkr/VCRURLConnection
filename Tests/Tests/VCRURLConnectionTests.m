@@ -11,7 +11,24 @@
 #import "VCRCassette.h"
 #import "VCR.h"
 
+
+@interface NSHTTPURLResponse (VCRConnectionTests)
+- (BOOL)VCR_isIsomorphic:(NSHTTPURLResponse *)response;
+@end
+
+
+@implementation NSHTTPURLResponse (VCRConnectionTests)
+
+- (BOOL)VCR_isIsomorphic:(NSHTTPURLResponse *)response {
+    NSLog(@"%@ <> %@", self.URL, response.URL);
+    return [self.URL isEqual:response.URL];
+}
+
+@end
+
+
 @interface VCRURLConnectionTestDelegate : NSObject<NSURLConnectionDelegate>
+@property (nonatomic, retain) NSHTTPURLResponse *response;
 @property (nonatomic, retain) NSData *data;
 @property (assign, getter = isDone) BOOL done;
 @end
@@ -82,8 +99,16 @@
         usleep(10000);
     }
     
+    // delegate got response
+    NSHTTPURLResponse *receivedResponse = self.testDelegate.response;
+    STAssertNotNil(receivedResponse, @"Response should not be nil");
+    
+    // delegate got correct response
+    STAssertTrue([receivedResponse VCR_isIsomorphic:recordedResponse.URLResponse],
+                 @"Received response should be isomorphic to recorded response");
+    
     NSData *receivedData = self.testDelegate.data;
-    STAssertEqualObjects(recordedResponse.responseData, receivedData, @"Received data should equal recorded data");
+    STAssertEqualObjects(receivedData, recordedResponse.responseData, @"Received data should equal recorded data");
 }
 
 // FIXME: test with enough data to fire connection:didReceiveData: times (test data appending)
@@ -94,6 +119,10 @@
 
 
 @implementation VCRURLConnectionTestDelegate
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSHTTPURLResponse *)response {
+    self.response = response;
+}
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     self.data = data;
