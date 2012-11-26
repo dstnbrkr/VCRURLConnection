@@ -30,6 +30,7 @@
 @property (nonatomic, retain) NSHTTPURLResponse *response;
 @property (nonatomic, retain) NSData *data;
 @property (assign, getter = isDone) BOOL done;
+@property (assign, getter = isError) BOOL error;
 @end
 
 
@@ -78,7 +79,7 @@
     STAssertEqualObjects(recordedData, receivedData, @"Recorded data should equal recorded data");    
 }
 
-- (void)testAsyncConnectionIsReplayed {
+- (void)testAsyncGetRequestIsReplayed {
     id json = @[ @{ @"url": @"http://foo", @"body": @"Foo Bar Baz" } ];
     VCRCassette *cassette = [[[VCRCassette alloc] initWithJSON:json] autorelease];
     [[VCRCassetteManager defaultManager] setCurrentCassette:cassette];
@@ -116,6 +117,29 @@
 
 // FIXME: test that connection:didFailWithError: is called when status code != 2xx
 
+- (void)testAsyncGetRequestWithErrorIsReplayed {
+    id json = @[ @{ @"url": @"http://foo", @"statusCode": @404 } ];
+    VCRCassette *cassette = [[[VCRCassette alloc] initWithJSON:json] autorelease];
+    [[VCRCassetteManager defaultManager] setCurrentCassette:cassette];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://foo"]];
+    
+    // make and playback request
+    [NSURLConnection connectionWithRequest:request delegate:self.testDelegate];
+    
+    // wait for request to finish
+    while (![self.testDelegate isDone]) {
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+        usleep(10000);
+    }
+    
+    STAssertTrue([self.testDelegate isError], @"Delegate should report error");
+    
+    NSInteger expecteStatusCode = 404;
+    STAssertEquals(self.testDelegate.response.statusCode, expecteStatusCode, @"Should get error status code");
+
+}
+
 @end
 
 
@@ -131,6 +155,10 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     _done = YES;
+}
+
+- (void)connection:connection didFailWithError:(NSError *)error {
+    _error = YES;
 }
 
 - (void)dealloc {
