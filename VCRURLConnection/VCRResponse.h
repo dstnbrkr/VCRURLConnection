@@ -16,7 +16,6 @@
 
 @property (nonatomic, retain) NSData *responseData;
 
-// FIXME: readonly
-@property (nonatomic, retain) NSURLResponse *URLResponse;
+@property (nonatomic, retain) NSHTTPURLResponse *URLResponse;
 
 @end

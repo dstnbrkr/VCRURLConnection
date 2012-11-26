@@ -67,7 +67,7 @@
     [super dealloc];
 }
 
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSHTTPURLResponse *)response {
     [_response setURLResponse:response];
     if ([_wrapped respondsToSelector:@selector(connection:didReceiveResponse:)]) {
         [_wrapped connection:connection didReceiveResponse:response];
