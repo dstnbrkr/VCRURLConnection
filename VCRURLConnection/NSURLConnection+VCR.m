@@ -18,13 +18,14 @@
 }
 
 - (id)VCR_initWithRequest:(NSURLRequest *)request delegate:(id<NSURLConnectionDataDelegate>)delegate {
-    VCRCassette *cassette = [[VCRCassetteManager defaultManager] cassette];
+    VCRCassette *cassette = [[VCRCassetteManager defaultManager] currentCassette];
     VCRResponse *response = [cassette responseForRequest:request];
     if (response) {
         [self VCR_simulateResponse:response];
         self = nil;
     } else {
         VCRConnectionDelegate *vcrDelegate = [[[VCRConnectionDelegate alloc] initWithDelegate:delegate] autorelease];
+        vcrDelegate.request = request;
         vcrDelegate.cassette = cassette;
         self = [self VCR_original_initWithRequest:request delegate:vcrDelegate];
     }

@@ -9,6 +9,7 @@
 #import "VCRURLConnectionTests.h"
 #import "VCRCassetteManager.h"
 #import "VCRCassette.h"
+#import "VCR.h"
 
 @interface VCRURLConnectionTestDelegate : NSObject<NSURLConnectionDelegate>
 @property (nonatomic, retain) NSData *data;
@@ -27,7 +28,8 @@
 
 - (void)setUp {
     [super setUp];
-    self.cassette = [[VCRCassetteManager defaultManager] cassette];
+    [VCR start];
+    self.cassette = [[VCRCassetteManager defaultManager] currentCassette];
     self.testDelegate = [[[VCRURLConnectionTestDelegate alloc] init] autorelease];
 }
 
@@ -55,6 +57,8 @@
     
     // the response was recorded
     VCRResponse *recordedResponse = [self.cassette responseForRequest:request];
+    STAssertNotNil(recordedResponse, @"Should have recorded a response");
+    
     NSData *receivedData = self.testDelegate.data;
     NSData *recordedData = recordedResponse.responseData;
     STAssertEqualObjects(recordedData, receivedData, @"Recorded data should equal received data");

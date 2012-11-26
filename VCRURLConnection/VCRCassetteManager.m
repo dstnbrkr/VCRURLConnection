@@ -8,6 +8,12 @@
 
 #import "VCRCassetteManager.h"
 
+@interface VCRCassetteManager ()
+
+@property (nonatomic, retain) VCRCassette *cassette;
+
+@end
+
 @implementation VCRCassetteManager
 
 + (VCRCassetteManager *)defaultManager {
@@ -29,6 +35,11 @@
     } else {
         self.cassette = [VCRCassette cassette];
     }
+}
+
+- (VCRCassette *)currentCassette {
+    NSAssert(self.cassette != nil, @"VCRCassetteManager: current cassette not set!");
+    return self.cassette;
 }
 
 @end

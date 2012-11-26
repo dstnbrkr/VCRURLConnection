@@ -19,6 +19,8 @@
 
 - (id)initWithJSON:(id)json;
 
+- (void)setResponse:(VCRResponse *)response forRequest:(NSURLRequest *)request;
+
 - (VCRResponse *)responseForRequest:(NSURLRequest *)request;
 
 @end

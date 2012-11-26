@@ -49,6 +49,10 @@
     
 }
 
+- (void)setResponse:(VCRResponse *)response forRequest:(NSURLRequest *)request {
+    [self.responseDictionary setObject:response forKey:request];
+}
+
 - (VCRResponse *)responseForRequest:(NSURLRequest *)request {
     return [self.responseDictionary objectForKey:request];
 }

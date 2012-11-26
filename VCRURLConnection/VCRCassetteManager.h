@@ -15,9 +15,12 @@
 
 - (void)setCassetteLibraryPath:(NSString *)path;
 
-- (void)setCurrentCassette:(NSString *)cassette;
+// FIXME: these are named like symmetrical methods, but aren't
+
+- (void)setCurrentCassette:(NSString *)name;
+
+- (VCRCassette *)currentCassette;
 
 @property (nonatomic, retain) NSString *cassetteLibraryPath;
-@property (nonatomic, retain) VCRCassette *cassette;
 
 @end

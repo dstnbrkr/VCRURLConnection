@@ -7,9 +7,11 @@
 //
 
 #import "VCRConnectionDelegate.h"
+#import "VCRCassetteManager.h"
 
 @interface VCRConnectionDelegateWrapper : NSObject<NSURLConnectionDelegate>
-@property (nonatomic, readonly) VCRResponse *response;
+@property (nonatomic, retain) NSURLRequest *request;
+@property (nonatomic, retain) VCRResponse *response;
 @property (nonatomic, retain) id<NSURLConnectionDataDelegate> wrapped;
 @end
 
@@ -47,18 +49,19 @@
              
 @implementation VCRConnectionDelegateWrapper
 
-@synthesize response = _response;
+@synthesize request = _request;
 @synthesize wrapped = _wrapped;
 
 - (id)init {
     if ((self = [super init])) {
-        _response = [[VCRResponse alloc] init];
+        self.response = [[[VCRResponse alloc] init] autorelease];
     }
     return self;
 }
 
 - (void)dealloc {
     [_wrapped release];
+    self.response = nil;
     [super dealloc];
 }
 
@@ -70,13 +73,19 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    if (!_response.responseData) {
-        _response.responseData = data;
-    } else {
-        // FIXME: append data
-    }
+    self.response.responseData = data;
     if ([_wrapped respondsToSelector:@selector(connection:didReceiveData:)]) {
         [_wrapped connection:connection didReceiveData:data];
+    }
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    [[[VCRCassetteManager defaultManager] currentCassette] setResponse:self.response forRequest:self.request];
+    
+    NSLog(@"response: %@", self.response.responseData);
+    
+    if ([_wrapped respondsToSelector:@selector(connectionDidFinishLoading:)]) {
+        [_wrapped connectionDidFinishLoading:connection];
     }
 }
 
