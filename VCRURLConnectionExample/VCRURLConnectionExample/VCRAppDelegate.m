@@ -9,6 +9,7 @@
 #import "VCRAppDelegate.h"
 
 #import "VCRViewController.h"
+#import "VCR.h"
 
 @implementation VCRAppDelegate
 
@@ -26,6 +27,9 @@
     self.viewController = [[[VCRViewController alloc] initWithNibName:@"VCRViewController" bundle:nil] autorelease];
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
+    [VCR start];
+    NSURL *url = [NSURL fileURLWithPath:@"example.json"];
+    [VCR setCassetteURL:url];
     return YES;
 }
 

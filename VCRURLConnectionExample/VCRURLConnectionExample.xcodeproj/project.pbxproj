@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B323B861166C0B4600309D75 /* VCR.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B0CAB216598EA600B91929 /* VCR.m */; };
+		B323B862166C0B4600309D75 /* VCRCassette.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B0CAAC1659707B00B91929 /* VCRCassette.m */; };
+		B323B863166C0B4600309D75 /* VCRCassetteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B0CAAF165970F500B91929 /* VCRCassetteManager.m */; };
+		B323B864166C0B4600309D75 /* NSURLConnection+VCR.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B0CAB5165996CC00B91929 /* NSURLConnection+VCR.m */; };
+		B323B865166C0B4600309D75 /* VCRConnectionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B0CAB816599B1400B91929 /* VCRConnectionDelegate.m */; };
+		B323B866166C0B4600309D75 /* VCRResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B0CAC01659B20000B91929 /* VCRResponse.m */; };
 		B38D8A2D164EF3ED0099F205 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B38D8A2C164EF3ED0099F205 /* UIKit.framework */; };
 		B38D8A2F164EF3ED0099F205 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B38D8A2E164EF3ED0099F205 /* Foundation.framework */; };
 		B38D8A31164EF3ED0099F205 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B38D8A30164EF3ED0099F205 /* CoreGraphics.framework */; };
@@ -313,6 +319,12 @@
 				B38D8A39164EF3ED0099F205 /* main.m in Sources */,
 				B38D8A3D164EF3ED0099F205 /* VCRAppDelegate.m in Sources */,
 				B38D8A46164EF3ED0099F205 /* VCRViewController.m in Sources */,
+				B323B861166C0B4600309D75 /* VCR.m in Sources */,
+				B323B862166C0B4600309D75 /* VCRCassette.m in Sources */,
+				B323B863166C0B4600309D75 /* VCRCassetteManager.m in Sources */,
+				B323B864166C0B4600309D75 /* NSURLConnection+VCR.m in Sources */,
+				B323B865166C0B4600309D75 /* VCRConnectionDelegate.m in Sources */,
+				B323B866166C0B4600309D75 /* VCRResponse.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
