@@ -6,6 +6,7 @@
 //
 //
 
+#import "SenTestCase+SRTAdditions.h"
 #import "VCRURLConnectionTests.h"
 #import "VCRCassetteManager.h"
 #import "VCRCassette.h"
@@ -66,10 +67,9 @@
     [NSURLConnection connectionWithRequest:request delegate:self.testDelegate];
     
     // wait for request to finish
-    while (![self.testDelegate isDone]) {
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
-        usleep(10000);
-    }
+    [self runCurrentRunLoopUntilTestPasses:^BOOL{
+        return [self.testDelegate isDone];
+    } timeout:60 * 60];
     
     VCRResponse *recordedResponse = [self.cassette responseForRequest:request];
     NSData *recordedData = recordedResponse.responseData;
@@ -94,10 +94,9 @@
     [NSURLConnection connectionWithRequest:request delegate:self.testDelegate];
 
     // wait for request to finish
-    while (![self.testDelegate isDone]) {
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
-        usleep(10000);
-    }
+    [self runCurrentRunLoopUntilTestPasses:^BOOL{
+        return [self.testDelegate isDone];
+    } timeout:60 * 60];
     
     // delegate got response
     NSHTTPURLResponse *receivedResponse = self.testDelegate.response;
@@ -126,10 +125,9 @@
     [NSURLConnection connectionWithRequest:request delegate:self.testDelegate];
     
     // wait for request to finish
-    while (![self.testDelegate isDone]) {
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
-        usleep(10000);
-    }
+    [self runCurrentRunLoopUntilTestPasses:^BOOL{
+        return [self.testDelegate isDone];
+    } timeout:60 * 60];
     
     STAssertTrue([self.testDelegate isError], @"Delegate should report error");
     
