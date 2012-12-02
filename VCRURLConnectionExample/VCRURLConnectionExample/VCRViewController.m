@@ -10,6 +10,7 @@
 
 @interface VCRViewController () {
     IBOutlet UIWebView *_webView;
+    IBOutlet UIButton *_reloadButton;
 
     NSURL *_url;
     NSMutableData *_responseData;
@@ -22,11 +23,10 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [self load];
-    
 }
 
 - (void)load {
-    _url = [[NSURL alloc] initWithString:@"http://www.iana.org/domains/example/"];
+    _url = [[NSURL alloc] initWithString:@"http://localhost:4567/"];
     NSURLRequest *request = [NSURLRequest requestWithURL:_url];
     self.HTMLString = nil;
     [_responseData release]; _responseData = nil;
@@ -56,6 +56,12 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     [self loadHTMLString:nil];
+}
+
+#pragma mark - UI Callbacks
+
+- (IBAction)didPressReloadButton:(id)sender {
+    [self load];
 }
 
 @end
