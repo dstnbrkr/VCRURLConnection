@@ -21,10 +21,10 @@
     VCRCassette *cassette = [[VCRCassetteManager defaultManager] currentCassette];
     VCRResponse *response = [cassette responseForRequest:request];
     if (response) {
+        self = [self init];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self VCR_simulateResponse:response delegate:delegate];
         });
-        self = nil;
     } else {
         VCRConnectionDelegate *vcrDelegate = [[[VCRConnectionDelegate alloc] initWithDelegate:delegate] autorelease];
         [vcrDelegate setRequest:request];
