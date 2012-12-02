@@ -45,4 +45,28 @@
     STAssertEqualObjects(response1, response2, @"VCRResponse objects should be equal");
 }
 
+- (void)testRecordHTTPURLResponse {
+    NSURL *url = [NSURL URLWithString:@"http://foo/bar"];
+    NSDictionary *headerFields = @{ @"X-FOO": @"foo", @"X-BAR": @"bar" };
+    NSHTTPURLResponse *httpResponse = [[NSHTTPURLResponse alloc] initWithURL:url
+                                                                  statusCode:200
+                                                                 HTTPVersion:@"HTTP/1.1"
+                                                                headerFields:headerFields];
+    VCRResponse *vcrResponse = [[VCRResponse alloc] init];
+    [vcrResponse recordHTTPURLResponse:httpResponse];
+    
+    STAssertEqualObjects(vcrResponse.url, url, @"VCRResponse should record URL");
+    STAssertEqualObjects(vcrResponse.headerFields, headerFields, @"VCRResponse should record all header fields");
+    STAssertEquals(vcrResponse.statusCode, (NSInteger)200, @"VCRResponse should record status code");
+}
+
+- (void)testGenerateHTTPURLResponse {
+    VCRResponse *vcrResponse = [[[VCRResponse alloc] initWithJSON:self.json] autorelease];
+    NSHTTPURLResponse *httpResponse = [vcrResponse generateHTTPURLResponse];
+    
+    STAssertEqualObjects(httpResponse.URL, vcrResponse.url, @"VCRResponse should generate NSURLHTTPResponse with URL");
+    STAssertEqualObjects([httpResponse allHeaderFields], vcrResponse.headerFields, @"VCRResponse should generate NSURLHTTPResponse with all header fields");
+    STAssertEquals(httpResponse.statusCode, [vcrResponse statusCode], @"VCRResponse should generate NSURLHTTPResponse with status code");
+}
+
 @end

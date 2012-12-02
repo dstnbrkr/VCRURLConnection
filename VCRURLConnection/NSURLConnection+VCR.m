@@ -36,7 +36,7 @@
 
 - (void)VCR_simulateResponse:(VCRResponse *)vcrResponse delegate:(id)delegate {
     if ([delegate respondsToSelector:@selector(connection:didReceiveResponse:)]) {
-        NSURLResponse *response = [vcrResponse URLResponse];
+        NSURLResponse *response = [vcrResponse generateHTTPURLResponse];
         [delegate connection:self didReceiveResponse:response];
     }
     

@@ -12,12 +12,16 @@
 
 - (id)initWithJSON:(id)json;
 
+- (void)recordHTTPURLResponse:(NSHTTPURLResponse *)response;
+
+- (NSHTTPURLResponse *)generateHTTPURLResponse;
+
 @property (nonatomic, retain) NSURL *url;
 
 @property (nonatomic, assign) NSInteger statusCode;
 
 @property (nonatomic, retain) NSData *responseData;
 
-@property (nonatomic, retain) NSHTTPURLResponse *URLResponse;
+@property (nonatomic, retain, readonly) NSDictionary *headerFields;
 
 @end
