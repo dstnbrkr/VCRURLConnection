@@ -17,7 +17,15 @@
     return nil;
 }
 
+- (id)VCR_original_initWithRequest:(NSURLRequest *)request delegate:(id<NSURLConnectionDelegate>)delegate startImmediately:(BOOL)startImmediately {
+    return nil;
+}
+
 - (id)VCR_initWithRequest:(NSURLRequest *)request delegate:(id<NSURLConnectionDataDelegate>)delegate {
+    return [self VCR_initWithRequest:request delegate:delegate startImmediately:YES];
+}
+
+- (id)VCR_initWithRequest:(NSURLRequest *)request delegate:(id<NSURLConnectionDataDelegate>)delegate startImmediately:(BOOL)startImmediately {
     VCRCassette *cassette = [[VCRCassetteManager defaultManager] currentCassette];
     VCRResponse *response = [cassette responseForRequest:request];
     if (response) {
@@ -29,7 +37,7 @@
         VCRConnectionDelegate *vcrDelegate = [[[VCRConnectionDelegate alloc] initWithDelegate:delegate] autorelease];
         [vcrDelegate setRequest:request];
         vcrDelegate.cassette = cassette;
-        self = [self VCR_original_initWithRequest:request delegate:vcrDelegate];
+        self = [self VCR_original_initWithRequest:request delegate:vcrDelegate startImmediately:startImmediately];
     }
     return self;
 }

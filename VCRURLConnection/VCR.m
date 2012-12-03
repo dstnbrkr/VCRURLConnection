@@ -29,10 +29,12 @@ static void VCRURLConnectionUnswizzle(SEL selector);
 
 + (void)start {
     VCRURLConnectionSwizzle(@selector(initWithRequest:delegate:));
+    VCRURLConnectionSwizzle(@selector(initWithRequest:delegate:startImmediately:));
 }
 
 + (void)stop {
     VCRURLConnectionUnswizzle(@selector(initWithRequest:delegate:));
+    VCRURLConnectionUnswizzle(@selector(initWithRequest:delegate:startImmediately:));
 }
 
 @end
