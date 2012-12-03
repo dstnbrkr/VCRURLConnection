@@ -1,6 +1,5 @@
 
-
-
+* run tests against both iOS and OS X
 * Support ignorable query params
 * DRY up swizzle list (dupes in initialize and start)
 * ensure correct behavior for initWithRequest:delegate:startImmediately:
