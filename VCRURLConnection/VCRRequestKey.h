@@ -12,4 +12,7 @@
 
 + (VCRRequestKey *)keyForRequest:(NSURLRequest *)request;
 
+@property (nonatomic, retain, readonly) NSURL *url;
+@property (nonatomic, retain, readonly) NSString *method;
+
 @end

@@ -9,8 +9,8 @@
 #import "VCRRequestKey.h"
 
 @interface VCRRequestKey ()
-@property (nonatomic, retain) NSURL *url;
-@property (nonatomic, retain) NSString *method;
+@property (nonatomic, retain, readwrite) NSURL *url;
+@property (nonatomic, retain, readwrite) NSString *method;
 @end
 
 @implementation VCRRequestKey
