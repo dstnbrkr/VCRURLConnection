@@ -21,6 +21,7 @@ static void VCRURLConnectionUnswizzle(SEL selector);
 
 + (void)initialize {
     VCRStoreOriginalImplentation(@selector(initWithRequest:delegate:));
+    VCRStoreOriginalImplentation(@selector(initWithRequest:delegate:startImmediately:));
 }
 
 + (void)setCassetteURL:(NSURL *)url {
