@@ -9,6 +9,7 @@
 #import "VCRCassette.h"
 #import "VCRCassette_Private.h"
 #import "VCRResponse.h"
+#import "VCRRequestKey.h"
 
 
 @implementation VCRCassette
@@ -50,11 +51,13 @@
 }
 
 - (void)setResponse:(VCRResponse *)response forRequest:(NSURLRequest *)request {
-    [self.responseDictionary setObject:response forKey:request];
+    VCRRequestKey *key = [VCRRequestKey keyForRequest:request];
+    [self.responseDictionary setObject:response forKey:key];
 }
 
 - (VCRResponse *)responseForRequest:(NSURLRequest *)request {
-    return [self.responseDictionary objectForKey:request];
+    VCRRequestKey *key = [VCRRequestKey keyForRequest:request];
+    return [self.responseDictionary objectForKey:key];
 }
 
 - (BOOL)isEqual:(VCRCassette *)cassette {

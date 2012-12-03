@@ -11,6 +11,8 @@
 		B30E477B1662F0E300078E0D /* VCRCassetteManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B30E477A1662F0E300078E0D /* VCRCassetteManagerTests.m */; };
 		B323B86F166C128600309D75 /* SenTestCase+SRTAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B323B86E166C128600309D75 /* SenTestCase+SRTAdditions.m */; };
 		B323B893166C388800309D75 /* VCRTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B323B892166C388800309D75 /* VCRTests.m */; };
+		B323B8A2166C471900309D75 /* VCRRequestKey.m in Sources */ = {isa = PBXBuildFile; fileRef = B323B8A1166C471800309D75 /* VCRRequestKey.m */; };
+		B323B8A5166C48CA00309D75 /* VCRRequestKeyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B323B8A4166C48CA00309D75 /* VCRRequestKeyTests.m */; };
 		B361B1061662BE9B00A867EB /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B361B1051662BE9B00A867EB /* SenTestingKit.framework */; };
 		B361B1121662BE9B00A867EB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B361B1101662BE9B00A867EB /* InfoPlist.strings */; };
 		B361B1271662BEB500A867EB /* NSURLConnection+VCR.m in Sources */ = {isa = PBXBuildFile; fileRef = B361B11C1662BEB500A867EB /* NSURLConnection+VCR.m */; };
@@ -33,6 +35,10 @@
 		B323B86E166C128600309D75 /* SenTestCase+SRTAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SenTestCase+SRTAdditions.m"; sourceTree = "<group>"; };
 		B323B891166C388800309D75 /* VCRTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCRTests.h; sourceTree = "<group>"; };
 		B323B892166C388800309D75 /* VCRTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCRTests.m; sourceTree = "<group>"; };
+		B323B8A0166C471800309D75 /* VCRRequestKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCRRequestKey.h; sourceTree = "<group>"; };
+		B323B8A1166C471800309D75 /* VCRRequestKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCRRequestKey.m; sourceTree = "<group>"; };
+		B323B8A3166C48CA00309D75 /* VCRRequestKeyTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCRRequestKeyTests.h; sourceTree = "<group>"; };
+		B323B8A4166C48CA00309D75 /* VCRRequestKeyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCRRequestKeyTests.m; sourceTree = "<group>"; };
 		B361B1021662BE9B00A867EB /* Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B361B1051662BE9B00A867EB /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		B361B10F1662BE9B00A867EB /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
@@ -121,6 +127,8 @@
 				B30E47731662E58400078E0D /* VCRURLConnectionTests.m */,
 				B323B891166C388800309D75 /* VCRTests.h */,
 				B323B892166C388800309D75 /* VCRTests.m */,
+				B323B8A3166C48CA00309D75 /* VCRRequestKeyTests.h */,
+				B323B8A4166C48CA00309D75 /* VCRRequestKeyTests.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -151,6 +159,8 @@
 				B361B1221662BEB500A867EB /* VCRCassetteManager.m */,
 				B361B1251662BEB500A867EB /* VCRResponse.h */,
 				B361B1261662BEB500A867EB /* VCRResponse.m */,
+				B323B8A0166C471800309D75 /* VCRRequestKey.h */,
+				B323B8A1166C471800309D75 /* VCRRequestKey.m */,
 			);
 			name = VCRURLConnection;
 			sourceTree = "<group>";
@@ -254,6 +264,8 @@
 				B30E477B1662F0E300078E0D /* VCRCassetteManagerTests.m in Sources */,
 				B323B86F166C128600309D75 /* SenTestCase+SRTAdditions.m in Sources */,
 				B323B893166C388800309D75 /* VCRTests.m in Sources */,
+				B323B8A2166C471900309D75 /* VCRRequestKey.m in Sources */,
+				B323B8A5166C48CA00309D75 /* VCRRequestKeyTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
