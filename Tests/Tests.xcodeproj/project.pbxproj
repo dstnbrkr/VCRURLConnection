@@ -11,7 +11,6 @@
 		B30E477B1662F0E300078E0D /* VCRCassetteManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B30E477A1662F0E300078E0D /* VCRCassetteManagerTests.m */; };
 		B323B86F166C128600309D75 /* SenTestCase+SRTAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B323B86E166C128600309D75 /* SenTestCase+SRTAdditions.m */; };
 		B361B1061662BE9B00A867EB /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B361B1051662BE9B00A867EB /* SenTestingKit.framework */; };
-		B361B1081662BE9B00A867EB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B361B1071662BE9B00A867EB /* Cocoa.framework */; };
 		B361B1121662BE9B00A867EB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B361B1101662BE9B00A867EB /* InfoPlist.strings */; };
 		B361B1271662BEB500A867EB /* NSURLConnection+VCR.m in Sources */ = {isa = PBXBuildFile; fileRef = B361B11C1662BEB500A867EB /* NSURLConnection+VCR.m */; };
 		B361B1281662BEB500A867EB /* VCR.m in Sources */ = {isa = PBXBuildFile; fileRef = B361B11E1662BEB500A867EB /* VCR.m */; };
@@ -33,10 +32,6 @@
 		B323B86E166C128600309D75 /* SenTestCase+SRTAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SenTestCase+SRTAdditions.m"; sourceTree = "<group>"; };
 		B361B1021662BE9B00A867EB /* Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B361B1051662BE9B00A867EB /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		B361B1071662BE9B00A867EB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
-		B361B10A1662BE9B00A867EB /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		B361B10B1662BE9B00A867EB /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		B361B10C1662BE9B00A867EB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B361B10F1662BE9B00A867EB /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		B361B1111662BE9B00A867EB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B361B1161662BE9B00A867EB /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
@@ -66,7 +61,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B361B1061662BE9B00A867EB /* SenTestingKit.framework in Frameworks */,
-				B361B1081662BE9B00A867EB /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,20 +99,8 @@
 			isa = PBXGroup;
 			children = (
 				B361B1051662BE9B00A867EB /* SenTestingKit.framework */,
-				B361B1071662BE9B00A867EB /* Cocoa.framework */,
-				B361B1091662BE9B00A867EB /* Other Frameworks */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		B361B1091662BE9B00A867EB /* Other Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				B361B10A1662BE9B00A867EB /* AppKit.framework */,
-				B361B10B1662BE9B00A867EB /* CoreData.framework */,
-				B361B10C1662BE9B00A867EB /* Foundation.framework */,
-			);
-			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
 		B361B10D1662BE9B00A867EB /* Tests */ = {
