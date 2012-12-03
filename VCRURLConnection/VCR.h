@@ -13,5 +13,6 @@
 + (void)setCassetteURL:(NSURL *)url;
 
 + (void)start;
++ (void)stop;
 
 @end
