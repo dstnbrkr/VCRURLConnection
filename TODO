@@ -1,6 +1,7 @@
 
-* Consider URL query params in URL matching
-* Allow URL ignoring?
+
+
+* Support ignorable query params
 * DRY up swizzle list (dupes in initialize and start)
 * ensure correct behavior for initWithRequest:delegate:startImmediately:
 * test handling of multiple connection:didReceiveResponse: calls (i.e. multipart responses with different types of data)
