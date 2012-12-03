@@ -52,6 +52,17 @@
     STAssertEqualObjects(cassette, expectedCassette, @"");
 }
 
+- (void)testInitWithJSON {
+    NSURL *url = [NSURL URLWithString:[self.recording1 objectForKey:@"url"]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    VCRResponse *expectedResponse = [[[VCRResponse alloc] initWithJSON:self.recording1] autorelease];
+    
+    VCRCassette *cassette = [[[VCRCassette alloc] initWithJSON:self.recordings] autorelease];
+    VCRResponse *actualResponse = [cassette responseForRequest:request];
+    
+    STAssertEqualObjects(actualResponse, expectedResponse, @"Should get expected response");
+}
+
 - (void)testInitWithNilJSON {
     STAssertThrows([[[VCRCassette alloc] initWithJSON:nil] autorelease], @"Cannot init with nil json");
 }
