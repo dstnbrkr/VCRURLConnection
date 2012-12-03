@@ -44,10 +44,6 @@
     STAssertNotNil(cassette.responseDictionary, @"Must have response dictionary");
 }
 
-- (void)testInitWithNilJSON {
-    STAssertThrows([[[VCRCassette alloc] initWithJSON:nil] autorelease], @"Cannot init with nil json");
-}
-
 - (void)testInitWithData {
     id json = self.recordings;
     NSData *data = [NSJSONSerialization dataWithJSONObject:json options:0 error:nil];
@@ -55,6 +51,11 @@
     VCRCassette *cassette = [[[VCRCassette alloc] initWithData:data] autorelease];
     STAssertEqualObjects(cassette, expectedCassette, @"");
 }
+
+- (void)testInitWithNilJSON {
+    STAssertThrows([[[VCRCassette alloc] initWithJSON:nil] autorelease], @"Cannot init with nil json");
+}
+
 
 - (void)testInitWithNilData {
     STAssertThrows([[[VCRCassette alloc] initWithData:nil] autorelease], @"Cannot init with nil data");
