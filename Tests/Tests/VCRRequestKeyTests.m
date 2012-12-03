@@ -17,10 +17,13 @@
 @implementation VCRRequestKeyTests
 
 - (void)setUp {
-    NSURL *url = [NSURL URLWithString:@"http://foo/bar"];
-    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
-    self.key1 = [VCRRequestKey keyForRequest:request];
-    self.key2 = [VCRRequestKey keyForRequest:request];
+    NSURL *url1 = [NSURL URLWithString:@"http://foo/bar"];
+    NSURLRequest *request1 = [[NSURLRequest alloc] initWithURL:url1];
+    self.key1 = [VCRRequestKey keyForRequest:request1];
+
+    NSURL *url2 = [NSURL URLWithString:@"http://foo/bar"];
+    NSURLRequest *request2 = [[NSURLRequest alloc] initWithURL:url2];
+    self.key2 = [VCRRequestKey keyForRequest:request2];
 }
 
 - (void)testIsEqual {
