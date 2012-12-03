@@ -43,7 +43,7 @@
     return [[[NSHTTPURLResponse alloc] initWithURL:self.url
                                         statusCode:self.statusCode
                                        HTTPVersion:@"HTTP/1.1"         // FIXME: don't hardcode, but make default
-                                      headerFields:nil] autorelease];
+                                      headerFields:self.headerFields] autorelease];
 }
 
 - (void)dealloc {
