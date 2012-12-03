@@ -19,7 +19,8 @@
     [super setUp];
     self.json = @{ @"url": @"http://foo",
                    @"statusCode": @200,
-                   @"body": @"Foo Bar Baz" };
+                   @"body": @"Foo Bar Baz",
+                   @"headers": @{ @"X-Foo": @"foo" } };
 }
 
 - (void)tearDown {
