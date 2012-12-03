@@ -9,6 +9,7 @@
 #import "VCRCassetteTests.h"
 #import "VCRCassette.h"
 #import "VCRCassette_Private.h"
+#import "VCRRequestKey.h" // FIXME: don't import
 
 @interface VCRCassetteTests ()
 @property (nonatomic, retain) id recording1;
@@ -53,20 +54,16 @@
 }
 
 - (void)testInitWithJSON {
-    NSURL *url = [NSURL URLWithString:[self.recording1 objectForKey:@"url"]];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    NSURLRequest *request = VCRCassetteRequestForJSON(self.recording1);
     VCRResponse *expectedResponse = [[[VCRResponse alloc] initWithJSON:self.recording1] autorelease];
-    
     VCRCassette *cassette = [[[VCRCassette alloc] initWithJSON:self.recordings] autorelease];
     VCRResponse *actualResponse = [cassette responseForRequest:request];
-    
     STAssertEqualObjects(actualResponse, expectedResponse, @"Should get expected response");
 }
 
 - (void)testInitWithNilJSON {
     STAssertThrows([[[VCRCassette alloc] initWithJSON:nil] autorelease], @"Cannot init with nil json");
 }
-
 
 - (void)testInitWithNilData {
     STAssertThrows([[[VCRCassette alloc] initWithData:nil] autorelease], @"Cannot init with nil data");

@@ -36,7 +36,7 @@
         for (id recording in json) {
             NSURLRequest *request = VCRCassetteRequestForJSON(recording);
             VCRResponse *response = [[[VCRResponse alloc] initWithJSON:recording] autorelease];
-            [self.responseDictionary setObject:response forKey:request];
+            [self setResponse:response forRequest:request];
         }
     }
     return self;

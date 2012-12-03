@@ -23,7 +23,7 @@
 }
 
 - (BOOL)isEqual:(VCRRequestKey *)key {
-    return self.method == key.method && self.url == key.url;
+    return self.hash == key.hash;
 }
 
 - (NSUInteger)hash {
