@@ -33,9 +33,10 @@
     [NSURLConnection connectionWithRequest:request delegate:self];
 }
 
-- (void)loadHTMLString:(NSString *)HTMLString {
+- (void)loadData:(NSData *)data {
+    NSString *HTMLString = [[NSString alloc] initWithData:_responseData encoding:NSUTF8StringEncoding];
     self.HTMLString = HTMLString;
-    [_webView loadHTMLString:HTMLString baseURL:_url];
+    [_webView loadData:data MIMEType:@"text/html" textEncodingName:@"utf-8" baseURL:_url];
     _isLoaded = YES;
 }
 
@@ -50,12 +51,11 @@
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    NSString *HTMLString = [[NSString alloc] initWithData:_responseData encoding:NSUTF8StringEncoding];
-    [self loadHTMLString:HTMLString];
+    [self loadData:_responseData];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    [self loadHTMLString:nil];
+    [self loadData:_responseData];
 }
 
 #pragma mark - UI Callbacks

@@ -57,7 +57,8 @@
 
 - (VCRResponse *)responseForRequest:(NSURLRequest *)request {
     VCRRequestKey *key = [VCRRequestKey keyForRequest:request];
-    return [self.responseDictionary objectForKey:key];
+    VCRResponse *response = [self.responseDictionary objectForKey:key];
+    return response;
 }
 
 - (BOOL)isEqual:(VCRCassette *)cassette {
