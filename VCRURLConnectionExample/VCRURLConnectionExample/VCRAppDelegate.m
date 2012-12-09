@@ -28,8 +28,9 @@
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     [VCR start];
-    NSURL *url = [NSURL fileURLWithPath:@"example.json"];
-    [VCR setCassetteURL:url];
+    NSString *cassettePath = [[NSBundle mainBundle] pathForResource:@"cassette" ofType:@"json"];
+    NSLog(@"bundle path: %@", cassettePath);
+    [VCR setCassetteURL:[NSURL fileURLWithPath:cassettePath]];
     return YES;
 }
 

@@ -26,7 +26,7 @@
 }
 
 - (void)load {
-    _url = [[NSURL alloc] initWithString:@"http://localhost:4567/"];
+    _url = [[NSURL alloc] initWithString:@"http://foo"];
     NSURLRequest *request = [NSURLRequest requestWithURL:_url];
     self.HTMLString = nil;
     [_responseData release]; _responseData = nil;
