@@ -29,6 +29,7 @@
 		B38D8A53164EF3ED0099F205 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B38D8A2E164EF3ED0099F205 /* Foundation.framework */; };
 		B38D8A5B164EF3ED0099F205 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B38D8A59164EF3ED0099F205 /* InfoPlist.strings */; };
 		B38D8A5E164EF3ED0099F205 /* VCRURLConnectionExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B38D8A5D164EF3ED0099F205 /* VCRURLConnectionExampleTests.m */; };
+		B39545EC16753B480091C493 /* VCRRequestKey.m in Sources */ = {isa = PBXBuildFile; fileRef = B39545EB16753B480091C493 /* VCRRequestKey.m */; };
 		B3B0CAAD1659707B00B91929 /* VCRCassette.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B0CAAC1659707B00B91929 /* VCRCassette.m */; };
 		B3B0CAB0165970F500B91929 /* VCRCassetteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B0CAAF165970F500B91929 /* VCRCassetteManager.m */; };
 		B3B0CAB316598EA600B91929 /* VCR.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B0CAB216598EA600B91929 /* VCR.m */; };
@@ -70,6 +71,8 @@
 		B38D8A5A164EF3ED0099F205 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B38D8A5C164EF3ED0099F205 /* VCRURLConnectionExampleTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VCRURLConnectionExampleTests.h; sourceTree = "<group>"; };
 		B38D8A5D164EF3ED0099F205 /* VCRURLConnectionExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VCRURLConnectionExampleTests.m; sourceTree = "<group>"; };
+		B39545EA16753B480091C493 /* VCRRequestKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCRRequestKey.h; sourceTree = "<group>"; };
+		B39545EB16753B480091C493 /* VCRRequestKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCRRequestKey.m; sourceTree = "<group>"; };
 		B3B0CAAB1659707B00B91929 /* VCRCassette.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCRCassette.h; sourceTree = "<group>"; };
 		B3B0CAAC1659707B00B91929 /* VCRCassette.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCRCassette.m; sourceTree = "<group>"; };
 		B3B0CAAE165970F500B91929 /* VCRCassetteManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCRCassetteManager.h; sourceTree = "<group>"; };
@@ -142,6 +145,7 @@
 		B38D8A32164EF3ED0099F205 /* VCRURLConnectionExample */ = {
 			isa = PBXGroup;
 			children = (
+				B39545EE16753BD20091C493 /* VCR */,
 				B38D8A3B164EF3ED0099F205 /* VCRAppDelegate.h */,
 				B38D8A3C164EF3ED0099F205 /* VCRAppDelegate.m */,
 				B38D8A44164EF3ED0099F205 /* VCRViewController.h */,
@@ -185,9 +189,18 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		B39545EE16753BD20091C493 /* VCR */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = VCR;
+			sourceTree = "<group>";
+		};
 		B3B0CAA61659705000B91929 /* VCRURLConnection */ = {
 			isa = PBXGroup;
 			children = (
+				B39545EA16753B480091C493 /* VCRRequestKey.h */,
+				B39545EB16753B480091C493 /* VCRRequestKey.m */,
 				B3B0CAB116598EA600B91929 /* VCR.h */,
 				B3B0CAB216598EA600B91929 /* VCR.m */,
 				B3B0CAAB1659707B00B91929 /* VCRCassette.h */,
@@ -325,6 +338,7 @@
 				B323B864166C0B4600309D75 /* NSURLConnection+VCR.m in Sources */,
 				B323B865166C0B4600309D75 /* VCRConnectionDelegate.m in Sources */,
 				B323B866166C0B4600309D75 /* VCRResponse.m in Sources */,
+				B39545EC16753B480091C493 /* VCRRequestKey.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
