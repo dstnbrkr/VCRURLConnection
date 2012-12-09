@@ -31,6 +31,8 @@
 		B38D8A5E164EF3ED0099F205 /* VCRURLConnectionExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B38D8A5D164EF3ED0099F205 /* VCRURLConnectionExampleTests.m */; };
 		B39545EC16753B480091C493 /* VCRRequestKey.m in Sources */ = {isa = PBXBuildFile; fileRef = B39545EB16753B480091C493 /* VCRRequestKey.m */; };
 		B39545F31675436F0091C493 /* cassette.json in Resources */ = {isa = PBXBuildFile; fileRef = B39545F21675436F0091C493 /* cassette.json */; };
+		B39545F716755A490091C493 /* VCRCassetteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B39545F516755A490091C493 /* VCRCassetteViewController.m */; };
+		B39545F816755A490091C493 /* VCRCassetteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B39545F616755A490091C493 /* VCRCassetteViewController.xib */; };
 		B3B0CAAD1659707B00B91929 /* VCRCassette.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B0CAAC1659707B00B91929 /* VCRCassette.m */; };
 		B3B0CAB0165970F500B91929 /* VCRCassetteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B0CAAF165970F500B91929 /* VCRCassetteManager.m */; };
 		B3B0CAB316598EA600B91929 /* VCR.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B0CAB216598EA600B91929 /* VCR.m */; };
@@ -75,6 +77,9 @@
 		B39545EA16753B480091C493 /* VCRRequestKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCRRequestKey.h; sourceTree = "<group>"; };
 		B39545EB16753B480091C493 /* VCRRequestKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCRRequestKey.m; sourceTree = "<group>"; };
 		B39545F21675436F0091C493 /* cassette.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cassette.json; sourceTree = "<group>"; };
+		B39545F416755A490091C493 /* VCRCassetteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCRCassetteViewController.h; sourceTree = "<group>"; };
+		B39545F516755A490091C493 /* VCRCassetteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCRCassetteViewController.m; sourceTree = "<group>"; };
+		B39545F616755A490091C493 /* VCRCassetteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VCRCassetteViewController.xib; sourceTree = "<group>"; };
 		B3B0CAAB1659707B00B91929 /* VCRCassette.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCRCassette.h; sourceTree = "<group>"; };
 		B3B0CAAC1659707B00B91929 /* VCRCassette.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCRCassette.m; sourceTree = "<group>"; };
 		B3B0CAAE165970F500B91929 /* VCRCassetteManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCRCassetteManager.h; sourceTree = "<group>"; };
@@ -148,6 +153,9 @@
 			isa = PBXGroup;
 			children = (
 				B39545EE16753BD20091C493 /* VCR */,
+				B39545F416755A490091C493 /* VCRCassetteViewController.h */,
+				B39545F516755A490091C493 /* VCRCassetteViewController.m */,
+				B39545F616755A490091C493 /* VCRCassetteViewController.xib */,
 				B38D8A3B164EF3ED0099F205 /* VCRAppDelegate.h */,
 				B38D8A3C164EF3ED0099F205 /* VCRAppDelegate.m */,
 				B38D8A44164EF3ED0099F205 /* VCRViewController.h */,
@@ -299,6 +307,7 @@
 				B38D8A43164EF3ED0099F205 /* Default-568h@2x.png in Resources */,
 				B38D8A49164EF3ED0099F205 /* VCRViewController.xib in Resources */,
 				B39545F31675436F0091C493 /* cassette.json in Resources */,
+				B39545F816755A490091C493 /* VCRCassetteViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,6 +352,7 @@
 				B323B865166C0B4600309D75 /* VCRConnectionDelegate.m in Sources */,
 				B323B866166C0B4600309D75 /* VCRResponse.m in Sources */,
 				B39545EC16753B480091C493 /* VCRRequestKey.m in Sources */,
+				B39545F716755A490091C493 /* VCRCassetteViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
