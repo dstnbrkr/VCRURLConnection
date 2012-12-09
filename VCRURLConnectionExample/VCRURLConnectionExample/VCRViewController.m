@@ -21,6 +21,10 @@
 
 @synthesize finishedLoading = _isLoaded;
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+}
+
 - (void)viewDidAppear:(BOOL)animated {
     [self load];
 }
@@ -62,6 +66,13 @@
 
 - (IBAction)didPressReloadButton:(id)sender {
     [self load];
+}
+
+- (IBAction)didPressPageCurlButton:(id)sender {
+    UIViewController *controller = [[[UIViewController alloc] init] autorelease];
+    controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    controller.view.backgroundColor = [UIColor redColor];
+    [self presentViewController:controller animated:YES completion:NULL];
 }
 
 @end
