@@ -27,7 +27,6 @@
     [self.window makeKeyAndVisible];
     [VCR start];
     NSString *cassettePath = [[NSBundle mainBundle] pathForResource:@"cassette" ofType:@"json"];
-    NSLog(@"bundle path: %@", cassettePath);
     [VCR setCassetteURL:[NSURL fileURLWithPath:cassettePath]];
     return YES;
 }
