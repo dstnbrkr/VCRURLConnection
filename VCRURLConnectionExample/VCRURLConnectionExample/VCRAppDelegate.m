@@ -26,7 +26,13 @@
     NSString *cassettePath = [[NSBundle mainBundle] pathForResource:@"cassette" ofType:@"json"];
     [VCR setCassetteURL:[NSURL fileURLWithPath:cassettePath]];
     
+    VCRCassetteViewController *cassetteViewController = [[[VCRCassetteViewController alloc] init] autorelease];
+    cassetteViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    cassetteViewController.cassette = [VCR cassette];
+    
     self.viewController = [[[VCRViewController alloc] initWithNibName:@"VCRViewController" bundle:nil] autorelease];
+    self.viewController.cassetteViewController = cassetteViewController;
+    
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
 

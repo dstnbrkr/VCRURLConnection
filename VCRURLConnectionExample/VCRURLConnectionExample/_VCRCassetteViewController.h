@@ -1,5 +1,5 @@
 //
-//  VCRCassetteController.h
+//  VCRCassetteViewController.h
 //  VCRURLConnectionExample
 //
 //  Created by Dustin Barker on 12/9/12.
