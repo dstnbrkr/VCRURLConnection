@@ -17,8 +17,8 @@ NSURL *url = [NSURL URLWithString:@"http://example.com/example"];
 [NSURLConnection connectionWithRequest:request delegate:self]; // records real HTTP response
 [VCR save]; // persist recording to cassette.json
 
-// the next time the resource is requested, VCRURLConnection will replay the previous response
-[NSURLConnection connectionWithRequest:request delegate:self]; // replay recorded HTTP response
+// repeat the request, VCRURLConnection will replay the recorded response
+[NSURLConnection connectionWithRequest:request delegate:self];
 
 [VCR stop];
 ```
