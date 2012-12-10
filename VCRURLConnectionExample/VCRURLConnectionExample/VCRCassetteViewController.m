@@ -7,12 +7,25 @@
 //
 
 #import "VCRCassetteViewController.h"
+#import "VCRResponseViewController.h"
 
 @interface VCRCassetteViewController ()
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
+@property (nonatomic, retain) VCRResponseViewController *responseViewController;
 @end
 
 @implementation VCRCassetteViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.responseViewController = [[[VCRResponseViewController alloc] init] autorelease];
+    
+    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                                                                   target:self
+                                                                                   action:@selector(done)];
+    [self.navigationItem setRightBarButtonItem:barButtonItem];
+    [barButtonItem release];
+}
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -47,6 +60,15 @@
     cell.textLabel.text = path;
     
     return cell;
+}
+
+#pragma mark - Table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    VCRRequestKey *key = [[self.cassette allKeys] objectAtIndex:indexPath.row];
+    VCRResponse *response = [self.cassette responseForRequestKey:key];
+    self.responseViewController.response = response;
+    [self.navigationController pushViewController:self.responseViewController animated:YES];
 }
 
 @end

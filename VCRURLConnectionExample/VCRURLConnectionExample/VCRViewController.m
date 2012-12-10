@@ -77,7 +77,8 @@
 }
 
 - (IBAction)didPressPageCurlButton:(id)sender {
-    [self presentViewController:self.cassetteViewController animated:YES completion:NULL];
+    UINavigationController *navigationController = [[[UINavigationController alloc] initWithRootViewController:self.cassetteViewController] autorelease];
+    [self presentViewController:navigationController animated:YES completion:NULL];
 }
 
 @end

@@ -33,6 +33,8 @@
 		B39545F31675436F0091C493 /* cassette.json in Resources */ = {isa = PBXBuildFile; fileRef = B39545F21675436F0091C493 /* cassette.json */; };
 		B39545FC16755E0A0091C493 /* VCRCassetteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B39545FA16755E090091C493 /* VCRCassetteViewController.m */; };
 		B39545FD16755E0A0091C493 /* VCRCassetteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B39545FB16755E0A0091C493 /* VCRCassetteViewController.xib */; };
+		B3954602167564BF0091C493 /* VCRResponseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3954600167564BF0091C493 /* VCRResponseViewController.m */; };
+		B3954603167564BF0091C493 /* VCRResponseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3954601167564BF0091C493 /* VCRResponseViewController.xib */; };
 		B3B0CAAD1659707B00B91929 /* VCRCassette.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B0CAAC1659707B00B91929 /* VCRCassette.m */; };
 		B3B0CAB0165970F500B91929 /* VCRCassetteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B0CAAF165970F500B91929 /* VCRCassetteManager.m */; };
 		B3B0CAB316598EA600B91929 /* VCR.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B0CAB216598EA600B91929 /* VCR.m */; };
@@ -80,6 +82,9 @@
 		B39545F916755E090091C493 /* VCRCassetteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCRCassetteViewController.h; sourceTree = "<group>"; };
 		B39545FA16755E090091C493 /* VCRCassetteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCRCassetteViewController.m; sourceTree = "<group>"; };
 		B39545FB16755E0A0091C493 /* VCRCassetteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VCRCassetteViewController.xib; sourceTree = "<group>"; };
+		B39545FF167564BF0091C493 /* VCRResponseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCRResponseViewController.h; sourceTree = "<group>"; };
+		B3954600167564BF0091C493 /* VCRResponseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCRResponseViewController.m; sourceTree = "<group>"; };
+		B3954601167564BF0091C493 /* VCRResponseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VCRResponseViewController.xib; sourceTree = "<group>"; };
 		B3B0CAAB1659707B00B91929 /* VCRCassette.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCRCassette.h; sourceTree = "<group>"; };
 		B3B0CAAC1659707B00B91929 /* VCRCassette.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCRCassette.m; sourceTree = "<group>"; };
 		B3B0CAAE165970F500B91929 /* VCRCassetteManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCRCassetteManager.h; sourceTree = "<group>"; };
@@ -160,6 +165,9 @@
 				B39545F916755E090091C493 /* VCRCassetteViewController.h */,
 				B39545FA16755E090091C493 /* VCRCassetteViewController.m */,
 				B39545FB16755E0A0091C493 /* VCRCassetteViewController.xib */,
+				B39545FF167564BF0091C493 /* VCRResponseViewController.h */,
+				B3954600167564BF0091C493 /* VCRResponseViewController.m */,
+				B3954601167564BF0091C493 /* VCRResponseViewController.xib */,
 				B39545FE16755FD80091C493 /* Fixtures */,
 				B38D8A33164EF3ED0099F205 /* Supporting Files */,
 			);
@@ -308,6 +316,7 @@
 				B38D8A49164EF3ED0099F205 /* VCRViewController.xib in Resources */,
 				B39545F31675436F0091C493 /* cassette.json in Resources */,
 				B39545FD16755E0A0091C493 /* VCRCassetteViewController.xib in Resources */,
+				B3954603167564BF0091C493 /* VCRResponseViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,6 +362,7 @@
 				B323B866166C0B4600309D75 /* VCRResponse.m in Sources */,
 				B39545EC16753B480091C493 /* VCRRequestKey.m in Sources */,
 				B39545FC16755E0A0091C493 /* VCRCassetteViewController.m in Sources */,
+				B3954602167564BF0091C493 /* VCRResponseViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
