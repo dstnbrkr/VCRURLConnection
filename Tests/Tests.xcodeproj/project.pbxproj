@@ -121,14 +121,14 @@
 				B361B1391662D70900A867EB /* VCRResponseTests.m */,
 				B30E47791662F0E300078E0D /* VCRCassetteManagerTests.h */,
 				B30E477A1662F0E300078E0D /* VCRCassetteManagerTests.m */,
-				B361B1301662C4B900A867EB /* Fixtures */,
-				B361B10E1662BE9B00A867EB /* Supporting Files */,
 				B30E47721662E58400078E0D /* VCRURLConnectionTests.h */,
 				B30E47731662E58400078E0D /* VCRURLConnectionTests.m */,
 				B323B891166C388800309D75 /* VCRTests.h */,
 				B323B892166C388800309D75 /* VCRTests.m */,
 				B323B8A3166C48CA00309D75 /* VCRRequestKeyTests.h */,
 				B323B8A4166C48CA00309D75 /* VCRRequestKeyTests.m */,
+				B361B1301662C4B900A867EB /* Fixtures */,
+				B361B10E1662BE9B00A867EB /* Supporting Files */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
