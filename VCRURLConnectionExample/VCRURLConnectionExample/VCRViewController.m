@@ -41,15 +41,22 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     self.url = [[NSURL alloc] initWithString:textField.text];
     [self load];
+    [textField resignFirstResponder];
     return YES;
 }
 
 #pragma mark - UIWebViewDelegate
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    _textField.text = [request.URL absoluteString];
-    self.url = request.URL;
-    return YES;
+    if (navigationType == UIWebViewNavigationTypeLinkClicked) {
+        NSString *text = [request.URL absoluteString];
+        _textField.text = text;
+        self.url = request.URL;
+        [self load];
+        return NO;
+    } else {
+        return YES;
+    }
 }
 
 #pragma mark - NSURLConnectionDelegate
