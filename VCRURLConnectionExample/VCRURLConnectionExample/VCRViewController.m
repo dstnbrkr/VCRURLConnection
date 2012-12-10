@@ -16,6 +16,7 @@
     NSMutableData *_responseData;
 }
 @property (nonatomic, retain) NSURL *url;
+@property (nonatomic, retain) NSString *mimeType;
 @end
 
 @implementation VCRViewController
@@ -40,7 +41,7 @@
 - (void)loadData:(NSData *)data {
     NSString *HTMLString = [[NSString alloc] initWithData:_responseData encoding:NSUTF8StringEncoding];
     self.HTMLString = HTMLString;
-    [_webView loadData:data MIMEType:@"text/html" textEncodingName:@"utf-8" baseURL:_url];
+    [_webView loadData:data MIMEType:self.mimeType textEncodingName:@"utf-8" baseURL:_url];
     _isLoaded = YES;
 }
 
@@ -68,6 +69,10 @@
 }
 
 #pragma mark - NSURLConnectionDelegate
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSHTTPURLResponse *)response {
+    self.mimeType = [response MIMEType];
+}
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     if (!_responseData) {
