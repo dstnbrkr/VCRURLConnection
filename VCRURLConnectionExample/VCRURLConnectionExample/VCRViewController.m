@@ -22,6 +22,12 @@
 
 @synthesize finishedLoading = _isLoaded;
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.url = [NSURL URLWithString:@"http://example.com/example"];
+    [self load];
+}
+
 - (void)load {
     NSURLRequest *request = [NSURLRequest requestWithURL:_url];
     self.HTMLString = nil;
