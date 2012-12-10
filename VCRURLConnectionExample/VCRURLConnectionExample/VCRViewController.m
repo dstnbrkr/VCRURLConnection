@@ -13,9 +13,9 @@
     IBOutlet UIWebView *_webView;
     IBOutlet UIButton *_reloadButton;
 
-    NSURL *_url;
     NSMutableData *_responseData;
 }
+@property (nonatomic, retain) NSURL *url;
 @end
 
 @implementation VCRViewController
@@ -39,9 +39,16 @@
 #pragma mark - UITextFieldDelegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [_url release];
-    _url = [[NSURL alloc] initWithString:textField.text];
+    self.url = [[NSURL alloc] initWithString:textField.text];
     [self load];
+    return YES;
+}
+
+#pragma mark - UIWebViewDelegate
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    _textField.text = [request.URL absoluteString];
+    self.url = request.URL;
     return YES;
 }
 
