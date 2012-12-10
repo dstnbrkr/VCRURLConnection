@@ -24,7 +24,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.url = [NSURL URLWithString:@"http://example.com/example"];
+    NSString *path = @"http://example.com/example";
+    self.url = [NSURL URLWithString:path];
+    _textField.text = path;
     [self load];
 }
 
