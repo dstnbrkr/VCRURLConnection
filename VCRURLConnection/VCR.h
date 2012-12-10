@@ -8,9 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+@class VCRCassette;
+
 @interface VCR : NSObject
 
 + (void)setCassetteURL:(NSURL *)url;
++ (VCRCassette *)cassette;
 
 + (void)start;
 + (void)stop;

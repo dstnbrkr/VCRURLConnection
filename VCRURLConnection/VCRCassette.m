@@ -57,12 +57,19 @@
 
 - (VCRResponse *)responseForRequest:(NSURLRequest *)request {
     VCRRequestKey *key = [VCRRequestKey keyForRequest:request];
-    VCRResponse *response = [self.responseDictionary objectForKey:key];
-    return response;
+    return [self responseForRequestKey:key];
 }
 
 - (BOOL)isEqual:(VCRCassette *)cassette {
     return [self.responseDictionary isEqual:cassette.responseDictionary];
+}
+
+- (NSArray *)allKeys {
+    return [self.responseDictionary allKeys];
+}
+
+- (VCRResponse *)responseForRequestKey:(VCRRequestKey *)key {
+    return [self.responseDictionary objectForKey:key];
 }
 
 #pragma mark - Private

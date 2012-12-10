@@ -7,6 +7,7 @@
 //
 
 #import "VCRResponse.h"
+#import "VCRRequestKey.h"
 #import <Foundation/Foundation.h>
 
 @interface VCRCassette : NSObject
@@ -19,6 +20,10 @@
 
 - (void)setResponse:(VCRResponse *)response forRequest:(NSURLRequest *)request;
 
+- (VCRResponse *)responseForRequestKey:(VCRRequestKey *)key;
+
 - (VCRResponse *)responseForRequest:(NSURLRequest *)request;
+
+- (NSArray *)allKeys;
 
 @end

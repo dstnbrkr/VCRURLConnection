@@ -28,6 +28,11 @@ static void VCRURLConnectionUnswizzle(SEL selector);
     [[VCRCassetteManager defaultManager] setCurrentCassetteURL:url];
 }
 
++ (VCRCassette *)cassette {
+    return [[VCRCassetteManager defaultManager] currentCassette];
+}
+
+
 + (void)start {
     VCRURLConnectionSwizzle(@selector(initWithRequest:delegate:));
     VCRURLConnectionSwizzle(@selector(initWithRequest:delegate:startImmediately:));
