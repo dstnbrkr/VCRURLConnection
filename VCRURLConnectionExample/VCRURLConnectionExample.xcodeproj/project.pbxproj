@@ -157,11 +157,11 @@
 				B38D8A44164EF3ED0099F205 /* VCRViewController.h */,
 				B38D8A45164EF3ED0099F205 /* VCRViewController.m */,
 				B38D8A47164EF3ED0099F205 /* VCRViewController.xib */,
-				B38D8A33164EF3ED0099F205 /* Supporting Files */,
-				B39545F21675436F0091C493 /* cassette.json */,
 				B39545F916755E090091C493 /* VCRCassetteViewController.h */,
 				B39545FA16755E090091C493 /* VCRCassetteViewController.m */,
 				B39545FB16755E0A0091C493 /* VCRCassetteViewController.xib */,
+				B39545FE16755FD80091C493 /* Fixtures */,
+				B38D8A33164EF3ED0099F205 /* Supporting Files */,
 			);
 			path = VCRURLConnectionExample;
 			sourceTree = "<group>";
@@ -197,6 +197,14 @@
 				B38D8A59164EF3ED0099F205 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B39545FE16755FD80091C493 /* Fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				B39545F21675436F0091C493 /* cassette.json */,
+			);
+			name = Fixtures;
 			sourceTree = "<group>";
 		};
 		B3B0CAA61659705000B91929 /* VCRURLConnection */ = {

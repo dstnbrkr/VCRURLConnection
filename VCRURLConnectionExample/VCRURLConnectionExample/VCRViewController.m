@@ -9,6 +9,7 @@
 #import "VCRViewController.h"
 
 @interface VCRViewController () {
+    IBOutlet UITextField *_textField;
     IBOutlet UIWebView *_webView;
     IBOutlet UIButton *_reloadButton;
 
@@ -21,16 +22,7 @@
 
 @synthesize finishedLoading = _isLoaded;
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [self load];
-}
-
 - (void)load {
-    _url = [[NSURL alloc] initWithString:@"http://foo"];
     NSURLRequest *request = [NSURLRequest requestWithURL:_url];
     self.HTMLString = nil;
     [_responseData release]; _responseData = nil;
@@ -42,6 +34,15 @@
     self.HTMLString = HTMLString;
     [_webView loadData:data MIMEType:@"text/html" textEncodingName:@"utf-8" baseURL:_url];
     _isLoaded = YES;
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [_url release];
+    _url = [[NSURL alloc] initWithString:textField.text];
+    [self load];
+    return YES;
 }
 
 #pragma mark - NSURLConnectionDelegate
