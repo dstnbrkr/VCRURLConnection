@@ -75,7 +75,13 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    self.response.responseData = data;
+    if (self.response.responseData) {
+        NSMutableData *currentData = [NSMutableData dataWithData:self.response.responseData];
+        [currentData appendData:data];
+        self.response.responseData = currentData;
+    } else {
+        self.response.responseData = data;
+    }
     if ([_wrapped respondsToSelector:@selector(connection:didReceiveData:)]) {
         [_wrapped connection:connection didReceiveData:data];
     }
