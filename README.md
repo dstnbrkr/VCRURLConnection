@@ -1,7 +1,7 @@
 # VCRURLConnection
 VCRURLConnection is an API to record and replay HTTP interactions, inspired by [VCR](https://github.com/myronmarston/vcr)
 
-> _This is still in early stages of development, All bug reports, feature requests, or general feedback are be greatly appreciated!_
+> _VCRURLConnection is still in the very early stages of development, all bug reports, feature requests, and general feedback are greatly appreciated!_
 
 ## Example
 ``` objective-c
