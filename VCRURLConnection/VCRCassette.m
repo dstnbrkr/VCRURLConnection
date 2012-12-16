@@ -65,6 +65,16 @@
     
 }
 
+- (NSData *)data {
+    NSArray *recordings = [self.responseDictionary allValues];
+    NSError *error = nil;
+    NSData *data = [NSJSONSerialization dataWithJSONObject:recordings options:NSJSONWritingPrettyPrinted error:&error];
+    if ([error code] != 0) {
+        NSLog(@"Error serializing json data %@", error);
+    }
+    return data;
+}
+
 - (void)setResponse:(VCRResponse *)response forRequest:(NSURLRequest *)request {
     VCRRequestKey *key = [VCRRequestKey keyForRequest:request];
     [self.responseDictionary setObject:response forKey:key];

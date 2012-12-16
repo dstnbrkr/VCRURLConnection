@@ -41,4 +41,6 @@
 
 - (NSArray *)allKeys;
 
+- (NSData *)data;
+
 @end
