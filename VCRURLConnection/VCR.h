@@ -33,4 +33,6 @@
 + (void)start;
 + (void)stop;
 
++ (void)save;
+
 @end

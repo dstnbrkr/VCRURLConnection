@@ -23,6 +23,7 @@
 
 #import "VCRCassetteViewController.h"
 #import "VCRResponseViewController.h"
+#import "VCR.h"
 
 @interface VCRCassetteViewController ()
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
@@ -35,9 +36,17 @@
     [super viewDidLoad];
     self.responseViewController = [[[VCRResponseViewController alloc] init] autorelease];
     
-    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-                                                                                   target:self
-                                                                                   action:@selector(done)];
+    UIBarButtonItem *barButtonItem;
+    
+    barButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave
+                                                                  target:self
+                                                                  action:@selector(save)];
+    [self.navigationItem setLeftBarButtonItem:barButtonItem];
+    [barButtonItem release];
+    
+    barButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                                                  target:self
+                                                                  action:@selector(done)];
     [self.navigationItem setRightBarButtonItem:barButtonItem];
     [barButtonItem release];
 }
@@ -48,6 +57,10 @@
 }
 
 #pragma mark - UI Callbacks
+
+- (IBAction)save {
+    [VCR save];
+}
 
 - (IBAction)done {
     [self dismissViewControllerAnimated:YES completion:NULL];

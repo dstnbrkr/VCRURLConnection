@@ -47,7 +47,6 @@ static void VCRURLConnectionUnswizzle(SEL selector);
     return [[VCRCassetteManager defaultManager] currentCassette];
 }
 
-
 + (void)start {
     VCRURLConnectionSwizzle(@selector(initWithRequest:delegate:));
     VCRURLConnectionSwizzle(@selector(initWithRequest:delegate:startImmediately:));
@@ -56,6 +55,10 @@ static void VCRURLConnectionUnswizzle(SEL selector);
 + (void)stop {
     VCRURLConnectionUnswizzle(@selector(initWithRequest:delegate:));
     VCRURLConnectionUnswizzle(@selector(initWithRequest:delegate:startImmediately:));
+}
+
++ (void)save {
+    [[VCRCassetteManager defaultManager] save];
 }
 
 @end
