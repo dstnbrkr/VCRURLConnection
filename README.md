@@ -56,8 +56,7 @@ Dustin Barker
 
 dustin.barker@gmail.com
 
-==================================================================
-VCRURLConnection uses the following open source components:
+### VCRURLConnection uses the following open source components:
 
 [NSData+Base64.h][1] by Matt Gallagher
 [SenTestCase+SRTAdditions.h] from SocketRocket by Square
