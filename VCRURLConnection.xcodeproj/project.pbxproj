@@ -22,9 +22,6 @@
 		B3475B48167E9DF10044511D /* VCRTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B82889167E9B2B00CCEC3C /* VCRTests.m */; };
 		B3475B49167E9DF10044511D /* VCRURLConnectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B8288B167E9B2B00CCEC3C /* VCRURLConnectionTests.m */; };
 		B3475B4A167E9DF10044511D /* cassette-1.json in Resources */ = {isa = PBXBuildFile; fileRef = B3B8287D167E9B2B00CCEC3C /* cassette-1.json */; };
-		B3475B55167EA0680044511D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3B828B4167E9D8500CCEC3C /* UIKit.framework */; };
-		B3475B56167EA0680044511D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3B828B6167E9D8500CCEC3C /* Foundation.framework */; };
-		B3475B58167EA0680044511D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3475B57167EA0680044511D /* CoreGraphics.framework */; };
 		B3475B5E167EA0680044511D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B3475B5C167EA0680044511D /* InfoPlist.strings */; };
 		B3475B60167EA0680044511D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B3475B5F167EA0680044511D /* main.m */; };
 		B3475B72167EA0C30044511D /* VCRAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B3475B69167EA0C30044511D /* VCRAppDelegate.m */; };
@@ -45,8 +42,8 @@
 		B3475B88167EA2960044511D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3475B85167EA2960044511D /* Default-568h@2x.png */; };
 		B3475B89167EA2960044511D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = B3475B86167EA2960044511D /* Default.png */; };
 		B3475B8A167EA2960044511D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3475B87167EA2960044511D /* Default@2x.png */; };
+		B3475B8C167EA37B0044511D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3475B8B167EA37B0044511D /* UIKit.framework */; };
 		B3B82868167E9A6500CCEC3C /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3B82867167E9A6500CCEC3C /* SenTestingKit.framework */; };
-		B3B8286A167E9A6500CCEC3C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3B82869167E9A6500CCEC3C /* Cocoa.framework */; };
 		B3B8288C167E9B2B00CCEC3C /* cassette-1.json in Resources */ = {isa = PBXBuildFile; fileRef = B3B8287D167E9B2B00CCEC3C /* cassette-1.json */; };
 		B3B8288D167E9B2B00CCEC3C /* SenTestCase+SRTAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B8287F167E9B2B00CCEC3C /* SenTestCase+SRTAdditions.m */; };
 		B3B8288E167E9B2B00CCEC3C /* VCRCassetteManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B82881167E9B2B00CCEC3C /* VCRCassetteManagerTests.m */; };
@@ -63,13 +60,10 @@
 		B3B828A8167E9B6800CCEC3C /* VCRRequestKey.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B828A0167E9B6800CCEC3C /* VCRRequestKey.m */; };
 		B3B828A9167E9B6800CCEC3C /* VCRResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B828A2167E9B6800CCEC3C /* VCRResponse.m */; };
 		B3B828B3167E9D8500CCEC3C /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3B82867167E9A6500CCEC3C /* SenTestingKit.framework */; };
-		B3B828B5167E9D8500CCEC3C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3B828B4167E9D8500CCEC3C /* UIKit.framework */; };
-		B3B828B7167E9D8500CCEC3C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3B828B6167E9D8500CCEC3C /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B3475B53167EA0680044511D /* Example-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Example-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B3475B57167EA0680044511D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		B3475B5B167EA0680044511D /* Example-iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Example-iOS-Info.plist"; sourceTree = "<group>"; };
 		B3475B5D167EA0680044511D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B3475B5F167EA0680044511D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -89,9 +83,9 @@
 		B3475B85167EA2960044511D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		B3475B86167EA2960044511D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		B3475B87167EA2960044511D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		B3475B8B167EA37B0044511D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		B3B82864167E9A6500CCEC3C /* Tests-OSX.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests-OSX.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3B82867167E9A6500CCEC3C /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		B3B82869167E9A6500CCEC3C /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		B3B8286C167E9A6500CCEC3C /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		B3B8286D167E9A6500CCEC3C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B3B8286E167E9A6500CCEC3C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -127,8 +121,6 @@
 		B3B828A1167E9B6800CCEC3C /* VCRResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VCRResponse.h; path = VCRURLConnection/VCRResponse.h; sourceTree = "<group>"; };
 		B3B828A2167E9B6800CCEC3C /* VCRResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VCRResponse.m; path = VCRURLConnection/VCRResponse.m; sourceTree = "<group>"; };
 		B3B828B2167E9D8500CCEC3C /* Tests-iOS.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests-iOS.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B3B828B4167E9D8500CCEC3C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		B3B828B6167E9D8500CCEC3C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		B3B828BA167E9D8500CCEC3C /* Tests-iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-iOS-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -137,9 +129,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B3475B55167EA0680044511D /* UIKit.framework in Frameworks */,
-				B3475B56167EA0680044511D /* Foundation.framework in Frameworks */,
-				B3475B58167EA0680044511D /* CoreGraphics.framework in Frameworks */,
+				B3475B8C167EA37B0044511D /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,7 +138,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3B82868167E9A6500CCEC3C /* SenTestingKit.framework in Frameworks */,
-				B3B8286A167E9A6500CCEC3C /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,8 +146,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3B828B3167E9D8500CCEC3C /* SenTestingKit.framework in Frameworks */,
-				B3B828B5167E9D8500CCEC3C /* UIKit.framework in Frameworks */,
-				B3B828B7167E9D8500CCEC3C /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,11 +234,8 @@
 		B3B82866167E9A6500CCEC3C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B3475B8B167EA37B0044511D /* UIKit.framework */,
 				B3B82867167E9A6500CCEC3C /* SenTestingKit.framework */,
-				B3B82869167E9A6500CCEC3C /* Cocoa.framework */,
-				B3B828B4167E9D8500CCEC3C /* UIKit.framework */,
-				B3B828B6167E9D8500CCEC3C /* Foundation.framework */,
-				B3475B57167EA0680044511D /* CoreGraphics.framework */,
 				B3B8286B167E9A6500CCEC3C /* Other Frameworks */,
 			);
 			name = Frameworks;
