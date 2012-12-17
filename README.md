@@ -16,7 +16,7 @@ NSURLRequest *request = [NSURLRequest requestWithURL:url];
 // NSURLConnection makes a real network request and VCRURLConnection
 // will record the request/response pair.
  
-NSString *path = [VCR save:@"/path/to/cassette.json"]; // copy the output file into your project
+[VCR save:@"/path/to/cassette.json"]; // copy the output file into your project
 ```
 
 ## Replaying
