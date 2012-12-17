@@ -11,25 +11,37 @@ NSURL *url = [NSURL URLWithString:@"http://example.com/example"];
 [NSURLRequest requestWithURL:url];
 [NSURLConnection connectionWithRequest:request delegate:self];
 
-// response will be result of real network request
+// NSURLConnectionDelegate methods are called with real network response
+// and VCRURLConnection will record the response
 
 NSString *path = [VCR save]; // copy the file at `path` into your project
 ```
 
 # Replaying
 
+``` objective-c
 NSString *cassettePath = [[NSBundle mainBundle] pathForResource:@"cassette" ofType:@"json"]; // use the file created above
 [VCR setCassetteURL:[NSURL fileURLWithPath:cassettePath]];
 [VCR start];
 
-// now all requests recorded on cassette.json will be used in place of real network requests
+NSURL *url;
+NSURLRequest *request;
 
 // make the same request
-NSURL *url = [NSURL URLWithString:@"http://example.com/example"];
-[NSURLRequest requestWithURL:url];
+url = [NSURL URLWithString:@"http://example.com/example"];
+request = [NSURLRequest requestWithURL:url];
 [NSURLConnection connectionWithRequest:request delegate:self];
 
-// will use previously recorded response, no network request will be made
+// This request has already been recorded on cassette.json so
+// NSURLConnectionDelegate methods are called with the recorded response
+
+url = [NSURL URLWithString:@"http://iana.org"]
+request = [NSURLRequest requestWithURL:url];
+[NSURLConnection connectionWithRequest:request delegate:self];
+
+// This request has not been recorded so NSURLConnectionDelegate
+// methods are called with real network response (and response is recorded)
+
 ```
 
 ## How to get started
