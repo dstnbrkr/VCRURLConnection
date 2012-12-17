@@ -85,12 +85,14 @@
     STAssertEquals(httpResponse.statusCode, [vcrResponse statusCode], @"VCRResponse should generate NSURLHTTPResponse with status code");
 }
 
-- (void)testBodyWithImageData {
+- (void)testIsText {
     VCRResponse *vcrResponse = [[[VCRResponse alloc] init] autorelease];
-    NSString *imagePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"test" ofType:@"png"];
-    NSURL *imageURL = [NSURL fileURLWithPath:imagePath];
-    vcrResponse.responseData = [NSData dataWithContentsOfURL:imageURL];
-    STAssertTrue(vcrResponse.body != nil, @"VCRResponse body should not be nil");
+    vcrResponse.headerFields = @{ @"Content-Type": @"text/plain" };
+    STAssertTrue([vcrResponse isText], @"");
+    vcrResponse.headerFields = @{ @"Content-Type": @"text/plain; charset=utf-8" };
+    STAssertTrue([vcrResponse isText], @"");
+    vcrResponse.headerFields = @{ @"Content-Type": @"image/png" };
+    STAssertFalse([vcrResponse isText], @"");
 }
 
 @end

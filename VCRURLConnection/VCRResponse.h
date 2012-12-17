@@ -35,12 +35,14 @@
 
 - (NSString *)body;
 
+- (BOOL)isText;
+
 @property (nonatomic, retain) NSURL *url;
 
 @property (nonatomic, assign) NSInteger statusCode;
 
 @property (nonatomic, retain) NSData *responseData;
 
-@property (nonatomic, retain, readonly) NSDictionary *headerFields;
+@property (nonatomic, retain) NSDictionary *headerFields;
 
 @end

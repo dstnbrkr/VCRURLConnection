@@ -22,12 +22,8 @@
 // THE SOFTWARE.
 
 #import "VCRResponse.h"
+#import "NSData+VCR.h"
 
-@interface VCRResponse ()
-
-@property (nonatomic, retain, readwrite) NSDictionary *headerFields;
-
-@end
 
 @implementation VCRResponse
 
@@ -46,6 +42,18 @@
 
 - (id)JSON {
     return @{ @"body": [self body] };
+}
+
+- (BOOL)isText {
+    NSString *type = [self.headerFields objectForKey:@"Content-Type"] ?: @"text/plain";
+    NSArray *textTypes = @[ @"text/plain",
+                            @"text/html",
+                            @"application/json",
+                            @"application/xml" ];
+    for (NSString *textType in textTypes) {
+        if ([type rangeOfString:textType].location != NSNotFound) return YES;
+    }
+    return NO;
 }
 
 - (NSString *)body {
