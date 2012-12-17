@@ -13,7 +13,7 @@ NSURLRequest *request = [NSURLRequest requestWithURL:url];
 
 // NSURLConnection makes a real network request and delegate methods
 // are called with the response (VCRURLConnection will record the
-// request/response pair.
+// request/response pair).
 
 NSString *path = [VCR save]; // copy the file at `path` into your project
 ```
@@ -44,7 +44,7 @@ request = [NSURLRequest requestWithURL:url];
 
 // The cassette does not have a recorded for this request, so a real
 // network request will be made. NSURLConnectionDelegate methods will
-// be called with the real response (and VCRURLConnection will record
+// be called with the real response (VCRURLConnection will record
 // the request/response pair).
 ```
 
