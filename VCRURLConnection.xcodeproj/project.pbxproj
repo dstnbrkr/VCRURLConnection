@@ -42,6 +42,9 @@
 		B3475B7E167EA1080044511D /* VCRResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B828A2167E9B6800CCEC3C /* VCRResponse.m */; };
 		B3475B80167EA1400044511D /* cassette.json in Resources */ = {isa = PBXBuildFile; fileRef = B3475B7F167EA1400044511D /* cassette.json */; };
 		B3475B82167EA1CF0044511D /* VCRViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3475B81167EA1CF0044511D /* VCRViewController.xib */; };
+		B3475B88167EA2960044511D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3475B85167EA2960044511D /* Default-568h@2x.png */; };
+		B3475B89167EA2960044511D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = B3475B86167EA2960044511D /* Default.png */; };
+		B3475B8A167EA2960044511D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3475B87167EA2960044511D /* Default@2x.png */; };
 		B3B82868167E9A6500CCEC3C /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3B82867167E9A6500CCEC3C /* SenTestingKit.framework */; };
 		B3B8286A167E9A6500CCEC3C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3B82869167E9A6500CCEC3C /* Cocoa.framework */; };
 		B3B8288C167E9B2B00CCEC3C /* cassette-1.json in Resources */ = {isa = PBXBuildFile; fileRef = B3B8287D167E9B2B00CCEC3C /* cassette-1.json */; };
@@ -83,6 +86,9 @@
 		B3475B71167EA0C30044511D /* VCRViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCRViewController.m; sourceTree = "<group>"; };
 		B3475B7F167EA1400044511D /* cassette.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cassette.json; sourceTree = "<group>"; };
 		B3475B81167EA1CF0044511D /* VCRViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VCRViewController.xib; sourceTree = "<group>"; };
+		B3475B85167EA2960044511D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		B3475B86167EA2960044511D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		B3475B87167EA2960044511D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		B3B82864167E9A6500CCEC3C /* Tests-OSX.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests-OSX.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3B82867167E9A6500CCEC3C /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		B3B82869167E9A6500CCEC3C /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
@@ -174,6 +180,9 @@
 				B3475B71167EA0C30044511D /* VCRViewController.m */,
 				B3475B81167EA1CF0044511D /* VCRViewController.xib */,
 				B3475B7F167EA1400044511D /* cassette.json */,
+				B3475B85167EA2960044511D /* Default-568h@2x.png */,
+				B3475B86167EA2960044511D /* Default.png */,
+				B3475B87167EA2960044511D /* Default@2x.png */,
 				B3475B5A167EA0680044511D /* Supporting Files */,
 			);
 			path = "Example-iOS";
@@ -389,6 +398,9 @@
 				B3475B76167EA0C30044511D /* VCRResponseViewController.xib in Resources */,
 				B3475B80167EA1400044511D /* cassette.json in Resources */,
 				B3475B82167EA1CF0044511D /* VCRViewController.xib in Resources */,
+				B3475B88167EA2960044511D /* Default-568h@2x.png in Resources */,
+				B3475B89167EA2960044511D /* Default.png in Resources */,
+				B3475B8A167EA2960044511D /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
