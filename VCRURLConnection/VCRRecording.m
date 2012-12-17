@@ -87,13 +87,20 @@
 }
 
 - (id)JSON {
-    return @{
-        @"method": self.method,
-        @"uri": self.URI,
-        @"headers": self.headerFields,
-        @"status": @(self.statusCode),
-        @"body": self.body
-    };
+    NSArray *objects = @[ self.method, self.URI, @(self.statusCode) ];
+    NSArray *keys = @[ @"method", @"uri", @"status" ];
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithObjects:objects
+                                                                         forKeys:keys];
+    
+    if (self.headerFields) {
+        [dictionary setObject:self.headerFields forKey:@"headers"];
+    }
+    
+    if (self.body) {
+        [dictionary setObject:self.body forKey:@"body"];
+    }
+    
+    return dictionary;
 }
 
 - (void)dealloc {

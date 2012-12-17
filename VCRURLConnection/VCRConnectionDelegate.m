@@ -85,6 +85,7 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSHTTPURLResponse *)response {
+    _recording.method = self.request.HTTPMethod;
     [_recording recordResponse:response];
     if ([_wrapped respondsToSelector:@selector(connection:didReceiveResponse:)]) {
         [_wrapped connection:connection didReceiveResponse:response];
