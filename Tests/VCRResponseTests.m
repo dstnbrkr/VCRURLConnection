@@ -95,4 +95,15 @@
     STAssertFalse([vcrResponse isText], @"");
 }
 
+
+- (void)testBodyWithImageData {
+    VCRResponse *vcrResponse = [[[VCRResponse alloc] init] autorelease];
+    NSString *imagePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"test" ofType:@"png"];
+    NSURL *imageURL = [NSURL fileURLWithPath:imagePath];
+    vcrResponse.headerFields = @{ @"Content-Type": @"image/png" };
+    vcrResponse.responseData = [NSData dataWithContentsOfURL:imageURL];
+    STAssertTrue(vcrResponse.body != nil, @"VCRResponse body should not be nil");
+}
+
+
 @end
