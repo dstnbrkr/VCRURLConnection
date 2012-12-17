@@ -41,11 +41,6 @@
 		B3475B8C167EA37B0044511D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3475B8B167EA37B0044511D /* UIKit.framework */; };
 		B3475B8E167EBF8F0044511D /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = B3475B8D167EBF8F0044511D /* test.png */; };
 		B3475B8F167EBF8F0044511D /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = B3475B8D167EBF8F0044511D /* test.png */; };
-		B3475B9D167ED4BC0044511D /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = B3475B9C167ED4BC0044511D /* NSData+Base64.m */; };
-		B3475B9E167ED4C00044511D /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = B3475B9C167ED4BC0044511D /* NSData+Base64.m */; };
-		B3475B9F167ED4C00044511D /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = B3475B9C167ED4BC0044511D /* NSData+Base64.m */; };
-		B3475BAB167ED6590044511D /* SenTestCase+SRTAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B3475BAA167ED6590044511D /* SenTestCase+SRTAdditions.m */; };
-		B3475BAC167ED6590044511D /* SenTestCase+SRTAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B3475BAA167ED6590044511D /* SenTestCase+SRTAdditions.m */; };
 		B3475BAF167EFFA80044511D /* VCRRecording.m in Sources */ = {isa = PBXBuildFile; fileRef = B3475BAE167EFFA80044511D /* VCRRecording.m */; };
 		B3475BB0167EFFA80044511D /* VCRRecording.m in Sources */ = {isa = PBXBuildFile; fileRef = B3475BAE167EFFA80044511D /* VCRRecording.m */; };
 		B3475BB1167EFFA80044511D /* VCRRecording.m in Sources */ = {isa = PBXBuildFile; fileRef = B3475BAE167EFFA80044511D /* VCRRecording.m */; };
@@ -65,6 +60,11 @@
 		B3B828A7167E9B6800CCEC3C /* VCRConnectionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B8289E167E9B6800CCEC3C /* VCRConnectionDelegate.m */; };
 		B3B828A8167E9B6800CCEC3C /* VCRRequestKey.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B828A0167E9B6800CCEC3C /* VCRRequestKey.m */; };
 		B3B828B3167E9D8500CCEC3C /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3B82867167E9A6500CCEC3C /* SenTestingKit.framework */; };
+		B3BB2513167F23EC00C5E3C6 /* SenTestCase+SRTAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BB2512167F23EC00C5E3C6 /* SenTestCase+SRTAdditions.m */; };
+		B3BB2514167F23EC00C5E3C6 /* SenTestCase+SRTAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BB2512167F23EC00C5E3C6 /* SenTestCase+SRTAdditions.m */; };
+		B3BB2517167F241E00C5E3C6 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BB2516167F241E00C5E3C6 /* NSData+Base64.m */; };
+		B3BB2518167F241E00C5E3C6 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BB2516167F241E00C5E3C6 /* NSData+Base64.m */; };
+		B3BB2519167F241E00C5E3C6 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BB2516167F241E00C5E3C6 /* NSData+Base64.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,10 +90,6 @@
 		B3475B87167EA2960044511D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		B3475B8B167EA37B0044511D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		B3475B8D167EBF8F0044511D /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = test.png; path = Tests/test.png; sourceTree = "<group>"; };
-		B3475B9B167ED4BC0044511D /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+Base64.h"; path = "Vendor/NSData+Base64.h"; sourceTree = "<group>"; };
-		B3475B9C167ED4BC0044511D /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+Base64.m"; path = "Vendor/NSData+Base64.m"; sourceTree = "<group>"; };
-		B3475BA9167ED6590044511D /* SenTestCase+SRTAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SenTestCase+SRTAdditions.h"; path = "Vendor/SenTestCase+SRTAdditions.h"; sourceTree = "<group>"; };
-		B3475BAA167ED6590044511D /* SenTestCase+SRTAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "SenTestCase+SRTAdditions.m"; path = "Vendor/SenTestCase+SRTAdditions.m"; sourceTree = "<group>"; };
 		B3475BAD167EFFA70044511D /* VCRRecording.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VCRRecording.h; path = VCRURLConnection/VCRRecording.h; sourceTree = "<group>"; };
 		B3475BAE167EFFA80044511D /* VCRRecording.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VCRRecording.m; path = VCRURLConnection/VCRRecording.m; sourceTree = "<group>"; };
 		B3475BB7167F12620044511D /* VCRRecordingTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VCRRecordingTests.h; path = Tests/VCRRecordingTests.h; sourceTree = "<group>"; };
@@ -130,6 +126,10 @@
 		B3B828A0167E9B6800CCEC3C /* VCRRequestKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VCRRequestKey.m; path = VCRURLConnection/VCRRequestKey.m; sourceTree = "<group>"; };
 		B3B828B2167E9D8500CCEC3C /* Tests-iOS.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests-iOS.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3B828BA167E9D8500CCEC3C /* Tests-iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-iOS-Info.plist"; sourceTree = "<group>"; };
+		B3BB2511167F23EC00C5E3C6 /* SenTestCase+SRTAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SenTestCase+SRTAdditions.h"; path = "Tests/SenTestCase+SRTAdditions.h"; sourceTree = "<group>"; };
+		B3BB2512167F23EC00C5E3C6 /* SenTestCase+SRTAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "SenTestCase+SRTAdditions.m"; path = "Tests/SenTestCase+SRTAdditions.m"; sourceTree = "<group>"; };
+		B3BB2515167F241E00C5E3C6 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+Base64.h"; path = "VCRURLConnection/NSData+Base64.h"; sourceTree = "<group>"; };
+		B3BB2516167F241E00C5E3C6 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+Base64.m"; path = "VCRURLConnection/NSData+Base64.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,17 +194,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		B3475B99167ED48E0044511D /* Vendor */ = {
-			isa = PBXGroup;
-			children = (
-				B3475BA9167ED6590044511D /* SenTestCase+SRTAdditions.h */,
-				B3475BAA167ED6590044511D /* SenTestCase+SRTAdditions.m */,
-				B3475B9B167ED4BC0044511D /* NSData+Base64.h */,
-				B3475B9C167ED4BC0044511D /* NSData+Base64.m */,
-			);
-			name = Vendor;
-			sourceTree = "<group>";
-		};
 		B3B8284C167E990F00CCEC3C = {
 			isa = PBXGroup;
 			children = (
@@ -215,7 +204,6 @@
 				B3475B59167EA0680044511D /* Example-iOS */,
 				B3B82866167E9A6500CCEC3C /* Frameworks */,
 				B3B82865167E9A6500CCEC3C /* Products */,
-				B3475B99167ED48E0044511D /* Vendor */,
 			);
 			sourceTree = "<group>";
 		};
@@ -226,17 +214,18 @@
 				B3B82895167E9B6800CCEC3C /* NSURLConnection+VCR.m */,
 				B3B82896167E9B6800CCEC3C /* VCR.h */,
 				B3B82897167E9B6800CCEC3C /* VCR.m */,
-				B3B82898167E9B6800CCEC3C /* VCRCassette_Private.h */,
 				B3B82899167E9B6800CCEC3C /* VCRCassette.h */,
 				B3B8289A167E9B6800CCEC3C /* VCRCassette.m */,
+				B3B82898167E9B6800CCEC3C /* VCRCassette_Private.h */,
 				B3B8289B167E9B6800CCEC3C /* VCRCassetteManager.h */,
 				B3B8289C167E9B6800CCEC3C /* VCRCassetteManager.m */,
 				B3B8289D167E9B6800CCEC3C /* VCRConnectionDelegate.h */,
 				B3B8289E167E9B6800CCEC3C /* VCRConnectionDelegate.m */,
-				B3B8289F167E9B6800CCEC3C /* VCRRequestKey.h */,
-				B3B828A0167E9B6800CCEC3C /* VCRRequestKey.m */,
 				B3475BAD167EFFA70044511D /* VCRRecording.h */,
 				B3475BAE167EFFA80044511D /* VCRRecording.m */,
+				B3B8289F167E9B6800CCEC3C /* VCRRequestKey.h */,
+				B3B828A0167E9B6800CCEC3C /* VCRRequestKey.m */,
+				B3BB251A167F243100C5E3C6 /* Vendor */,
 			);
 			name = VCRURLConnection;
 			sourceTree = "<group>";
@@ -282,8 +271,6 @@
 		B3B8287C167E9AA400CCEC3C /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				B3B8287D167E9B2B00CCEC3C /* cassette-1.json */,
-				B3475B8D167EBF8F0044511D /* test.png */,
 				B3B82880167E9B2B00CCEC3C /* VCRCassetteManagerTests.h */,
 				B3B82881167E9B2B00CCEC3C /* VCRCassetteManagerTests.m */,
 				B3B82882167E9B2B00CCEC3C /* VCRCassetteTests.h */,
@@ -296,6 +283,9 @@
 				B3B82889167E9B2B00CCEC3C /* VCRTests.m */,
 				B3B8288A167E9B2B00CCEC3C /* VCRURLConnectionTests.h */,
 				B3B8288B167E9B2B00CCEC3C /* VCRURLConnectionTests.m */,
+				B3B8287D167E9B2B00CCEC3C /* cassette-1.json */,
+				B3475B8D167EBF8F0044511D /* test.png */,
+				B3BB251B167F243E00C5E3C6 /* Vendor */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -306,6 +296,24 @@
 				B3B828BA167E9D8500CCEC3C /* Tests-iOS-Info.plist */,
 			);
 			path = "Tests-iOS";
+			sourceTree = "<group>";
+		};
+		B3BB251A167F243100C5E3C6 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				B3BB2515167F241E00C5E3C6 /* NSData+Base64.h */,
+				B3BB2516167F241E00C5E3C6 /* NSData+Base64.m */,
+			);
+			name = Vendor;
+			sourceTree = "<group>";
+		};
+		B3BB251B167F243E00C5E3C6 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				B3BB2511167F23EC00C5E3C6 /* SenTestCase+SRTAdditions.h */,
+				B3BB2512167F23EC00C5E3C6 /* SenTestCase+SRTAdditions.m */,
+			);
+			name = Vendor;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -472,8 +480,8 @@
 				B3475B7B167EA1080044511D /* VCRCassetteManager.m in Sources */,
 				B3475B7C167EA1080044511D /* VCRConnectionDelegate.m in Sources */,
 				B3475B7D167EA1080044511D /* VCRRequestKey.m in Sources */,
-				B3475B9F167ED4C00044511D /* NSData+Base64.m in Sources */,
 				B3475BB1167EFFA80044511D /* VCRRecording.m in Sources */,
+				B3BB2519167F241E00C5E3C6 /* NSData+Base64.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,10 +500,10 @@
 				B3B828A6167E9B6800CCEC3C /* VCRCassetteManager.m in Sources */,
 				B3B828A7167E9B6800CCEC3C /* VCRConnectionDelegate.m in Sources */,
 				B3B828A8167E9B6800CCEC3C /* VCRRequestKey.m in Sources */,
-				B3475B9D167ED4BC0044511D /* NSData+Base64.m in Sources */,
-				B3475BAB167ED6590044511D /* SenTestCase+SRTAdditions.m in Sources */,
 				B3475BAF167EFFA80044511D /* VCRRecording.m in Sources */,
 				B3475BB9167F12620044511D /* VCRRecordingTests.m in Sources */,
+				B3BB2513167F23EC00C5E3C6 /* SenTestCase+SRTAdditions.m in Sources */,
+				B3BB2517167F241E00C5E3C6 /* NSData+Base64.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -514,10 +522,10 @@
 				B3475B46167E9DF10044511D /* VCRRequestKeyTests.m in Sources */,
 				B3475B48167E9DF10044511D /* VCRTests.m in Sources */,
 				B3475B49167E9DF10044511D /* VCRURLConnectionTests.m in Sources */,
-				B3475B9E167ED4C00044511D /* NSData+Base64.m in Sources */,
-				B3475BAC167ED6590044511D /* SenTestCase+SRTAdditions.m in Sources */,
 				B3475BB0167EFFA80044511D /* VCRRecording.m in Sources */,
 				B3475BBA167F12620044511D /* VCRRecordingTests.m in Sources */,
+				B3BB2514167F23EC00C5E3C6 /* SenTestCase+SRTAdditions.m in Sources */,
+				B3BB2518167F241E00C5E3C6 /* NSData+Base64.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

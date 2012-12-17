@@ -49,7 +49,7 @@
 - (id)initWithRecording:(VCRRecording *)recording {
     if ((self = [super init])) {
         self.URI = recording.URI;
-        self.method = recording.method;
+        self.method = [recording.method uppercaseString];
     }
     return self;
 }
@@ -57,7 +57,7 @@
 - (id)initWithRequest:(NSURLRequest *)request {
     if ((self = [super init])) {
         self.URI = [request.URL absoluteString];
-        self.method = request.HTTPMethod;
+        self.method = [request.HTTPMethod uppercaseString];
     }
     return self;
 }

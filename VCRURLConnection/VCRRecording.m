@@ -48,13 +48,8 @@
         } else {
             self.data = [NSData dataFromBase64String:body];
         }
-        NSAssert(self.data, @"VCRRecording: body is required");
     }
     return self;
-}
-
-- (NSString *)method {
-    return [_method uppercaseString];
 }
 
 - (BOOL)isEqual:(VCRRecording *)recording {

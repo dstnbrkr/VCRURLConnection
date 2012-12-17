@@ -70,7 +70,7 @@
     self.testDelegate = nil;
     [super tearDown];
 }
-/*
+
 - (void)testAsyncConnectionIsRecorded {
     NSURL *url = [NSURL URLWithString:@"http://www.iana.org/domains/example/"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -95,14 +95,14 @@
 }
 
 - (void)testAsyncGetRequestIsReplayed {
-    id json = @[ @{ @"uri": @"http://foo", @"body": @"Foo Bar Baz" } ];
+    id json = @[ @{ @"method": @"GET", @"uri": @"http://foo", @"body": @"Foo Bar Baz" } ];
     VCRCassette *cassette = [[[VCRCassette alloc] initWithJSON:json] autorelease];
     [[VCRCassetteManager defaultManager] setCurrentCassette:cassette];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://foo"]];
     
     // cassette has recording for request
-    VCRRecording *recording = [self.cassette recordingForRequest:request];
+    VCRRecording *recording = [cassette recordingForRequest:request];
     STAssertNotNil(recording, @"Should have recorded response");
 
     // make and playback request
@@ -131,7 +131,7 @@
 // FIXME: can start and stop VCR
 
 - (void)testAsyncGetRequestWithErrorIsReplayed {
-    id json = @[ @{ @"uri": @"http://foo", @"status": @404 } ];
+    id json = @[ @{ @"method": @"get", @"uri": @"http://foo", @"status": @404 } ];
     VCRCassette *cassette = [[[VCRCassette alloc] initWithJSON:json] autorelease];
     [[VCRCassetteManager defaultManager] setCurrentCassette:cassette];
     
@@ -151,7 +151,6 @@
     STAssertEquals(self.testDelegate.response.statusCode, expecteStatusCode, @"Should get error status code");
 
 }
-*/
 
 @end
 
