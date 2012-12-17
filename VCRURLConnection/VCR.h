@@ -38,13 +38,12 @@
      // NSURLConnection makes a real network request and VCRURLConnection
      // will record the request/response pair.
  
-     NSString *path = [VCR save]; // copy the file at `path` into your project
+     NSString *path = [VCR save:@"/path/to/cassette.json"]; // copy the output file into your project
  
  # Replaying
 
-     NSString *cassettePath = [[NSBundle mainBundle] pathForResource:@"cassette"
-                                                              ofType:@"json"];
-     [VCR setCassetteURL:[NSURL loadCassetteWithContentsOfURL:cassettePath]];
+     NSURL *cassetteURL = [NSURL fileURLWithPath:@"/path/to/cassette.json"];
+     [VCR loadCassetteWithContentsOfURL:cassetteURL];
      [VCR start];
  
      // request an HTTP interaction that was recorded to cassette.json
