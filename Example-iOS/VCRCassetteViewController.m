@@ -28,6 +28,7 @@
 @interface VCRCassetteViewController ()
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
 @property (nonatomic, retain) VCRResponseViewController *responseViewController;
+@property (nonatomic, retain) NSString *path;
 @end
 
 @implementation VCRCassetteViewController
@@ -59,11 +60,29 @@
 #pragma mark - UI Callbacks
 
 - (IBAction)save {
-    [VCR save];
+    self.path = [VCR save];
+    UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:@"Saved Cassette"
+                                                         message:self.path
+                                                        delegate:self
+                                               cancelButtonTitle:nil
+                                               otherButtonTitles:@"Copy", @"OK", nil] autorelease];
+    [alertView show];
 }
 
 - (IBAction)done {
     [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+#pragma mark - UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    switch (buttonIndex) {
+        case 0:
+            [UIPasteboard generalPasteboard].string = self.path;
+            break;
+        default:
+            break;
+    }
 }
 
 #pragma mark - Table view data source

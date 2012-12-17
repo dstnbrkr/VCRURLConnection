@@ -57,8 +57,8 @@ static void VCRURLConnectionUnswizzle(SEL selector);
     VCRURLConnectionUnswizzle(@selector(initWithRequest:delegate:startImmediately:));
 }
 
-+ (void)save {
-    [[VCRCassetteManager defaultManager] save];
++ (NSString *)save {
+    return [[VCRCassetteManager defaultManager] save];
 }
 
 @end

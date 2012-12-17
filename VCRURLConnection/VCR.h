@@ -33,6 +33,6 @@
 + (void)start;
 + (void)stop;
 
-+ (void)save;
++ (NSString *)save;
 
 @end
