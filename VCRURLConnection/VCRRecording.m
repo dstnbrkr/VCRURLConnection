@@ -30,7 +30,7 @@
     if ((self = [self init])) {
         
         self.method = [json objectForKey:@"method"];
-        //NSAssert(self.method, @"VCRRecording: method is required");
+        NSAssert(self.method, @"VCRRecording: method is required");
         
         self.URI = [json objectForKey:@"uri"];
         NSAssert(self.URI, @"VCRRecording: uri is required");

@@ -33,7 +33,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    NSString *html = [[[NSString alloc] initWithData:self.response.responseData encoding:NSUTF8StringEncoding] autorelease];
+    NSString *html = [[[NSString alloc] initWithData:self.recording.data encoding:NSUTF8StringEncoding] autorelease];
     self.textView.text = html;
 }
 

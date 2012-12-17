@@ -117,8 +117,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     VCRRequestKey *key = [[self.cassette allKeys] objectAtIndex:indexPath.row];
-    VCRResponse *response = [self.cassette responseForRequestKey:key];
-    self.responseViewController.response = response;
+    VCRRecording *recording = [self.cassette recordingForRequestKey:key];
+    self.responseViewController.recording = recording;
     [self.navigationController pushViewController:self.responseViewController animated:YES];
 }
 

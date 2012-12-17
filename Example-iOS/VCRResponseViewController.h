@@ -21,11 +21,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "VCRResponse.h"
+#import "VCRRecording.h"
 #import <UIKit/UIKit.h>
 
 @interface VCRResponseViewController : UIViewController
 
-@property (nonatomic, retain) VCRResponse *response;
+@property (nonatomic, retain) VCRRecording *recording;
 
 @end

@@ -35,6 +35,8 @@
 
 - (void)addRecording:(VCRRecording *)recording;
 
+- (VCRRecording *)recordingForRequestKey:(VCRRequestKey *)request;
+
 - (VCRRecording *)recordingForRequest:(NSURLRequest *)request;
 
 - (NSArray *)allKeys;
