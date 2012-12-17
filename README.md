@@ -53,7 +53,7 @@ request = [NSURLRequest requestWithURL:url];
 - Run your tests once to record all HTTP interactions
 - Copy the recorded json file (the file whose path is returned by `[VCR save]`) into your project
 - Subsequent test runs will use the recorded HTTP interactions instead of the network
-- You can edit the recorded HTTP interactions by hand, the recordings are all stored in a simple JSON file format
+- All recordings are stored in a single JSON file, which you can edit by hand
 
 ## License
 
