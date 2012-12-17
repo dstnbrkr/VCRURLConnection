@@ -23,7 +23,6 @@
 
 #import "VCRCassette.h"
 #import "VCRCassette_Private.h"
-#import "VCRResponse.h"
 #import "VCRRequestKey.h"
 
 
@@ -80,10 +79,8 @@
 
 - (id)JSON {
     NSMutableArray *recordings = [NSMutableArray array];
-    for (VCRRequestKey *key in self.responseDictionary.allKeys) {
-        VCRResponse *response = [self.responseDictionary objectForKey:key];
-        NSDictionary *recording = @{ @"request": [key JSON], @"response": [response JSON] };
-        [recordings addObject:recording];
+    for (VCRRecording *recording in self.responseDictionary.allValues) {
+        [recordings addObject:[recording JSON]];
     }
     return recordings;
 }
@@ -105,13 +102,6 @@
 
 - (NSArray *)allKeys {
     return [self.responseDictionary allKeys];
-}
-
-#pragma mark - Private
-
-NSURLRequest *VCRCassetteRequestForJSON(id json) {
-    NSURL *url = [NSURL URLWithString:[json objectForKey:@"url"]];
-    return [NSURLRequest requestWithURL:url];
 }
 
 #pragma mark - Memory

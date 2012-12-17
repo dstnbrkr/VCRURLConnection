@@ -36,7 +36,7 @@
 
 - (void)setUp {
     [super setUp];
-    self.recording1 = @{ @"url": @"http://foo", @"body": @"Foo Bar Baz" };
+    self.recording1 = @{ @"method": @"get", @"uri": @"http://foo", @"body": @"Foo Bar Baz" };
     self.recordings = @[ self.recording1 ];
     self.cassette = [VCRCassette cassette];
 }
@@ -46,13 +46,6 @@
     self.recordings = nil;
     self.cassette = nil;
     [super tearDown];
-}
-
-- (void)testVCRCassetteRequestForJSON {
-    id json = self.recording1;
-    NSURL *url = [NSURL URLWithString:[json objectForKey:@"url"]];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    STAssertEqualObjects(VCRCassetteRequestForJSON(json), request, @"Should create expected request");
 }
 
 - (void)testInit {
@@ -69,7 +62,8 @@
 }
 
 - (void)testInitWithJSON {
-    NSURLRequest *request = VCRCassetteRequestForJSON(self.recording1);
+    NSURL *url = [NSURL URLWithString:[self.recording1 objectForKey:@"uri"]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
     VCRRecording *expectedRecording = [[[VCRRecording alloc] initWithJSON:self.recording1] autorelease];
     VCRCassette *cassette = [[[VCRCassette alloc] initWithJSON:self.recordings] autorelease];
     VCRRecording *actualRecording = [cassette recordingForRequest:request];
@@ -103,7 +97,7 @@
     NSString *path = @"http://foo";
     NSURL *url = [NSURL URLWithString:path];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    id json = @{ @"url": path, @"body": @"GET Foo Bar Baz" };
+    id json = @{ @"method": @"get", @"uri": path, @"body": @"GET Foo Bar Baz" };
     VCRRecording *recording = [[[VCRRecording alloc] initWithJSON:json] autorelease];
     
     [cassette addRecording:recording];

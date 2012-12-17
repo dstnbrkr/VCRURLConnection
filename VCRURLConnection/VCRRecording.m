@@ -28,9 +28,15 @@
 
 - (id)initWithJSON:(id)json {
     if ((self = [self init])) {
+        
         self.method = [json objectForKey:@"method"];
+        //NSAssert(self.method, @"VCRRecording: method is required");
+        
         self.URI = [json objectForKey:@"uri"];
-        self.statusCode = [[json objectForKey:@"statusCode"] intValue];
+        NSAssert(self.URI, @"VCRRecording: uri is required");
+
+        self.statusCode = [[json objectForKey:@"status"] intValue];
+
         self.headerFields = [json objectForKey:@"headers"];
         if (!self.headerFields) {
             self.headerFields = [NSDictionary dictionary];
@@ -42,8 +48,19 @@
         } else {
             self.data = [NSData dataFromBase64String:body];
         }
+        NSAssert(self.data, @"VCRRecording: body is required");
     }
     return self;
+}
+
+- (NSString *)method {
+    return [_method uppercaseString];
+}
+
+- (BOOL)isEqual:(VCRRecording *)recording {
+    return [self.method isEqualToString:recording.method] &&
+           [self.URI isEqualToString:recording.URI] &&
+           [self.body isEqualToString:recording.body];
 }
 
 - (void)recordResponse:(NSHTTPURLResponse *)response {
@@ -70,7 +87,13 @@
 }
 
 - (id)JSON {
-    return nil;
+    return @{
+        @"method": self.method,
+        @"uri": self.URI,
+        @"headers": self.headerFields,
+        @"status": @(self.statusCode),
+        @"body": self.body
+    };
 }
 
 - (void)dealloc {
