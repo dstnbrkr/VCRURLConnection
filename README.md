@@ -11,8 +11,9 @@ NSURL *url = [NSURL URLWithString:@"http://example.com/example"];
 [NSURLRequest requestWithURL:url];
 [NSURLConnection connectionWithRequest:request delegate:self];
 
-// NSURLConnectionDelegate methods are called with real network response
-// and VCRURLConnection will record the response
+// NSURLConnection makes a real network request and delegate methods
+// are called with the response (VCRURLConnection will record the
+// request/response pair.
 
 NSString *path = [VCR save]; // copy the file at `path` into your project
 ```
@@ -20,7 +21,8 @@ NSString *path = [VCR save]; // copy the file at `path` into your project
 # Replaying
 
 ``` objective-c
-NSString *cassettePath = [[NSBundle mainBundle] pathForResource:@"cassette" ofType:@"json"]; // use the file created above
+// Load the cassette saved above
+NSString *cassettePath = [[NSBundle mainBundle] pathForResource:@"cassette" ofType:@"json"];
 [VCR setCassetteURL:[NSURL fileURLWithPath:cassettePath]];
 [VCR start];
 
@@ -32,16 +34,18 @@ url = [NSURL URLWithString:@"http://example.com/example"];
 request = [NSURLRequest requestWithURL:url];
 [NSURLConnection connectionWithRequest:request delegate:self];
 
-// This request has already been recorded on cassette.json so
-// NSURLConnectionDelegate methods are called with the recorded response
+// The cassette has a recorded response for this request, so 
+// no network request will be made. Instead NSURLConnectionDelegate methods
+// will be called with the previously recorded response.
 
 url = [NSURL URLWithString:@"http://iana.org"]
 request = [NSURLRequest requestWithURL:url];
 [NSURLConnection connectionWithRequest:request delegate:self];
 
-// This request has not been recorded so NSURLConnectionDelegate
-// methods are called with real network response (and response is recorded)
-
+// The cassette does not have a recorded for this request, so a real
+// network request will be made. NSURLConnectionDelegate methods will
+// be called with the real response (and VCRURLConnection will record
+// the request/response pair).
 ```
 
 ## How to get started
