@@ -28,7 +28,6 @@
 
 @interface VCRConnectionDelegateWrapper : NSObject<NSURLConnectionDelegate>
 @property (nonatomic, retain) NSURLRequest *request;
-@property (nonatomic, retain) VCRResponse *response;
 @property (nonatomic, retain) VCRRecording *recording;
 @property (nonatomic, retain) id<NSURLConnectionDataDelegate> wrapped;
 @end
@@ -74,7 +73,6 @@
 
 - (id)init {
     if ((self = [super init])) {
-        self.response = [[[VCRResponse alloc] init] autorelease];
         self.recording = [[[VCRRecording alloc] init] autorelease];
     }
     return self;
@@ -82,13 +80,11 @@
 
 - (void)dealloc {
     [_wrapped release];
-    self.response = nil;
     self.recording = nil;
     [super dealloc];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSHTTPURLResponse *)response {
-    [_response recordHTTPURLResponse:response];
     [_recording recordResponse:response];
     if ([_wrapped respondsToSelector:@selector(connection:didReceiveResponse:)]) {
         [_wrapped connection:connection didReceiveResponse:response];
@@ -96,13 +92,12 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    if (self.response.responseData) {
-        NSMutableData *currentData = [NSMutableData dataWithData:self.response.responseData];
+    if (self.recording.data) {
+        NSMutableData *currentData = [NSMutableData dataWithData:self.recording.data];
         [currentData appendData:data];
-        self.response.responseData = currentData;
         self.recording.data = currentData;
     } else {
-        self.response.responseData = data;
+        self.recording.data = data;
     }
     if ([_wrapped respondsToSelector:@selector(connection:didReceiveData:)]) {
         [_wrapped connection:connection didReceiveData:data];
@@ -111,7 +106,6 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     [[VCR cassette] addRecording:self.recording];
-    [[[VCRCassetteManager defaultManager] currentCassette] setResponse:self.response forRequest:self.request];
         
     if ([_wrapped respondsToSelector:@selector(connectionDidFinishLoading:)]) {
         [_wrapped connectionDidFinishLoading:connection];

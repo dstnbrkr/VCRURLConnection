@@ -25,6 +25,8 @@
 
 @interface VCRRecording : NSObject
 
+- (id)initWithJSON:(id)json;
+
 - (void)recordResponse:(NSHTTPURLResponse *)response;
 
 - (id)JSON;
@@ -32,7 +34,7 @@
 @property (nonatomic, retain) NSString *method;
 @property (nonatomic, retain) NSString *URI;
 @property (nonatomic, retain) NSData *data;
-@property (nonatomic, retain, readonly) NSString *body;
+@property (nonatomic, readonly) NSString *body;
 @property (assign) NSInteger statusCode;
 @property (nonatomic, retain) NSDictionary *headerFields;
 

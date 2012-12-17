@@ -70,10 +70,10 @@
 
 - (void)testInitWithJSON {
     NSURLRequest *request = VCRCassetteRequestForJSON(self.recording1);
-    VCRResponse *expectedResponse = [[[VCRResponse alloc] initWithJSON:self.recording1] autorelease];
+    VCRRecording *expectedRecording = [[[VCRRecording alloc] initWithJSON:self.recording1] autorelease];
     VCRCassette *cassette = [[[VCRCassette alloc] initWithJSON:self.recordings] autorelease];
-    VCRResponse *actualResponse = [cassette responseForRequest:request];
-    STAssertEqualObjects(actualResponse, expectedResponse, @"Should get expected response");
+    VCRRecording *actualRecording = [cassette recordingForRequest:request];
+    STAssertEqualObjects(actualRecording, expectedRecording, @"Should get expected recording");
 }
 
 - (void)testInitWithNilJSON {
@@ -104,14 +104,14 @@
     NSURL *url = [NSURL URLWithString:path];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     id json = @{ @"url": path, @"body": @"GET Foo Bar Baz" };
-    VCRResponse *response = [[[VCRResponse alloc] initWithJSON:json] autorelease];
+    VCRRecording *recording = [[[VCRRecording alloc] initWithJSON:json] autorelease];
     
-    [cassette setResponse:response forRequest:request];
-    STAssertEqualObjects([cassette responseForRequest:request], response, @"");
+    [cassette addRecording:recording];
+    STAssertEqualObjects([cassette recordingForRequest:request], recording, @"");
     
     // can retrieve with equivalent mutable request
     NSMutableURLRequest *request1 = [NSMutableURLRequest requestWithURL:url];
-    STAssertEqualObjects([cassette responseForRequest:request1], response, @"");
+    STAssertEqualObjects([cassette recordingForRequest:request1], recording, @"");
 }
 
 - (void)testData {

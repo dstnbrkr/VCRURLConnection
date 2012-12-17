@@ -21,7 +21,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "VCRResponse.h"
 #import "VCRRequestKey.h"
 #import "VCRRecording.h"
 #import <Foundation/Foundation.h>
@@ -34,13 +33,9 @@
 
 - (id)initWithJSON:(id)json;
 
-- (void)setResponse:(VCRResponse *)response forRequest:(NSURLRequest *)request;
-
-- (VCRResponse *)responseForRequestKey:(VCRRequestKey *)key;
-
-- (VCRResponse *)responseForRequest:(NSURLRequest *)request;
-
 - (void)addRecording:(VCRRecording *)recording;
+
+- (VCRRecording *)recordingForRequest:(NSURLRequest *)request;
 
 - (NSArray *)allKeys;
 

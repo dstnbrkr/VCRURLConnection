@@ -76,7 +76,7 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
     // request has not been recorded yet
-    STAssertNil([self.cassette responseForRequest:request], @"Should not have recording for request yet");
+    STAssertNil([self.cassette recordingForRequest:request], @"Should not have recording for request yet");
     
     // make and record request
     [NSURLConnection connectionWithRequest:request delegate:self.testDelegate];
@@ -86,12 +86,11 @@
         return [self.testDelegate isDone];
     } timeout:60 * 60];
     
-    VCRResponse *recordedResponse = [self.cassette responseForRequest:request];
-    NSData *recordedData = recordedResponse.responseData;
-    STAssertNotNil(recordedResponse, @"Should have recorded response data");
+    VCRRecording *recording = [self.cassette recordingForRequest:request];
+    STAssertNotNil(recording.data, @"Should have recorded response data");
     
     NSData *receivedData = self.testDelegate.data;
-    STAssertEqualObjects(recordedData, receivedData, @"Recorded data should equal recorded data");    
+    STAssertEqualObjects(recording.data, receivedData, @"Recorded data should equal recorded data");
 }
 
 - (void)testAsyncGetRequestIsReplayed {
@@ -102,8 +101,8 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://foo"]];
     
     // cassette has recording for request
-    VCRResponse *recordedResponse = [cassette responseForRequest:request];
-    STAssertNotNil(recordedResponse, @"Should have recorded response");
+    VCRRecording *recording = [self.cassette recordingForRequest:request];
+    STAssertNotNil(recording, @"Should have recorded response");
 
     // make and playback request
     [NSURLConnection connectionWithRequest:request delegate:self.testDelegate];
@@ -118,12 +117,12 @@
     STAssertNotNil(receivedResponse, @"Response should not be nil");
     
     // delegate got correct response
-    NSHTTPURLResponse *httpResponse = [recordedResponse generateHTTPURLResponse];
+    NSHTTPURLResponse *httpResponse = [NSHTTPURLResponse responseFromRecording:recording];
     STAssertTrue([receivedResponse VCR_isIsomorphic:httpResponse],
                  @"Received response should be isomorphic to recorded response");
     
     NSData *receivedData = self.testDelegate.data;
-    STAssertEqualObjects(receivedData, recordedResponse.responseData, @"Received data should equal recorded data");
+    STAssertEqualObjects(receivedData, recording.data, @"Received data should equal recorded data");
 }
 
 // FIXME: test with enough data to fire connection:didReceiveData: times (test data appending)

@@ -48,10 +48,9 @@
 - (id)initWithJSON:(id)json {
     NSAssert(json != nil, @"Attempted to intialize VCRCassette with nil JSON");
     if ((self = [self init])) {
-        for (id recording in json) {
-            NSURLRequest *request = VCRCassetteRequestForJSON(recording);
-            VCRResponse *response = [[[VCRResponse alloc] initWithJSON:recording] autorelease];
-            [self setResponse:response forRequest:request];
+        for (id recordingJSON in json) {
+            VCRRecording *recording = [[[VCRRecording alloc] initWithJSON:recordingJSON] autorelease];
+            [self addRecording:recording];
         }
     }
     return self;
@@ -68,6 +67,15 @@
 - (void)addRecording:(VCRRecording *)recording {
     VCRRequestKey *key = [VCRRequestKey keyForObject:recording];
     [self.responseDictionary setObject:recording forKey:key];
+}
+
+- (VCRRecording *)recordingForRequestKey:(VCRRequestKey *)key {
+    return [self.responseDictionary objectForKey:key];
+}
+
+- (VCRRecording *)recordingForRequest:(NSURLRequest *)request {
+    VCRRequestKey *key = [VCRRequestKey keyForObject:request];
+    return [self recordingForRequestKey:key];
 }
 
 - (id)JSON {
@@ -91,26 +99,12 @@
     return data;
 }
 
-- (void)setResponse:(VCRResponse *)response forRequest:(NSURLRequest *)request {
-    VCRRequestKey *key = [VCRRequestKey keyForObject:request];
-    [self.responseDictionary setObject:response forKey:key];
-}
-
-- (VCRResponse *)responseForRequest:(NSURLRequest *)request {
-    VCRRequestKey *key = [VCRRequestKey keyForObject:request];
-    return [self responseForRequestKey:key];
-}
-
 - (BOOL)isEqual:(VCRCassette *)cassette {
     return [self.responseDictionary isEqual:cassette.responseDictionary];
 }
 
 - (NSArray *)allKeys {
     return [self.responseDictionary allKeys];
-}
-
-- (VCRResponse *)responseForRequestKey:(VCRRequestKey *)key {
-    return [self.responseDictionary objectForKey:key];
 }
 
 #pragma mark - Private

@@ -24,7 +24,7 @@
 #import "NSURLConnection+VCR.h"
 #import "VCRCassetteManager.h"
 #import "VCRConnectionDelegate.h"
-#import "VCRResponse.h"
+#import "VCRRecording.h"
 
 @implementation NSURLConnection (VCR)
 
@@ -42,11 +42,11 @@
 
 - (id)VCR_initWithRequest:(NSURLRequest *)request delegate:(id<NSURLConnectionDataDelegate>)delegate startImmediately:(BOOL)startImmediately {
     VCRCassette *cassette = [[VCRCassetteManager defaultManager] currentCassette];
-    VCRResponse *response = [cassette responseForRequest:request];
-    if (response) {
+    VCRRecording *recording = [cassette recordingForRequest:request];
+    if (recording) {
         self = [self init];
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self VCR_simulateResponse:response delegate:delegate];
+            [self VCR_playback:recording delegate:delegate];
         });
     } else {
         VCRConnectionDelegate *vcrDelegate = [[[VCRConnectionDelegate alloc] initWithDelegate:delegate] autorelease];
@@ -57,21 +57,21 @@
     return self;
 }
 
-- (void)VCR_simulateResponse:(VCRResponse *)vcrResponse delegate:(id)delegate {
+- (void)VCR_playback:(VCRRecording *)recording delegate:(id)delegate {
     if ([delegate respondsToSelector:@selector(connection:didReceiveResponse:)]) {
-        NSURLResponse *response = [vcrResponse generateHTTPURLResponse];
+        NSURLResponse *response = [NSHTTPURLResponse responseFromRecording:recording];
         [delegate connection:self didReceiveResponse:response];
     }
     
     if ([delegate respondsToSelector:@selector(connection:didReceiveData:)]) {
-        [delegate connection:self didReceiveData:vcrResponse.responseData];
+        [delegate connection:self didReceiveData:recording.data];
     }
     
     if ([delegate respondsToSelector:@selector(connectionDidFinishLoading:)]) {
         [delegate connectionDidFinishLoading:self];
     }
     
-    if ((vcrResponse.statusCode < 200 || 299 < vcrResponse.statusCode) &&
+    if ((recording.statusCode < 200 || 299 < recording.statusCode) &&
         [delegate respondsToSelector:@selector(connection:didFailWithError:)]) {
         
         // FIXME: store details of NSError in VCRResponse and populate here
