@@ -11,9 +11,8 @@ NSURL *url = [NSURL URLWithString:@"http://example.com/example"];
 NSURLRequest *request = [NSURLRequest requestWithURL:url];
 [NSURLConnection connectionWithRequest:request delegate:self];
 
-// NSURLConnection makes a real network request and delegate methods
-// are called with the response (VCRURLConnection will record the
-// request/response pair).
+// NSURLConnection makes a real network request and VCRURLConnection
+// will record the request/response pair.
 
 NSString *path = [VCR save]; // copy the file at `path` into your project
 ```
@@ -34,18 +33,17 @@ url = [NSURL URLWithString:@"http://example.com/example"];
 request = [NSURLRequest requestWithURL:url];
 [NSURLConnection connectionWithRequest:request delegate:self];
 
-// The cassette has a recorded response for this request, so 
-// no network request will be made. Instead NSURLConnectionDelegate methods
-// will be called with the previously recorded response.
+// The cassette has a recording for this request, so no network request
+// is made. Instead NSURLConnectionDelegate methods are called with the
+// previously recorded response.
 
 url = [NSURL URLWithString:@"http://iana.org"]
 request = [NSURLRequest requestWithURL:url];
 [NSURLConnection connectionWithRequest:request delegate:self];
 
-// The cassette does not have a recorded for this request, so a real
-// network request will be made. NSURLConnectionDelegate methods will
-// be called with the real response (VCRURLConnection will record
-// the request/response pair).
+// The cassette does not have a recording for this request, so a real
+// network request is made (and VCRURLConnection will record the
+// request/response pair).
 ```
 
 ## How to get started
