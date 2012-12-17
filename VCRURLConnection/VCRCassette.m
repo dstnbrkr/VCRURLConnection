@@ -65,6 +65,11 @@
     
 }
 
+- (void)addRecording:(VCRRecording *)recording {
+    VCRRequestKey *key = [VCRRequestKey keyForObject:recording];
+    [self.responseDictionary setObject:recording forKey:key];
+}
+
 - (id)JSON {
     NSMutableArray *recordings = [NSMutableArray array];
     for (VCRRequestKey *key in self.responseDictionary.allKeys) {
@@ -87,12 +92,12 @@
 }
 
 - (void)setResponse:(VCRResponse *)response forRequest:(NSURLRequest *)request {
-    VCRRequestKey *key = [VCRRequestKey keyForRequest:request];
+    VCRRequestKey *key = [VCRRequestKey keyForObject:request];
     [self.responseDictionary setObject:response forKey:key];
 }
 
 - (VCRResponse *)responseForRequest:(NSURLRequest *)request {
-    VCRRequestKey *key = [VCRRequestKey keyForRequest:request];
+    VCRRequestKey *key = [VCRRequestKey keyForObject:request];
     return [self responseForRequestKey:key];
 }
 

@@ -21,15 +21,16 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+#import "VCRRecording.h"
 #import <Foundation/Foundation.h>
 
 @interface VCRRequestKey : NSObject <NSCopying>
 
-+ (VCRRequestKey *)keyForRequest:(NSURLRequest *)request;
++ (VCRRequestKey *)keyForObject:(id)object;
 
 - (id)JSON;
 
-@property (nonatomic, retain, readonly) NSURL *url;
+@property (nonatomic, retain, readonly) NSString *URI;
 @property (nonatomic, retain, readonly) NSString *method;
 
 @end

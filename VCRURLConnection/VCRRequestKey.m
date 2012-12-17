@@ -24,35 +24,60 @@
 #import "VCRRequestKey.h"
 
 @interface VCRRequestKey ()
-@property (nonatomic, retain, readwrite) NSURL *url;
+
+- (id)initWithRecording:(VCRRecording *)recording;
+- (id)initWithRequest:(NSURLRequest *)request;
+
+@property (nonatomic, retain, readwrite) NSString *URI;
 @property (nonatomic, retain, readwrite) NSString *method;
+
 @end
 
 @implementation VCRRequestKey
 
-+ (VCRRequestKey *)keyForRequest:(NSURLRequest *)request {
-    VCRRequestKey *key = [[[VCRRequestKey alloc] init] autorelease];
-    key.url = request.URL;
-    key.method = request.HTTPMethod;
-    return key;
++ (VCRRequestKey *)keyForObject:(id)object {
+    if ([object isKindOfClass:[VCRRecording class]]) {
+        return [[[VCRRequestKey alloc] initWithRecording:object] autorelease];
+    } else if ([object isKindOfClass:[NSURLRequest class]])  {
+        return [[[VCRRequestKey alloc] initWithRequest:object] autorelease];
+    } else {
+        NSAssert(false, @"Attempted to create VCRRequestKey with invalid object: %@", object);
+        return nil;
+    }
+}
+
+- (id)initWithRecording:(VCRRecording *)recording {
+    if ((self = [super init])) {
+        self.URI = recording.URI;
+        self.method = recording.method;
+    }
+    return self;
+}
+
+- (id)initWithRequest:(NSURLRequest *)request {
+    if ((self = [super init])) {
+        self.URI = [request.URL absoluteString];
+        self.method = request.HTTPMethod;
+    }
+    return self;
 }
 
 - (id)JSON {
-    return @{ @"url": [self.url absoluteString] };
+    return @{ @"uri": self.URI };
 }
 
 - (BOOL)isEqual:(VCRRequestKey *)key {
-    return self.hash == key.hash && [self.url isEqual:key.url];
+    return [self.method isEqual:key.method] && [self.URI isEqual:key.URI];
 }
 
 - (NSUInteger)hash {
-    return [self.method hash] ^ [self.url hash];
+    return [self.method hash] ^ [self.URI hash];
 }
 
 - (id)copyWithZone:(NSZone *)zone {
     VCRRequestKey *key = [[[self class] alloc] init];
     if (key) {
-        key.url = [[self.url copyWithZone:zone] autorelease];
+        key.URI = [[self.URI copyWithZone:zone] autorelease];
         key.method = [[self.method copyWithZone:zone] autorelease];
     }
     return key;

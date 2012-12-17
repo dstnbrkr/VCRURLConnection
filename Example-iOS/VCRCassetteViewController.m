@@ -107,7 +107,7 @@
     }
     
     VCRRequestKey *key = [[self.cassette allKeys] objectAtIndex:indexPath.row];
-    NSString *path = [[key url] absoluteString];
+    NSString *path = [key URI];
     cell.textLabel.text = path;
     
     return cell;

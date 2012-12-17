@@ -32,13 +32,16 @@
 @implementation VCRRequestKeyTests
 
 - (void)setUp {
-    NSURL *url1 = [NSURL URLWithString:@"http://foo/bar"];
-    NSURLRequest *request1 = [[NSURLRequest alloc] initWithURL:url1];
-    self.key1 = [VCRRequestKey keyForRequest:request1];
+    NSString *path = @"http://foo/bar";
+    
+    NSURL *url = [NSURL URLWithString:path];
+    NSURLRequest *request1 = [[NSURLRequest alloc] initWithURL:url];
+    self.key1 = [VCRRequestKey keyForObject:request1];
 
-    NSURL *url2 = [NSURL URLWithString:@"http://foo/bar"];
-    NSURLRequest *request2 = [[NSURLRequest alloc] initWithURL:url2];
-    self.key2 = [VCRRequestKey keyForRequest:request2];
+    VCRRecording *recording = [[[VCRRecording alloc] init] autorelease];
+    recording.method = @"GET";
+    recording.URI = path;
+    self.key2 = [VCRRequestKey keyForObject:recording];
 }
 
 - (void)testIsEqual {

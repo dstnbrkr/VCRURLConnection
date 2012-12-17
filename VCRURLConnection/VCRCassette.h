@@ -23,6 +23,7 @@
 
 #import "VCRResponse.h"
 #import "VCRRequestKey.h"
+#import "VCRRecording.h"
 #import <Foundation/Foundation.h>
 
 @interface VCRCassette : NSObject
@@ -38,6 +39,8 @@
 - (VCRResponse *)responseForRequestKey:(VCRRequestKey *)key;
 
 - (VCRResponse *)responseForRequest:(NSURLRequest *)request;
+
+- (void)addRecording:(VCRRecording *)recording;
 
 - (NSArray *)allKeys;
 

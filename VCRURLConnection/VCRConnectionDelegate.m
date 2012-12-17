@@ -24,6 +24,7 @@
 #import "VCRConnectionDelegate.h"
 #import "VCRCassetteManager.h"
 #import "VCRRecording.h"
+#import "VCR.h"
 
 @interface VCRConnectionDelegateWrapper : NSObject<NSURLConnectionDelegate>
 @property (nonatomic, retain) NSURLRequest *request;
@@ -99,6 +100,7 @@
         NSMutableData *currentData = [NSMutableData dataWithData:self.response.responseData];
         [currentData appendData:data];
         self.response.responseData = currentData;
+        self.recording.data = currentData;
     } else {
         self.response.responseData = data;
     }
@@ -108,6 +110,7 @@
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    [[VCR cassette] addRecording:self.recording];
     [[[VCRCassetteManager defaultManager] currentCassette] setResponse:self.response forRequest:self.request];
         
     if ([_wrapped respondsToSelector:@selector(connectionDidFinishLoading:)]) {
