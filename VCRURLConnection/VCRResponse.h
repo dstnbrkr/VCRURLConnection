@@ -27,9 +27,13 @@
 
 - (id)initWithJSON:(id)json;
 
+- (NSDictionary *)JSON;
+
 - (void)recordHTTPURLResponse:(NSHTTPURLResponse *)response;
 
 - (NSHTTPURLResponse *)generateHTTPURLResponse;
+
+- (NSString *)body;
 
 @property (nonatomic, retain) NSURL *url;
 

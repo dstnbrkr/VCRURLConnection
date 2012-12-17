@@ -114,4 +114,10 @@
     STAssertEqualObjects([cassette responseForRequest:request1], response, @"");
 }
 
+- (void)testData {
+    VCRCassette *cassette = [[[VCRCassette alloc] initWithJSON:self.recordings] autorelease];
+    NSData *data = [cassette data];
+    STAssertTrue(data != nil && [data length] > 0, @"Did not serialize to data");
+}
+
 @end

@@ -27,6 +27,8 @@
 
 + (VCRRequestKey *)keyForRequest:(NSURLRequest *)request;
 
+- (id)JSON;
+
 @property (nonatomic, retain, readonly) NSURL *url;
 @property (nonatomic, retain, readonly) NSString *method;
 

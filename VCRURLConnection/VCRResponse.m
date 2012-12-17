@@ -44,6 +44,14 @@
     return self;
 }
 
+- (id)JSON {
+    return @{ @"body": [self body] };
+}
+
+- (NSString *)body {
+    return [[[NSString alloc] initWithData:self.responseData encoding:NSUTF8StringEncoding] autorelease];
+}
+
 - (BOOL)isEqual:(VCRResponse *)response {
     return [self.url isEqual:response.url] && [self.responseData isEqual:response.responseData];
 }

@@ -37,6 +37,10 @@
     return key;
 }
 
+- (id)JSON {
+    return @{ @"url": [self.url absoluteString] };
+}
+
 - (BOOL)isEqual:(VCRRequestKey *)key {
     return self.hash == key.hash && [self.url isEqual:key.url];
 }
