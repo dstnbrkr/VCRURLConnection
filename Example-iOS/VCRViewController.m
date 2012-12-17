@@ -54,7 +54,7 @@
 }
 
 - (void)loadData:(NSData *)data {
-    NSString *HTMLString = [[NSString alloc] initWithData:_responseData encoding:NSUTF8StringEncoding];
+    NSString *HTMLString = [[[NSString alloc] initWithData:_responseData encoding:NSUTF8StringEncoding] autorelease];
     self.HTMLString = HTMLString;
     [_webView loadData:data MIMEType:self.mimeType textEncodingName:@"utf-8" baseURL:_url];
     _isLoaded = YES;
@@ -63,7 +63,7 @@
 #pragma mark - UITextFieldDelegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    self.url = [[NSURL alloc] initWithString:textField.text];
+    self.url = [NSURL URLWithString:textField.text];
     [self load];
     [textField resignFirstResponder];
     return YES;

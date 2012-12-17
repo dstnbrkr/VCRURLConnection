@@ -60,7 +60,7 @@
         // do nothing
     } else if ([[NSFileManager defaultManager] fileExistsAtPath:[url path]]) {
         NSData *data = [NSData dataWithContentsOfURL:url];
-        cassette = [[VCRCassette alloc] initWithData:data];
+        cassette = [[[VCRCassette alloc] initWithData:data] autorelease];
     } else {
         cassette = [VCRCassette cassette];
     }
