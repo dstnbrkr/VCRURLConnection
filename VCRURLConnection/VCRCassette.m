@@ -65,16 +65,21 @@
     
 }
 
-- (NSData *)data {
+- (id)JSON {
     NSMutableArray *recordings = [NSMutableArray array];
     for (VCRRequestKey *key in self.responseDictionary.allKeys) {
         VCRResponse *response = [self.responseDictionary objectForKey:key];
         NSDictionary *recording = @{ @"request": [key JSON], @"response": [response JSON] };
         [recordings addObject:recording];
     }
-    
+    return recordings;
+}
+
+- (NSData *)data {
     NSError *error = nil;
-    NSData *data = [NSJSONSerialization dataWithJSONObject:recordings options:NSJSONWritingPrettyPrinted error:&error];
+    NSData *data = [NSJSONSerialization dataWithJSONObject:[self JSON]
+                                                   options:NSJSONWritingPrettyPrinted
+                                                     error:&error];
     if ([error code] != 0) {
         NSLog(@"Error serializing json data %@", error);
     }
