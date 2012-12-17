@@ -44,7 +44,7 @@
 
      NSString *cassettePath = [[NSBundle mainBundle] pathForResource:@"cassette"
                                                               ofType:@"json"];
-     [VCR setCassetteURL:[NSURL fileURLWithPath:cassettePath]];
+     [VCR setCassetteURL:[NSURL loadCassetteWithContentsOfURL:cassettePath]];
      [VCR start];
  
      // request an HTTP interaction that was recorded to cassette.json
@@ -62,12 +62,31 @@
 
 @interface VCR : NSObject
 
-+ (void)setCassetteURL:(NSURL *)url;
+/**
+ Load all recorded HTTP interactions from cassette JSON file at `url`
+ */
++ (void)loadCassetteWithContentsOfURL:(NSURL *)url;
+
+/**
+ The current cassette that all HTTP interactions are record to / replayed from
+ */
 + (VCRCassette *)cassette;
 
+/**
+ Begin recording or replaying HTTP interactions
+ */
 + (void)start;
+
+/**
+ Stop recording or replaying HTTP interactions
+ */
 + (void)stop;
 
+/**
+ Write recorded HTTP interactions to a JSON file
+ 
+ @return the path to the output file
+ */
 + (NSString *)save;
 
 @end

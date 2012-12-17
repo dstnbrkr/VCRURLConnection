@@ -39,7 +39,7 @@ static void VCRURLConnectionUnswizzle(SEL selector);
     VCRStoreOriginalImplentation(@selector(initWithRequest:delegate:startImmediately:));
 }
 
-+ (void)setCassetteURL:(NSURL *)url {
++ (void)loadCassetteWithContentsOfURL:(NSURL *)url {
     [[VCRCassetteManager defaultManager] setCurrentCassetteURL:url];
 }
 
