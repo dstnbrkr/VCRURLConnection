@@ -7,44 +7,34 @@ VCRURLConnection is an iOS and OSX API to record and replay HTTP interactions, i
 
 ``` objective-c
 [VCR start];
-
-NSURL *url = [NSURL URLWithString:@"http://example.com/example"];
+ 
+NSString *path = @"http://example.com/example";
+NSURL *url = [NSURL URLWithString:path];
 NSURLRequest *request = [NSURLRequest requestWithURL:url];
 [NSURLConnection connectionWithRequest:request delegate:self];
-
+ 
 // NSURLConnection makes a real network request and VCRURLConnection
 // will record the request/response pair.
-
-NSString *path = [VCR save]; // copy the file at `path` into your project
+ 
+NSString *path = [VCR save:@"/path/to/cassette.json"]; // copy the output file into your project
 ```
 
 ## Replaying
 
 ``` objective-c
-// Load the cassette saved above
-NSString *cassettePath = [[NSBundle mainBundle] pathForResource:@"cassette" ofType:@"json"];
-[VCR setCassetteURL:[NSURL fileURLWithPath:cassettePath]];
+NSURL *cassetteURL = [NSURL fileURLWithPath:@"/path/to/cassette.json"];
+[VCR loadCassetteWithContentsOfURL:cassetteURL];
 [VCR start];
 
-NSURL *url;
-NSURLRequest *request;
-
-// make the same request
-url = [NSURL URLWithString:@"http://example.com/example"];
-request = [NSURLRequest requestWithURL:url];
+// request an HTTP interaction that was recorded to cassette.json
+NSString *path = @"http://example.com/example";
+NSURL *url = [NSURL URLWithString:path];
+NSURLRequest *request = [NSURLRequest requestWithURL:url];
 [NSURLConnection connectionWithRequest:request delegate:self];
-
+ 
 // The cassette has a recording for this request, so no network request
 // is made. Instead NSURLConnectionDelegate methods are called with the
 // previously recorded response.
-
-url = [NSURL URLWithString:@"http://iana.org"]
-request = [NSURLRequest requestWithURL:url];
-[NSURLConnection connectionWithRequest:request delegate:self];
-
-// The cassette does not have a recording for this request, so a real
-// network request is made (and VCRURLConnection will record the
-// request/response pair).
 ```
 
 ## How to get started
@@ -53,6 +43,7 @@ request = [NSURLRequest requestWithURL:url];
 - Run your tests once to record all HTTP interactions
 - Copy the recorded json file (the file whose path is returned by `[VCR save]`) into your project
 - Subsequent test runs will use the recorded HTTP interactions instead of the network
+
 - All recordings are stored in a single JSON file, which you can edit by hand
 
 ## License
