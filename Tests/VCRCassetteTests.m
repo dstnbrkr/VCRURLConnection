@@ -114,8 +114,4 @@
     STAssertEqualObjects([cassette responseForRequest:request1], response, @"");
 }
 
-- (void)testResponseForRequest_DifferentiateRequestsByMethod {
-
-}
-
 @end
