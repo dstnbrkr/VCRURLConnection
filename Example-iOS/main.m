@@ -1,9 +1,9 @@
 //
 //  main.m
-//  VCRURLConnectionExample
+//  Example-iOS
 //
-//  Created by Dustin Barker on 11/10/12.
-//  Copyright (c) 2012 Dustin Barker. All rights reserved.
+//  Created by Dustin Barker on 12/16/12.
+//
 //
 
 #import <UIKit/UIKit.h>
