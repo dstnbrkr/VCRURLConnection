@@ -88,7 +88,7 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSHTTPURLResponse *)response {
     [_response recordHTTPURLResponse:response];
-    [_recording recordHTTPURLResponse:response];
+    [_recording recordResponse:response];
     if ([_wrapped respondsToSelector:@selector(connection:didReceiveResponse:)]) {
         [_wrapped connection:connection didReceiveResponse:response];
     }

@@ -22,15 +22,51 @@
 // THE SOFTWARE.
 
 #import "VCRRecording.h"
+#import "NSData+Base64.h"
 
 @implementation VCRRecording
 
-+ (VCRRecording *)recordingFromResponse:(NSHTTPURLResponse *)response {
-    VCRRecording *recording = [[[VCRRecording alloc] init] autorelease];
-    recording.URI = [response.URL absoluteString];
-    recording.headerFields = [response allHeaderFields];
-    recording.statusCode = response.statusCode;
-    return recording;
+- (id)initWithJSON:(id)json {
+    if ((self = [self init])) {
+        self.method = [json objectForKey:@"method"];
+        self.URI = [json objectForKey:@"uri"];
+        self.statusCode = [[json objectForKey:@"statusCode"] intValue];
+        self.headerFields = [json objectForKey:@"headers"];
+        if (!self.headerFields) {
+            self.headerFields = [NSDictionary dictionary];
+        }
+        
+        NSString *body = [json objectForKey:@"body"];
+        if ([self isText]) {
+            self.data = [body dataUsingEncoding:NSUTF8StringEncoding];
+        } else {
+            self.data = [NSData dataFromBase64String:body];
+        }
+    }
+    return self;
+}
+
+- (void)recordResponse:(NSHTTPURLResponse *)response {
+    self.URI = [response.URL absoluteString];
+    self.headerFields = [response allHeaderFields];
+    self.statusCode = response.statusCode;
+}
+
+- (BOOL)isText {
+    NSString *type = [self.headerFields objectForKey:@"Content-Type"] ?: @"text/plain";
+    NSArray *types = @[ @"text/plain", @"text/html", @"application/json", @"application/xml" ];
+    for (NSString *textType in types) {
+        if ([type rangeOfString:textType].location != NSNotFound) return YES;
+    }
+    return NO;
+}
+
+- (NSString *)body {
+    if ([self isText]) {
+        return [[[NSString alloc] initWithData:self.data encoding:NSUTF8StringEncoding] autorelease];
+    } else {
+        return [self.data base64EncodedString];
+    }
 }
 
 - (id)JSON {
@@ -42,7 +78,6 @@
     self.URI = nil;
     self.data = nil;
     self.headerFields = nil;
-    self.httpVersion = nil;
     [super dealloc];
 }
 
@@ -54,7 +89,7 @@
     NSURL *url = [NSURL URLWithString:recording.URI];
     return [[[NSHTTPURLResponse alloc] initWithURL:url
                                         statusCode:recording.statusCode
-                                       HTTPVersion:recording.httpVersion
+                                       HTTPVersion:@"HTTP/1.1"
                                       headerFields:recording.headerFields] autorelease];
 }
 
