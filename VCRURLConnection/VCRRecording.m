@@ -25,4 +25,37 @@
 
 @implementation VCRRecording
 
++ (VCRRecording *)recordingFromResponse:(NSHTTPURLResponse *)response {
+    VCRRecording *recording = [[[VCRRecording alloc] init] autorelease];
+    recording.URI = [response.URL absoluteString];
+    recording.headerFields = [response allHeaderFields];
+    recording.statusCode = response.statusCode;
+    return recording;
+}
+
+- (id)JSON {
+    return nil;
+}
+
+- (void)dealloc {
+    self.method = nil;
+    self.URI = nil;
+    self.data = nil;
+    self.headerFields = nil;
+    self.httpVersion = nil;
+    [super dealloc];
+}
+
+@end
+
+@implementation NSHTTPURLResponse (VCRRecording)
+
++ (NSHTTPURLResponse *)responseFromRecording:(VCRRecording *)recording {
+    NSURL *url = [NSURL URLWithString:recording.URI];
+    return [[[NSHTTPURLResponse alloc] initWithURL:url
+                                        statusCode:recording.statusCode
+                                       HTTPVersion:recording.httpVersion
+                                      headerFields:recording.headerFields] autorelease];
+}
+
 @end

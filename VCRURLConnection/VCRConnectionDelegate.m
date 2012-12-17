@@ -23,10 +23,12 @@
 
 #import "VCRConnectionDelegate.h"
 #import "VCRCassetteManager.h"
+#import "VCRRecording.h"
 
 @interface VCRConnectionDelegateWrapper : NSObject<NSURLConnectionDelegate>
 @property (nonatomic, retain) NSURLRequest *request;
 @property (nonatomic, retain) VCRResponse *response;
+@property (nonatomic, retain) VCRRecording *recording;
 @property (nonatomic, retain) id<NSURLConnectionDataDelegate> wrapped;
 @end
 
@@ -72,6 +74,7 @@
 - (id)init {
     if ((self = [super init])) {
         self.response = [[[VCRResponse alloc] init] autorelease];
+        self.recording = [[[VCRRecording alloc] init] autorelease];
     }
     return self;
 }
@@ -79,11 +82,13 @@
 - (void)dealloc {
     [_wrapped release];
     self.response = nil;
+    self.recording = nil;
     [super dealloc];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSHTTPURLResponse *)response {
     [_response recordHTTPURLResponse:response];
+    [_recording recordHTTPURLResponse:response];
     if ([_wrapped respondsToSelector:@selector(connection:didReceiveResponse:)]) {
         [_wrapped connection:connection didReceiveResponse:response];
     }
