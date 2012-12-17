@@ -22,7 +22,7 @@
 // THE SOFTWARE.
 
 #import "VCRResponse.h"
-#import "NSData+VCR.h"
+#import "NSData+Base64.h"
 
 
 @implementation VCRResponse
@@ -31,10 +31,16 @@
     if ((self = [self init])) {
         self.url = [NSURL URLWithString:[json objectForKey:@"url"]];
         self.statusCode = [[json objectForKey:@"statusCode"] intValue];
-        self.responseData = [[json objectForKey:@"body"] dataUsingEncoding:NSUTF8StringEncoding];
         self.headerFields = [json objectForKey:@"headers"];
         if (!self.headerFields) {
             self.headerFields = [NSDictionary dictionary];
+        }
+        
+        NSString *body = [json objectForKey:@"body"];
+        if ([self isText]) {
+            self.responseData = [body dataUsingEncoding:NSUTF8StringEncoding];
+        } else {
+            self.responseData = [NSData dataFromBase64String:body];
         }
     }
     return self;
@@ -57,7 +63,11 @@
 }
 
 - (NSString *)body {
-    return [[[NSString alloc] initWithData:self.responseData encoding:NSUTF8StringEncoding] autorelease];
+    if ([self isText]) {
+        return [[[NSString alloc] initWithData:self.responseData encoding:NSUTF8StringEncoding] autorelease];
+    } else {
+        return [self.responseData base64EncodedString];
+    }
 }
 
 - (BOOL)isEqual:(VCRResponse *)response {
