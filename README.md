@@ -59,7 +59,7 @@ dustin.barker@gmail.com
 ### VCRURLConnection uses the following open source components:
 
 * [NSData+Base64.h][1] by Matt Gallagher
-* [SenTestCase+SRTAdditions.h] from SocketRocket by Square
+* [SenTestCase+SRTAdditions.h][2] from SocketRocket by Square
 
 [1]: http://www.cocoawithlove.com/2009/06/base64-encoding-options-on-mac-and.html
 [2]: https://github.com/square/SocketRocket
