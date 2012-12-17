@@ -8,7 +8,7 @@ VCRURLConnection is an iOS and OS X API to record and replay HTTP interactions, 
 [VCR start];
 
 NSURL *url = [NSURL URLWithString:@"http://example.com/example"];
-[NSURLRequest requestWithURL:url];
+NSURLRequest *request = [NSURLRequest requestWithURL:url];
 [NSURLConnection connectionWithRequest:request delegate:self];
 
 // NSURLConnection makes a real network request and delegate methods
