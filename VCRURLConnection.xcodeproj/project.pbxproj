@@ -24,8 +24,8 @@
 		B3475B72167EA0C30044511D /* VCRAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B3475B69167EA0C30044511D /* VCRAppDelegate.m */; };
 		B3475B73167EA0C30044511D /* VCRCassetteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3475B6B167EA0C30044511D /* VCRCassetteViewController.m */; };
 		B3475B74167EA0C30044511D /* VCRCassetteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3475B6C167EA0C30044511D /* VCRCassetteViewController.xib */; };
-		B3475B75167EA0C30044511D /* VCRResponseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3475B6E167EA0C30044511D /* VCRResponseViewController.m */; };
-		B3475B76167EA0C30044511D /* VCRResponseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3475B6F167EA0C30044511D /* VCRResponseViewController.xib */; };
+		B3475B75167EA0C30044511D /* VCRRecordingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3475B6E167EA0C30044511D /* VCRRecordingViewController.m */; };
+		B3475B76167EA0C30044511D /* VCRRecordingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3475B6F167EA0C30044511D /* VCRRecordingViewController.xib */; };
 		B3475B77167EA0C30044511D /* VCRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3475B71167EA0C30044511D /* VCRViewController.m */; };
 		B3475B78167EA1080044511D /* NSURLConnection+VCR.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B82895167E9B6800CCEC3C /* NSURLConnection+VCR.m */; };
 		B3475B79167EA1080044511D /* VCR.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B82897167E9B6800CCEC3C /* VCR.m */; };
@@ -78,9 +78,9 @@
 		B3475B6A167EA0C30044511D /* VCRCassetteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCRCassetteViewController.h; sourceTree = "<group>"; };
 		B3475B6B167EA0C30044511D /* VCRCassetteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCRCassetteViewController.m; sourceTree = "<group>"; };
 		B3475B6C167EA0C30044511D /* VCRCassetteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VCRCassetteViewController.xib; sourceTree = "<group>"; };
-		B3475B6D167EA0C30044511D /* VCRResponseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCRResponseViewController.h; sourceTree = "<group>"; };
-		B3475B6E167EA0C30044511D /* VCRResponseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCRResponseViewController.m; sourceTree = "<group>"; };
-		B3475B6F167EA0C30044511D /* VCRResponseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VCRResponseViewController.xib; sourceTree = "<group>"; };
+		B3475B6D167EA0C30044511D /* VCRRecordingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCRRecordingViewController.h; sourceTree = "<group>"; };
+		B3475B6E167EA0C30044511D /* VCRRecordingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCRRecordingViewController.m; sourceTree = "<group>"; };
+		B3475B6F167EA0C30044511D /* VCRRecordingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VCRRecordingViewController.xib; sourceTree = "<group>"; };
 		B3475B70167EA0C30044511D /* VCRViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCRViewController.h; sourceTree = "<group>"; };
 		B3475B71167EA0C30044511D /* VCRViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCRViewController.m; sourceTree = "<group>"; };
 		B3475B7F167EA1400044511D /* cassette.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cassette.json; sourceTree = "<group>"; };
@@ -168,9 +168,9 @@
 				B3475B6A167EA0C30044511D /* VCRCassetteViewController.h */,
 				B3475B6B167EA0C30044511D /* VCRCassetteViewController.m */,
 				B3475B6C167EA0C30044511D /* VCRCassetteViewController.xib */,
-				B3475B6D167EA0C30044511D /* VCRResponseViewController.h */,
-				B3475B6E167EA0C30044511D /* VCRResponseViewController.m */,
-				B3475B6F167EA0C30044511D /* VCRResponseViewController.xib */,
+				B3475B6D167EA0C30044511D /* VCRRecordingViewController.h */,
+				B3475B6E167EA0C30044511D /* VCRRecordingViewController.m */,
+				B3475B6F167EA0C30044511D /* VCRRecordingViewController.xib */,
 				B3475B70167EA0C30044511D /* VCRViewController.h */,
 				B3475B71167EA0C30044511D /* VCRViewController.m */,
 				B3475B81167EA1CF0044511D /* VCRViewController.xib */,
@@ -406,7 +406,7 @@
 			files = (
 				B3475B5E167EA0680044511D /* InfoPlist.strings in Resources */,
 				B3475B74167EA0C30044511D /* VCRCassetteViewController.xib in Resources */,
-				B3475B76167EA0C30044511D /* VCRResponseViewController.xib in Resources */,
+				B3475B76167EA0C30044511D /* VCRRecordingViewController.xib in Resources */,
 				B3475B80167EA1400044511D /* cassette.json in Resources */,
 				B3475B82167EA1CF0044511D /* VCRViewController.xib in Resources */,
 				B3475B88167EA2960044511D /* Default-568h@2x.png in Resources */,
@@ -472,7 +472,7 @@
 				B3475B60167EA0680044511D /* main.m in Sources */,
 				B3475B72167EA0C30044511D /* VCRAppDelegate.m in Sources */,
 				B3475B73167EA0C30044511D /* VCRCassetteViewController.m in Sources */,
-				B3475B75167EA0C30044511D /* VCRResponseViewController.m in Sources */,
+				B3475B75167EA0C30044511D /* VCRRecordingViewController.m in Sources */,
 				B3475B77167EA0C30044511D /* VCRViewController.m in Sources */,
 				B3475B78167EA1080044511D /* NSURLConnection+VCR.m in Sources */,
 				B3475B79167EA1080044511D /* VCR.m in Sources */,

@@ -24,7 +24,7 @@
 #import "VCRRecording.h"
 #import <UIKit/UIKit.h>
 
-@interface VCRResponseViewController : UIViewController
+@interface VCRRecordingViewController : UIViewController
 
 @property (nonatomic, retain) VCRRecording *recording;
 

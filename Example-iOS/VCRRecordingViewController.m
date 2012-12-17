@@ -21,15 +21,15 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "VCRResponseViewController.h"
+#import "VCRRecordingViewController.h"
 
-@interface VCRResponseViewController ()
+@interface VCRRecordingViewController ()
 
 @property (nonatomic, retain) IBOutlet UITextView *textView;
 
 @end
 
-@implementation VCRResponseViewController
+@implementation VCRRecordingViewController
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];

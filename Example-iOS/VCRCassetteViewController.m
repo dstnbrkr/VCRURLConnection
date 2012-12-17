@@ -22,12 +22,12 @@
 // THE SOFTWARE.
 
 #import "VCRCassetteViewController.h"
-#import "VCRResponseViewController.h"
+#import "VCRRecordingViewController.h"
 #import "VCR.h"
 
 @interface VCRCassetteViewController ()
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
-@property (nonatomic, retain) VCRResponseViewController *responseViewController;
+@property (nonatomic, retain) VCRRecordingViewController *responseViewController;
 @property (nonatomic, retain) NSString *path;
 @end
 
@@ -35,7 +35,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.responseViewController = [[[VCRResponseViewController alloc] init] autorelease];
+    self.responseViewController = [[[VCRRecordingViewController alloc] init] autorelease];
     
     UIBarButtonItem *barButtonItem;
     
