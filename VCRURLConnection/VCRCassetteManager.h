@@ -28,7 +28,7 @@
 
 + (VCRCassetteManager *)defaultManager;
 
-- (NSString *)save;
+- (void)save:(NSString *)path;
 
 @property (nonatomic, retain) NSURL *currentCassetteURL;
 @property (nonatomic, retain) VCRCassette *currentCassette;

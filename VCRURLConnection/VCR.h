@@ -85,8 +85,8 @@
 /**
  Write recorded HTTP interactions to a JSON file
  
- @return the path to the output file
+ @param path the output path
  */
-+ (NSString *)save;
++ (void)save:(NSString *)path;
 
 @end

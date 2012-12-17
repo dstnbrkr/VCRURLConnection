@@ -74,14 +74,9 @@
     self.cassette = cassette;
 }
 
-- (NSString *)save {
+- (void)save:(NSString *)path {
     NSData *data = [self.cassette data];
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *filename = [[self.currentCassetteURL pathComponents] lastObject];
-    NSString *appFile = [documentsDirectory stringByAppendingPathComponent:filename];
-    [data writeToFile:appFile atomically:YES];
-    return appFile;
+    [data writeToFile:path atomically:YES];
 }
 
 @end

@@ -60,7 +60,11 @@
 #pragma mark - UI Callbacks
 
 - (IBAction)save {
-    self.path = [VCR save];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    self.path = [documentsDirectory stringByAppendingPathComponent:@"cassette"];
+    
+    [VCR save:self.path];
     UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:@"Saved Cassette"
                                                          message:self.path
                                                         delegate:self

@@ -39,7 +39,7 @@
     
     [VCR start];
     NSString *cassettePath = [[NSBundle mainBundle] pathForResource:@"cassette" ofType:@"json"];
-    [VCR setCassetteURL:[NSURL fileURLWithPath:cassettePath]];
+    [VCR loadCassetteWithContentsOfURL:[NSURL fileURLWithPath:cassettePath]];
     
     VCRCassetteViewController *cassetteViewController = [[[VCRCassetteViewController alloc] init] autorelease];
     cassetteViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
