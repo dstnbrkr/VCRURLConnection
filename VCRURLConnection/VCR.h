@@ -23,6 +23,41 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ * `VCR` records and replays HTTP interactions.
+ 
+ # Recording
+ 
+     [VCR start];
+ 
+     NSString *path = @"http://example.com/example";
+     NSURL *url = [NSURL URLWithString:path];
+     NSURLRequest *request = [NSURLRequest requestWithURL:url];
+     [NSURLConnection connectionWithRequest:request delegate:self];
+ 
+     // NSURLConnection makes a real network request and VCRURLConnection
+     // will record the request/response pair.
+ 
+     NSString *path = [VCR save]; // copy the file at `path` into your project
+ 
+ # Replaying
+
+     NSString *cassettePath = [[NSBundle mainBundle] pathForResource:@"cassette"
+                                                              ofType:@"json"];
+     [VCR setCassetteURL:[NSURL fileURLWithPath:cassettePath]];
+     [VCR start];
+ 
+     // request an HTTP interaction that was recorded to cassette.json
+     NSString *path = @"http://example.com/example";
+     NSURL *url = [NSURL URLWithString:path];
+     NSURLRequest *request = [NSURLRequest requestWithURL:url];
+     [NSURLConnection connectionWithRequest:request delegate:self];
+ 
+     // The cassette has a recording for this request, so no network request
+     // is made. Instead NSURLConnectionDelegate methods are called with the
+     // previously recorded response.
+ 
+ */
 @class VCRCassette;
 
 @interface VCR : NSObject
