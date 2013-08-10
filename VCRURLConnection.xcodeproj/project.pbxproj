@@ -65,6 +65,9 @@
 		B3BB2517167F241E00C5E3C6 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BB2516167F241E00C5E3C6 /* NSData+Base64.m */; };
 		B3BB2518167F241E00C5E3C6 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BB2516167F241E00C5E3C6 /* NSData+Base64.m */; };
 		B3BB2519167F241E00C5E3C6 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BB2516167F241E00C5E3C6 /* NSData+Base64.m */; };
+		C393569B17B5DA460025DC53 /* VCROrderedMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = C393569A17B5DA460025DC53 /* VCROrderedMutableDictionary.m */; };
+		C393569C17B5DA4F0025DC53 /* VCROrderedMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = C393569A17B5DA460025DC53 /* VCROrderedMutableDictionary.m */; };
+		C393569D17B5DA4F0025DC53 /* VCROrderedMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = C393569A17B5DA460025DC53 /* VCROrderedMutableDictionary.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -130,6 +133,8 @@
 		B3BB2512167F23EC00C5E3C6 /* SenTestCase+SRTAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "SenTestCase+SRTAdditions.m"; path = "Tests/SenTestCase+SRTAdditions.m"; sourceTree = "<group>"; };
 		B3BB2515167F241E00C5E3C6 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+Base64.h"; path = "VCRURLConnection/NSData+Base64.h"; sourceTree = "<group>"; };
 		B3BB2516167F241E00C5E3C6 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+Base64.m"; path = "VCRURLConnection/NSData+Base64.m"; sourceTree = "<group>"; };
+		C393569917B5DA460025DC53 /* VCROrderedMutableDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VCROrderedMutableDictionary.h; path = VCRURLConnection/VCROrderedMutableDictionary.h; sourceTree = "<group>"; };
+		C393569A17B5DA460025DC53 /* VCROrderedMutableDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VCROrderedMutableDictionary.m; path = VCRURLConnection/VCROrderedMutableDictionary.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +226,8 @@
 				B3B8289C167E9B6800CCEC3C /* VCRCassetteManager.m */,
 				B3B8289D167E9B6800CCEC3C /* VCRConnectionDelegate.h */,
 				B3B8289E167E9B6800CCEC3C /* VCRConnectionDelegate.m */,
+				C393569917B5DA460025DC53 /* VCROrderedMutableDictionary.h */,
+				C393569A17B5DA460025DC53 /* VCROrderedMutableDictionary.m */,
 				B3475BAD167EFFA70044511D /* VCRRecording.h */,
 				B3475BAE167EFFA80044511D /* VCRRecording.m */,
 				B3B8289F167E9B6800CCEC3C /* VCRRequestKey.h */,
@@ -482,6 +489,7 @@
 				B3475B7D167EA1080044511D /* VCRRequestKey.m in Sources */,
 				B3475BB1167EFFA80044511D /* VCRRecording.m in Sources */,
 				B3BB2519167F241E00C5E3C6 /* NSData+Base64.m in Sources */,
+				C393569B17B5DA460025DC53 /* VCROrderedMutableDictionary.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -504,6 +512,7 @@
 				B3475BB9167F12620044511D /* VCRRecordingTests.m in Sources */,
 				B3BB2513167F23EC00C5E3C6 /* SenTestCase+SRTAdditions.m in Sources */,
 				B3BB2517167F241E00C5E3C6 /* NSData+Base64.m in Sources */,
+				C393569D17B5DA4F0025DC53 /* VCROrderedMutableDictionary.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -526,6 +535,7 @@
 				B3475BBA167F12620044511D /* VCRRecordingTests.m in Sources */,
 				B3BB2514167F23EC00C5E3C6 /* SenTestCase+SRTAdditions.m in Sources */,
 				B3BB2518167F241E00C5E3C6 /* NSData+Base64.m in Sources */,
+				C393569C17B5DA4F0025DC53 /* VCROrderedMutableDictionary.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

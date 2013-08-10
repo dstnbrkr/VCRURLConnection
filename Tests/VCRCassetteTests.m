@@ -108,6 +108,14 @@
     STAssertEqualObjects([cassette recordingForRequest:request1], recording, @"");
 }
 
+- (void)testKeyOrderingForJson {
+    id json = @{ @"method": @"get", @"uri": @"http://foo", @"body": @"GET Foo Bar Baz" };
+    VCRRecording *recording = [[[VCRRecording alloc] initWithJSON:json] autorelease];
+    id result = [recording JSON];
+    NSArray *keys = @[@"body", @"headers", @"method", @"status", @"uri"];
+    STAssertEqualObjects([result allKeys], keys, @"Cassette JSON keys should be ordered");
+}
+
 - (void)testData {
     VCRCassette *cassette = [[[VCRCassette alloc] initWithJSON:self.recordings] autorelease];
     NSData *data = [cassette data];
