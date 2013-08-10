@@ -22,6 +22,7 @@
 // THE SOFTWARE.
 
 #import "VCRRecording.h"
+#import "VCROrderedMutableDictionary.h"
 #import "NSData+Base64.h"
 
 @implementation VCRRecording
@@ -82,20 +83,23 @@
 }
 
 - (id)JSON {
-    NSArray *objects = @[ self.method, self.URI, @(self.statusCode) ];
-    NSArray *keys = @[ @"method", @"uri", @"status" ];
-    NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithObjects:objects
-                                                                         forKeys:keys];
+    NSDictionary *infoDict = @{@"method": self.method, @"status": @(self.statusCode), @"uri": self.URI};
+    VCROrderedMutableDictionary *dictionary = [VCROrderedMutableDictionary dictionaryWithDictionary:infoDict];
     
     if (self.headerFields) {
-        [dictionary setObject:self.headerFields forKey:@"headers"];
+        dictionary[@"headers"] = self.headerFields;
     }
     
     if (self.body) {
-        [dictionary setObject:self.body forKey:@"body"];
+        dictionary[@"body"] = self.body;
     }
     
-    return dictionary;
+    VCROrderedMutableDictionary *sortedDict = [VCROrderedMutableDictionary dictionaryWithCapacity:[infoDict count]];
+    [[dictionary sortedKeys] enumerateObjectsUsingBlock:^(NSString *key, NSUInteger idx, BOOL *stop) {
+        sortedDict[key] = dictionary[key];
+    }];
+    
+    return sortedDict;
 }
 
 - (void)dealloc {
