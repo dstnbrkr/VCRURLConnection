@@ -110,6 +110,10 @@
     [super dealloc];
 }
 
+- (NSString *)description {
+    return [NSString stringWithFormat:@"<VCRRecording %@ %@, data length %i>", self.method, self.URI, [self.data length]];
+}
+
 @end
 
 @implementation NSHTTPURLResponse (VCRRecording)
