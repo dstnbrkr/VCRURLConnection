@@ -83,4 +83,8 @@
     return key;
 }
 
+- (NSString *)description {
+    return [NSString stringWithFormat:@"<VCRRequestKey %@ %@>", self.method, self.URI];
+}
+
 @end
