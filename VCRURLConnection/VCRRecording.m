@@ -111,7 +111,7 @@
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"<VCRRecording %@ %@, data length %i>", self.method, self.URI, [self.data length]];
+    return [NSString stringWithFormat:@"<VCRRecording %@ %@, data length %li>", self.method, self.URI, (unsigned long)[self.data length]];
 }
 
 @end
