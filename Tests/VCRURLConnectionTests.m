@@ -160,7 +160,9 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    self.data = data;
+    NSMutableData *currentData = [NSMutableData dataWithData:self.data];
+    [currentData appendData:data];
+    self.data = currentData;
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
