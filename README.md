@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/dstnbrkr/VCRURLConnection.png?branch=master)](https://travis-ci.org/dstnbrkr/VCRURLConnection)
+
 # VCRURLConnection
 VCRURLConnection is an iOS and OSX API to record and replay HTTP interactions, inspired by [VCR](https://github.com/vcr/vcr)
 
