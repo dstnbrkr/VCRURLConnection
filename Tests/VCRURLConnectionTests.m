@@ -72,7 +72,7 @@
 }
 
 - (void)testAsyncConnectionIsRecorded {
-    NSURL *url = [NSURL URLWithString:@"http://www.iana.org/domains/example/"];
+    NSURL *url = [NSURL URLWithString:@"http://www.iana.org/domains/reserved"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
     // request has not been recorded yet
@@ -89,9 +89,7 @@
     VCRRecording *recording = [self.cassette recordingForRequest:request];
     STAssertNotNil(recording, @"Should have recording");
     STAssertNotNil(recording.data, @"Should have recorded response data");
-    
-    NSData *receivedData = self.testDelegate.data;
-    STAssertEqualObjects(recording.data, receivedData, @"Recorded data should equal recorded data");
+    STAssertEqualObjects(recording.data, self.testDelegate.data, @"Recorded data should equal recorded data");
 }
 
 - (void)testAsyncGetRequestIsReplayed {
