@@ -83,6 +83,26 @@ IMP NSURLConnectionImplementationForSelector(SEL selector) {
     STAssertEquals(oldImp, self.originalConstructorIMP2, @"Original implementation should be accessible");
 }
 
+- (void)testStartStop {
+    [VCR start];
+    
+    SEL sel1 = @selector(initWithRequest:delegate:startImmediately:);
+    SEL sel2 = @selector(initWithRequest:delegate:);
+    IMP imp;
+    
+    imp = NSURLConnectionImplementationForSelector(sel1);
+    STAssertEquals(imp, self.newConstructorIMP1, @"Implementation should be swizzled");
+    imp = NSURLConnectionImplementationForSelector(sel2);
+    STAssertEquals(imp, self.newConstructorIMP2, @"Implementation should be swizzled");
+    
+    [VCR stop];
+    
+    imp = NSURLConnectionImplementationForSelector(sel1);
+    STAssertEquals(imp, self.originalConstructorIMP1, @"Implementation should be swizzled");
+    imp = NSURLConnectionImplementationForSelector(sel2);
+    STAssertEquals(imp, self.originalConstructorIMP2, @"Implementation should be swizzled");
+}
+
 - (void)tearDown {
     [VCR stop];
     [super tearDown];
