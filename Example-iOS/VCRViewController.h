@@ -28,8 +28,8 @@
 
 - (void)load;
 
-@property (nonatomic, retain) VCRCassetteViewController *cassetteViewController;
-@property (nonatomic, retain) NSString *HTMLString;
+@property (nonatomic, strong) VCRCassetteViewController *cassetteViewController;
+@property (nonatomic, strong) NSString *HTMLString;
 @property (readonly, getter = isFinishedLoading) BOOL finishedLoading;
 
 @end

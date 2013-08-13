@@ -25,8 +25,8 @@
 #import "VCRRequestKey.h"
 
 @interface VCRRequestKeyTests ()
-@property (nonatomic, retain) VCRRequestKey *key1;
-@property (nonatomic, retain) VCRRequestKey *key2;
+@property (nonatomic, strong) VCRRequestKey *key1;
+@property (nonatomic, strong) VCRRequestKey *key2;
 @end
 
 @implementation VCRRequestKeyTests
@@ -38,7 +38,7 @@
     NSURLRequest *request1 = [[NSURLRequest alloc] initWithURL:url];
     self.key1 = [VCRRequestKey keyForObject:request1];
 
-    VCRRecording *recording = [[[VCRRecording alloc] init] autorelease];
+    VCRRecording *recording = [[VCRRecording alloc] init];
     recording.method = @"GET";
     recording.URI = path;
     self.key2 = [VCRRequestKey keyForObject:recording];

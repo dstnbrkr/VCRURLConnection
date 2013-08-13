@@ -27,9 +27,9 @@
 #import "VCRRequestKey.h" // FIXME: don't import
 
 @interface VCRCassetteTests ()
-@property (nonatomic, retain) id recording1;
-@property (nonatomic, retain) id recordings;
-@property (nonatomic, retain) VCRCassette *cassette;
+@property (nonatomic, strong) id recording1;
+@property (nonatomic, strong) id recordings;
+@property (nonatomic, strong) VCRCassette *cassette;
 @end
 
 @implementation VCRCassetteTests
@@ -56,39 +56,39 @@
 - (void)testInitWithData {
     id json = self.recordings;
     NSData *data = [NSJSONSerialization dataWithJSONObject:json options:0 error:nil];
-    VCRCassette *expectedCassette = [[[VCRCassette alloc] initWithJSON:json] autorelease];
-    VCRCassette *cassette = [[[VCRCassette alloc] initWithData:data] autorelease];
+    VCRCassette *expectedCassette = [[VCRCassette alloc] initWithJSON:json];
+    VCRCassette *cassette = [[VCRCassette alloc] initWithData:data];
     STAssertEqualObjects(cassette, expectedCassette, @"");
 }
 
 - (void)testInitWithJSON {
     NSURL *url = [NSURL URLWithString:[self.recording1 objectForKey:@"uri"]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    VCRRecording *expectedRecording = [[[VCRRecording alloc] initWithJSON:self.recording1] autorelease];
-    VCRCassette *cassette = [[[VCRCassette alloc] initWithJSON:self.recordings] autorelease];
+    VCRRecording *expectedRecording = [[VCRRecording alloc] initWithJSON:self.recording1];
+    VCRCassette *cassette = [[VCRCassette alloc] initWithJSON:self.recordings];
     VCRRecording *actualRecording = [cassette recordingForRequest:request];
     STAssertEqualObjects(actualRecording, expectedRecording, @"Should get expected recording");
 }
 
 - (void)testInitWithNilJSON {
-    STAssertThrows([[[VCRCassette alloc] initWithJSON:nil] autorelease], @"Cannot init with nil json");
+    STAssertThrows((void) [[VCRCassette alloc] initWithJSON:nil], @"Cannot init with nil json");
 }
 
 - (void)testInitWithNilData {
-    STAssertThrows([[[VCRCassette alloc] initWithData:nil] autorelease], @"Cannot init with nil data");
+    STAssertThrows((void) [[VCRCassette alloc] initWithData:nil], @"Cannot init with nil data");
 }
 
 - (void)testInitWithInvalidData {
     NSString *invalidJSON = @"{";
     NSData *data = [invalidJSON dataUsingEncoding:NSUTF8StringEncoding];
-    STAssertThrows([[[VCRCassette alloc] initWithData:data] autorelease], @"Cannot init with invalid data");
+    STAssertThrows((void) [[VCRCassette alloc] initWithData:data], @"Cannot init with invalid data");
 }
 
 // FIXME: test with image data
 
 - (void)testIsEqual {
-    VCRCassette *cassette1 = [[[VCRCassette alloc] initWithJSON:self.recordings] autorelease];
-    VCRCassette *cassette2 = [[[VCRCassette alloc] initWithJSON:self.recordings] autorelease];
+    VCRCassette *cassette1 = [[VCRCassette alloc] initWithJSON:self.recordings];
+    VCRCassette *cassette2 = [[VCRCassette alloc] initWithJSON:self.recordings];
     STAssertEqualObjects(cassette1, cassette2, @"Cassettes should be equal");
 }
 
@@ -98,7 +98,7 @@
     NSURL *url = [NSURL URLWithString:path];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     id json = @{ @"method": @"get", @"uri": path, @"body": @"GET Foo Bar Baz" };
-    VCRRecording *recording = [[[VCRRecording alloc] initWithJSON:json] autorelease];
+    VCRRecording *recording = [[VCRRecording alloc] initWithJSON:json];
     
     [cassette addRecording:recording];
     STAssertEqualObjects([cassette recordingForRequest:request], recording, @"");
@@ -110,14 +110,14 @@
 
 - (void)testKeyOrderingForJson {
     id json = @{ @"method": @"get", @"uri": @"http://foo", @"body": @"GET Foo Bar Baz" };
-    VCRRecording *recording = [[[VCRRecording alloc] initWithJSON:json] autorelease];
+    VCRRecording *recording = [[VCRRecording alloc] initWithJSON:json];
     id result = [recording JSON];
     NSArray *keys = @[@"body", @"headers", @"method", @"status", @"uri"];
     STAssertEqualObjects([result allKeys], keys, @"Cassette JSON keys should be ordered");
 }
 
 - (void)testData {
-    VCRCassette *cassette = [[[VCRCassette alloc] initWithJSON:self.recordings] autorelease];
+    VCRCassette *cassette = [[VCRCassette alloc] initWithJSON:self.recordings];
     NSData *data = [cassette data];
     STAssertTrue(data != nil && [data length] > 0, @"Did not serialize to data");
 }

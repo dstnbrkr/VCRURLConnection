@@ -28,8 +28,8 @@
 - (id)initWithRecording:(VCRRecording *)recording;
 - (id)initWithRequest:(NSURLRequest *)request;
 
-@property (nonatomic, retain, readwrite) NSString *URI;
-@property (nonatomic, retain, readwrite) NSString *method;
+@property (nonatomic, strong, readwrite) NSString *URI;
+@property (nonatomic, strong, readwrite) NSString *method;
 
 @end
 
@@ -37,9 +37,9 @@
 
 + (VCRRequestKey *)keyForObject:(id)object {
     if ([object isKindOfClass:[VCRRecording class]]) {
-        return [[[VCRRequestKey alloc] initWithRecording:object] autorelease];
+        return [[VCRRequestKey alloc] initWithRecording:object];
     } else if ([object isKindOfClass:[NSURLRequest class]])  {
-        return [[[VCRRequestKey alloc] initWithRequest:object] autorelease];
+        return [[VCRRequestKey alloc] initWithRequest:object];
     } else {
         NSAssert(false, @"Attempted to create VCRRequestKey with invalid object: %@", object);
         return nil;
@@ -77,8 +77,8 @@
 - (id)copyWithZone:(NSZone *)zone {
     VCRRequestKey *key = [[[self class] alloc] init];
     if (key) {
-        key.URI = [[self.URI copyWithZone:zone] autorelease];
-        key.method = [[self.method copyWithZone:zone] autorelease];
+        key.URI = [self.URI copyWithZone:zone];
+        key.method = [self.method copyWithZone:zone];
     }
     return key;
 }

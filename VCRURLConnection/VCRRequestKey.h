@@ -30,7 +30,7 @@
 
 - (id)JSON;
 
-@property (nonatomic, retain, readonly) NSString *URI;
-@property (nonatomic, retain, readonly) NSString *method;
+@property (nonatomic, strong, readonly) NSString *URI;
+@property (nonatomic, strong, readonly) NSString *method;
 
 @end

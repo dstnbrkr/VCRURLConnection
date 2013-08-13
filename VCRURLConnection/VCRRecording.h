@@ -31,12 +31,12 @@
 
 - (id)JSON;
 
-@property (nonatomic, retain) NSString *method;
-@property (nonatomic, retain) NSString *URI;
-@property (nonatomic, retain) NSData *data;
-@property (nonatomic, readonly) NSString *body;
+@property (nonatomic, strong) NSString *method;
+@property (nonatomic, strong) NSString *URI;
+@property (nonatomic, strong) NSData *data;
+@property (weak, nonatomic, readonly) NSString *body;
 @property (assign) NSInteger statusCode;
-@property (nonatomic, retain) NSDictionary *headerFields;
+@property (nonatomic, strong) NSDictionary *headerFields;
 
 @end
 

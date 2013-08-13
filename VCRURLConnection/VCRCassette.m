@@ -29,12 +29,12 @@
 @implementation VCRCassette
 
 + (VCRCassette *)cassette {
-    return [[[VCRCassette alloc] init] autorelease];
+    return [[VCRCassette alloc] init];
 }
 
 + (VCRCassette *)cassetteWithURL:(NSURL *)url {
     NSData *data = [NSData dataWithContentsOfURL:url];
-    return [[[VCRCassette alloc] initWithData:data] autorelease];
+    return [[VCRCassette alloc] initWithData:data];
 }
 
 - (id)init {
@@ -48,7 +48,7 @@
     NSAssert(json != nil, @"Attempted to intialize VCRCassette with nil JSON");
     if ((self = [self init])) {
         for (id recordingJSON in json) {
-            VCRRecording *recording = [[[VCRRecording alloc] initWithJSON:recordingJSON] autorelease];
+            VCRRecording *recording = [[VCRRecording alloc] initWithJSON:recordingJSON];
             [self addRecording:recording];
         }
     }
@@ -106,9 +106,5 @@
 
 #pragma mark - Memory
 
-- (void)dealloc {
-    self.responseDictionary = nil;
-    [super dealloc];
-}
 
 @end

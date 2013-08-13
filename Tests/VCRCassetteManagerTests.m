@@ -27,7 +27,7 @@
 
 
 @interface VCRCassetteManagerTests ()
-@property (nonatomic, retain) VCRCassetteManager *manager;
+@property (nonatomic, strong) VCRCassetteManager *manager;
 @end
 
 
@@ -35,7 +35,7 @@
 
 - (void)setUp {
     [super setUp];
-    self.manager = [[[VCRCassetteManager alloc] init] autorelease];
+    self.manager = [[VCRCassetteManager alloc] init];
 }
 
 - (void)tearDown {
@@ -55,7 +55,7 @@
     
     NSData *data = [NSData dataWithContentsOfURL:url];
     STAssertTrue(data != nil, @"Could not load cassette %@", url);
-    VCRCassette *expectedCassette = [[[VCRCassette alloc] initWithData:data] autorelease];
+    VCRCassette *expectedCassette = [[VCRCassette alloc] initWithData:data];
     [self.manager setCurrentCassetteURL:url];
     
     STAssertEqualObjects(self.manager.currentCassette, expectedCassette, @"Should set cassette with URL");

@@ -27,9 +27,9 @@
 #import "VCR.h"
 
 @interface VCRConnectionDelegateWrapper : NSObject<NSURLConnectionDelegate>
-@property (nonatomic, retain) NSURLRequest *request;
-@property (nonatomic, retain) VCRRecording *recording;
-@property (nonatomic, retain) id<NSURLConnectionDataDelegate> wrapped;
+@property (nonatomic, strong) NSURLRequest *request;
+@property (nonatomic, strong) VCRRecording *recording;
+@property (nonatomic, strong) id<NSURLConnectionDataDelegate> wrapped;
 @end
 
 
@@ -51,10 +51,6 @@
     return self;
 }
 
-- (void)dealloc {
-    [_wrapper release];
-    [super dealloc];
-}
 
 - (BOOL)respondsToSelector:(SEL)selector {
     return [_wrapper respondsToSelector:selector] || [_wrapper.wrapped respondsToSelector:selector];
@@ -73,16 +69,11 @@
 
 - (id)init {
     if ((self = [super init])) {
-        self.recording = [[[VCRRecording alloc] init] autorelease];
+        self.recording = [[VCRRecording alloc] init];
     }
     return self;
 }
 
-- (void)dealloc {
-    [_wrapped release];
-    self.recording = nil;
-    [super dealloc];
-}
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSHTTPURLResponse *)response {
     _recording.method = self.request.HTTPMethod;

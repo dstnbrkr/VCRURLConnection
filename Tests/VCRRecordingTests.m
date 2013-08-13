@@ -14,7 +14,7 @@
 @end
 
 @interface VCRRecordingTests ()
-@property (nonatomic, retain) id json;
+@property (nonatomic, strong) id json;
 @end
 
 @implementation VCRRecordingTests
@@ -37,7 +37,7 @@
 
 - (void)testInitWithJSON {
     id json = self.json;
-    VCRRecording *recording = [[[VCRRecording alloc] initWithJSON:json] autorelease];
+    VCRRecording *recording = [[VCRRecording alloc] initWithJSON:json];
     
     STAssertEqualObjects(recording.URI, [json objectForKey:@"uri"], @"");
     
@@ -47,8 +47,8 @@
 }
 
 - (void)testIsEqual {
-    VCRRecording *recording1 = [[[VCRRecording alloc] initWithJSON:self.json] autorelease];
-    VCRRecording *recording2 = [[[VCRRecording alloc] initWithJSON:self.json] autorelease];
+    VCRRecording *recording1 = [[VCRRecording alloc] initWithJSON:self.json];
+    VCRRecording *recording2 = [[VCRRecording alloc] initWithJSON:self.json];
     STAssertEqualObjects(recording1, recording2, @"VCRRecording objects should be equal");
 }
 
@@ -60,7 +60,7 @@
                                                                   statusCode:200
                                                                  HTTPVersion:@"HTTP/1.1"
                                                                 headerFields:headerFields];
-    VCRRecording *recording = [[[VCRRecording alloc] init] autorelease];
+    VCRRecording *recording = [[VCRRecording alloc] init];
     [recording recordResponse:response];
     
     STAssertEqualObjects(recording.URI, [url absoluteString], @"VCRRecording should record URL");
@@ -69,7 +69,7 @@
 }
 
 - (void)testGenerateHTTPURLResponse {
-    VCRRecording *recording = [[[VCRRecording alloc] initWithJSON:self.json] autorelease];
+    VCRRecording *recording = [[VCRRecording alloc] initWithJSON:self.json];
     NSHTTPURLResponse *response = [NSHTTPURLResponse responseFromRecording:recording];
     
     STAssertEqualObjects([response.URL absoluteString], recording.URI, @"VCRRecording should generate NSURLresponse with URL");
@@ -78,7 +78,7 @@
 }
 
 - (void)testIsText {
-    VCRRecording *recording = [[[VCRRecording alloc] init] autorelease];
+    VCRRecording *recording = [[VCRRecording alloc] init];
     recording.headerFields = @{ @"Content-Type": @"text/plain" };
     STAssertTrue([recording isText], @"");
     recording.headerFields = @{ @"Content-Type": @"text/plain; charset=utf-8" };
@@ -89,7 +89,7 @@
 
 
 - (void)testBodyWithImageData {
-    VCRRecording *recording = [[[VCRRecording alloc] init] autorelease];
+    VCRRecording *recording = [[VCRRecording alloc] init];
     NSString *imagePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"test" ofType:@"png"];
     NSURL *imageURL = [NSURL fileURLWithPath:imagePath];
     recording.headerFields = @{ @"Content-Type": @"image/png" };

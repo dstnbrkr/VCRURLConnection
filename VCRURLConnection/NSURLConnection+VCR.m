@@ -49,7 +49,7 @@
             [self VCR_playback:recording delegate:delegate];
         });
     } else {
-        VCRConnectionDelegate *vcrDelegate = [[[VCRConnectionDelegate alloc] initWithDelegate:delegate] autorelease];
+        VCRConnectionDelegate *vcrDelegate = [[VCRConnectionDelegate alloc] initWithDelegate:delegate];
         [vcrDelegate setRequest:request];
         vcrDelegate.cassette = cassette;
         self = [self initWithRequest_VCR_original_:request delegate:vcrDelegate startImmediately:startImmediately];
@@ -75,7 +75,7 @@
         [delegate respondsToSelector:@selector(connection:didFailWithError:)]) {
         
         // FIXME: store details of NSError in VCRResponse and populate here
-        NSError *error = [[[NSError alloc] init] autorelease];
+        NSError *error = [[NSError alloc] init];
         [delegate connection:self didFailWithError:error];
     }
 }

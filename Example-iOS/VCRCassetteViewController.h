@@ -26,6 +26,6 @@
 
 @interface VCRCassetteViewController : UIViewController
 
-@property (nonatomic, retain) VCRCassette *cassette;
+@property (nonatomic, strong) VCRCassette *cassette;
 
 @end

@@ -32,7 +32,7 @@
 
 - (id)initWithDelegate:(id<NSURLConnectionDataDelegate>)delegate;
 
-@property (nonatomic, retain) NSURLRequest *request;
-@property (nonatomic, retain) VCRCassette *cassette;
+@property (nonatomic, strong) NSURLRequest *request;
+@property (nonatomic, strong) VCRCassette *cassette;
 
 @end
