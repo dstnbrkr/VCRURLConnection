@@ -28,19 +28,19 @@
 
 @implementation NSURLConnection (VCR)
 
-- (id)VCR_original_initWithRequest:(NSURLRequest *)request delegate:(id<NSURLConnectionDelegate>)delegate {
+- (id)initWithRequest_VCR_original_:(NSURLRequest *)request delegate:(id<NSURLConnectionDelegate>)delegate {
     return nil;
 }
 
-- (id)VCR_original_initWithRequest:(NSURLRequest *)request delegate:(id<NSURLConnectionDelegate>)delegate startImmediately:(BOOL)startImmediately {
+- (id)initWithRequest_VCR_original_:(NSURLRequest *)request delegate:(id<NSURLConnectionDelegate>)delegate startImmediately:(BOOL)startImmediately {
     return nil;
 }
 
-- (id)VCR_initWithRequest:(NSURLRequest *)request delegate:(id<NSURLConnectionDataDelegate>)delegate {
-    return [self VCR_initWithRequest:request delegate:delegate startImmediately:YES];
+- (id)initWithRequest_VCR_:(NSURLRequest *)request delegate:(id<NSURLConnectionDataDelegate>)delegate {
+    return [self initWithRequest_VCR_:request delegate:delegate startImmediately:YES];
 }
 
-- (id)VCR_initWithRequest:(NSURLRequest *)request delegate:(id<NSURLConnectionDataDelegate>)delegate startImmediately:(BOOL)startImmediately {
+- (id)initWithRequest_VCR_:(NSURLRequest *)request delegate:(id<NSURLConnectionDataDelegate>)delegate startImmediately:(BOOL)startImmediately {
     VCRCassette *cassette = [[VCRCassetteManager defaultManager] currentCassette];
     VCRRecording *recording = [cassette recordingForRequest:request];
     if (recording) {
@@ -52,7 +52,7 @@
         VCRConnectionDelegate *vcrDelegate = [[[VCRConnectionDelegate alloc] initWithDelegate:delegate] autorelease];
         [vcrDelegate setRequest:request];
         vcrDelegate.cassette = cassette;
-        self = [self VCR_original_initWithRequest:request delegate:vcrDelegate startImmediately:startImmediately];
+        self = [self initWithRequest_VCR_original_:request delegate:vcrDelegate startImmediately:startImmediately];
     }
     return self;
 }
