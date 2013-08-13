@@ -29,14 +29,36 @@
 
 static void VCRStoreOriginalImplentation(SEL selector);
 
-static void VCRURLConnectionSwizzle(SEL selector);
-static void VCRURLConnectionUnswizzle(SEL selector);
+static void VCRSwizzle(SEL selector, SEL altSelector);
 
 @implementation VCR
 
++ (NSArray *)selectors {
+    return @[ NSStringFromSelector(@selector(initWithRequest:delegate:)),
+              NSStringFromSelector(@selector(initWithRequest:delegate:startImmediately:)) ];
+}
+
++ (NSArray *)originalSelectors {
+    return @[ NSStringFromSelector(@selector(initWithRequest_VCR_original_:delegate:)),
+              NSStringFromSelector(@selector(initWithRequest_VCR_original_:delegate:startImmediately:)) ];
+}
+
++ (NSArray *)alternateSelectors {
+    return @[ NSStringFromSelector(@selector(initWithRequest_VCR_:delegate:)),
+              NSStringFromSelector(@selector(initWithRequest_VCR_:delegate:startImmediately:)) ];
+}
+
++ (void)swizzleSelectors:(NSArray *)originalSelectors withSelectors:(NSArray *)alternateSelectors {
+    [originalSelectors enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        SEL originalSelector = NSSelectorFromString(obj);
+        SEL alternateSelector = NSSelectorFromString(alternateSelectors[idx]);
+        VCRSwizzle(originalSelector, alternateSelector);
+    }];
+}
+
 + (void)initialize {
-    VCRStoreOriginalImplentation(@selector(initWithRequest:delegate:));
-    VCRStoreOriginalImplentation(@selector(initWithRequest:delegate:startImmediately:));
+    // store original implementations so we can unswizzle later
+    [self swizzleSelectors:[self originalSelectors] withSelectors:[self selectors]];
 }
 
 + (void)loadCassetteWithContentsOfURL:(NSURL *)url {
@@ -48,13 +70,11 @@ static void VCRURLConnectionUnswizzle(SEL selector);
 }
 
 + (void)start {
-    VCRURLConnectionSwizzle(@selector(initWithRequest:delegate:));
-    VCRURLConnectionSwizzle(@selector(initWithRequest:delegate:startImmediately:));
+    [self swizzleSelectors:[self selectors] withSelectors:[self alternateSelectors]];
 }
 
 + (void)stop {
-    VCRURLConnectionUnswizzle(@selector(initWithRequest:delegate:));
-    VCRURLConnectionUnswizzle(@selector(initWithRequest:delegate:startImmediately:));
+    [self swizzleSelectors:[self selectors] withSelectors:[self originalSelectors]];
 }
 
 + (void)save:(NSString *)path {
@@ -63,30 +83,9 @@ static void VCRURLConnectionUnswizzle(SEL selector);
 
 @end
 
-static Method VCRMethodWithPrefix(NSString *prefix, SEL selector) {
-    NSString *name = NSStringFromSelector(selector);
-    NSString *prefixedName = [NSString stringWithFormat:@"%@_%@", prefix, name];
-    SEL prefixedSEL = NSSelectorFromString(prefixedName);
-    return class_getInstanceMethod([NSURLConnection class], prefixedSEL);
-}
-
-static void VCRStoreOriginalImplentation(SEL selector) {
-    Method originalMethod = class_getInstanceMethod([NSURLConnection class], selector);
-    IMP originalIMP = method_getImplementation(originalMethod);
-    Method placeholderMethod = VCRMethodWithPrefix(@"VCR_original", selector);
-    method_setImplementation(placeholderMethod, originalIMP);
-}
-
-static void VCRURLConnectionSwizzle(SEL selector) {
-    Method altMethod = VCRMethodWithPrefix(@"VCR", selector);
+static void VCRSwizzle(SEL selector, SEL altSelector) {
+    Method altMethod = class_getInstanceMethod([NSURLConnection class], altSelector);
     IMP altIMP = method_getImplementation(altMethod);
     Method originalMethod = class_getInstanceMethod([NSURLConnection class], selector);
     method_setImplementation(originalMethod, altIMP);
-}
-
-static void VCRURLConnectionUnswizzle(SEL selector) {
-    Method placeholderMethod = VCRMethodWithPrefix(@"VCR_original", selector);
-    IMP placeholderIMP = method_getImplementation(placeholderMethod);
-    Method originalMethod = class_getInstanceMethod([NSURLConnection class], selector);
-    method_setImplementation(originalMethod, placeholderIMP);
 }
