@@ -71,17 +71,17 @@
 }
 
 - (void)testInitWithNilJSON {
-    STAssertThrows([[VCRCassette alloc] initWithJSON:nil], @"Cannot init with nil json");
+    STAssertThrows((void) [[VCRCassette alloc] initWithJSON:nil], @"Cannot init with nil json");
 }
 
 - (void)testInitWithNilData {
-    STAssertThrows([[VCRCassette alloc] initWithData:nil], @"Cannot init with nil data");
+    STAssertThrows((void) [[VCRCassette alloc] initWithData:nil], @"Cannot init with nil data");
 }
 
 - (void)testInitWithInvalidData {
     NSString *invalidJSON = @"{";
     NSData *data = [invalidJSON dataUsingEncoding:NSUTF8StringEncoding];
-    STAssertThrows([[VCRCassette alloc] initWithData:data], @"Cannot init with invalid data");
+    STAssertThrows((void) [[VCRCassette alloc] initWithData:data], @"Cannot init with invalid data");
 }
 
 // FIXME: test with image data
