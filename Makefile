@@ -5,7 +5,7 @@ clean:
 	$(XCMD) clean
 	rm -rf $(BUILD_DIR)
 
-test:
+_test:
 	xctool -sdk $(SDK) \
                -project VCRURLConnection.xcodeproj \
 	       -scheme $(SCHEME) \
@@ -14,12 +14,12 @@ test:
 	       test
 
 test_ios:
-	$(MAKE) SDK=iphonesimulator SCHEME=Tests-iOS test
+	$(MAKE) SDK=iphonesimulator SCHEME=Tests-iOS _test
 
 test_osx:
-	$(MAKE) SDK=macosx SCHEME=Tests-OSX test
+	$(MAKE) SDK=macosx SCHEME=Tests-OSX _test
 
-test_all:
+test:
 	$(MAKE) test_ios test_osx
 
 
