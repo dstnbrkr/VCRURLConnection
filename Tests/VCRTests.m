@@ -51,14 +51,16 @@ IMP NSURLConnectionImplementationForSelector(SEL selector) {
     // store old and new imps of initWithRequest:delegate:startImmediately:
     imp = NSURLConnectionImplementationForSelector(@selector(initWithRequest:delegate:startImmediately:));
     self.originalConstructorIMP1 = imp;
-    imp = NSURLConnectionImplementationForSelector(@selector(VCR_initWithRequest:delegate:startImmediately:));
+    imp = NSURLConnectionImplementationForSelector(@selector(initWithRequest_VCR_:delegate:startImmediately:));
+    STAssertTrue(imp != nil, @"");
     self.newConstructorIMP1 = imp;
     STAssertFalse(self.originalConstructorIMP1 == self.newConstructorIMP1, @"Implementations should differ");
     
     // store old and new imps of initWithRequest:delegate:
     imp = NSURLConnectionImplementationForSelector(@selector(initWithRequest:delegate:));
     self.originalConstructorIMP2 = imp;
-    imp = NSURLConnectionImplementationForSelector(@selector(VCR_initWithRequest:delegate:));
+    imp = NSURLConnectionImplementationForSelector(@selector(initWithRequest_VCR_:delegate:));
+    STAssertTrue(imp != nil, @"");
     self.newConstructorIMP2 = imp;
     STAssertFalse(self.originalConstructorIMP2 == self.newConstructorIMP2, @"Implementations should differ");
     
@@ -73,14 +75,34 @@ IMP NSURLConnectionImplementationForSelector(SEL selector) {
     // test new and old imps of initWithRequest:delegate:startImmediately:
     newImp = NSURLConnectionImplementationForSelector(@selector(initWithRequest:delegate:startImmediately:));
     STAssertEquals(newImp, self.newConstructorIMP1, @"Implementation should be swizzled");
-    oldImp = NSURLConnectionImplementationForSelector(@selector(VCR_original_initWithRequest:delegate:startImmediately:));
+    oldImp = NSURLConnectionImplementationForSelector(@selector(initWithRequest_VCR_original_:delegate:startImmediately:));
     STAssertEquals(oldImp, self.originalConstructorIMP1, @"Original implementation should be accessible");
     
     // test new and old imps of initWithRequest:delegate:
     newImp = NSURLConnectionImplementationForSelector(@selector(initWithRequest:delegate:));
     STAssertEquals(newImp, self.newConstructorIMP2, @"Implementation should be swizzled");
-    oldImp = NSURLConnectionImplementationForSelector(@selector(VCR_original_initWithRequest:delegate:));
+    oldImp = NSURLConnectionImplementationForSelector(@selector(initWithRequest_VCR_original_:delegate:));
     STAssertEquals(oldImp, self.originalConstructorIMP2, @"Original implementation should be accessible");
+}
+
+- (void)testStartStop {
+    [VCR start];
+    
+    SEL sel1 = @selector(initWithRequest:delegate:startImmediately:);
+    SEL sel2 = @selector(initWithRequest:delegate:);
+    IMP imp;
+    
+    imp = NSURLConnectionImplementationForSelector(sel1);
+    STAssertEquals(imp, self.newConstructorIMP1, @"Implementation should be swizzled");
+    imp = NSURLConnectionImplementationForSelector(sel2);
+    STAssertEquals(imp, self.newConstructorIMP2, @"Implementation should be swizzled");
+    
+    [VCR stop];
+    
+    imp = NSURLConnectionImplementationForSelector(sel1);
+    STAssertEquals(imp, self.originalConstructorIMP1, @"Implementation should be swizzled");
+    imp = NSURLConnectionImplementationForSelector(sel2);
+    STAssertEquals(imp, self.originalConstructorIMP2, @"Implementation should be swizzled");
 }
 
 - (void)tearDown {

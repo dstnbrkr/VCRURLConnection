@@ -25,7 +25,7 @@
 
 @interface NSURLConnection (VCR)
 
-- (id)VCR_original_initWithRequest:(NSURLRequest *)request delegate:(id<NSURLConnectionDelegate>)delegate;
-- (id)VCR_original_initWithRequest:(NSURLRequest *)request delegate:(id<NSURLConnectionDelegate>)delegate startImmediately:(BOOL)startImmediately;
+- (id)initWithRequest_VCR_original_:(NSURLRequest *)request delegate:(id<NSURLConnectionDelegate>)delegate;
+- (id)initWithRequest_VCR_original_:(NSURLRequest *)request delegate:(id<NSURLConnectionDelegate>)delegate startImmediately:(BOOL)startImmediately;
 
 @end
