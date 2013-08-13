@@ -40,7 +40,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSString *path = @"http://example.com/example";
+    NSString *path = @"http://example.com";
     self.url = [NSURL URLWithString:path];
     _textField.text = path;
     [self load];
