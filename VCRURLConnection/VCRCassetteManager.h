@@ -30,7 +30,7 @@
 
 - (void)save:(NSString *)path;
 
-@property (nonatomic, retain) NSURL *currentCassetteURL;
-@property (nonatomic, retain) VCRCassette *currentCassette;
+@property (nonatomic, strong) NSURL *currentCassetteURL;
+@property (nonatomic, strong) VCRCassette *currentCassette;
 
 @end

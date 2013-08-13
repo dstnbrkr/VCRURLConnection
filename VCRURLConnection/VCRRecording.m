@@ -76,7 +76,7 @@
 
 - (NSString *)body {
     if ([self isText]) {
-        return [[[NSString alloc] initWithData:self.data encoding:NSUTF8StringEncoding] autorelease];
+        return [[NSString alloc] initWithData:self.data encoding:NSUTF8StringEncoding];
     } else {
         return [self.data base64EncodedString];
     }
@@ -102,13 +102,6 @@
     return sortedDict;
 }
 
-- (void)dealloc {
-    self.method = nil;
-    self.URI = nil;
-    self.data = nil;
-    self.headerFields = nil;
-    [super dealloc];
-}
 
 - (NSString *)description {
     return [NSString stringWithFormat:@"<VCRRecording %@ %@, data length %li>", self.method, self.URI, (unsigned long)[self.data length]];
@@ -120,10 +113,10 @@
 
 + (NSHTTPURLResponse *)responseFromRecording:(VCRRecording *)recording {
     NSURL *url = [NSURL URLWithString:recording.URI];
-    return [[[NSHTTPURLResponse alloc] initWithURL:url
+    return [[NSHTTPURLResponse alloc] initWithURL:url
                                         statusCode:recording.statusCode
                                        HTTPVersion:@"HTTP/1.1"
-                                      headerFields:recording.headerFields] autorelease];
+                                      headerFields:recording.headerFields];
 }
 
 @end

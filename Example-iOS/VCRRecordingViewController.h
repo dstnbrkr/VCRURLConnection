@@ -26,6 +26,6 @@
 
 @interface VCRRecordingViewController : UIViewController
 
-@property (nonatomic, retain) VCRRecording *recording;
+@property (nonatomic, strong) VCRRecording *recording;
 
 @end

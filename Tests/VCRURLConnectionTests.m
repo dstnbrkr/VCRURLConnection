@@ -43,16 +43,16 @@
 
 
 @interface VCRURLConnectionTestDelegate : NSObject<NSURLConnectionDelegate>
-@property (nonatomic, retain) NSHTTPURLResponse *response;
-@property (nonatomic, retain) NSData *data;
+@property (nonatomic, strong) NSHTTPURLResponse *response;
+@property (nonatomic, strong) NSData *data;
 @property (assign, getter = isDone) BOOL done;
 @property (assign, getter = isError) BOOL error;
 @end
 
 
 @interface VCRURLConnectionTests ()
-@property (nonatomic, retain) VCRCassette *cassette;
-@property (nonatomic, retain) VCRURLConnectionTestDelegate *testDelegate;
+@property (nonatomic, strong) VCRCassette *cassette;
+@property (nonatomic, strong) VCRURLConnectionTestDelegate *testDelegate;
 @end
 
 
@@ -62,7 +62,7 @@
     [super setUp];
     [VCR start];
     self.cassette = [[VCRCassetteManager defaultManager] currentCassette];
-    self.testDelegate = [[[VCRURLConnectionTestDelegate alloc] init] autorelease];
+    self.testDelegate = [[VCRURLConnectionTestDelegate alloc] init];
 }
 
 - (void)tearDown {
@@ -94,7 +94,7 @@
 
 - (void)testAsyncGetRequestIsReplayed {
     id json = @[ @{ @"method": @"GET", @"uri": @"http://foo", @"body": @"Foo Bar Baz" } ];
-    VCRCassette *cassette = [[[VCRCassette alloc] initWithJSON:json] autorelease];
+    VCRCassette *cassette = [[VCRCassette alloc] initWithJSON:json];
     [[VCRCassetteManager defaultManager] setCurrentCassette:cassette];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://foo"]];
@@ -130,7 +130,7 @@
 
 - (void)testAsyncGetRequestWithErrorIsReplayed {
     id json = @[ @{ @"method": @"get", @"uri": @"http://foo", @"status": @404 } ];
-    VCRCassette *cassette = [[[VCRCassette alloc] initWithJSON:json] autorelease];
+    VCRCassette *cassette = [[VCRCassette alloc] initWithJSON:json];
     [[VCRCassetteManager defaultManager] setCurrentCassette:cassette];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://foo"]];
@@ -173,9 +173,5 @@
     _error = YES;
 }
 
-- (void)dealloc {
-    self.data = nil;
-    [super dealloc];
-}
 
 @end

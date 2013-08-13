@@ -30,8 +30,8 @@
 
     NSMutableData *_responseData;
 }
-@property (nonatomic, retain) NSURL *url;
-@property (nonatomic, retain) NSString *mimeType;
+@property (nonatomic, strong) NSURL *url;
+@property (nonatomic, strong) NSString *mimeType;
 @end
 
 @implementation VCRViewController
@@ -49,12 +49,12 @@
 - (void)load {
     NSURLRequest *request = [NSURLRequest requestWithURL:_url];
     self.HTMLString = nil;
-    [_responseData release]; _responseData = nil;
+    _responseData = nil;
     [NSURLConnection connectionWithRequest:request delegate:self];
 }
 
 - (void)loadData:(NSData *)data {
-    NSString *HTMLString = [[[NSString alloc] initWithData:_responseData encoding:NSUTF8StringEncoding] autorelease];
+    NSString *HTMLString = [[NSString alloc] initWithData:_responseData encoding:NSUTF8StringEncoding];
     self.HTMLString = HTMLString;
     [_webView loadData:data MIMEType:self.mimeType textEncodingName:@"utf-8" baseURL:_url];
     _isLoaded = YES;
@@ -112,7 +112,7 @@
 }
 
 - (IBAction)didPressPageCurlButton:(id)sender {
-    UINavigationController *navigationController = [[[UINavigationController alloc] initWithRootViewController:self.cassetteViewController] autorelease];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:self.cassetteViewController];
     [self presentViewController:navigationController animated:YES completion:NULL];
 }
 

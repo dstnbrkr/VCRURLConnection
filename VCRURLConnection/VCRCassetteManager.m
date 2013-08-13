@@ -26,7 +26,7 @@
 
 @interface VCRCassetteManager ()
 
-@property (nonatomic, retain) VCRCassette *cassette;
+@property (nonatomic, strong) VCRCassette *cassette;
 
 @end
 
@@ -46,8 +46,6 @@
 
 - (void)setCurrentCassetteURL:(NSURL *)url {
     self.cassette = nil;
-    [url retain];
-    [_currentCassetteURL release];
     _currentCassetteURL = url;
 }
 
@@ -60,7 +58,7 @@
         // do nothing
     } else if ([[NSFileManager defaultManager] fileExistsAtPath:[url path]]) {
         NSData *data = [NSData dataWithContentsOfURL:url];
-        cassette = [[[VCRCassette alloc] initWithData:data] autorelease];
+        cassette = [[VCRCassette alloc] initWithData:data];
     } else {
         cassette = [VCRCassette cassette];
     }

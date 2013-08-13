@@ -28,24 +28,19 @@
 
 @implementation VCRAppDelegate
 
-- (void)dealloc {
-    [_window release];
-    [_viewController release];
-    [super dealloc];
-}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     [VCR start];
     NSString *cassettePath = [[NSBundle mainBundle] pathForResource:@"cassette" ofType:@"json"];
     [VCR loadCassetteWithContentsOfURL:[NSURL fileURLWithPath:cassettePath]];
     
-    VCRCassetteViewController *cassetteViewController = [[[VCRCassetteViewController alloc] init] autorelease];
+    VCRCassetteViewController *cassetteViewController = [[VCRCassetteViewController alloc] init];
     cassetteViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     cassetteViewController.cassette = [VCR cassette];
     
-    self.viewController = [[[VCRViewController alloc] initWithNibName:@"VCRViewController" bundle:nil] autorelease];
+    self.viewController = [[VCRViewController alloc] initWithNibName:@"VCRViewController" bundle:nil];
     self.viewController.cassetteViewController = cassetteViewController;
     
     self.window.rootViewController = self.viewController;

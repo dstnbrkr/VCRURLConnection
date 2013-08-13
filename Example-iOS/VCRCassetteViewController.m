@@ -26,16 +26,16 @@
 #import "VCR.h"
 
 @interface VCRCassetteViewController ()
-@property (nonatomic, retain) IBOutlet UITableView *tableView;
-@property (nonatomic, retain) VCRRecordingViewController *responseViewController;
-@property (nonatomic, retain) NSString *path;
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) VCRRecordingViewController *responseViewController;
+@property (nonatomic, strong) NSString *path;
 @end
 
 @implementation VCRCassetteViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.responseViewController = [[[VCRRecordingViewController alloc] init] autorelease];
+    self.responseViewController = [[VCRRecordingViewController alloc] init];
     
     UIBarButtonItem *barButtonItem;
     
@@ -43,13 +43,11 @@
                                                                   target:self
                                                                   action:@selector(save)];
     [self.navigationItem setLeftBarButtonItem:barButtonItem];
-    [barButtonItem release];
     
     barButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                                   target:self
                                                                   action:@selector(done)];
     [self.navigationItem setRightBarButtonItem:barButtonItem];
-    [barButtonItem release];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -65,11 +63,11 @@
     self.path = [documentsDirectory stringByAppendingPathComponent:@"cassette"];
     
     [VCR save:self.path];
-    UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:@"Saved Cassette"
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Saved Cassette"
                                                          message:self.path
                                                         delegate:self
                                                cancelButtonTitle:nil
-                                               otherButtonTitles:@"Copy", @"OK", nil] autorelease];
+                                               otherButtonTitles:@"Copy", @"OK", nil];
     [alertView show];
 }
 
@@ -103,7 +101,7 @@
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
     VCRRequestKey *key = [[self.cassette allKeys] objectAtIndex:indexPath.row];
