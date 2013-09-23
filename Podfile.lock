@@ -1,0 +1,10 @@
+PODS:
+  - NSData+Base64 (1.0.0)
+
+DEPENDENCIES:
+  - NSData+Base64 (= 1.0.0)
+
+SPEC CHECKSUMS:
+  NSData+Base64: 36c4e5b6479259c1a68866ccd2a8dd385c9744f7
+
+COCOAPODS: 0.24.0
