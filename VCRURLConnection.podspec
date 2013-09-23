@@ -9,5 +9,6 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '5.0'
   s.osx.deployment_target = '10.7'
   s.source_files = 'VCRURLConnection/**.{h,m}'
+  s.dependency   = 'NSData+Base64', '1.0.0'
   s.requires_arc = true
 end

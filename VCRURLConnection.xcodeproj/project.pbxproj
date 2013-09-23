@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A7E99EF540BC4D76B6763024 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10F0C61C1B1E4F4EAB51A1F4 /* libPods.a */; };
 		B3475B3C167E9DE60044511D /* NSURLConnection+VCR.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B82895167E9B6800CCEC3C /* NSURLConnection+VCR.m */; };
 		B3475B3D167E9DE60044511D /* VCR.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B82897167E9B6800CCEC3C /* VCR.m */; };
 		B3475B3E167E9DE60044511D /* VCRCassette.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B8289A167E9B6800CCEC3C /* VCRCassette.m */; };
@@ -62,15 +63,13 @@
 		B3B828B3167E9D8500CCEC3C /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3B82867167E9A6500CCEC3C /* SenTestingKit.framework */; };
 		B3BB2513167F23EC00C5E3C6 /* SenTestCase+SRTAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BB2512167F23EC00C5E3C6 /* SenTestCase+SRTAdditions.m */; };
 		B3BB2514167F23EC00C5E3C6 /* SenTestCase+SRTAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BB2512167F23EC00C5E3C6 /* SenTestCase+SRTAdditions.m */; };
-		B3BB2517167F241E00C5E3C6 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BB2516167F241E00C5E3C6 /* NSData+Base64.m */; };
-		B3BB2518167F241E00C5E3C6 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BB2516167F241E00C5E3C6 /* NSData+Base64.m */; };
-		B3BB2519167F241E00C5E3C6 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BB2516167F241E00C5E3C6 /* NSData+Base64.m */; };
 		C393569B17B5DA460025DC53 /* VCROrderedMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = C393569A17B5DA460025DC53 /* VCROrderedMutableDictionary.m */; };
 		C393569C17B5DA4F0025DC53 /* VCROrderedMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = C393569A17B5DA460025DC53 /* VCROrderedMutableDictionary.m */; };
 		C393569D17B5DA4F0025DC53 /* VCROrderedMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = C393569A17B5DA460025DC53 /* VCROrderedMutableDictionary.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		10F0C61C1B1E4F4EAB51A1F4 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3475B53167EA0680044511D /* Example-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Example-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3475B5B167EA0680044511D /* Example-iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Example-iOS-Info.plist"; sourceTree = "<group>"; };
 		B3475B5D167EA0680044511D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -131,10 +130,9 @@
 		B3B828BA167E9D8500CCEC3C /* Tests-iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-iOS-Info.plist"; sourceTree = "<group>"; };
 		B3BB2511167F23EC00C5E3C6 /* SenTestCase+SRTAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SenTestCase+SRTAdditions.h"; path = "Tests/SenTestCase+SRTAdditions.h"; sourceTree = "<group>"; };
 		B3BB2512167F23EC00C5E3C6 /* SenTestCase+SRTAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "SenTestCase+SRTAdditions.m"; path = "Tests/SenTestCase+SRTAdditions.m"; sourceTree = "<group>"; };
-		B3BB2515167F241E00C5E3C6 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+Base64.h"; path = "VCRURLConnection/NSData+Base64.h"; sourceTree = "<group>"; };
-		B3BB2516167F241E00C5E3C6 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+Base64.m"; path = "VCRURLConnection/NSData+Base64.m"; sourceTree = "<group>"; };
 		C393569917B5DA460025DC53 /* VCROrderedMutableDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VCROrderedMutableDictionary.h; path = VCRURLConnection/VCROrderedMutableDictionary.h; sourceTree = "<group>"; };
 		C393569A17B5DA460025DC53 /* VCROrderedMutableDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VCROrderedMutableDictionary.m; path = VCRURLConnection/VCROrderedMutableDictionary.m; sourceTree = "<group>"; };
+		EA99A7CF4F394B28B47BD373 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +149,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3B82868167E9A6500CCEC3C /* SenTestingKit.framework in Frameworks */,
+				A7E99EF540BC4D76B6763024 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,6 +208,7 @@
 				B3475B59167EA0680044511D /* Example-iOS */,
 				B3B82866167E9A6500CCEC3C /* Frameworks */,
 				B3B82865167E9A6500CCEC3C /* Products */,
+				EA99A7CF4F394B28B47BD373 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -232,7 +232,6 @@
 				B3475BAE167EFFA80044511D /* VCRRecording.m */,
 				B3B8289F167E9B6800CCEC3C /* VCRRequestKey.h */,
 				B3B828A0167E9B6800CCEC3C /* VCRRequestKey.m */,
-				B3BB251A167F243100C5E3C6 /* Vendor */,
 			);
 			name = VCRURLConnection;
 			sourceTree = "<group>";
@@ -253,6 +252,7 @@
 				B3475B8B167EA37B0044511D /* UIKit.framework */,
 				B3B82867167E9A6500CCEC3C /* SenTestingKit.framework */,
 				B3B8286B167E9A6500CCEC3C /* Other Frameworks */,
+				10F0C61C1B1E4F4EAB51A1F4 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -305,15 +305,6 @@
 			path = "Tests-iOS";
 			sourceTree = "<group>";
 		};
-		B3BB251A167F243100C5E3C6 /* Vendor */ = {
-			isa = PBXGroup;
-			children = (
-				B3BB2515167F241E00C5E3C6 /* NSData+Base64.h */,
-				B3BB2516167F241E00C5E3C6 /* NSData+Base64.m */,
-			);
-			name = Vendor;
-			sourceTree = "<group>";
-		};
 		B3BB251B167F243E00C5E3C6 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
@@ -347,10 +338,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B3B82879167E9A6500CCEC3C /* Build configuration list for PBXNativeTarget "Tests-OSX" */;
 			buildPhases = (
+				28B4997BE5E541CAAA85639D /* Check Pods Manifest.lock */,
 				B3B8285F167E9A6500CCEC3C /* Sources */,
 				B3B82860167E9A6500CCEC3C /* Frameworks */,
 				B3B82861167E9A6500CCEC3C /* Resources */,
 				B3B82862167E9A6500CCEC3C /* ShellScript */,
+				DBE45E5C229745F49F34D478 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -443,6 +436,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		28B4997BE5E541CAAA85639D /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		B3B82862167E9A6500CCEC3C /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -469,6 +477,21 @@
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
+		DBE45E5C229745F49F34D478 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -488,7 +511,6 @@
 				B3475B7C167EA1080044511D /* VCRConnectionDelegate.m in Sources */,
 				B3475B7D167EA1080044511D /* VCRRequestKey.m in Sources */,
 				B3475BB1167EFFA80044511D /* VCRRecording.m in Sources */,
-				B3BB2519167F241E00C5E3C6 /* NSData+Base64.m in Sources */,
 				C393569B17B5DA460025DC53 /* VCROrderedMutableDictionary.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -511,7 +533,6 @@
 				B3475BAF167EFFA80044511D /* VCRRecording.m in Sources */,
 				B3475BB9167F12620044511D /* VCRRecordingTests.m in Sources */,
 				B3BB2513167F23EC00C5E3C6 /* SenTestCase+SRTAdditions.m in Sources */,
-				B3BB2517167F241E00C5E3C6 /* NSData+Base64.m in Sources */,
 				C393569D17B5DA4F0025DC53 /* VCROrderedMutableDictionary.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -534,7 +555,6 @@
 				B3475BB0167EFFA80044511D /* VCRRecording.m in Sources */,
 				B3475BBA167F12620044511D /* VCRRecordingTests.m in Sources */,
 				B3BB2514167F23EC00C5E3C6 /* SenTestCase+SRTAdditions.m in Sources */,
-				B3BB2518167F241E00C5E3C6 /* NSData+Base64.m in Sources */,
 				C393569C17B5DA4F0025DC53 /* VCROrderedMutableDictionary.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -635,6 +655,7 @@
 		};
 		B3B8287A167E9A6500CCEC3C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EA99A7CF4F394B28B47BD373 /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
@@ -671,6 +692,7 @@
 		};
 		B3B8287B167E9A6500CCEC3C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EA99A7CF4F394B28B47BD373 /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
