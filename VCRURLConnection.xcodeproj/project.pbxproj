@@ -624,6 +624,7 @@
 		B3B82853167E990F00CCEC3C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				ONLY_ACTIVE_ARCH = YES;
 			};
 			name = Debug;
@@ -631,6 +632,7 @@
 		B3B82854167E990F00CCEC3C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 			};
 			name = Release;
 		};
