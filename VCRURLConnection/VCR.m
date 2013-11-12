@@ -27,8 +27,6 @@
 #import "NSURLConnection+VCR.h"
 #import <objc/runtime.h>
 
-static void VCRStoreOriginalImplentation(SEL selector);
-
 static void VCRSwizzle(SEL selector, SEL altSelector);
 
 @implementation VCR
