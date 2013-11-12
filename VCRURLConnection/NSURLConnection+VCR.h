@@ -28,4 +28,7 @@
 - (id)initWithRequest_VCR_original_:(NSURLRequest *)request delegate:(id<NSURLConnectionDelegate>)delegate;
 - (id)initWithRequest_VCR_original_:(NSURLRequest *)request delegate:(id<NSURLConnectionDelegate>)delegate startImmediately:(BOOL)startImmediately;
 
+- (id)initWithRequest_VCR_:(NSURLRequest *)request delegate:(id<NSURLConnectionDataDelegate>)delegate;
+- (id)initWithRequest_VCR_:(NSURLRequest *)request delegate:(id<NSURLConnectionDataDelegate>)delegate startImmediately:(BOOL)startImmediately;
+
 @end
