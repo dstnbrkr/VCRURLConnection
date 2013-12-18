@@ -46,6 +46,15 @@
     STAssertEqualObjects(recording.body, [json objectForKey:@"body"], @"");
 }
 
+- (void)testInitWithJSONBody {
+    NSMutableDictionary *json = [self.json mutableCopy];
+    json[@"body"] = @{ @"foo" : @"bar", @"baz" : @"qux" };
+    VCRRecording *recording = [[VCRRecording alloc] initWithJSON:json];
+    
+    NSString *expected = @"{\"foo\":\"bar\",\"baz\":\"qux\"}";
+    STAssertEqualObjects(expected, recording.body, @"");
+}
+
 - (void)testIsEqual {
     VCRRecording *recording1 = [[VCRRecording alloc] initWithJSON:self.json];
     VCRRecording *recording2 = [[VCRRecording alloc] initWithJSON:self.json];

@@ -44,11 +44,7 @@
         }
         
         NSString *body = [json objectForKey:@"body"];
-        if ([self isText]) {
-            self.data = [body dataUsingEncoding:NSUTF8StringEncoding];
-        } else {
-            self.data = [NSData dataFromBase64String:body];
-        }
+        [self setBody:body];
     }
     return self;
 }
@@ -72,6 +68,17 @@
         if ([type rangeOfString:textType].location != NSNotFound) return YES;
     }
     return NO;
+}
+
+- (void)setBody:(id)body
+{
+    if ([body isKindOfClass:[NSDictionary class]]) {
+        self.data = [NSJSONSerialization dataWithJSONObject:body options:0 error:nil];
+    } else if ([self isText]) {
+        self.data = [body dataUsingEncoding:NSUTF8StringEncoding];
+    } else {
+        self.data = [NSData dataFromBase64String:body];
+    }
 }
 
 - (NSString *)body {
