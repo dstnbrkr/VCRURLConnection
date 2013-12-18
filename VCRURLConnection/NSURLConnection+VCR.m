@@ -59,7 +59,7 @@
 
 - (void)VCR_playback:(VCRRecording *)recording delegate:(id)delegate {
     if ([delegate respondsToSelector:@selector(connection:didReceiveResponse:)]) {
-        NSURLResponse *response = [NSHTTPURLResponse responseFromRecording:recording];
+        NSURLResponse *response = [recording HTTPURLResponse];
         [delegate connection:self didReceiveResponse:response];
     }
     

@@ -114,16 +114,13 @@
     return [NSString stringWithFormat:@"<VCRRecording %@ %@, data length %li>", self.method, self.URI, (unsigned long)[self.data length]];
 }
 
-@end
-
-@implementation NSHTTPURLResponse (VCRRecording)
-
-+ (NSHTTPURLResponse *)responseFromRecording:(VCRRecording *)recording {
-    NSURL *url = [NSURL URLWithString:recording.URI];
+- (NSHTTPURLResponse *)HTTPURLResponse {
+    NSURL *url = [NSURL URLWithString:_URI];
     return [[NSHTTPURLResponse alloc] initWithURL:url
-                                        statusCode:recording.statusCode
-                                       HTTPVersion:@"HTTP/1.1"
-                                      headerFields:recording.headerFields];
+                                       statusCode:_statusCode
+                                      HTTPVersion:@"HTTP/1.1"
+                                     headerFields:_headerFields];
 }
 
 @end
+

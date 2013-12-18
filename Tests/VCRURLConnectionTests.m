@@ -116,7 +116,7 @@
     STAssertNotNil(receivedResponse, @"Response should not be nil");
     
     // delegate got correct response
-    NSHTTPURLResponse *httpResponse = [NSHTTPURLResponse responseFromRecording:recording];
+    NSHTTPURLResponse *httpResponse = [recording HTTPURLResponse];
     STAssertTrue([receivedResponse VCR_isIsomorphic:httpResponse],
                  @"Received response should be isomorphic to recorded response");
     

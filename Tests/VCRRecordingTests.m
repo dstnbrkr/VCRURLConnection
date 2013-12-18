@@ -79,7 +79,7 @@
 
 - (void)testGenerateHTTPURLResponse {
     VCRRecording *recording = [[VCRRecording alloc] initWithJSON:self.json];
-    NSHTTPURLResponse *response = [NSHTTPURLResponse responseFromRecording:recording];
+    NSHTTPURLResponse *response = [recording HTTPURLResponse];
     
     STAssertEqualObjects([response.URL absoluteString], recording.URI, @"VCRRecording should generate NSURLresponse with URL");
     STAssertEqualObjects([response allHeaderFields], recording.headerFields, @"VCRRecording should generate NSURLresponse with all header fields");

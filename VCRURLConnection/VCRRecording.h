@@ -31,18 +31,14 @@
 
 - (id)JSON;
 
+- (NSHTTPURLResponse *)HTTPURLResponse;
+
 @property (nonatomic, strong) NSString *method;
 @property (nonatomic, strong) NSString *URI;
 @property (nonatomic, strong) NSData *data;
 @property (weak, nonatomic, readonly) NSString *body;
 @property (assign) NSInteger statusCode;
 @property (nonatomic, strong) NSDictionary *headerFields;
-
-@end
-
-@interface NSHTTPURLResponse (VCRRecording)
-
-+ (NSHTTPURLResponse *)responseFromRecording:(VCRRecording *)recording;
 
 @end
 
