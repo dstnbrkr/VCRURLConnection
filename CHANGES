@@ -1,0 +1,16 @@
+
+= 0.1.2 (2013-12-17)
+
+* Add support for inline JSON in cassette bodies (no longer need to escape JSON strings)
+
+* Fix strict warnings
+
+= 0.1.1 (2013-08-13)
+
+* Convert project to ARC
+
+* Ensure JSON is ordered (Ben Kreeger)
+
+= 0.1.0 (2012-12-20)
+
+* Initial release
