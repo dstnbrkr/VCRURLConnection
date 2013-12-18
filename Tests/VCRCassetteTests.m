@@ -92,14 +92,14 @@
     STAssertEqualObjects(cassette1, cassette2, @"Cassettes should be equal");
 }
 
-- (void)testResponseForRequest {
-    VCRCassette *cassette = self.cassette;
+- (void)testRecordingForRequest {
     NSString *path = @"http://foo";
     NSURL *url = [NSURL URLWithString:path];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    id json = @{ @"method": @"get", @"uri": path, @"body": @"GET Foo Bar Baz" };
+    id json = @{ @"method": @"GET", @"uri": path, @"body": @"Foo Bar Baz" };
     VCRRecording *recording = [[VCRRecording alloc] initWithJSON:json];
     
+    VCRCassette *cassette = self.cassette;
     [cassette addRecording:recording];
     STAssertEqualObjects([cassette recordingForRequest:request], recording, @"");
     
