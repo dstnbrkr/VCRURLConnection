@@ -24,39 +24,75 @@
 #import "VCR.h"
 #import "VCRCassette.h"
 #import "VCRCassetteManager.h"
-#import "NSURLConnection+VCR.h"
+#import "VCRConnectionDelegate.h"
 #import <objc/runtime.h>
-
-static void VCRSwizzle(SEL selector, SEL altSelector);
 
 @implementation VCR
 
-+ (NSArray *)selectors {
-    return @[ NSStringFromSelector(@selector(initWithRequest:delegate:)),
-              NSStringFromSelector(@selector(initWithRequest:delegate:startImmediately:)) ];
+typedef id(*URLConnectionInitializer1)(id, SEL, NSURLRequest *, id<NSURLConnectionDelegate>, BOOL);
+typedef id(*URLConnectionInitializer2)(id, SEL, NSURLRequest *, id<NSURLConnectionDelegate>);
+
+static URLConnectionInitializer1 orig_initWithRequest1;
+static URLConnectionInitializer2 orig_initWithRequest2;
+
+static void VCRURLConnectionPlayback(id self, VCRRecording *recording, id delegate) {
+    if ([delegate respondsToSelector:@selector(connection:didReceiveResponse:)]) {
+        NSURLResponse *response = [recording HTTPURLResponse];
+        [delegate connection:self didReceiveResponse:response];
+    }
+    
+    if ([delegate respondsToSelector:@selector(connection:didReceiveData:)]) {
+        [delegate connection:self didReceiveData:recording.data];
+    }
+    
+    if ([delegate respondsToSelector:@selector(connectionDidFinishLoading:)]) {
+        [delegate connectionDidFinishLoading:self];
+    }
+    
+    if ((recording.statusCode < 200 || 299 < recording.statusCode) &&
+        [delegate respondsToSelector:@selector(connection:didFailWithError:)]) {
+        
+        // FIXME: store details of NSError in VCRResponse and populate here
+        NSError *error = [[NSError alloc] init];
+        [delegate connection:self didFailWithError:error];
+    }
 }
 
-+ (NSArray *)originalSelectors {
-    return @[ NSStringFromSelector(@selector(initWithRequest_VCR_original_:delegate:)),
-              NSStringFromSelector(@selector(initWithRequest_VCR_original_:delegate:startImmediately:)) ];
+static id VCR_initWithRequest1(id self, SEL _cmd, NSURLRequest *request, id<NSURLConnectionDataDelegate> delegate, BOOL startImmediately) {
+    VCRCassette *cassette = [[VCRCassetteManager defaultManager] currentCassette];
+    VCRRecording *recording = [cassette recordingForRequest:request];
+    if (recording) {
+        self = [self init];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            VCRURLConnectionPlayback(self, recording, delegate);
+        });
+    } else {
+        VCRConnectionDelegate *vcrDelegate = [[VCRConnectionDelegate alloc] initWithDelegate:delegate];
+        [vcrDelegate setRequest:request];
+        vcrDelegate.cassette = cassette;
+        self = orig_initWithRequest1(self, _cmd, request, vcrDelegate, startImmediately);
+    }
+    return self;
 }
 
-+ (NSArray *)alternateSelectors {
-    return @[ NSStringFromSelector(@selector(initWithRequest_VCR_:delegate:)),
-              NSStringFromSelector(@selector(initWithRequest_VCR_:delegate:startImmediately:)) ];
+static id VCR_initWithRequest2(id self, SEL _cmd, NSURLRequest *request, id<NSURLConnectionDataDelegate> delegate) {
+    return VCR_initWithRequest1(self, _cmd, request, delegate, YES);
 }
 
-+ (void)swizzleSelectors:(NSArray *)originalSelectors withSelectors:(NSArray *)alternateSelectors {
-    [originalSelectors enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        SEL originalSelector = NSSelectorFromString(obj);
-        SEL alternateSelector = NSSelectorFromString(alternateSelectors[idx]);
-        VCRSwizzle(originalSelector, alternateSelector);
-    }];
+static BOOL VCRIsSwizzled(SEL selector, IMP impl) {
+    Method method = class_getInstanceMethod([NSURLConnection class], selector);
+    return method_getImplementation(method) == impl;
 }
 
-+ (void)initialize {
-    // store original implementations so we can unswizzle later
-    [self swizzleSelectors:[self originalSelectors] withSelectors:[self selectors]];
+static IMP VCRSwizzle(SEL selector, IMP newImpl) {
+    Class clazz = [NSURLConnection class];
+    
+    Method method = class_getInstanceMethod(clazz, selector);
+    IMP originalImpl = method_getImplementation(method);
+    
+    class_replaceMethod(clazz, selector, (IMP)newImpl, method_getTypeEncoding(method));
+    
+    return originalImpl;
 }
 
 + (void)loadCassetteWithContentsOfURL:(NSURL *)url {
@@ -68,11 +104,24 @@ static void VCRSwizzle(SEL selector, SEL altSelector);
 }
 
 + (void)start {
-    [self swizzleSelectors:[self selectors] withSelectors:[self alternateSelectors]];
+    SEL sel1 = @selector(initWithRequest:delegate:startImmediately:);
+    SEL sel2 = @selector(initWithRequest:delegate:);
+    
+    IMP imp1 = (IMP)VCR_initWithRequest1;
+    IMP imp2 = (IMP)VCR_initWithRequest2;
+
+    if (!VCRIsSwizzled(sel1, imp1)) {
+        orig_initWithRequest1 = (URLConnectionInitializer1)VCRSwizzle(sel1, imp1);
+    }
+    
+    if (!VCRIsSwizzled(sel2, imp2)) {
+        orig_initWithRequest2 = (URLConnectionInitializer2)VCRSwizzle(sel2, imp2);
+    }
 }
 
 + (void)stop {
-    [self swizzleSelectors:[self selectors] withSelectors:[self originalSelectors]];
+    VCRSwizzle(@selector(initWithRequest:delegate:startImmediately:), (IMP)orig_initWithRequest1);
+    VCRSwizzle(@selector(initWithRequest:delegate:), (IMP)orig_initWithRequest2);
 }
 
 + (void)save:(NSString *)path {
@@ -81,9 +130,4 @@ static void VCRSwizzle(SEL selector, SEL altSelector);
 
 @end
 
-static void VCRSwizzle(SEL selector, SEL altSelector) {
-    Method altMethod = class_getInstanceMethod([NSURLConnection class], altSelector);
-    IMP altIMP = method_getImplementation(altMethod);
-    Method originalMethod = class_getInstanceMethod([NSURLConnection class], selector);
-    method_setImplementation(originalMethod, altIMP);
-}
+

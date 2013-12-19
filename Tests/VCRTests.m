@@ -23,90 +23,54 @@
 
 #import "VCRTests.h"
 #import "VCR.h"
-#import "NSURLConnection+VCR.h"
 #import <objc/runtime.h>
 
-IMP NSURLConnectionImplementationForSelector(SEL selector) {
-    Method method = class_getInstanceMethod([NSURLConnection class], selector);
-    return method_getImplementation(method);
-}
-
 @interface VCRTests ()
-
-@property (nonatomic, assign) IMP originalConstructorIMP1;
-@property (nonatomic, assign) IMP newConstructorIMP1;
-
-@property (nonatomic, assign) IMP originalConstructorIMP2;
-@property (nonatomic, assign) IMP newConstructorIMP2;
-
 @end
 
 @implementation VCRTests
 
 - (void)setUp {
     [super setUp];
-    
-    IMP imp;
-
-    // store old and new imps of initWithRequest:delegate:startImmediately:
-    imp = NSURLConnectionImplementationForSelector(@selector(initWithRequest:delegate:startImmediately:));
-    self.originalConstructorIMP1 = imp;
-    imp = NSURLConnectionImplementationForSelector(@selector(initWithRequest_VCR_:delegate:startImmediately:));
-    STAssertTrue(imp != nil, @"");
-    self.newConstructorIMP1 = imp;
-    STAssertFalse(self.originalConstructorIMP1 == self.newConstructorIMP1, @"Implementations should differ");
-    
-    // store old and new imps of initWithRequest:delegate:
-    imp = NSURLConnectionImplementationForSelector(@selector(initWithRequest:delegate:));
-    self.originalConstructorIMP2 = imp;
-    imp = NSURLConnectionImplementationForSelector(@selector(initWithRequest_VCR_:delegate:));
-    STAssertTrue(imp != nil, @"");
-    self.newConstructorIMP2 = imp;
-    STAssertFalse(self.originalConstructorIMP2 == self.newConstructorIMP2, @"Implementations should differ");
-    
 }
 
 - (void)testStart {
+    
+    Class clazz = [NSURLConnection class];
+    
+    Method method1 = class_getInstanceMethod(clazz, @selector(initWithRequest:delegate:startImmediately:));
+    IMP imp1 = method_getImplementation(method1);
+    
+    Method method2 = class_getInstanceMethod(clazz, @selector(initWithRequest:delegate:));
+    IMP imp2 = method_getImplementation(method2);
+    
     [VCR start];
     
-    IMP newImp;
-    IMP oldImp;
-
-    // test new and old imps of initWithRequest:delegate:startImmediately:
-    newImp = NSURLConnectionImplementationForSelector(@selector(initWithRequest:delegate:startImmediately:));
-    STAssertEquals(newImp, self.newConstructorIMP1, @"Implementation should be swizzled");
-    oldImp = NSURLConnectionImplementationForSelector(@selector(initWithRequest_VCR_original_:delegate:startImmediately:));
-    STAssertEquals(oldImp, self.originalConstructorIMP1, @"Original implementation should be accessible");
+    STAssertFalse(imp1 == method_getImplementation(method1), @"Implementation should be swizzled");
+    STAssertFalse(imp2 == method_getImplementation(method2), @"Implementation should be swizzled");
     
-    // test new and old imps of initWithRequest:delegate:
-    newImp = NSURLConnectionImplementationForSelector(@selector(initWithRequest:delegate:));
-    STAssertEquals(newImp, self.newConstructorIMP2, @"Implementation should be swizzled");
-    oldImp = NSURLConnectionImplementationForSelector(@selector(initWithRequest_VCR_original_:delegate:));
-    STAssertEquals(oldImp, self.originalConstructorIMP2, @"Original implementation should be accessible");
+    [VCR stop];
 }
 
-- (void)testStartStop {
+- (void)testStop {
+    
+    Class clazz = [NSURLConnection class];
+    
+    Method method1 = class_getInstanceMethod(clazz, @selector(initWithRequest:delegate:startImmediately:));
+    Method method2 = class_getInstanceMethod(clazz, @selector(initWithRequest:delegate:));
+    
     [VCR start];
     
-    SEL sel1 = @selector(initWithRequest:delegate:startImmediately:);
-    SEL sel2 = @selector(initWithRequest:delegate:);
-    IMP imp;
-    
-    imp = NSURLConnectionImplementationForSelector(sel1);
-    STAssertEquals(imp, self.newConstructorIMP1, @"Implementation should be swizzled");
-    imp = NSURLConnectionImplementationForSelector(sel2);
-    STAssertEquals(imp, self.newConstructorIMP2, @"Implementation should be swizzled");
+    IMP imp1 = method_getImplementation(method1);
+    IMP imp2 = method_getImplementation(method2);
     
     [VCR stop];
     
-    imp = NSURLConnectionImplementationForSelector(sel1);
-    STAssertEquals(imp, self.originalConstructorIMP1, @"Implementation should be swizzled");
-    imp = NSURLConnectionImplementationForSelector(sel2);
-    STAssertEquals(imp, self.originalConstructorIMP2, @"Implementation should be swizzled");
+    STAssertFalse(imp1 == method_getImplementation(method1), @"Implementation should be unswizzled");
+    STAssertFalse(imp2 == method_getImplementation(method2), @"Implementation should be unswizzled");
 }
 
 - (void)tearDown {
-    [VCR stop];
     [super tearDown];
 }
 

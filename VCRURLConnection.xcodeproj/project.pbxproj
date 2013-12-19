@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B3475B3C167E9DE60044511D /* NSURLConnection+VCR.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B82895167E9B6800CCEC3C /* NSURLConnection+VCR.m */; };
 		B3475B3D167E9DE60044511D /* VCR.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B82897167E9B6800CCEC3C /* VCR.m */; };
 		B3475B3E167E9DE60044511D /* VCRCassette.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B8289A167E9B6800CCEC3C /* VCRCassette.m */; };
 		B3475B3F167E9DE60044511D /* VCRCassetteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B8289C167E9B6800CCEC3C /* VCRCassetteManager.m */; };
@@ -27,7 +26,6 @@
 		B3475B75167EA0C30044511D /* VCRRecordingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3475B6E167EA0C30044511D /* VCRRecordingViewController.m */; };
 		B3475B76167EA0C30044511D /* VCRRecordingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3475B6F167EA0C30044511D /* VCRRecordingViewController.xib */; };
 		B3475B77167EA0C30044511D /* VCRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3475B71167EA0C30044511D /* VCRViewController.m */; };
-		B3475B78167EA1080044511D /* NSURLConnection+VCR.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B82895167E9B6800CCEC3C /* NSURLConnection+VCR.m */; };
 		B3475B79167EA1080044511D /* VCR.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B82897167E9B6800CCEC3C /* VCR.m */; };
 		B3475B7A167EA1080044511D /* VCRCassette.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B8289A167E9B6800CCEC3C /* VCRCassette.m */; };
 		B3475B7B167EA1080044511D /* VCRCassetteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B8289C167E9B6800CCEC3C /* VCRCassetteManager.m */; };
@@ -53,7 +51,6 @@
 		B3B82890167E9B2B00CCEC3C /* VCRRequestKeyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B82885167E9B2B00CCEC3C /* VCRRequestKeyTests.m */; };
 		B3B82892167E9B2B00CCEC3C /* VCRTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B82889167E9B2B00CCEC3C /* VCRTests.m */; };
 		B3B82893167E9B2B00CCEC3C /* VCRURLConnectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B8288B167E9B2B00CCEC3C /* VCRURLConnectionTests.m */; };
-		B3B828A3167E9B6800CCEC3C /* NSURLConnection+VCR.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B82895167E9B6800CCEC3C /* NSURLConnection+VCR.m */; };
 		B3B828A4167E9B6800CCEC3C /* VCR.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B82897167E9B6800CCEC3C /* VCR.m */; };
 		B3B828A5167E9B6800CCEC3C /* VCRCassette.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B8289A167E9B6800CCEC3C /* VCRCassette.m */; };
 		B3B828A6167E9B6800CCEC3C /* VCRCassetteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B8289C167E9B6800CCEC3C /* VCRCassetteManager.m */; };
@@ -114,8 +111,6 @@
 		B3B82889167E9B2B00CCEC3C /* VCRTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VCRTests.m; path = Tests/VCRTests.m; sourceTree = "<group>"; };
 		B3B8288A167E9B2B00CCEC3C /* VCRURLConnectionTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VCRURLConnectionTests.h; path = Tests/VCRURLConnectionTests.h; sourceTree = "<group>"; };
 		B3B8288B167E9B2B00CCEC3C /* VCRURLConnectionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VCRURLConnectionTests.m; path = Tests/VCRURLConnectionTests.m; sourceTree = "<group>"; };
-		B3B82894167E9B6800CCEC3C /* NSURLConnection+VCR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSURLConnection+VCR.h"; path = "VCRURLConnection/NSURLConnection+VCR.h"; sourceTree = "<group>"; };
-		B3B82895167E9B6800CCEC3C /* NSURLConnection+VCR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSURLConnection+VCR.m"; path = "VCRURLConnection/NSURLConnection+VCR.m"; sourceTree = "<group>"; };
 		B3B82896167E9B6800CCEC3C /* VCR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VCR.h; path = VCRURLConnection/VCR.h; sourceTree = "<group>"; };
 		B3B82897167E9B6800CCEC3C /* VCR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VCR.m; path = VCRURLConnection/VCR.m; sourceTree = "<group>"; };
 		B3B82898167E9B6800CCEC3C /* VCRCassette_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VCRCassette_Private.h; path = VCRURLConnection/VCRCassette_Private.h; sourceTree = "<group>"; };
@@ -215,8 +210,6 @@
 		B3B82858167E996A00CCEC3C /* VCRURLConnection */ = {
 			isa = PBXGroup;
 			children = (
-				B3B82894167E9B6800CCEC3C /* NSURLConnection+VCR.h */,
-				B3B82895167E9B6800CCEC3C /* NSURLConnection+VCR.m */,
 				B3B82896167E9B6800CCEC3C /* VCR.h */,
 				B3B82897167E9B6800CCEC3C /* VCR.m */,
 				B3B82899167E9B6800CCEC3C /* VCRCassette.h */,
@@ -481,7 +474,6 @@
 				B3475B73167EA0C30044511D /* VCRCassetteViewController.m in Sources */,
 				B3475B75167EA0C30044511D /* VCRRecordingViewController.m in Sources */,
 				B3475B77167EA0C30044511D /* VCRViewController.m in Sources */,
-				B3475B78167EA1080044511D /* NSURLConnection+VCR.m in Sources */,
 				B3475B79167EA1080044511D /* VCR.m in Sources */,
 				B3475B7A167EA1080044511D /* VCRCassette.m in Sources */,
 				B3475B7B167EA1080044511D /* VCRCassetteManager.m in Sources */,
@@ -502,7 +494,6 @@
 				B3B82890167E9B2B00CCEC3C /* VCRRequestKeyTests.m in Sources */,
 				B3B82892167E9B2B00CCEC3C /* VCRTests.m in Sources */,
 				B3B82893167E9B2B00CCEC3C /* VCRURLConnectionTests.m in Sources */,
-				B3B828A3167E9B6800CCEC3C /* NSURLConnection+VCR.m in Sources */,
 				B3B828A4167E9B6800CCEC3C /* VCR.m in Sources */,
 				B3B828A5167E9B6800CCEC3C /* VCRCassette.m in Sources */,
 				B3B828A6167E9B6800CCEC3C /* VCRCassetteManager.m in Sources */,
@@ -520,7 +511,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B3475B3C167E9DE60044511D /* NSURLConnection+VCR.m in Sources */,
 				B3475B3D167E9DE60044511D /* VCR.m in Sources */,
 				B3475B3E167E9DE60044511D /* VCRCassette.m in Sources */,
 				B3475B3F167E9DE60044511D /* VCRCassetteManager.m in Sources */,
