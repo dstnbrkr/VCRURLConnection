@@ -26,8 +26,11 @@
         @"uri": @"http://foo",
         @"status": @200,
         @"body": @"Foo Bar Baz",
-        @"headers": @{ @"X-Foo": @"foo" }
-    };
+        @"headers": @{ @"X-Foo": @"foo" },
+        @"error": @{ @"code": @(1001),
+                     @"domain": @"NSURLConnectionErrorDomain",
+                     @"userInfo": @{ @"aKey": @"aVal" },
+                     @"localizedDescription": @"An error occurred" }};
 }
 
 - (void)tearDown {
@@ -44,6 +47,8 @@
     STAssertEquals(recording.statusCode, [[json objectForKey:@"status"] integerValue], @"");
     
     STAssertEqualObjects(recording.body, [json objectForKey:@"body"], @"");
+    
+    STAssertEquals(recording.error.code, [json[@"error"][@"code"] integerValue], @"");
 }
 
 - (void)testInitWithJSONBody {

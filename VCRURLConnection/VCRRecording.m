@@ -23,6 +23,7 @@
 
 #import "VCRRecording.h"
 #import "VCROrderedMutableDictionary.h"
+#import "VCRError.h"
 #import "NSData+Base64.h"
 
 @implementation VCRRecording
@@ -30,21 +31,25 @@
 - (id)initWithJSON:(id)json {
     if ((self = [self init])) {
         
-        self.method = [json objectForKey:@"method"];
+        self.method = json[@"method"];
         NSAssert(self.method, @"VCRRecording: method is required");
         
-        self.URI = [json objectForKey:@"uri"];
+        self.URI = json[@"uri"];
         NSAssert(self.URI, @"VCRRecording: uri is required");
 
-        self.statusCode = [[json objectForKey:@"status"] intValue];
+        self.statusCode = [json[@"status"] intValue];
 
-        self.headerFields = [json objectForKey:@"headers"];
+        self.headerFields = json[@"headers"];
         if (!self.headerFields) {
             self.headerFields = [NSDictionary dictionary];
         }
         
-        NSString *body = [json objectForKey:@"body"];
+        NSString *body = json[@"body"];
         [self setBody:body];
+        
+        if (json[@"error"]) {
+            self.error = [[VCRError alloc] initWithJSON:json[@"error"]];
+        }
     }
     return self;
 }
