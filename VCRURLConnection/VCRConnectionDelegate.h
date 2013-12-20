@@ -30,7 +30,7 @@
  */
 @interface VCRConnectionDelegate : NSObject<NSURLConnectionDelegate>
 
-- (id)initWithDelegate:(id<NSURLConnectionDataDelegate>)delegate;
+- (id)initWithDelegate:(id<NSURLConnectionDataDelegate>)delegate recording:(VCRRecording *)recording;
 
 @property (nonatomic, strong) NSURLRequest *request;
 @property (nonatomic, strong) VCRCassette *cassette;

@@ -27,8 +27,6 @@
 
 - (id)initWithJSON:(id)json;
 
-- (void)recordResponse:(NSHTTPURLResponse *)response;
-
 - (id)JSON;
 
 - (NSHTTPURLResponse *)HTTPURLResponse;
@@ -37,8 +35,9 @@
 @property (nonatomic, strong) NSString *URI;
 @property (nonatomic, strong) NSData *data;
 @property (weak, nonatomic, readonly) NSString *body;
-@property (assign) NSInteger statusCode;
 @property (nonatomic, strong) NSDictionary *headerFields;
+@property (nonatomic, strong) NSError *error;
+@property (assign) NSInteger statusCode;
 
 @end
 

@@ -61,22 +61,6 @@
     STAssertEqualObjects(recording1, recording2, @"VCRRecording objects should be equal");
 }
 
-- (void)testRecordHTTPURLrecording {
-    NSString *uri = @"http://foo/bar";
-    NSURL *url = [NSURL URLWithString:uri];
-    NSDictionary *headerFields = @{ @"X-FOO": @"foo", @"X-BAR": @"bar" };
-    NSHTTPURLResponse *response = [[NSHTTPURLResponse alloc] initWithURL:url
-                                                                  statusCode:200
-                                                                 HTTPVersion:@"HTTP/1.1"
-                                                                headerFields:headerFields];
-    VCRRecording *recording = [[VCRRecording alloc] init];
-    [recording recordResponse:response];
-    
-    STAssertEqualObjects(recording.URI, [url absoluteString], @"VCRRecording should record URL");
-    STAssertEqualObjects(recording.headerFields, headerFields, @"VCRRecording should record all header fields");
-    STAssertEquals(recording.statusCode, (NSInteger)200, @"VCRRecording should record status code");
-}
-
 - (void)testGenerateHTTPURLResponse {
     VCRRecording *recording = [[VCRRecording alloc] initWithJSON:self.json];
     NSHTTPURLResponse *response = [recording HTTPURLResponse];
@@ -95,7 +79,6 @@
     recording.headerFields = @{ @"Content-Type": @"image/png" };
     STAssertFalse([recording isText], @"");
 }
-
 
 - (void)testBodyWithImageData {
     VCRRecording *recording = [[VCRRecording alloc] init];

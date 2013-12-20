@@ -27,6 +27,7 @@
 #import "VCR.h"
 
 @interface VCRConnectionDelegateWrapper : NSObject<NSURLConnectionDelegate>
+- (id)initWithRecording:(VCRRecording *)recording;
 @property (nonatomic, strong) NSURLRequest *request;
 @property (nonatomic, strong) VCRRecording *recording;
 @property (nonatomic, strong) id<NSURLConnectionDataDelegate> wrapped;
@@ -43,9 +44,9 @@
 
 @dynamic request;
 
-- (id)initWithDelegate:(id<NSURLConnectionDataDelegate>)delegate {
+- (id)initWithDelegate:(id<NSURLConnectionDataDelegate>)delegate recording:(VCRRecording *)recording {
     if ((self = [super init])) {
-        _wrapper = [[VCRConnectionDelegateWrapper alloc] init];
+        _wrapper = [[VCRConnectionDelegateWrapper alloc] initWithRecording:recording];
         _wrapper.wrapped = delegate;
     }
     return self;
@@ -67,17 +68,15 @@
 @synthesize request = _request;
 @synthesize wrapped = _wrapped;
 
-- (id)init {
+- (id)initWithRecording:(VCRRecording *)recording {
     if ((self = [super init])) {
-        self.recording = [[VCRRecording alloc] init];
+        self.recording = recording;
     }
     return self;
 }
 
-
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSHTTPURLResponse *)response {
-    _recording.method = self.request.HTTPMethod;
-    [_recording recordResponse:response];
+    self.recording.headerFields = response.allHeaderFields;
     if ([_wrapped respondsToSelector:@selector(connection:didReceiveResponse:)]) {
         [_wrapped connection:connection didReceiveResponse:response];
     }
@@ -101,6 +100,15 @@
         
     if ([_wrapped respondsToSelector:@selector(connectionDidFinishLoading:)]) {
         [_wrapped connectionDidFinishLoading:connection];
+    }
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    self.recording.error = error;
+    [[VCR cassette] addRecording:self.recording];
+    
+    if ([_wrapped respondsToSelector:@selector(connection:didFailWithError:)]) {
+        [_wrapped connection:connection didFailWithError:error];
     }
 }
 

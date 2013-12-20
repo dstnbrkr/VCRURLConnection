@@ -46,13 +46,12 @@
 @property (nonatomic, strong) NSHTTPURLResponse *response;
 @property (nonatomic, strong) NSData *data;
 @property (assign, getter = isDone) BOOL done;
-@property (assign, getter = isError) BOOL error;
+@property (nonatomic, strong) NSError *error;
 @end
 
 
 @interface VCRURLConnectionTests ()
 @property (nonatomic, strong) VCRCassette *cassette;
-@property (nonatomic, strong) VCRURLConnectionTestDelegate *testDelegate;
 @end
 
 
@@ -62,12 +61,10 @@
     [super setUp];
     [VCR start];
     self.cassette = [[VCRCassetteManager defaultManager] currentCassette];
-    self.testDelegate = [[VCRURLConnectionTestDelegate alloc] init];
 }
 
 - (void)tearDown {
     self.cassette = nil;
-    self.testDelegate = nil;
     [super tearDown];
 }
 
@@ -79,17 +76,19 @@
     STAssertNil([self.cassette recordingForRequest:request], @"Should not have recording for request yet");
     
     // make and record request
-    [NSURLConnection connectionWithRequest:request delegate:self.testDelegate];
+    VCRURLConnectionTestDelegate *delegate = [[VCRURLConnectionTestDelegate alloc] init];
+    [NSURLConnection connectionWithRequest:request delegate:delegate];
     
     // wait for request to finish
     [self runCurrentRunLoopUntilTestPasses:^BOOL{
-        return [self.testDelegate isDone];
+        return [delegate isDone];
     } timeout:60 * 60];
     
     VCRRecording *recording = [self.cassette recordingForRequest:request];
     STAssertNotNil(recording, @"Should have recording");
+    STAssertEqualObjects(recording.URI, [request.URL absoluteString], @"");
     STAssertNotNil(recording.data, @"Should have recorded response data");
-    STAssertEqualObjects(recording.data, self.testDelegate.data, @"Recorded data should equal recorded data");
+    STAssertEqualObjects(recording.data, delegate.data, @"Recorded data should equal recorded data");
 }
 
 - (void)testAsyncGetRequestIsReplayed {
@@ -104,15 +103,16 @@
     STAssertNotNil(recording, @"Should have recorded response");
 
     // make and playback request
-    [NSURLConnection connectionWithRequest:request delegate:self.testDelegate];
+    VCRURLConnectionTestDelegate *delegate = [[VCRURLConnectionTestDelegate alloc] init];
+    [NSURLConnection connectionWithRequest:request delegate:delegate];
 
     // wait for request to finish
     [self runCurrentRunLoopUntilTestPasses:^BOOL{
-        return [self.testDelegate isDone];
+        return [delegate isDone];
     } timeout:60 * 60];
     
     // delegate got response
-    NSHTTPURLResponse *receivedResponse = self.testDelegate.response;
+    NSHTTPURLResponse *receivedResponse = delegate.response;
     STAssertNotNil(receivedResponse, @"Response should not be nil");
     
     // delegate got correct response
@@ -120,7 +120,7 @@
     STAssertTrue([receivedResponse VCR_isIsomorphic:httpResponse],
                  @"Received response should be isomorphic to recorded response");
     
-    NSData *receivedData = self.testDelegate.data;
+    NSData *receivedData = delegate.data;
     STAssertEqualObjects(receivedData, recording.data, @"Received data should equal recorded data");
 }
 
@@ -136,18 +136,38 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://foo"]];
     
     // make and playback request
-    [NSURLConnection connectionWithRequest:request delegate:self.testDelegate];
+    VCRURLConnectionTestDelegate *delegate = [[VCRURLConnectionTestDelegate alloc] init];
+    [NSURLConnection connectionWithRequest:request delegate:delegate];
     
     // wait for request to finish
     [self runCurrentRunLoopUntilTestPasses:^BOOL{
-        return [self.testDelegate isDone];
+        return [delegate isDone];
     } timeout:60 * 60];
     
-    STAssertTrue([self.testDelegate isError], @"Delegate should report error");
+    STAssertNotNil(delegate.error, @"Delegate should report error");
     
-    NSInteger expecteStatusCode = 404;
-    STAssertEquals(self.testDelegate.response.statusCode, expecteStatusCode, @"Should get error status code");
+    NSInteger expectedStatusCode = 404;
+    STAssertEquals(delegate.response.statusCode, expectedStatusCode, @"Should get error status code");
+}
 
+- (void)testErrorIsRecorded {
+    NSURL *url = [NSURL URLWithString:@"http://z/foo"]; // non-existant host
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    STAssertNil([self.cassette recordingForRequest:request], @"Should not have recording for request yet");
+
+    VCRURLConnectionTestDelegate *delegate = [[VCRURLConnectionTestDelegate alloc] init];
+    [NSURLConnection connectionWithRequest:request delegate:delegate];
+    
+    [self runCurrentRunLoopUntilTestPasses:^BOOL{
+        return delegate.error;
+    } timeout:10];
+    
+    STAssertNotNil(delegate.error, @""); // make sure we got an error
+    
+    VCRCassette *cassette = [[VCRCassetteManager defaultManager] currentCassette];
+    VCRRecording *recording = [cassette recordingForRequest:request];
+    STAssertNotNil(recording.error, @"");
 }
 
 @end
@@ -169,8 +189,8 @@
     _done = YES;
 }
 
-- (void)connection:connection didFailWithError:(NSError *)error {
-    _error = YES;
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    _error = error;
 }
 
 
