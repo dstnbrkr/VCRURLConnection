@@ -144,8 +144,6 @@
         return [delegate isDone];
     } timeout:60 * 60];
     
-    STAssertNotNil(delegate.error, @"Delegate should report error");
-    
     NSInteger expectedStatusCode = 404;
     STAssertEquals(delegate.response.statusCode, expectedStatusCode, @"Should get error status code");
 }

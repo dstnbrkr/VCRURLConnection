@@ -106,6 +106,11 @@
         dictionary[@"body"] = self.body;
     }
     
+    NSError *error = self.error;
+    if (error) {
+        dictionary[@"error"] = [VCRError JSONForError:error];
+    }
+    
     VCROrderedMutableDictionary *sortedDict = [VCROrderedMutableDictionary dictionaryWithCapacity:[infoDict count]];
     [[dictionary sortedKeys] enumerateObjectsUsingBlock:^(NSString *key, NSUInteger idx, BOOL *stop) {
         sortedDict[key] = dictionary[key];

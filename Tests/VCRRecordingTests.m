@@ -29,7 +29,6 @@
         @"headers": @{ @"X-Foo": @"foo" },
         @"error": @{ @"code": @(1001),
                      @"domain": @"NSURLConnectionErrorDomain",
-                     @"userInfo": @{ @"aKey": @"aVal" },
                      @"localizedDescription": @"An error occurred" }};
 }
 
@@ -49,6 +48,13 @@
     STAssertEqualObjects(recording.body, [json objectForKey:@"body"], @"");
     
     STAssertEquals(recording.error.code, [json[@"error"][@"code"] integerValue], @"");
+    STAssertTrue([recording.error.userInfo isKindOfClass:[NSDictionary class]], @"");
+}
+
+- (void)testJSON {
+    VCRRecording *recording = [[VCRRecording alloc] initWithJSON:self.json];
+    id json = [recording JSON];
+    STAssertEqualObjects(json, self.json, @"");
 }
 
 - (void)testInitWithJSONBody {

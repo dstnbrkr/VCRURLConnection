@@ -49,12 +49,8 @@ static void VCRURLConnectionPlayback(id self, VCRRecording *recording, id delega
         [delegate connectionDidFinishLoading:self];
     }
     
-    if ((recording.statusCode < 200 || 299 < recording.statusCode) &&
-        [delegate respondsToSelector:@selector(connection:didFailWithError:)]) {
-        
-        // FIXME: store details of NSError in VCRResponse and populate here
-        NSError *error = [[NSError alloc] init];
-        [delegate connection:self didFailWithError:error];
+    if (recording.error && [delegate respondsToSelector:@selector(connection:didFailWithError:)]) {
+        [delegate connection:self didFailWithError:recording.error];
     }
 }
 
