@@ -103,6 +103,8 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     [self loadData:_responseData];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+    [alert show];
 }
 
 #pragma mark - UI Callbacks
