@@ -25,6 +25,7 @@
 
 @interface VCRCassette ()
 
-@property (nonatomic, strong) NSMutableDictionary *responseDictionary;
+@property (nonatomic, strong) NSMutableArray *responseArray;
+@property (nonatomic, strong) NSMutableDictionary *sequenceDictionary;
 
 @end

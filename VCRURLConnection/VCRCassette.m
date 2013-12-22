@@ -39,7 +39,8 @@
 
 - (id)init {
     if ((self = [super init])) {
-        self.responseDictionary = [NSMutableDictionary dictionary];
+        self.responseArray = [NSMutableArray array];
+        self.sequenceDictionary = [NSMutableDictionary dictionary];
     }
     return self;
 }
@@ -64,12 +65,20 @@
 }
 
 - (void)addRecording:(VCRRecording *)recording {
-    VCRRequestKey *key = [VCRRequestKey keyForObject:recording];
-    [self.responseDictionary setObject:recording forKey:key];
+    [self.responseArray addObject:recording];
 }
 
 - (VCRRecording *)recordingForRequestKey:(VCRRequestKey *)key {
-    return [self.responseDictionary objectForKey:key];
+    NSPredicate *keySearch = [NSPredicate predicateWithFormat:@"URI like %@ and method like[c] %@", key.URI, key.method];
+    NSArray *results = [self.responseArray filteredArrayUsingPredicate:keySearch];
+    if (results.count == 0) {
+        return nil;
+    }
+    NSUInteger i = [self getAndIncrementSequenceFor:key];
+    if (i + 1 > results.count) {
+        i = results.count - 1;
+    }
+    return [results objectAtIndex:(results.count - i - 1)]; // get the last one first
 }
 
 - (VCRRecording *)recordingForRequest:(NSURLRequest *)request {
@@ -77,9 +86,19 @@
     return [self recordingForRequestKey:key];
 }
 
+- (NSUInteger)getAndIncrementSequenceFor:(VCRRequestKey *)key {
+    NSNumber *number = [self.sequenceDictionary objectForKey:key];
+    if (number == nil) {
+        number = @0;
+    }
+    NSNumber *nextNumber = [NSNumber numberWithInteger:([number unsignedIntegerValue] + 1)];
+    [self.sequenceDictionary setObject:nextNumber forKey:key];
+    return [number unsignedIntegerValue];
+}
+
 - (id)JSON {
     NSMutableArray *recordings = [NSMutableArray array];
-    for (VCRRecording *recording in self.responseDictionary.allValues) {
+    for (VCRRecording *recording in self.responseArray) {
         [recordings addObject:[recording JSON]];
     }
     return recordings;
@@ -97,11 +116,15 @@
 }
 
 - (BOOL)isEqual:(VCRCassette *)cassette {
-    return [self.responseDictionary isEqual:cassette.responseDictionary];
+    return [self.responseArray isEqual:cassette.responseArray];
 }
 
 - (NSArray *)allKeys {
-    return [self.responseDictionary allKeys];
+    NSMutableArray *keys = [NSMutableArray array];
+    for (VCRRecording *recording in self.responseArray) {
+        [keys addObject:[VCRRequestKey keyForObject:recording]];
+    }
+    return keys;
 }
 
 #pragma mark - Memory
