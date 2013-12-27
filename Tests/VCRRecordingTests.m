@@ -41,20 +41,20 @@
     id json = self.json;
     VCRRecording *recording = [[VCRRecording alloc] initWithJSON:json];
     
-    STAssertEqualObjects(recording.URI, [json objectForKey:@"uri"], @"");
+    XCTAssertEqualObjects(recording.URI, [json objectForKey:@"uri"], @"");
     
-    STAssertEquals(recording.statusCode, [[json objectForKey:@"status"] integerValue], @"");
+    XCTAssertEqual(recording.statusCode, [[json objectForKey:@"status"] integerValue], @"");
     
-    STAssertEqualObjects(recording.body, [json objectForKey:@"body"], @"");
+    XCTAssertEqualObjects(recording.body, [json objectForKey:@"body"], @"");
     
-    STAssertEquals(recording.error.code, [json[@"error"][@"code"] integerValue], @"");
-    STAssertTrue([recording.error.userInfo isKindOfClass:[NSDictionary class]], @"");
+    XCTAssertEqual(recording.error.code, [json[@"error"][@"code"] integerValue], @"");
+    XCTAssertTrue([recording.error.userInfo isKindOfClass:[NSDictionary class]], @"");
 }
 
 - (void)testJSON {
     VCRRecording *recording = [[VCRRecording alloc] initWithJSON:self.json];
     id json = [recording JSON];
-    STAssertEqualObjects(json, self.json, @"");
+    XCTAssertEqualObjects(json, self.json, @"");
 }
 
 - (void)testInitWithJSONBody {
@@ -63,32 +63,32 @@
     VCRRecording *recording = [[VCRRecording alloc] initWithJSON:json];
     
     NSString *expected = @"{\"foo\":\"bar\",\"baz\":\"qux\"}";
-    STAssertEqualObjects(expected, recording.body, @"");
+    XCTAssertEqualObjects(expected, recording.body, @"");
 }
 
 - (void)testIsEqual {
     VCRRecording *recording1 = [[VCRRecording alloc] initWithJSON:self.json];
     VCRRecording *recording2 = [[VCRRecording alloc] initWithJSON:self.json];
-    STAssertEqualObjects(recording1, recording2, @"VCRRecording objects should be equal");
+    XCTAssertEqualObjects(recording1, recording2, @"VCRRecording objects should be equal");
 }
 
 - (void)testGenerateHTTPURLResponse {
     VCRRecording *recording = [[VCRRecording alloc] initWithJSON:self.json];
     NSHTTPURLResponse *response = [recording HTTPURLResponse];
     
-    STAssertEqualObjects([response.URL absoluteString], recording.URI, @"VCRRecording should generate NSURLresponse with URL");
-    STAssertEqualObjects([response allHeaderFields], recording.headerFields, @"VCRRecording should generate NSURLresponse with all header fields");
-    STAssertEquals(response.statusCode, recording.statusCode, @"VCRRecording should generate NSURLresponse with status code");
+    XCTAssertEqualObjects([response.URL absoluteString], recording.URI, @"VCRRecording should generate NSURLresponse with URL");
+    XCTAssertEqualObjects([response allHeaderFields], recording.headerFields, @"VCRRecording should generate NSURLresponse with all header fields");
+    XCTAssertEqual(response.statusCode, recording.statusCode, @"VCRRecording should generate NSURLresponse with status code");
 }
 
 - (void)testIsText {
     VCRRecording *recording = [[VCRRecording alloc] init];
     recording.headerFields = @{ @"Content-Type": @"text/plain" };
-    STAssertTrue([recording isText], @"");
+    XCTAssertTrue([recording isText], @"");
     recording.headerFields = @{ @"Content-Type": @"text/plain; charset=utf-8" };
-    STAssertTrue([recording isText], @"");
+    XCTAssertTrue([recording isText], @"");
     recording.headerFields = @{ @"Content-Type": @"image/png" };
-    STAssertFalse([recording isText], @"");
+    XCTAssertFalse([recording isText], @"");
 }
 
 - (void)testBodyWithImageData {
@@ -97,7 +97,7 @@
     NSURL *imageURL = [NSURL fileURLWithPath:imagePath];
     recording.headerFields = @{ @"Content-Type": @"image/png" };
     recording.data = [NSData dataWithContentsOfURL:imageURL];
-    STAssertTrue(recording.body != nil, @"VCRRecording body should not be nil");
+    XCTAssertTrue(recording.body != nil, @"VCRRecording body should not be nil");
 }
 
 @end

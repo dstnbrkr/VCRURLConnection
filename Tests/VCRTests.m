@@ -46,8 +46,8 @@
     
     [VCR start];
     
-    STAssertFalse(imp1 == method_getImplementation(method1), @"Implementation should be swizzled");
-    STAssertFalse(imp2 == method_getImplementation(method2), @"Implementation should be swizzled");
+    XCTAssertFalse(imp1 == method_getImplementation(method1), @"Implementation should be swizzled");
+    XCTAssertFalse(imp2 == method_getImplementation(method2), @"Implementation should be swizzled");
     
     [VCR stop];
 }
@@ -66,8 +66,8 @@
     
     [VCR stop];
     
-    STAssertFalse(imp1 == method_getImplementation(method1), @"Implementation should be unswizzled");
-    STAssertFalse(imp2 == method_getImplementation(method2), @"Implementation should be unswizzled");
+    XCTAssertFalse(imp1 == method_getImplementation(method1), @"Implementation should be unswizzled");
+    XCTAssertFalse(imp2 == method_getImplementation(method2), @"Implementation should be unswizzled");
 }
 
 - (void)tearDown {

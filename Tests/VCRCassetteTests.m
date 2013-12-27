@@ -50,7 +50,7 @@
 
 - (void)testInit {
     VCRCassette *cassette = [VCRCassette cassette];
-    STAssertNotNil(cassette.responseDictionary, @"Must have response dictionary");
+    XCTAssertNotNil(cassette.responseDictionary, @"Must have response dictionary");
 }
 
 - (void)testInitWithData {
@@ -58,7 +58,7 @@
     NSData *data = [NSJSONSerialization dataWithJSONObject:json options:0 error:nil];
     VCRCassette *expectedCassette = [[VCRCassette alloc] initWithJSON:json];
     VCRCassette *cassette = [[VCRCassette alloc] initWithData:data];
-    STAssertEqualObjects(cassette, expectedCassette, @"");
+    XCTAssertEqualObjects(cassette, expectedCassette, @"");
 }
 
 - (void)testInitWithJSON {
@@ -67,21 +67,21 @@
     VCRRecording *expectedRecording = [[VCRRecording alloc] initWithJSON:self.recording1];
     VCRCassette *cassette = [[VCRCassette alloc] initWithJSON:self.recordings];
     VCRRecording *actualRecording = [cassette recordingForRequest:request];
-    STAssertEqualObjects(actualRecording, expectedRecording, @"Should get expected recording");
+    XCTAssertEqualObjects(actualRecording, expectedRecording, @"Should get expected recording");
 }
 
 - (void)testInitWithNilJSON {
-    STAssertThrows((void) [[VCRCassette alloc] initWithJSON:nil], @"Cannot init with nil json");
+    XCTAssertThrows((void) [[VCRCassette alloc] initWithJSON:nil], @"Cannot init with nil json");
 }
 
 - (void)testInitWithNilData {
-    STAssertThrows((void) [[VCRCassette alloc] initWithData:nil], @"Cannot init with nil data");
+    XCTAssertThrows((void) [[VCRCassette alloc] initWithData:nil], @"Cannot init with nil data");
 }
 
 - (void)testInitWithInvalidData {
     NSString *invalidJSON = @"{";
     NSData *data = [invalidJSON dataUsingEncoding:NSUTF8StringEncoding];
-    STAssertThrows((void) [[VCRCassette alloc] initWithData:data], @"Cannot init with invalid data");
+    XCTAssertThrows((void) [[VCRCassette alloc] initWithData:data], @"Cannot init with invalid data");
 }
 
 // FIXME: test with image data
@@ -89,7 +89,7 @@
 - (void)testIsEqual {
     VCRCassette *cassette1 = [[VCRCassette alloc] initWithJSON:self.recordings];
     VCRCassette *cassette2 = [[VCRCassette alloc] initWithJSON:self.recordings];
-    STAssertEqualObjects(cassette1, cassette2, @"Cassettes should be equal");
+    XCTAssertEqualObjects(cassette1, cassette2, @"Cassettes should be equal");
 }
 
 - (void)testRecordingForRequest {
@@ -101,11 +101,11 @@
     
     VCRCassette *cassette = self.cassette;
     [cassette addRecording:recording];
-    STAssertEqualObjects([cassette recordingForRequest:request], recording, @"");
+    XCTAssertEqualObjects([cassette recordingForRequest:request], recording, @"");
     
     // can retrieve with equivalent mutable request
     NSMutableURLRequest *request1 = [NSMutableURLRequest requestWithURL:url];
-    STAssertEqualObjects([cassette recordingForRequest:request1], recording, @"");
+    XCTAssertEqualObjects([cassette recordingForRequest:request1], recording, @"");
 }
 
 - (void)testKeyOrderingForJson {
@@ -113,13 +113,13 @@
     VCRRecording *recording = [[VCRRecording alloc] initWithJSON:json];
     id result = [recording JSON];
     NSArray *keys = @[@"body", @"headers", @"method", @"status", @"uri"];
-    STAssertEqualObjects([result allKeys], keys, @"Cassette JSON keys should be ordered");
+    XCTAssertEqualObjects([result allKeys], keys, @"Cassette JSON keys should be ordered");
 }
 
 - (void)testData {
     VCRCassette *cassette = [[VCRCassette alloc] initWithJSON:self.recordings];
     NSData *data = [cassette data];
-    STAssertTrue(data != nil && [data length] > 0, @"Did not serialize to data");
+    XCTAssertTrue(data != nil && [data length] > 0, @"Did not serialize to data");
 }
 
 @end

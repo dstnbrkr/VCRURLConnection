@@ -21,7 +21,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "SenTestCase+SRTAdditions.h"
+#import "XCTestCase+SRTAdditions.h"
 #import "VCRURLConnectionTests.h"
 #import "VCRCassetteManager.h"
 #import "VCRCassette.h"
@@ -73,7 +73,7 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
     // request has not been recorded yet
-    STAssertNil([self.cassette recordingForRequest:request], @"Should not have recording for request yet");
+    XCTAssertNil([self.cassette recordingForRequest:request], @"Should not have recording for request yet");
     
     // make and record request
     VCRURLConnectionTestDelegate *delegate = [[VCRURLConnectionTestDelegate alloc] init];
@@ -85,10 +85,10 @@
     } timeout:60 * 60];
     
     VCRRecording *recording = [self.cassette recordingForRequest:request];
-    STAssertNotNil(recording, @"Should have recording");
-    STAssertEqualObjects(recording.URI, [request.URL absoluteString], @"");
-    STAssertNotNil(recording.data, @"Should have recorded response data");
-    STAssertEqualObjects(recording.data, delegate.data, @"Recorded data should equal recorded data");
+    XCTAssertNotNil(recording, @"Should have recording");
+    XCTAssertEqualObjects(recording.URI, [request.URL absoluteString], @"");
+    XCTAssertNotNil(recording.data, @"Should have recorded response data");
+    XCTAssertEqualObjects(recording.data, delegate.data, @"Recorded data should equal recorded data");
 }
 
 - (void)testAsyncGetRequestIsReplayed {
@@ -100,7 +100,7 @@
     
     // cassette has recording for request
     VCRRecording *recording = [cassette recordingForRequest:request];
-    STAssertNotNil(recording, @"Should have recorded response");
+    XCTAssertNotNil(recording, @"Should have recorded response");
 
     // make and playback request
     VCRURLConnectionTestDelegate *delegate = [[VCRURLConnectionTestDelegate alloc] init];
@@ -113,15 +113,15 @@
     
     // delegate got response
     NSHTTPURLResponse *receivedResponse = delegate.response;
-    STAssertNotNil(receivedResponse, @"Response should not be nil");
+    XCTAssertNotNil(receivedResponse, @"Response should not be nil");
     
     // delegate got correct response
     NSHTTPURLResponse *httpResponse = [recording HTTPURLResponse];
-    STAssertTrue([receivedResponse VCR_isIsomorphic:httpResponse],
+    XCTAssertTrue([receivedResponse VCR_isIsomorphic:httpResponse],
                  @"Received response should be isomorphic to recorded response");
     
     NSData *receivedData = delegate.data;
-    STAssertEqualObjects(receivedData, recording.data, @"Received data should equal recorded data");
+    XCTAssertEqualObjects(receivedData, recording.data, @"Received data should equal recorded data");
 }
 
 // FIXME: test with enough data to fire connection:didReceiveData: times (test data appending)
@@ -145,27 +145,27 @@
     } timeout:60 * 60];
     
     NSInteger expectedStatusCode = 404;
-    STAssertEquals(delegate.response.statusCode, expectedStatusCode, @"Should get error status code");
+    XCTAssertEqual(delegate.response.statusCode, expectedStatusCode, @"Should get error status code");
 }
 
 - (void)testErrorIsRecorded {
     NSURL *url = [NSURL URLWithString:@"http://z/foo"]; // non-existant host
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
-    STAssertNil([self.cassette recordingForRequest:request], @"Should not have recording for request yet");
+    XCTAssertNil([self.cassette recordingForRequest:request], @"Should not have recording for request yet");
 
     VCRURLConnectionTestDelegate *delegate = [[VCRURLConnectionTestDelegate alloc] init];
     [NSURLConnection connectionWithRequest:request delegate:delegate];
     
     [self runCurrentRunLoopUntilTestPasses:^BOOL{
-        return delegate.error;
+        return delegate.error != nil;
     } timeout:10];
     
-    STAssertNotNil(delegate.error, @""); // make sure we got an error
+    XCTAssertNotNil(delegate.error, @""); // make sure we got an error
     
     VCRCassette *cassette = [[VCRCassetteManager defaultManager] currentCassette];
     VCRRecording *recording = [cassette recordingForRequest:request];
-    STAssertNotNil(recording.error, @"");
+    XCTAssertNotNil(recording.error, @"");
 }
 
 @end

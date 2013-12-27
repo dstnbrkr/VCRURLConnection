@@ -45,16 +45,16 @@
 }
 
 - (void)testIsEqual {
-    STAssertEqualObjects(self.key1, self.key2, @"Key objects should be equal");
+    XCTAssertEqualObjects(self.key1, self.key2, @"Key objects should be equal");
 }
 
 - (void)testHash {
-    STAssertEquals([self.key1 hash], [self.key2 hash], @"Key hashes should be equal");
+    XCTAssertEqual([self.key1 hash], [self.key2 hash], @"Key hashes should be equal");
 }
 
 - (void)testAsDictionaryKey {
     NSDictionary *dictionary = @{ self.key1: @"Foo" };    
-    STAssertEqualObjects([dictionary objectForKey:self.key2], @"Foo", @"Can lookup with equivalent key");
+    XCTAssertEqualObjects([dictionary objectForKey:self.key2], @"Foo", @"Can lookup with equivalent key");
 }
 
 @end

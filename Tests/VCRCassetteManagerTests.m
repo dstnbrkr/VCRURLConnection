@@ -54,11 +54,11 @@
     NSURL *url = [NSURL fileURLWithPath:path];
     
     NSData *data = [NSData dataWithContentsOfURL:url];
-    STAssertTrue(data != nil, @"Could not load cassette %@", url);
+    XCTAssertTrue(data != nil, @"Could not load cassette %@", url);
     VCRCassette *expectedCassette = [[VCRCassette alloc] initWithData:data];
     [self.manager setCurrentCassetteURL:url];
     
-    STAssertEqualObjects(self.manager.currentCassette, expectedCassette, @"Should set cassette with URL");
+    XCTAssertEqualObjects(self.manager.currentCassette, expectedCassette, @"Should set cassette with URL");
 }
 
 @end

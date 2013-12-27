@@ -16,8 +16,8 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B3B828B1167E9D8500CCEC3C"
-               BuildableName = "Tests-iOS.octest"
+               BlueprintIdentifier = "B317B684186E13B400A7C0AE"
+               BuildableName = "Tests-iOS.xctest"
                BlueprintName = "Tests-iOS"
                ReferencedContainer = "container:VCRURLConnection.xcodeproj">
             </BuildableReference>
