@@ -10,7 +10,6 @@
 		B317B687186E13B400A7C0AE /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B317B686186E13B400A7C0AE /* XCTest.framework */; };
 		B317B689186E13B400A7C0AE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B317B688186E13B400A7C0AE /* Foundation.framework */; };
 		B317B68A186E13B400A7C0AE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3475B8B167EA37B0044511D /* UIKit.framework */; };
-		B317B690186E13B400A7C0AE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B317B68E186E13B400A7C0AE /* InfoPlist.strings */; };
 		B317B699186E13CF00A7C0AE /* VCRCassetteManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B82881167E9B2B00CCEC3C /* VCRCassetteManagerTests.m */; };
 		B317B69A186E13D200A7C0AE /* VCRCassetteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B82883167E9B2B00CCEC3C /* VCRCassetteTests.m */; };
 		B317B69B186E13D500A7C0AE /* VCRRecordingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B3475BB8167F12620044511D /* VCRRecordingTests.m */; };
@@ -78,8 +77,6 @@
 		B317B686186E13B400A7C0AE /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		B317B688186E13B400A7C0AE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		B317B68D186E13B400A7C0AE /* Tests-iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-iOS-Info.plist"; sourceTree = "<group>"; };
-		B317B68F186E13B400A7C0AE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B317B693186E13B400A7C0AE /* Tests-iOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-iOS-Prefix.pch"; sourceTree = "<group>"; };
 		B3475B53167EA0680044511D /* Example-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Example-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3475B5B167EA0680044511D /* Example-iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Example-iOS-Info.plist"; sourceTree = "<group>"; };
 		B3475B5D167EA0680044511D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -186,8 +183,6 @@
 			isa = PBXGroup;
 			children = (
 				B317B68D186E13B400A7C0AE /* Tests-iOS-Info.plist */,
-				B317B68E186E13B400A7C0AE /* InfoPlist.strings */,
-				B317B693186E13B400A7C0AE /* Tests-iOS-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -436,7 +431,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B317B690186E13B400A7C0AE /* InfoPlist.strings in Resources */,
 				B317B69F186E13E200A7C0AE /* cassette-1.json in Resources */,
 				B317B6A0186E13E500A7C0AE /* test.png in Resources */,
 			);
@@ -555,14 +549,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		B317B68E186E13B400A7C0AE /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B317B68F186E13B400A7C0AE /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 		B3475B5C167EA0680044511D /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -602,7 +588,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Tests-iOS/Tests-iOS-Prefix.pch";
+				GCC_PREFIX_HEADER = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -647,7 +633,7 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Tests-iOS/Tests-iOS-Prefix.pch";
+				GCC_PREFIX_HEADER = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
