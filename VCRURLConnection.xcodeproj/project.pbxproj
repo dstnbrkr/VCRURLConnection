@@ -174,33 +174,17 @@
 		B317B68B186E13B400A7C0AE /* Tests-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				B317B68C186E13B400A7C0AE /* Supporting Files */,
-			);
-			path = "Tests-iOS";
-			sourceTree = "<group>";
-		};
-		B317B68C186E13B400A7C0AE /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
 				B317B68D186E13B400A7C0AE /* Tests-iOS-Info.plist */,
 			);
-			name = "Supporting Files";
+			path = "Tests-iOS";
 			sourceTree = "<group>";
 		};
 		B317B6B1186E1A0100A7C0AE /* Tests-OSX */ = {
 			isa = PBXGroup;
 			children = (
-				B317B6B2186E1A0100A7C0AE /* Supporting Files */,
-			);
-			path = "Tests-OSX";
-			sourceTree = "<group>";
-		};
-		B317B6B2186E1A0100A7C0AE /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
 				B317B6B3186E1A0100A7C0AE /* Tests-OSX-Info.plist */,
 			);
-			name = "Supporting Files";
+			path = "Tests-OSX";
 			sourceTree = "<group>";
 		};
 		B3475B59167EA0680044511D /* Example-iOS */ = {
