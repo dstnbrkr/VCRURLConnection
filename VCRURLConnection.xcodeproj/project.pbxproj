@@ -29,7 +29,6 @@
 		B317B6A9186E180900A7C0AE /* VCRError.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FCE5061863F2D3009C0E12 /* VCRError.m */; };
 		B317B6AA186E180900A7C0AE /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BB2516167F241E00C5E3C6 /* NSData+Base64.m */; };
 		B317B6B0186E1A0100A7C0AE /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B317B686186E13B400A7C0AE /* XCTest.framework */; };
-		B317B6B6186E1A0100A7C0AE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B317B6B4186E1A0100A7C0AE /* InfoPlist.strings */; };
 		B317B6BD186E1A5100A7C0AE /* VCR.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B82897167E9B6800CCEC3C /* VCR.m */; };
 		B317B6BE186E1A5100A7C0AE /* VCRCassette.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B8289A167E9B6800CCEC3C /* VCRCassette.m */; };
 		B317B6BF186E1A5100A7C0AE /* VCRCassetteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B8289C167E9B6800CCEC3C /* VCRCassetteManager.m */; };
@@ -80,8 +79,6 @@
 		B317B68D186E13B400A7C0AE /* Tests-iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-iOS-Info.plist"; sourceTree = "<group>"; };
 		B317B6AF186E1A0100A7C0AE /* Tests-OSX.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests-OSX.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B317B6B3186E1A0100A7C0AE /* Tests-OSX-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-OSX-Info.plist"; sourceTree = "<group>"; };
-		B317B6B5186E1A0100A7C0AE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B317B6B9186E1A0100A7C0AE /* Tests-OSX-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-OSX-Prefix.pch"; sourceTree = "<group>"; };
 		B3475B53167EA0680044511D /* Example-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Example-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3475B5B167EA0680044511D /* Example-iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Example-iOS-Info.plist"; sourceTree = "<group>"; };
 		B3475B5D167EA0680044511D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -202,8 +199,6 @@
 			isa = PBXGroup;
 			children = (
 				B317B6B3186E1A0100A7C0AE /* Tests-OSX-Info.plist */,
-				B317B6B4186E1A0100A7C0AE /* InfoPlist.strings */,
-				B317B6B9186E1A0100A7C0AE /* Tests-OSX-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -455,7 +450,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B317B6B6186E1A0100A7C0AE /* InfoPlist.strings in Resources */,
 				B317B6CC186E1A5E00A7C0AE /* cassette-1.json in Resources */,
 				B317B6CD186E1A5E00A7C0AE /* test.png in Resources */,
 			);
@@ -549,14 +543,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		B317B6B4186E1A0100A7C0AE /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B317B6B5186E1A0100A7C0AE /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 		B3475B5C167EA0680044511D /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -685,7 +671,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Tests-OSX/Tests-OSX-Prefix.pch";
+				GCC_PREFIX_HEADER = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -730,7 +716,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Tests-OSX/Tests-OSX-Prefix.pch";
+				GCC_PREFIX_HEADER = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
