@@ -36,7 +36,9 @@
 
 - (void)testStart {
     
-    Class clazz = [NSURLConnection class];
+    Class clazz;
+    
+    clazz = [NSURLConnection class];
     
     Method method1 = class_getInstanceMethod(clazz, @selector(initWithRequest:delegate:startImmediately:));
     IMP imp1 = method_getImplementation(method1);
@@ -44,10 +46,16 @@
     Method method2 = class_getInstanceMethod(clazz, @selector(initWithRequest:delegate:));
     IMP imp2 = method_getImplementation(method2);
     
+    clazz = [NSURLSession class];
+    
+    Method method3 = class_getClassMethod(clazz, @selector(sessionWithConfiguration:delegate:delegateQueue:));
+    IMP imp3 = method_getImplementation(method3);
+    
     [VCR start];
     
     XCTAssertFalse(imp1 == method_getImplementation(method1), @"Implementation should be swizzled");
     XCTAssertFalse(imp2 == method_getImplementation(method2), @"Implementation should be swizzled");
+    XCTAssertFalse(imp3 == method_getImplementation(method3), @"Implementation should be swizzled");
     
     [VCR stop];
 }

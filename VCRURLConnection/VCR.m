@@ -25,6 +25,7 @@
 #import "VCRCassette.h"
 #import "VCRCassetteManager.h"
 #import "VCRConnectionDelegate.h"
+#import "VCRURLConnection+NSURLSession.m"
 #import <objc/runtime.h>
 
 @implementation VCR
@@ -79,20 +80,28 @@ static id VCR_initWithRequest2(id self, SEL _cmd, NSURLRequest *request, id<NSUR
     return VCR_initWithRequest1(self, _cmd, request, delegate, YES);
 }
 
-static BOOL VCRIsSwizzled(SEL selector, IMP impl) {
-    Method method = class_getInstanceMethod([NSURLConnection class], selector);
+static IMP VCRSwizzleMethod(Class clazz, Method method, SEL selector, IMP newImpl) {
+    return method_setImplementation(method, newImpl);
+}
+
+static IMP VCRSwizzleInstanceMethod(Class clazz, SEL selector, IMP newImpl) {
+    Method method = class_getInstanceMethod(clazz, selector);
+    return VCRSwizzleMethod(clazz, method, selector, newImpl);
+}
+
+static IMP VCRSwizzleClassMethod(Class clazz, SEL selector, IMP newImpl) {
+    Method method = class_getClassMethod(clazz, selector);
+    return VCRSwizzleMethod(clazz, method, selector, newImpl);
+}
+
+static BOOL VCRIsInstanceMethodSwizzled(Class clazz, SEL selector, IMP impl) {
+    Method method = class_getInstanceMethod(clazz, selector);
     return method_getImplementation(method) == impl;
 }
 
-static IMP VCRSwizzle(SEL selector, IMP newImpl) {
-    Class clazz = [NSURLConnection class];
-    
-    Method method = class_getInstanceMethod(clazz, selector);
-    IMP originalImpl = method_getImplementation(method);
-    
-    class_replaceMethod(clazz, selector, (IMP)newImpl, method_getTypeEncoding(method));
-    
-    return originalImpl;
+static BOOL VCRIsClassMethodSwizzled(Class clazz, SEL selector, IMP impl) {
+    Method method = class_getClassMethod(clazz, selector);
+    return method_getImplementation(method) == impl;
 }
 
 + (void)loadCassetteWithContentsOfURL:(NSURL *)url {
@@ -106,22 +115,36 @@ static IMP VCRSwizzle(SEL selector, IMP newImpl) {
 + (void)start {
     SEL sel1 = @selector(initWithRequest:delegate:startImmediately:);
     SEL sel2 = @selector(initWithRequest:delegate:);
+    SEL sel3 = @selector(sessionWithConfiguration:delegate:delegateQueue:);
     
     IMP imp1 = (IMP)VCR_initWithRequest1;
     IMP imp2 = (IMP)VCR_initWithRequest2;
+    URLSessionConstructor1 imp3 = VCR_sessionWithConfigurationAndDelegateAndDelegateQueue;
+    
+    Class URLConnectionClass = [NSURLConnection class];
+    Class URLSessionClass = object_getClass([NSURLSession class]);
 
-    if (!VCRIsSwizzled(sel1, imp1)) {
-        orig_initWithRequest1 = (URLConnectionInitializer1)VCRSwizzle(sel1, imp1);
+    if (!VCRIsInstanceMethodSwizzled(URLConnectionClass, sel1, imp1)) {
+        orig_initWithRequest1 = (URLConnectionInitializer1)VCRSwizzleInstanceMethod(URLConnectionClass, sel1, imp1);
     }
     
-    if (!VCRIsSwizzled(sel2, imp2)) {
-        orig_initWithRequest2 = (URLConnectionInitializer2)VCRSwizzle(sel2, imp2);
+    if (!VCRIsInstanceMethodSwizzled(URLConnectionClass, sel2, imp2)) {
+        orig_initWithRequest2 = (URLConnectionInitializer2)VCRSwizzleInstanceMethod(URLConnectionClass, sel2, imp2);
+    }
+        
+    Method method = class_getClassMethod(URLSessionClass, sel3);
+    if (method_getImplementation(method) != (IMP)imp3) {
+        orig_sessionWithConfigurationAndDelegateAndDelegateQueue = (URLSessionConstructor1)method_setImplementation(method, (IMP)imp3);
     }
 }
 
 + (void)stop {
-    VCRSwizzle(@selector(initWithRequest:delegate:startImmediately:), (IMP)orig_initWithRequest1);
-    VCRSwizzle(@selector(initWithRequest:delegate:), (IMP)orig_initWithRequest2);
+    Class URLConnectionClass = [NSURLConnection class];
+    Class URLSessionClass = [NSURLSession class];
+    
+    VCRSwizzleInstanceMethod(URLConnectionClass, @selector(initWithRequest:delegate:startImmediately:), (IMP)orig_initWithRequest1);
+    VCRSwizzleInstanceMethod(URLConnectionClass, @selector(initWithRequest:delegate:), (IMP)orig_initWithRequest2);
+    VCRSwizzleClassMethod(URLSessionClass, @selector(sessionWithConfiguration:delegate:delegateQueue:), (IMP)orig_sessionWithConfigurationAndDelegateAndDelegateQueue);
 }
 
 + (void)save:(NSString *)path {
