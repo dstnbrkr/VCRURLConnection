@@ -9,6 +9,9 @@
 #import <XCTest/XCTest.h>
 #import "VCRConnectionDelegate.h"
 #import "VCRURLConnectionTestDelegate.h"
+#import "VCR.h"
+#import "VCRCassette.h"
+#import "VCRRequestKey.h"
 
 @interface VCRURLConnectionDelegateTests : XCTestCase
 @property (nonatomic, strong) VCRRecording *recording;
@@ -19,7 +22,10 @@
 @implementation VCRURLConnectionDelegateTests
 
 - (void)setUp {
-    self.recording = [[VCRRecording alloc] init];
+    VCRRecording *recording = [[VCRRecording alloc] init];
+    recording.method =
+    recording.URI = @"http://example.com";
+    self.recording = recording;
     self.innerDelegate = [[VCRURLConnectionTestDelegate alloc] init];
     self.outerDelegate = [[VCRConnectionDelegate alloc] initWithDelegate:self.innerDelegate recording:self.recording];
 }
@@ -35,7 +41,7 @@
     XCTAssertEqualObjects(self.recording.headerFields, headers, @"");
     
     // ensure response is forwarded
-    XCTAssertEqual(self.innerDelegate.response, response, @"");
+    XCTAssertEqual(self.innerDelegate.response, response, @"Expected connection:didReceiveResponse: to be forwarded to inner delegate");
 }
 
 // - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
@@ -52,7 +58,7 @@
     XCTAssertEqualObjects(self.recording.data, data, @"");
     
     // ensure response is forwarded
-    XCTAssertEqualObjects(self.innerDelegate.data, data, @"");
+    XCTAssertEqualObjects(self.innerDelegate.data, data, @"Expected connection:didReceiveData: to be forwarded to inner delegate");
 }
 
 - (void)testConnectionDidReceiveAndAppendData {
@@ -69,12 +75,22 @@
     XCTAssertEqualObjects(self.recording.data, data, @"");
     
     // ensure response is forwarded
-    XCTAssertEqualObjects(self.innerDelegate.data, data, @"");
+    XCTAssertEqualObjects(self.innerDelegate.data, data, @"Expected connection:didReceiveData: to be forwarded to inner delegate");
 }
 
 // - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
 // test that recording is finalized
 // test that call is forwarded
+- (void)testConnectionDidFinishLoading {
+    VCRRequestKey *key = [VCRRequestKey keyForObject:self.recording];
+
+    XCTAssertNil([[VCR cassette] recordingForRequestKey:key], @"Should not have recording yet");
+    
+    [self.outerDelegate connectionDidFinishLoading:nil];
+
+    XCTAssertNotNil([[VCR cassette] recordingForRequestKey:key], @"Should now have recording");
+    XCTAssert(self.innerDelegate.done, @"Expected connectionDidFinishLoading: to be forwarded to inner delegate");
+}
 
 //- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
 // test that error is stored
