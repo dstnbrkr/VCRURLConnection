@@ -27,23 +27,14 @@
 
 
 @interface VCRCassetteManagerTests ()
-@property (nonatomic, strong) VCRCassetteManager *manager;
 @end
 
 
 @implementation VCRCassetteManagerTests
 
-- (void)setUp {
-    [super setUp];
-    self.manager = [[VCRCassetteManager alloc] init];
-}
-
-- (void)tearDown {
-    self.manager = nil;
-    [super tearDown];
-}
-
 - (void)testSetCurrentCassetteWithURL {
+    
+    VCRCassetteManager *manager = [[VCRCassetteManager alloc] init];
 
 #if TARGET_OS_IPHONE
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"cassette-1" ofType:@"json"];
@@ -56,9 +47,9 @@
     NSData *data = [NSData dataWithContentsOfURL:url];
     XCTAssertTrue(data != nil, @"Could not load cassette %@", url);
     VCRCassette *expectedCassette = [[VCRCassette alloc] initWithData:data];
-    [self.manager setCurrentCassetteURL:url];
+    [manager setCurrentCassetteURL:url];
     
-    XCTAssertEqualObjects(self.manager.currentCassette, expectedCassette, @"Should set cassette with URL");
+    XCTAssertEqualObjects(manager.currentCassette, expectedCassette, @"Should set cassette with URL");
 }
 
 @end
