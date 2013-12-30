@@ -14,7 +14,8 @@
 
 @interface VCRURLSessionDelegate : NSObject<NSURLSessionDelegate, NSURLSessionDataDelegate>
 
-- (id)initWithDelegate:(id<NSURLSessionDelegate>)delegate recording:(VCRRecording *)recording;
+- (id)initWithDelegate:(id<NSURLSessionDelegate>)delegate;
+- (VCRRecording *)recordingForRequest:(NSURLRequest *)request;
 
 @end
 

@@ -39,8 +39,8 @@ NSURLSession *VCR_URLSessionConstructor(id self,
                                         id<NSURLSessionDelegate> delegate,
                                         NSOperationQueue *delegateQueue) {
     
-    //VCRURLSessionDelegate *wrappedDelegate = [[VCRURLSessionDelegate alloc] init];
-    return orig_URLSessionConstructor(self, _cmd, configuration, delegate, delegateQueue);
+    VCRURLSessionDelegate *wrappedDelegate = [[VCRURLSessionDelegate alloc] initWithDelegate:delegate];
+    return orig_URLSessionConstructor(self, _cmd, configuration, wrappedDelegate, delegateQueue);
 }
 
 Method VCRGetURLSessionConstructorMethod() {

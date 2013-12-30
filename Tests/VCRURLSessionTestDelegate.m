@@ -11,7 +11,9 @@
 
 #import "VCRURLSessionTestDelegate.h"
 
-@interface VCRURLSessionTestDelegate ()
+@interface VCRURLSessionTestDelegate () {
+    BOOL _done;
+}
 @property (nonatomic, strong, readwrite) NSHTTPURLResponse *response;
 @property (nonatomic, strong, readwrite) NSData *data;
 @end
@@ -30,6 +32,14 @@ didReceiveResponse:(NSURLResponse *)response
     NSMutableData *currentData = [NSMutableData dataWithData:self.data];
     [currentData appendData:data];
     self.data = currentData;
+}
+
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error {
+    _done = YES;
+}
+
+- (BOOL)isDone {
+    return _done;
 }
 
 @end

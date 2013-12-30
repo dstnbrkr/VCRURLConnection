@@ -14,10 +14,16 @@
 #import "VCRURLSessionTestDelegate.h"
 #import "VCRRecording.h"
 
+@interface VCRMockDataTask : NSURLSessionDataTask
+@property (nonatomic, strong, readwrite) NSURLRequest *currentRequest;
+@end
+
 @interface VCRURLSessionDelegateTests : XCTestCase
-@property (nonatomic, strong) VCRRecording *recording;
+@property (nonatomic, strong) VCRMockDataTask *task;
+@property (nonatomic, strong) NSURLRequest *request;
 @property (nonatomic, strong) VCRURLSessionTestDelegate *innerDelegate;
 @property (nonatomic, strong) VCRURLSessionDelegate *outerDelegate;
+@property (nonatomic, strong) VCRRecording *recording;
 @end
 
 @implementation VCRURLSessionDelegateTests
@@ -25,19 +31,22 @@
 - (void)setUp
 {
     [super setUp];
-    VCRRecording *recording = [[VCRRecording alloc] init];
-    recording.method =
-    recording.URI = @"http://example.com";
-    self.recording = recording;
+    self.request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://foo.com"]];
+    self.task = [[VCRMockDataTask alloc] init];
+    self.task.currentRequest = self.request;
     self.innerDelegate = [[VCRURLSessionTestDelegate alloc] init];
-    self.outerDelegate = [[VCRURLSessionDelegate alloc] initWithDelegate:self.innerDelegate recording:self.recording];
+    self.outerDelegate = [[VCRURLSessionDelegate alloc] initWithDelegate:self.innerDelegate];
+    self.recording = [self.outerDelegate recordingForRequest:self.request];
 }
 
 - (void)testSessionDidReceiveResponse {
     XCTAssertTrue(!self.innerDelegate.response, @"");
+    
+    // set up response
     NSDictionary *headers = @{ @"X-Test-Key" : @"X-Test-Value" };
     NSHTTPURLResponse *response = [[NSHTTPURLResponse alloc] initWithURL:nil statusCode:0 HTTPVersion:@"HTTP/1.1" headerFields:headers];
-    [self.outerDelegate URLSession:nil dataTask:nil didReceiveResponse:response completionHandler:nil];
+
+    [self.outerDelegate URLSession:nil dataTask:self.task didReceiveResponse:response completionHandler:nil];
     
     // ensure headers are copied
     XCTAssertNotEqual(self.recording.headerFields, headers, @"");
@@ -51,9 +60,9 @@
     XCTAssertTrue(!self.innerDelegate.data, @"");
     const char bytes[] = { 0xC, 0xA, 0xF, 0xE };
     NSMutableData *data = [NSMutableData dataWithBytes:&bytes length:4];
-    [self.outerDelegate URLSession:nil dataTask:nil didReceiveData:data];
+    [self.outerDelegate URLSession:nil dataTask:self.task didReceiveData:data];
     
-    // ensure data is copied
+    // ensure data is copiedu
     XCTAssertNotEqual(self.recording.data, data, @"");
     XCTAssertEqualObjects(self.recording.data, data, @"");
     
@@ -61,6 +70,9 @@
     XCTAssertEqualObjects(self.innerDelegate.data, data, @"Expected connection:didReceiveData: to be forwarded to inner delegate");
 }
 
+@end
+
+@implementation VCRMockDataTask
 @end
 
 #endif

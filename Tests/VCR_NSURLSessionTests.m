@@ -11,6 +11,8 @@
 
 #import <XCTest/XCTest.h>
 #import "VCR+NSURLSession.h"
+#import "VCRURLSessionTestDelegate.h"
+#import "XCTestCase+VCR.h"
 #import <objc/objc-runtime.h>
 
 @interface VCR_NSURLSessionTests : XCTestCase
@@ -18,6 +20,13 @@
 @end
 
 @implementation VCR_NSURLSessionTests
+
+- (NSURLSession *)defaultSession
+{
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
+    return session;
+}
 
 - (Method)constructorMethod {
     Class clazz = object_getClass(NSClassFromString(@"NSURLSession"));
@@ -33,6 +42,18 @@
     VCRUnswizzleNSURLSession();
     XCTAssertNotEqual(method_getImplementation([self constructorMethod]), (IMP)VCR_URLSessionConstructor, @"");
 }
+/*
+- (void)testResponseIsRecorded {
+    [self testRecordResponseForRequestBlock:^id<VCRTestDelegate>(NSURLRequest *request) {
+        VCRURLSessionTestDelegate *delegate = [[VCRURLSessionTestDelegate alloc] init];
+        NSURLSession *session = [self defaultSession];
+        NSURLSessionDataTask *task = [session dataTaskWithRequest:request
+                                                completionHandler:nil];
+        [task resume];
+        return delegate;
+    }];
+}
+*/
 
 @end
 
