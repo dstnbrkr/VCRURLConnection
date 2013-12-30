@@ -45,6 +45,9 @@
 		B317B6CC186E1A5E00A7C0AE /* cassette-1.json in Resources */ = {isa = PBXBuildFile; fileRef = B3B8287D167E9B2B00CCEC3C /* cassette-1.json */; };
 		B317B6CD186E1A5E00A7C0AE /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = B3475B8D167EBF8F0044511D /* test.png */; };
 		B317B6CE186E1A5E00A7C0AE /* XCTestCase+SRTAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BB2512167F23EC00C5E3C6 /* XCTestCase+SRTAdditions.m */; };
+		B31F56FC1870FD1D00743269 /* VCR+NSURLSession.m in Sources */ = {isa = PBXBuildFile; fileRef = B31F56FB1870FD1D00743269 /* VCR+NSURLSession.m */; };
+		B31F56FD1870FD1D00743269 /* VCR+NSURLSession.m in Sources */ = {isa = PBXBuildFile; fileRef = B31F56FB1870FD1D00743269 /* VCR+NSURLSession.m */; };
+		B31F56FE1870FD1D00743269 /* VCR+NSURLSession.m in Sources */ = {isa = PBXBuildFile; fileRef = B31F56FB1870FD1D00743269 /* VCR+NSURLSession.m */; };
 		B3475B5E167EA0680044511D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B3475B5C167EA0680044511D /* InfoPlist.strings */; };
 		B3475B60167EA0680044511D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B3475B5F167EA0680044511D /* main.m */; };
 		B3475B72167EA0C30044511D /* VCRAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B3475B69167EA0C30044511D /* VCRAppDelegate.m */; };
@@ -84,6 +87,8 @@
 		B317B68D186E13B400A7C0AE /* Tests-iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-iOS-Info.plist"; sourceTree = "<group>"; };
 		B317B6AF186E1A0100A7C0AE /* Tests-OSX.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests-OSX.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B317B6B3186E1A0100A7C0AE /* Tests-OSX-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-OSX-Info.plist"; sourceTree = "<group>"; };
+		B31F56FA1870FD1D00743269 /* VCR+NSURLSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "VCR+NSURLSession.h"; path = "VCRURLConnection/VCR+NSURLSession.h"; sourceTree = "<group>"; };
+		B31F56FB1870FD1D00743269 /* VCR+NSURLSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "VCR+NSURLSession.m"; path = "VCRURLConnection/VCR+NSURLSession.m"; sourceTree = "<group>"; };
 		B3475B53167EA0680044511D /* Example-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Example-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3475B5B167EA0680044511D /* Example-iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Example-iOS-Info.plist"; sourceTree = "<group>"; };
 		B3475B5D167EA0680044511D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -113,7 +118,6 @@
 		B3B2FF2F186E1FEF00AF41E2 /* VCRURLConnection_NSURLSessionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VCRURLConnection_NSURLSessionTests.m; path = Tests/VCRURLConnection_NSURLSessionTests.m; sourceTree = "<group>"; };
 		B3B2FF32186E207F00AF41E2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		B3B2FF34186E22E100AF41E2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		B3B2FF37186E26E100AF41E2 /* VCRURLConnection+NSURLSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "VCRURLConnection+NSURLSession.m"; path = "VCRURLConnection/VCRURLConnection+NSURLSession.m"; sourceTree = "<group>"; };
 		B3B2FF3B186E28CD00AF41E2 /* VCRURLSessionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VCRURLSessionDelegate.h; path = VCRURLConnection/VCRURLSessionDelegate.h; sourceTree = "<group>"; };
 		B3B2FF3C186E28CD00AF41E2 /* VCRURLSessionDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VCRURLSessionDelegate.m; path = VCRURLConnection/VCRURLSessionDelegate.m; sourceTree = "<group>"; };
 		B3B82867167E9A6500CCEC3C /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -250,7 +254,8 @@
 			children = (
 				B3B82896167E9B6800CCEC3C /* VCR.h */,
 				B3B82897167E9B6800CCEC3C /* VCR.m */,
-				B3B2FF37186E26E100AF41E2 /* VCRURLConnection+NSURLSession.m */,
+				B31F56FA1870FD1D00743269 /* VCR+NSURLSession.h */,
+				B31F56FB1870FD1D00743269 /* VCR+NSURLSession.m */,
 				B3B2FF3B186E28CD00AF41E2 /* VCRURLSessionDelegate.h */,
 				B3B2FF3C186E28CD00AF41E2 /* VCRURLSessionDelegate.m */,
 				B3B82899167E9B6800CCEC3C /* VCRCassette.h */,
@@ -492,6 +497,7 @@
 				B317B69E186E13DD00A7C0AE /* VCRURLConnectionTests.m in Sources */,
 				B317B6A9186E180900A7C0AE /* VCRError.m in Sources */,
 				B317B69D186E13DA00A7C0AE /* VCRTests.m in Sources */,
+				B31F56FD1870FD1D00743269 /* VCR+NSURLSession.m in Sources */,
 				B317B6A8186E180900A7C0AE /* VCRRequestKey.m in Sources */,
 				B317B69C186E13D800A7C0AE /* VCRRequestKeyTests.m in Sources */,
 				B317B699186E13CF00A7C0AE /* VCRCassetteManagerTests.m in Sources */,
@@ -517,6 +523,7 @@
 				B317B6C4186E1A5100A7C0AE /* VCRError.m in Sources */,
 				B317B6C9186E1A5E00A7C0AE /* VCRRequestKeyTests.m in Sources */,
 				B317B6BD186E1A5100A7C0AE /* VCR.m in Sources */,
+				B31F56FE1870FD1D00743269 /* VCR+NSURLSession.m in Sources */,
 				B317B6C5186E1A5100A7C0AE /* NSData+Base64.m in Sources */,
 				B317B6C0186E1A5100A7C0AE /* VCRConnectionDelegate.m in Sources */,
 				B317B6CE186E1A5E00A7C0AE /* XCTestCase+SRTAdditions.m in Sources */,
@@ -539,6 +546,7 @@
 				B3475B7C167EA1080044511D /* VCRConnectionDelegate.m in Sources */,
 				B3475B7D167EA1080044511D /* VCRRequestKey.m in Sources */,
 				B3FCE5091863F2D3009C0E12 /* VCRError.m in Sources */,
+				B31F56FC1870FD1D00743269 /* VCR+NSURLSession.m in Sources */,
 				B3475BB1167EFFA80044511D /* VCRRecording.m in Sources */,
 				B3BB2519167F241E00C5E3C6 /* NSData+Base64.m in Sources */,
 				C393569B17B5DA460025DC53 /* VCROrderedMutableDictionary.m in Sources */,
