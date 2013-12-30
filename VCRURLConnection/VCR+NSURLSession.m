@@ -21,6 +21,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+#if (defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000) || (defined(__MAC_OS_X_VERSION_MAX_ALLOWED) && __MAC_OS_X_VERSION_MAX_ALLOWED >= 1090)
+
 #import "VCR+NSURLSession.h"
 #import "VCRURLSessionDelegate.h"
 #import <Foundation/Foundation.h>
@@ -41,7 +43,7 @@ NSURLSession *VCR_URLSessionConstructor(id self,
 }
 
 Method VCRGetURLSessionConstructorMethod() {
-    Class clazz = object_getClass([NSURLSession class]);
+    Class clazz = object_getClass(NSClassFromString(@"NSURLSession"));
     SEL selector = @selector(sessionWithConfiguration:delegate:delegateQueue:);
     return class_getClassMethod(clazz, selector);
 }
@@ -64,3 +66,13 @@ void VCRUnswizzleNSURLSession() {
 }
 
 @end
+
+#else
+
+void VCRSwizzleNSURLSession() {
+}
+
+void VCRUnswizzleNSURLSession() {
+}
+
+#endif
