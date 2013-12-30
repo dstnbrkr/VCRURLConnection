@@ -57,7 +57,7 @@ static void VCRURLConnectionPlayback(id self, VCRRecording *recording, id delega
     }
 }
 
-static id VCR_URLConnectionInitializer1(id self, SEL _cmd, NSURLRequest *request, id<NSURLConnectionDataDelegate> delegate, BOOL startImmediately) {
+id VCR_URLConnectionInitializer1(id self, SEL _cmd, NSURLRequest *request, id<NSURLConnectionDataDelegate> delegate, BOOL startImmediately) {
     VCRCassette *cassette = [[VCRCassetteManager defaultManager] currentCassette];
     VCRRecording *recording = [cassette recordingForRequest:request];
     if (recording) {
@@ -78,7 +78,7 @@ static id VCR_URLConnectionInitializer1(id self, SEL _cmd, NSURLRequest *request
     return self;
 }
 
-static id VCR_URLConnectionInitializer2(id self, SEL _cmd, NSURLRequest *request, id<NSURLConnectionDataDelegate> delegate) {
+id VCR_URLConnectionInitializer2(id self, SEL _cmd, NSURLRequest *request, id<NSURLConnectionDataDelegate> delegate) {
     return VCR_URLConnectionInitializer1(self, _cmd, request, delegate, YES);
 }
 

@@ -28,4 +28,7 @@
 void VCRSwizzleNSURLConnection();
 void VCRUnswizzleNSURLConnection();
 
+id VCR_URLConnectionInitializer1(id self, SEL _cmd, NSURLRequest *request, id<NSURLConnectionDataDelegate> delegate, BOOL startImmediately);
+id VCR_URLConnectionInitializer2(id self, SEL _cmd, NSURLRequest *request, id<NSURLConnectionDataDelegate> delegate);
+
 @end
