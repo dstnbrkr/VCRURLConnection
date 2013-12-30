@@ -36,7 +36,7 @@
 @property (nonatomic, strong) NSData *data;
 @property (weak, nonatomic, readonly) NSString *body;
 @property (nonatomic, strong) NSDictionary *headerFields;
-@property (nonatomic, strong) NSError *error;
+@property (nonatomic, copy) NSError *error;
 @property (assign) NSInteger statusCode;
 
 @end
