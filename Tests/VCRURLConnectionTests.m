@@ -21,11 +21,12 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "XCTestCase+SRTAdditions.h"
 #import "VCRURLConnectionTests.h"
+#import "VCRURLConnectionTestDelegate.h"
 #import "VCRCassetteManager.h"
 #import "VCRCassette.h"
 #import "VCR.h"
+#import "XCTestCase+SRTAdditions.h"
 
 
 @interface NSHTTPURLResponse (VCRConnectionTests)
@@ -39,14 +40,6 @@
     return [self.URL isEqual:response.URL];
 }
 
-@end
-
-
-@interface VCRURLConnectionTestDelegate : NSObject<NSURLConnectionDelegate>
-@property (nonatomic, strong) NSHTTPURLResponse *response;
-@property (nonatomic, strong) NSData *data;
-@property (assign, getter = isDone) BOOL done;
-@property (nonatomic, strong) NSError *error;
 @end
 
 
@@ -170,26 +163,3 @@
 
 @end
 
-
-@implementation VCRURLConnectionTestDelegate
-
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSHTTPURLResponse *)response {
-    self.response = response;
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    NSMutableData *currentData = [NSMutableData dataWithData:self.data];
-    [currentData appendData:data];
-    self.data = currentData;
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    _done = YES;
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    _error = error;
-}
-
-
-@end

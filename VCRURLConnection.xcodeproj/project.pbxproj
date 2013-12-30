@@ -55,6 +55,11 @@
 		B31F57061871109000743269 /* VCR_NSURLConnectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B31F57041871109000743269 /* VCR_NSURLConnectionTests.m */; };
 		B32B69AE187116A200098AAA /* VCR_NSURLSessionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B32B69AD187116A200098AAA /* VCR_NSURLSessionTests.m */; };
 		B32B69AF187116A200098AAA /* VCR_NSURLSessionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B32B69AD187116A200098AAA /* VCR_NSURLSessionTests.m */; };
+		B32B69B618711CD300098AAA /* VCRURLConnectionDelegateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B32B69B518711CD300098AAA /* VCRURLConnectionDelegateTests.m */; };
+		B32B69B718711CD300098AAA /* VCRURLConnectionDelegateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B32B69B518711CD300098AAA /* VCRURLConnectionDelegateTests.m */; };
+		B32B69BA18711E6600098AAA /* VCRURLConnectionTestDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B32B69B918711E6600098AAA /* VCRURLConnectionTestDelegate.m */; };
+		B32B69BB18711E6600098AAA /* VCRURLConnectionTestDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B32B69B918711E6600098AAA /* VCRURLConnectionTestDelegate.m */; };
+		B32B69BC18711E6600098AAA /* VCRURLConnectionTestDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B32B69B918711E6600098AAA /* VCRURLConnectionTestDelegate.m */; };
 		B3475B5E167EA0680044511D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B3475B5C167EA0680044511D /* InfoPlist.strings */; };
 		B3475B60167EA0680044511D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B3475B5F167EA0680044511D /* main.m */; };
 		B3475B72167EA0C30044511D /* VCRAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B3475B69167EA0C30044511D /* VCRAppDelegate.m */; };
@@ -100,6 +105,9 @@
 		B31F57001871025100743269 /* VCR+NSURLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "VCR+NSURLConnection.m"; path = "VCRURLConnection/VCR+NSURLConnection.m"; sourceTree = "<group>"; };
 		B31F57041871109000743269 /* VCR_NSURLConnectionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VCR_NSURLConnectionTests.m; path = Tests/VCR_NSURLConnectionTests.m; sourceTree = "<group>"; };
 		B32B69AD187116A200098AAA /* VCR_NSURLSessionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VCR_NSURLSessionTests.m; path = Tests/VCR_NSURLSessionTests.m; sourceTree = "<group>"; };
+		B32B69B518711CD300098AAA /* VCRURLConnectionDelegateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VCRURLConnectionDelegateTests.m; path = Tests/VCRURLConnectionDelegateTests.m; sourceTree = "<group>"; };
+		B32B69B818711E6600098AAA /* VCRURLConnectionTestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCRURLConnectionTestDelegate.h; sourceTree = "<group>"; };
+		B32B69B918711E6600098AAA /* VCRURLConnectionTestDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCRURLConnectionTestDelegate.m; sourceTree = "<group>"; };
 		B3475B53167EA0680044511D /* Example-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Example-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3475B5B167EA0680044511D /* Example-iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Example-iOS-Info.plist"; sourceTree = "<group>"; };
 		B3475B5D167EA0680044511D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -213,6 +221,56 @@
 			path = "Tests-OSX";
 			sourceTree = "<group>";
 		};
+		B32B69B018711C2000098AAA /* NSURLConnection */ = {
+			isa = PBXGroup;
+			children = (
+				B31F56FF1871025100743269 /* VCR+NSURLConnection.h */,
+				B31F57001871025100743269 /* VCR+NSURLConnection.m */,
+				B3B8289D167E9B6800CCEC3C /* VCRConnectionDelegate.h */,
+				B3B8289E167E9B6800CCEC3C /* VCRConnectionDelegate.m */,
+			);
+			name = NSURLConnection;
+			sourceTree = "<group>";
+		};
+		B32B69B118711C2F00098AAA /* NSURLSession */ = {
+			isa = PBXGroup;
+			children = (
+				B31F56FA1870FD1D00743269 /* VCR+NSURLSession.h */,
+				B31F56FB1870FD1D00743269 /* VCR+NSURLSession.m */,
+				B3B2FF3B186E28CD00AF41E2 /* VCRURLSessionDelegate.h */,
+				B3B2FF3C186E28CD00AF41E2 /* VCRURLSessionDelegate.m */,
+			);
+			name = NSURLSession;
+			sourceTree = "<group>";
+		};
+		B32B69B218711C9100098AAA /* NSURLSessionTests */ = {
+			isa = PBXGroup;
+			children = (
+				B32B69AD187116A200098AAA /* VCR_NSURLSessionTests.m */,
+			);
+			name = NSURLSessionTests;
+			sourceTree = "<group>";
+		};
+		B32B69B318711C9A00098AAA /* NSURLConnectionTests */ = {
+			isa = PBXGroup;
+			children = (
+				B31F57041871109000743269 /* VCR_NSURLConnectionTests.m */,
+				B32B69B518711CD300098AAA /* VCRURLConnectionDelegateTests.m */,
+				B32B69B818711E6600098AAA /* VCRURLConnectionTestDelegate.h */,
+				B32B69B918711E6600098AAA /* VCRURLConnectionTestDelegate.m */,
+			);
+			name = NSURLConnectionTests;
+			sourceTree = "<group>";
+		};
+		B32B69B418711CAA00098AAA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B3B8287D167E9B2B00CCEC3C /* cassette-1.json */,
+				B3475B8D167EBF8F0044511D /* test.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		B3475B59167EA0680044511D /* Example-iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -265,19 +323,11 @@
 			children = (
 				B3B82896167E9B6800CCEC3C /* VCR.h */,
 				B3B82897167E9B6800CCEC3C /* VCR.m */,
-				B31F56FA1870FD1D00743269 /* VCR+NSURLSession.h */,
-				B31F56FB1870FD1D00743269 /* VCR+NSURLSession.m */,
-				B31F56FF1871025100743269 /* VCR+NSURLConnection.h */,
-				B31F57001871025100743269 /* VCR+NSURLConnection.m */,
-				B3B2FF3B186E28CD00AF41E2 /* VCRURLSessionDelegate.h */,
-				B3B2FF3C186E28CD00AF41E2 /* VCRURLSessionDelegate.m */,
 				B3B82899167E9B6800CCEC3C /* VCRCassette.h */,
 				B3B8289A167E9B6800CCEC3C /* VCRCassette.m */,
 				B3B82898167E9B6800CCEC3C /* VCRCassette_Private.h */,
 				B3B8289B167E9B6800CCEC3C /* VCRCassetteManager.h */,
 				B3B8289C167E9B6800CCEC3C /* VCRCassetteManager.m */,
-				B3B8289D167E9B6800CCEC3C /* VCRConnectionDelegate.h */,
-				B3B8289E167E9B6800CCEC3C /* VCRConnectionDelegate.m */,
 				C393569917B5DA460025DC53 /* VCROrderedMutableDictionary.h */,
 				C393569A17B5DA460025DC53 /* VCROrderedMutableDictionary.m */,
 				B3475BAD167EFFA70044511D /* VCRRecording.h */,
@@ -286,6 +336,8 @@
 				B3B828A0167E9B6800CCEC3C /* VCRRequestKey.m */,
 				B3FCE5051863F2D3009C0E12 /* VCRError.h */,
 				B3FCE5061863F2D3009C0E12 /* VCRError.m */,
+				B32B69B118711C2F00098AAA /* NSURLSession */,
+				B32B69B018711C2000098AAA /* NSURLConnection */,
 				B3BB251A167F243100C5E3C6 /* Vendor */,
 			);
 			name = VCRURLConnection;
@@ -328,8 +380,6 @@
 		B3B8287C167E9AA400CCEC3C /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				B31F57041871109000743269 /* VCR_NSURLConnectionTests.m */,
-				B32B69AD187116A200098AAA /* VCR_NSURLSessionTests.m */,
 				B3B82880167E9B2B00CCEC3C /* VCRCassetteManagerTests.h */,
 				B3B82881167E9B2B00CCEC3C /* VCRCassetteManagerTests.m */,
 				B3B82882167E9B2B00CCEC3C /* VCRCassetteTests.h */,
@@ -343,8 +393,9 @@
 				B3B8288A167E9B2B00CCEC3C /* VCRURLConnectionTests.h */,
 				B3B8288B167E9B2B00CCEC3C /* VCRURLConnectionTests.m */,
 				B3B2FF2F186E1FEF00AF41E2 /* VCRURLConnection_NSURLSessionTests.m */,
-				B3B8287D167E9B2B00CCEC3C /* cassette-1.json */,
-				B3475B8D167EBF8F0044511D /* test.png */,
+				B32B69B318711C9A00098AAA /* NSURLConnectionTests */,
+				B32B69B218711C9100098AAA /* NSURLSessionTests */,
+				B32B69B418711CAA00098AAA /* Resources */,
 				B3BB251B167F243E00C5E3C6 /* Vendor */,
 			);
 			name = Tests;
@@ -508,6 +559,7 @@
 				B317B6A2186E180900A7C0AE /* VCR.m in Sources */,
 				B317B6A6186E180900A7C0AE /* VCROrderedMutableDictionary.m in Sources */,
 				B3B2FF30186E1FEF00AF41E2 /* VCRURLConnection_NSURLSessionTests.m in Sources */,
+				B32B69B618711CD300098AAA /* VCRURLConnectionDelegateTests.m in Sources */,
 				B317B6A7186E180900A7C0AE /* VCRRecording.m in Sources */,
 				B3B2FF3E186E28CD00AF41E2 /* VCRURLSessionDelegate.m in Sources */,
 				B317B69E186E13DD00A7C0AE /* VCRURLConnectionTests.m in Sources */,
@@ -515,6 +567,7 @@
 				B317B69D186E13DA00A7C0AE /* VCRTests.m in Sources */,
 				B31F56FD1870FD1D00743269 /* VCR+NSURLSession.m in Sources */,
 				B31F57051871109000743269 /* VCR_NSURLConnectionTests.m in Sources */,
+				B32B69BB18711E6600098AAA /* VCRURLConnectionTestDelegate.m in Sources */,
 				B317B6A8186E180900A7C0AE /* VCRRequestKey.m in Sources */,
 				B317B69C186E13D800A7C0AE /* VCRRequestKeyTests.m in Sources */,
 				B32B69AE187116A200098AAA /* VCR_NSURLSessionTests.m in Sources */,
@@ -537,6 +590,7 @@
 				B317B6C7186E1A5E00A7C0AE /* VCRCassetteTests.m in Sources */,
 				B317B6C1186E1A5100A7C0AE /* VCROrderedMutableDictionary.m in Sources */,
 				B3B2FF31186E1FEF00AF41E2 /* VCRURLConnection_NSURLSessionTests.m in Sources */,
+				B32B69B718711CD300098AAA /* VCRURLConnectionDelegateTests.m in Sources */,
 				B317B6C6186E1A5E00A7C0AE /* VCRCassetteManagerTests.m in Sources */,
 				B3B2FF3F186E28CD00AF41E2 /* VCRURLSessionDelegate.m in Sources */,
 				B317B6C4186E1A5100A7C0AE /* VCRError.m in Sources */,
@@ -544,6 +598,7 @@
 				B317B6BD186E1A5100A7C0AE /* VCR.m in Sources */,
 				B31F56FE1870FD1D00743269 /* VCR+NSURLSession.m in Sources */,
 				B31F57061871109000743269 /* VCR_NSURLConnectionTests.m in Sources */,
+				B32B69BC18711E6600098AAA /* VCRURLConnectionTestDelegate.m in Sources */,
 				B317B6C5186E1A5100A7C0AE /* NSData+Base64.m in Sources */,
 				B317B6C0186E1A5100A7C0AE /* VCRConnectionDelegate.m in Sources */,
 				B32B69AF187116A200098AAA /* VCR_NSURLSessionTests.m in Sources */,
@@ -568,6 +623,7 @@
 				B3475B7D167EA1080044511D /* VCRRequestKey.m in Sources */,
 				B3FCE5091863F2D3009C0E12 /* VCRError.m in Sources */,
 				B31F56FC1870FD1D00743269 /* VCR+NSURLSession.m in Sources */,
+				B32B69BA18711E6600098AAA /* VCRURLConnectionTestDelegate.m in Sources */,
 				B3475BB1167EFFA80044511D /* VCRRecording.m in Sources */,
 				B3BB2519167F241E00C5E3C6 /* NSData+Base64.m in Sources */,
 				B31F57011871025100743269 /* VCR+NSURLConnection.m in Sources */,
