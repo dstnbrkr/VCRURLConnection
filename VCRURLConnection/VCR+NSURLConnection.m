@@ -70,9 +70,11 @@ id VCR_URLConnectionInitializer1(id self, SEL _cmd, NSURLRequest *request, id<NS
         recording.URI = [request.URL absoluteString];
         recording.method = request.HTTPMethod;
         
+        VCRCassette *cassette = [[VCRCassetteManager defaultManager] currentCassette];
+        [cassette addRecording:recording];
+        
         VCRConnectionDelegate *vcrDelegate = [[VCRConnectionDelegate alloc] initWithDelegate:delegate recording:recording];
         [vcrDelegate setRequest:request];
-        vcrDelegate.cassette = cassette;
         self = orig_URLConnectionInitializer1(self, _cmd, request, vcrDelegate, startImmediately);
     }
     return self;

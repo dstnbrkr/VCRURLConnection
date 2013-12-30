@@ -10,19 +10,20 @@
 #import "NSData+Base64.h"
 
 @interface VCRError ()
-@property (nonatomic, copy) NSString *vcr_localizedDescription;
+@property (nonatomic, strong) NSString *vcr_localizedDescription;
 @end
 
 @implementation VCRError
 
 + (id)JSONForError:(NSError *)error {
-    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-    [dictionary addEntriesFromDictionary:@{ @"code": @(error.code),
-                                            @"domain": error.domain,
-                                            @"localizedDescription": error.localizedDescription }];
+    NSMutableDictionary *dictionary = [@{ @"domain": error.domain,
+                                          @"code": @(error.code),
+                                          @"localizedDescription": error.localizedDescription } mutableCopy];
+    
     if ([error.userInfo count] > 0) {
         dictionary[@"userInfo"] = [self serializedUserInfo:error.userInfo];
     }
+
     return dictionary;
 }
 
@@ -37,6 +38,8 @@
 }
 
 - (id)initWithDomain:(NSString *)domain code:(NSInteger)code userInfo:(NSDictionary *)userInfo localizedDescription:(NSString *)localizedDescription {
+    NSParameterAssert(domain);
+    NSParameterAssert(localizedDescription);
     self = [super initWithDomain:domain code:code userInfo:userInfo];
     if (self) {
         self.vcr_localizedDescription = localizedDescription;

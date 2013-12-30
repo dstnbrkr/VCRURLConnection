@@ -24,7 +24,6 @@
 #import "VCRConnectionDelegate.h"
 #import "VCRCassetteManager.h"
 #import "VCRRecording.h"
-#import "VCR.h"
 
 @interface VCRConnectionDelegateWrapper : NSObject<NSURLConnectionDelegate>
 - (id)initWithRecording:(VCRRecording *)recording;
@@ -95,17 +94,8 @@
     }
 }
 
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    [[VCR cassette] addRecording:self.recording];
-        
-    if ([_wrapped respondsToSelector:@selector(connectionDidFinishLoading:)]) {
-        [_wrapped connectionDidFinishLoading:connection];
-    }
-}
-
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     self.recording.error = error;
-    [[VCR cassette] addRecording:self.recording];
     
     if ([_wrapped respondsToSelector:@selector(connection:didFailWithError:)]) {
         [_wrapped connection:connection didFailWithError:error];

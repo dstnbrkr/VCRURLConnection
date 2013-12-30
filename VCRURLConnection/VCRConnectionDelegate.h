@@ -33,6 +33,5 @@
 - (id)initWithDelegate:(id<NSURLConnectionDataDelegate>)delegate recording:(VCRRecording *)recording;
 
 @property (nonatomic, strong) NSURLRequest *request;
-@property (nonatomic, strong) VCRCassette *cassette;
 
 @end

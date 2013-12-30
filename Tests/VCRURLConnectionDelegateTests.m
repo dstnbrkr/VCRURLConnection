@@ -9,9 +9,6 @@
 #import <XCTest/XCTest.h>
 #import "VCRConnectionDelegate.h"
 #import "VCRURLConnectionTestDelegate.h"
-#import "VCR.h"
-#import "VCRCassette.h"
-#import "VCRRequestKey.h"
 
 @interface VCRURLConnectionDelegateTests : XCTestCase
 @property (nonatomic, strong) VCRRecording *recording;
@@ -44,9 +41,6 @@
     XCTAssertEqual(self.innerDelegate.response, response, @"Expected connection:didReceiveResponse: to be forwarded to inner delegate");
 }
 
-// - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-// test that data is appended
-// test that data is forwarded
 - (void)testConnectionDidReceiveData {
     XCTAssertTrue(!self.innerDelegate.data, @"");
     const char bytes[] = { 0xC, 0xA, 0xF, 0xE };
@@ -78,22 +72,16 @@
     XCTAssertEqualObjects(self.innerDelegate.data, data, @"Expected connection:didReceiveData: to be forwarded to inner delegate");
 }
 
-// - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-// test that recording is finalized
-// test that call is forwarded
 - (void)testConnectionDidFinishLoading {
-    VCRRequestKey *key = [VCRRequestKey keyForObject:self.recording];
-
-    XCTAssertNil([[VCR cassette] recordingForRequestKey:key], @"Should not have recording yet");
-    
     [self.outerDelegate connectionDidFinishLoading:nil];
-
-    XCTAssertNotNil([[VCR cassette] recordingForRequestKey:key], @"Should now have recording");
     XCTAssert(self.innerDelegate.done, @"Expected connectionDidFinishLoading: to be forwarded to inner delegate");
 }
 
-//- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-// test that error is stored
-// test that error is forwarded
+- (void)testConnectionDidFailWithError {
+    XCTAssertNil(self.recording.error, @"Should not have error yet");
+    NSError *error = [[NSError alloc] initWithDomain:@"VCR" code:0 userInfo:nil];
+    [self.outerDelegate connection:nil didFailWithError:error];
+    XCTAssertEqualObjects(self.recording.error, error, @"");
+}
 
 @end
