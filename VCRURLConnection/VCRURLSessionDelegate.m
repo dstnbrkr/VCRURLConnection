@@ -70,7 +70,8 @@ didReceiveResponse:(NSURLResponse *)response
 }
 
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error {
-    // FIXME: save error
+    VCRRecording *recording = [self recordingForRequest:task.currentRequest];
+    recording.error = error;
     
     if ([_wrapped respondsToSelector:@selector(URLSession:task:didCompleteWithError:)]) {
         [_wrapped URLSession:session task:task didCompleteWithError:error];

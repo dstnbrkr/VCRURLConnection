@@ -70,6 +70,13 @@
     XCTAssertEqualObjects(self.innerDelegate.data, data, @"Expected connection:didReceiveData: to be forwarded to inner delegate");
 }
 
+- (void)testSessionDidCompleteWithError {
+    XCTAssertNil(self.recording.error, @"Should not have error yet");
+    NSError *error = [[NSError alloc] initWithDomain:@"VCR" code:0 userInfo:nil];
+    [self.outerDelegate URLSession:nil task:self.task didCompleteWithError:error];
+    XCTAssertEqualObjects(self.recording.error, error, @"");
+}
+
 @end
 
 @implementation VCRMockDataTask

@@ -12,7 +12,7 @@
 #import "VCRTestDelegate.h"
 #import <Foundation/Foundation.h>
 
-@interface VCRURLSessionTestDelegate : NSObject<VCRTestDelegate, NSURLSessionDelegate, NSURLSessionDataDelegate>
+@interface VCRURLSessionTestDelegate : NSObject<VCRTestDelegate, NSURLSessionDelegate, NSURLSessionDataDelegate, NSURLSessionTaskDelegate>
 @end
 
 #endif
