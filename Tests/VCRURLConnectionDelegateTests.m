@@ -41,6 +41,19 @@
 // - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
 // test that data is appended
 // test that data is forwarded
+- (void)testConnectionDidReceiveData {
+    XCTAssertTrue(!self.innerDelegate.data, @"");
+    const char bytes[] = { 0xC, 0xA, 0xF, 0xE };
+    NSMutableData *data = [NSMutableData dataWithBytes:&bytes length:4];
+    [self.outerDelegate connection:nil didReceiveData:data];
+    
+    // ensure data is copied
+    XCTAssertNotEqual(self.recording.data, data, @"");
+    XCTAssertEqualObjects(self.recording.data, data, @"");
+    
+    // ensure response is forwarded
+    XCTAssertEqualObjects(self.innerDelegate.data, data, @"");
+}
 
 // - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
 // test that recording is finalized

@@ -88,7 +88,7 @@
         [currentData appendData:data];
         self.recording.data = currentData;
     } else {
-        self.recording.data = data;
+        self.recording.data = [NSData dataWithData:data];
     }
     if ([_wrapped respondsToSelector:@selector(connection:didReceiveData:)]) {
         [_wrapped connection:connection didReceiveData:data];
