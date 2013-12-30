@@ -26,7 +26,7 @@
     // wait for request to finish
     [self runCurrentRunLoopUntilTestPasses:^BOOL{
         return [delegate isDone];
-    } timeout:60 * 60];
+    } timeout:5];
     
     VCRRecording *recording = [cassette recordingForRequest:request];
     XCTAssertNotNil(recording, @"Should have recording");
