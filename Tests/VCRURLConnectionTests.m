@@ -26,6 +26,7 @@
 #import "VCRCassetteManager.h"
 #import "VCRCassette.h"
 #import "VCR.h"
+#import "XCTestCase+VCR.h"
 #import "XCTestCase+SRTAdditions.h"
 
 
@@ -61,27 +62,12 @@
     [super tearDown];
 }
 
-- (void)testAsyncConnectionIsRecorded {
-    NSURL *url = [NSURL URLWithString:@"http://www.iana.org/domains/reserved"];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    
-    // request has not been recorded yet
-    XCTAssertNil([self.cassette recordingForRequest:request], @"Should not have recording for request yet");
-    
-    // make and record request
-    VCRURLConnectionTestDelegate *delegate = [[VCRURLConnectionTestDelegate alloc] init];
-    [NSURLConnection connectionWithRequest:request delegate:delegate];
-    
-    // wait for request to finish
-    [self runCurrentRunLoopUntilTestPasses:^BOOL{
-        return [delegate isDone];
-    } timeout:60 * 60];
-    
-    VCRRecording *recording = [self.cassette recordingForRequest:request];
-    XCTAssertNotNil(recording, @"Should have recording");
-    XCTAssertEqualObjects(recording.URI, [request.URL absoluteString], @"");
-    XCTAssertNotNil(recording.data, @"Should have recorded response data");
-    XCTAssertEqualObjects(recording.data, delegate.data, @"Recorded data should equal recorded data");
+- (void)testResponseIsRecorded {
+    [self testRecordResponseForRequestBlock:^id<VCRTestDelegate>(NSURLRequest *request) {
+        VCRURLConnectionTestDelegate *delegate = [[VCRURLConnectionTestDelegate alloc] init];
+        [NSURLConnection connectionWithRequest:request delegate:delegate];
+        return delegate;
+    }];
 }
 
 - (void)testAsyncGetRequestIsReplayed {

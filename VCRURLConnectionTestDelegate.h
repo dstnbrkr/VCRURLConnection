@@ -6,11 +6,9 @@
 //
 //
 
+#import "VCRTestDelegate.h"
 #import <Foundation/Foundation.h>
 
-@interface VCRURLConnectionTestDelegate : NSObject<NSURLConnectionDataDelegate>
-@property (nonatomic, strong, readonly) NSHTTPURLResponse *response;
-@property (nonatomic, strong, readonly) NSData *data;
+@interface VCRURLConnectionTestDelegate : NSObject<VCRTestDelegate, NSURLConnectionDataDelegate>
 @property (nonatomic, strong, readonly) NSError *error;
-@property (nonatomic, getter = isDone, readonly) BOOL done;
 @end
