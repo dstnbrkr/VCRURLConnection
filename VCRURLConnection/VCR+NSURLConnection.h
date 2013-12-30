@@ -1,5 +1,5 @@
 //
-// VCR+NSURLSession.h
+// VCR+NSURLConnection.h
 //
 // Copyright (c) 2012 Dustin Barker
 //
@@ -23,9 +23,9 @@
 
 #import "VCR.h"
 
-@interface VCR (NSURLSession)
+@interface VCR (NSURLConnection)
 
-void VCRSwizzleNSURLSession();
-void VCRUnswizzleNSURLSession();
+void VCRSwizzleNSURLConnection();
+void VCRUnswizzleNSURLConnection();
 
 @end
