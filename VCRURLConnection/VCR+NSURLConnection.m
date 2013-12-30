@@ -96,29 +96,20 @@ Method VCRGetURLConnectionInitializerMethod2() {
 }
 
 void VCRSwizzleNSURLConnection() {
-    Method method1 = VCRGetURLConnectionInitializerMethod1();
-    method_setImplementation(method1, (IMP)VCR_URLConnectionInitializer1);
-    
-    Method method2 = VCRGetURLConnectionInitializerMethod2();
-    method_setImplementation(method2, (IMP)VCR_URLConnectionInitializer2);
+    method_setImplementation(VCRGetURLConnectionInitializerMethod1(), (IMP)VCR_URLConnectionInitializer1);
+    method_setImplementation(VCRGetURLConnectionInitializerMethod2(), (IMP)VCR_URLConnectionInitializer2);
 }
 
 void VCRUnswizzleNSURLConnection() {
-    Method method1 = VCRGetURLConnectionInitializerMethod1();
-    method_setImplementation(method1, (IMP)orig_URLConnectionInitializer1);
-    
-    Method method2 = VCRGetURLConnectionInitializerMethod2();
-    method_setImplementation(method2, (IMP)orig_URLConnectionInitializer2);
+    method_setImplementation(VCRGetURLConnectionInitializerMethod1(), (IMP)orig_URLConnectionInitializer1);
+    method_setImplementation(VCRGetURLConnectionInitializerMethod2(), (IMP)orig_URLConnectionInitializer2);
 }
 
 @implementation VCR (NSURLConnection)
 
 + (void)load {
-    Method method1 = VCRGetURLConnectionInitializerMethod1();
-    orig_URLConnectionInitializer1 = (URLConnectionInitializer1)method_getImplementation(method1);
-    
-    Method method2 = VCRGetURLConnectionInitializerMethod2();
-    orig_URLConnectionInitializer2 = (URLConnectionInitializer2)method_getImplementation(method2);
+    orig_URLConnectionInitializer1 = (URLConnectionInitializer1)method_getImplementation(VCRGetURLConnectionInitializerMethod1());
+    orig_URLConnectionInitializer2 = (URLConnectionInitializer2)method_getImplementation(VCRGetURLConnectionInitializerMethod2());
 }
 
 @end
