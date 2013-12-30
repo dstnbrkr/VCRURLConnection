@@ -12,7 +12,7 @@
 #import "VCRRecording.h"
 #import <Foundation/Foundation.h>
 
-@interface VCRURLSessionDelegate : NSObject<NSURLSessionDelegate>
+@interface VCRURLSessionDelegate : NSObject<NSURLSessionDelegate, NSURLSessionDataDelegate>
 
 - (id)initWithDelegate:(id<NSURLSessionDelegate>)delegate recording:(VCRRecording *)recording;
 

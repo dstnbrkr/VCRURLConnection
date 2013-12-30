@@ -12,7 +12,7 @@
 #import "VCRURLSessionTestDelegate.h"
 
 @interface VCRURLSessionTestDelegate ()
-@property (nonatomic, strong, readwrite) NSURLResponse *response;
+@property (nonatomic, strong, readwrite) NSHTTPURLResponse *response;
 @property (nonatomic, strong, readwrite) NSData *data;
 @end
 
@@ -23,7 +23,7 @@
 didReceiveResponse:(NSURLResponse *)response
  completionHandler:(void (^)(NSURLSessionResponseDisposition))completionHandler {
     
-    self.response = response;
+    self.response = (NSHTTPURLResponse *)response;
 }
 
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveData:(NSData *)data {
