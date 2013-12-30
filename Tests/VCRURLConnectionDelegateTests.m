@@ -55,6 +55,23 @@
     XCTAssertEqualObjects(self.innerDelegate.data, data, @"");
 }
 
+- (void)testConnectionDidReceiveAndAppendData {
+    XCTAssertTrue(!self.innerDelegate.data, @"");
+    const char bytes[] = { 0xC, 0xA, 0xF, 0xE };
+    NSData *data = [NSData dataWithBytes:&bytes length:4];
+    NSData *data1 = [NSData dataWithBytes:&bytes length:2];
+    NSData *data2 = [NSData dataWithBytes:&bytes[2] length:2];
+    
+    [self.outerDelegate connection:nil didReceiveData:data1];
+    [self.outerDelegate connection:nil didReceiveData:data2];
+    
+    // ensure data is copied
+    XCTAssertEqualObjects(self.recording.data, data, @"");
+    
+    // ensure response is forwarded
+    XCTAssertEqualObjects(self.innerDelegate.data, data, @"");
+}
+
 // - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
 // test that recording is finalized
 // test that call is forwarded
