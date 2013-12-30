@@ -28,12 +28,12 @@
     }
 }
 
-- (void)testStart {
+- (void)testSwizzle {
     IMP *imps = calloc(2, sizeof(IMP));
     imps[0] = (IMP)VCR_URLConnectionInitializer1;
     imps[1] = (IMP)VCR_URLConnectionInitializer2;
     
-    [VCR start];
+    VCRSwizzleNSURLConnection();
     
     [self enumerateImplementationsWithBlock:^(NSUInteger index, IMP imp) {
         XCTAssertEqual(imp, imps[index], @"");
@@ -42,12 +42,12 @@
     free(imps), imps = NULL;
 }
 
-- (void)testStop {
+- (void)testUnswizzle {
     IMP *imps = calloc(2, sizeof(IMP));
     imps[0] = (IMP)VCR_URLConnectionInitializer1;
     imps[1] = (IMP)VCR_URLConnectionInitializer2;
     
-    [VCR stop];
+    VCRUnswizzleNSURLConnection();
     
     [self enumerateImplementationsWithBlock:^(NSUInteger index, IMP imp) {
         XCTAssertNotEqual(imp, imps[index], @"");

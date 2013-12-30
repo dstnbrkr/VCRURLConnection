@@ -30,11 +30,11 @@ typedef NSURLSession *(*URLSessionConstructor)(id, SEL, NSURLSessionConfiguratio
 
 URLSessionConstructor orig_URLSessionConstructor;
 
-static NSURLSession *VCR_URLSessionConstructor(id self,
-                                               SEL _cmd,
-                                               NSURLSessionConfiguration *configuration,
-                                               id<NSURLSessionDelegate> delegate,
-                                               NSOperationQueue *delegateQueue) {
+NSURLSession *VCR_URLSessionConstructor(id self,
+                                        SEL _cmd,
+                                        NSURLSessionConfiguration *configuration,
+                                        id<NSURLSessionDelegate> delegate,
+                                        NSOperationQueue *delegateQueue) {
     
     //VCRURLSessionDelegate *wrappedDelegate = [[VCRURLSessionDelegate alloc] init];
     return orig_URLSessionConstructor(self, _cmd, configuration, delegate, delegateQueue);

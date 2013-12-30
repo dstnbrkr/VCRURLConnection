@@ -28,4 +28,10 @@
 void VCRSwizzleNSURLSession();
 void VCRUnswizzleNSURLSession();
 
+NSURLSession *VCR_URLSessionConstructor(id self,
+                                        SEL _cmd,
+                                        NSURLSessionConfiguration *configuration,
+                                        id<NSURLSessionDelegate> delegate,
+                                        NSOperationQueue *delegateQueue);
+
 @end
