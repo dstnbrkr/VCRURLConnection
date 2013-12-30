@@ -21,10 +21,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <Availability.h>
-
-
 #import "VCR.h"
+#import <Availability.h>
 
 @interface VCR (NSURLSession)
 
