@@ -11,7 +11,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface VCRURLSessionTestDelegate : NSObject<NSURLSessionDataDelegate>
+@interface VCRURLSessionTestDelegate : NSObject<NSURLSessionDelegate, NSURLSessionDataDelegate>
 @property (nonatomic, strong, readonly) NSURLResponse *response;
 @property (nonatomic, strong, readonly) NSData *data;
 @end

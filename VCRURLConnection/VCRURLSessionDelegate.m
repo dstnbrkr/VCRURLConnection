@@ -13,12 +13,12 @@
 
 @interface VCRURLSessionDelegate ()
 @property (nonatomic, strong) VCRRecording *recording;
-@property (nonatomic, strong) id<NSURLSessionDataDelegate> wrapped;
+@property (nonatomic, strong) id<NSURLSessionDelegate, NSURLSessionDataDelegate> wrapped;
 @end
 
 @implementation VCRURLSessionDelegate
 
-- (id)initWithDelegate:(id<NSURLSessionDataDelegate>)delegate recording:(VCRRecording *)recording {
+- (id)initWithDelegate:(id<NSURLSessionDelegate, NSURLSessionDataDelegate>)delegate recording:(VCRRecording *)recording {
     if ((self = [super init])) {
         self.wrapped = delegate;
         self.recording = recording;
