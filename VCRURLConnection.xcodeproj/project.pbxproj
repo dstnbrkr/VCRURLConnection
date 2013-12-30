@@ -259,6 +259,8 @@
 			children = (
 				B32B69AD187116A200098AAA /* VCR_NSURLSessionTests.m */,
 				B31B9DAB187147C6001A59FF /* VCRURLSessionDelegateTests.m */,
+				B31B9DAE18714861001A59FF /* VCRURLSessionTestDelegate.h */,
+				B31B9DAF18714861001A59FF /* VCRURLSessionTestDelegate.m */,
 			);
 			name = NSURLSessionTests;
 			sourceTree = "<group>";
@@ -268,6 +270,8 @@
 			children = (
 				B31F57041871109000743269 /* VCR_NSURLConnectionTests.m */,
 				B32B69B518711CD300098AAA /* VCRURLConnectionDelegateTests.m */,
+				B32B69B818711E6600098AAA /* VCRURLConnectionTestDelegate.h */,
+				B32B69B918711E6600098AAA /* VCRURLConnectionTestDelegate.m */,
 			);
 			name = NSURLConnectionTests;
 			sourceTree = "<group>";
@@ -319,10 +323,6 @@
 			isa = PBXGroup;
 			children = (
 				B3655A8D1871C5EC00CC3F7F /* VCRTestDelegate.h */,
-				B31B9DAE18714861001A59FF /* VCRURLSessionTestDelegate.h */,
-				B31B9DAF18714861001A59FF /* VCRURLSessionTestDelegate.m */,
-				B32B69B818711E6600098AAA /* VCRURLConnectionTestDelegate.h */,
-				B32B69B918711E6600098AAA /* VCRURLConnectionTestDelegate.m */,
 				B3655A8E1871C7D300CC3F7F /* XCTestCase+VCR.h */,
 				B3655A8F1871C7D300CC3F7F /* XCTestCase+VCR.m */,
 			);
