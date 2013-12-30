@@ -21,7 +21,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#if (defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000) || (defined(__MAC_OS_X_VERSION_MAX_ALLOWED) && __MAC_OS_X_VERSION_MAX_ALLOWED >= 1090)
+#import <Availability.h>
+
 
 #import "VCR.h"
 
@@ -30,12 +31,14 @@
 void VCRSwizzleNSURLSession();
 void VCRUnswizzleNSURLSession();
 
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 50000 || __MAC_OS_X_VERSION_MIN_REQUIRED >= 1090
+
 NSURLSession *VCR_URLSessionConstructor(id self,
                                         SEL _cmd,
                                         NSURLSessionConfiguration *configuration,
                                         id<NSURLSessionDelegate> delegate,
                                         NSOperationQueue *delegateQueue);
+#endif
 
 @end
 
-#endif

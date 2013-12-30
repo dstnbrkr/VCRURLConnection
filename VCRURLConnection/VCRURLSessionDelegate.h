@@ -6,12 +6,13 @@
 //
 //
 
-#if (defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000) || (defined(__MAC_OS_X_VERSION_MAX_ALLOWED) && __MAC_OS_X_VERSION_MAX_ALLOWED >= 1090)
+#import <Availability.h>
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 50000 || __MAC_OS_X_VERSION_MIN_REQUIRED >= 1090
 
 #import "VCRRecording.h"
 #import <Foundation/Foundation.h>
 
-@interface VCRURLSessionDelegate : NSObject<NSURLSessionDelegate>
+@interface VCRURLSessionDelegate : NSObject<NSURLSessionDataDelegate>
 
 - (id)initWithDelegate:(id<NSURLSessionDelegate>)delegate recording:(VCRRecording *)recording;
 

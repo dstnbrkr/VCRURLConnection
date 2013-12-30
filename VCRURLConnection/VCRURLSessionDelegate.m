@@ -6,18 +6,19 @@
 //
 //
 
-#if (defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000) || (defined(__MAC_OS_X_VERSION_MAX_ALLOWED) && __MAC_OS_X_VERSION_MAX_ALLOWED >= 1090)
+#import <Availability.h>
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 50000 || __MAC_OS_X_VERSION_MIN_REQUIRED >= 1090
 
 #import "VCRURLSessionDelegate.h"
 
 @interface VCRURLSessionDelegate ()
 @property (nonatomic, strong) VCRRecording *recording;
-@property (nonatomic, strong) id<NSURLSessionDelegate> wrapped;
+@property (nonatomic, strong) id<NSURLSessionDataDelegate> wrapped;
 @end
 
 @implementation VCRURLSessionDelegate
 
-- (id)initWithDelegate:(id<NSURLSessionDelegate>)delegate recording:(VCRRecording *)recording {
+- (id)initWithDelegate:(id<NSURLSessionDataDelegate>)delegate recording:(VCRRecording *)recording {
     if ((self = [super init])) {
         self.wrapped = delegate;
         self.recording = recording;
@@ -33,8 +34,8 @@
     } else {
         self.recording.data = [NSData dataWithData:data];
     }
-    if ([_wrapped respondsToSelector:@selector(session:dataTask:didReceiveData:)]) {
-        [_wrapped session:session dataTask:dataTask didReceiveData:data];
+    if ([_wrapped respondsToSelector:@selector(URLSession:dataTask:didReceiveData:)]) {
+        [_wrapped URLSession:session dataTask:dataTask didReceiveData:data];
     }
 }
 
@@ -43,9 +44,10 @@
 didReceiveResponse:(NSURLResponse *)response
  completionHandler:(void (^)(NSURLSessionResponseDisposition disposition))completionHandler {
     
-    self.recording.headerFields = response.allHeaderFields;
-    if ([_wrapped respondsToSelector:@selector(session:dataTask:didReceiveResponse:completionHandler:)]) {
-        [_wrapped session:session dataTask:dataTask didReceiveResponse:response completionHandler:completionHandler];
+    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+    self.recording.headerFields = httpResponse.allHeaderFields;
+    if ([_wrapped respondsToSelector:@selector(URLSession:dataTask:didReceiveResponse:completionHandler:)]) {
+        [_wrapped URLSession:session dataTask:dataTask didReceiveResponse:response completionHandler:completionHandler];
     }
 }
 
