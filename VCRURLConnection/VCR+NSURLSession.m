@@ -69,10 +69,8 @@ void VCRUnswizzleNSURLSession() {
 
 #else
 
-void VCRSwizzleNSURLSession() {
-}
+void VCRSwizzleNSURLSession() {}
 
-void VCRUnswizzleNSURLSession() {
-}
+void VCRUnswizzleNSURLSession() {}
 
 #endif
