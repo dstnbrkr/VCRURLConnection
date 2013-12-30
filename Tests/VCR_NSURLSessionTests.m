@@ -23,7 +23,7 @@
     XCTAssertEqual(method_getImplementation(method), (IMP)VCR_URLSessionConstructor, @"");
 }
 
-- (void)testStop {
+- (void)testUnswizzle {
     Class clazz = object_getClass([NSURLSession class]);
     Method method = class_getClassMethod(clazz, @selector(sessionWithConfiguration:delegate:delegateQueue:));
     VCRUnswizzleNSURLSession();
