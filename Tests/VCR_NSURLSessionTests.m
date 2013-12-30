@@ -42,18 +42,20 @@
     VCRUnswizzleNSURLSession();
     XCTAssertNotEqual(method_getImplementation([self constructorMethod]), (IMP)VCR_URLSessionConstructor, @"");
 }
-/*
+
 - (void)testResponseIsRecorded {
+    VCRSwizzleNSURLSession();
     [self testRecordResponseForRequestBlock:^id<VCRTestDelegate>(NSURLRequest *request) {
-        VCRURLSessionTestDelegate *delegate = [[VCRURLSessionTestDelegate alloc] init];
+        __block VCRURLSessionTestDelegate *delegate = [[VCRURLSessionTestDelegate alloc] init];
         NSURLSession *session = [self defaultSession];
         NSURLSessionDataTask *task = [session dataTaskWithRequest:request
-                                                completionHandler:nil];
+                                                completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                                    delegate.done = YES;                                                }];
         [task resume];
         return delegate;
     }];
+    VCRUnswizzleNSURLSession();
 }
-*/
 
 @end
 

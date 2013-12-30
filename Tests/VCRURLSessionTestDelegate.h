@@ -13,6 +13,9 @@
 #import <Foundation/Foundation.h>
 
 @interface VCRURLSessionTestDelegate : NSObject<VCRTestDelegate, NSURLSessionDelegate, NSURLSessionDataDelegate, NSURLSessionTaskDelegate>
+
+@property (nonatomic, getter = isDone, readwrite) BOOL done;
+
 @end
 
 #endif
