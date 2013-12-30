@@ -12,7 +12,6 @@
 		B317B69A186E13D200A7C0AE /* VCRCassetteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B82883167E9B2B00CCEC3C /* VCRCassetteTests.m */; };
 		B317B69B186E13D500A7C0AE /* VCRRecordingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B3475BB8167F12620044511D /* VCRRecordingTests.m */; };
 		B317B69C186E13D800A7C0AE /* VCRRequestKeyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B82885167E9B2B00CCEC3C /* VCRRequestKeyTests.m */; };
-		B317B69D186E13DA00A7C0AE /* VCRTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B82889167E9B2B00CCEC3C /* VCRTests.m */; };
 		B317B69E186E13DD00A7C0AE /* VCRURLConnectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B8288B167E9B2B00CCEC3C /* VCRURLConnectionTests.m */; };
 		B317B69F186E13E200A7C0AE /* cassette-1.json in Resources */ = {isa = PBXBuildFile; fileRef = B3B8287D167E9B2B00CCEC3C /* cassette-1.json */; };
 		B317B6A0186E13E500A7C0AE /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = B3475B8D167EBF8F0044511D /* test.png */; };
@@ -40,7 +39,6 @@
 		B317B6C7186E1A5E00A7C0AE /* VCRCassetteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B82883167E9B2B00CCEC3C /* VCRCassetteTests.m */; };
 		B317B6C8186E1A5E00A7C0AE /* VCRRecordingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B3475BB8167F12620044511D /* VCRRecordingTests.m */; };
 		B317B6C9186E1A5E00A7C0AE /* VCRRequestKeyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B82885167E9B2B00CCEC3C /* VCRRequestKeyTests.m */; };
-		B317B6CA186E1A5E00A7C0AE /* VCRTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B82889167E9B2B00CCEC3C /* VCRTests.m */; };
 		B317B6CB186E1A5E00A7C0AE /* VCRURLConnectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B8288B167E9B2B00CCEC3C /* VCRURLConnectionTests.m */; };
 		B317B6CC186E1A5E00A7C0AE /* cassette-1.json in Resources */ = {isa = PBXBuildFile; fileRef = B3B8287D167E9B2B00CCEC3C /* cassette-1.json */; };
 		B317B6CD186E1A5E00A7C0AE /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = B3475B8D167EBF8F0044511D /* test.png */; };
@@ -150,8 +148,6 @@
 		B3B82883167E9B2B00CCEC3C /* VCRCassetteTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VCRCassetteTests.m; path = Tests/VCRCassetteTests.m; sourceTree = "<group>"; };
 		B3B82884167E9B2B00CCEC3C /* VCRRequestKeyTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VCRRequestKeyTests.h; path = Tests/VCRRequestKeyTests.h; sourceTree = "<group>"; };
 		B3B82885167E9B2B00CCEC3C /* VCRRequestKeyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VCRRequestKeyTests.m; path = Tests/VCRRequestKeyTests.m; sourceTree = "<group>"; };
-		B3B82888167E9B2B00CCEC3C /* VCRTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VCRTests.h; path = Tests/VCRTests.h; sourceTree = "<group>"; };
-		B3B82889167E9B2B00CCEC3C /* VCRTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VCRTests.m; path = Tests/VCRTests.m; sourceTree = "<group>"; };
 		B3B8288A167E9B2B00CCEC3C /* VCRURLConnectionTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VCRURLConnectionTests.h; path = Tests/VCRURLConnectionTests.h; sourceTree = "<group>"; };
 		B3B8288B167E9B2B00CCEC3C /* VCRURLConnectionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VCRURLConnectionTests.m; path = Tests/VCRURLConnectionTests.m; sourceTree = "<group>"; };
 		B3B82896167E9B6800CCEC3C /* VCR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VCR.h; path = VCRURLConnection/VCR.h; sourceTree = "<group>"; };
@@ -388,8 +384,6 @@
 				B3475BB8167F12620044511D /* VCRRecordingTests.m */,
 				B3B82884167E9B2B00CCEC3C /* VCRRequestKeyTests.h */,
 				B3B82885167E9B2B00CCEC3C /* VCRRequestKeyTests.m */,
-				B3B82888167E9B2B00CCEC3C /* VCRTests.h */,
-				B3B82889167E9B2B00CCEC3C /* VCRTests.m */,
 				B3B8288A167E9B2B00CCEC3C /* VCRURLConnectionTests.h */,
 				B3B8288B167E9B2B00CCEC3C /* VCRURLConnectionTests.m */,
 				B3B2FF2F186E1FEF00AF41E2 /* VCRURLConnection_NSURLSessionTests.m */,
@@ -564,7 +558,6 @@
 				B3B2FF3E186E28CD00AF41E2 /* VCRURLSessionDelegate.m in Sources */,
 				B317B69E186E13DD00A7C0AE /* VCRURLConnectionTests.m in Sources */,
 				B317B6A9186E180900A7C0AE /* VCRError.m in Sources */,
-				B317B69D186E13DA00A7C0AE /* VCRTests.m in Sources */,
 				B31F56FD1870FD1D00743269 /* VCR+NSURLSession.m in Sources */,
 				B31F57051871109000743269 /* VCR_NSURLConnectionTests.m in Sources */,
 				B32B69BB18711E6600098AAA /* VCRURLConnectionTestDelegate.m in Sources */,
@@ -580,7 +573,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B317B6CA186E1A5E00A7C0AE /* VCRTests.m in Sources */,
 				B317B6C2186E1A5100A7C0AE /* VCRRecording.m in Sources */,
 				B317B6C8186E1A5E00A7C0AE /* VCRRecordingTests.m in Sources */,
 				B317B6CB186E1A5E00A7C0AE /* VCRURLConnectionTests.m in Sources */,
