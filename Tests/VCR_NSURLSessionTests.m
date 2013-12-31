@@ -35,6 +35,8 @@
     VCRUnswizzleNSURLSession();
 }
 
+#pragma mark - Test swizzling
+
 - (Method)constructorMethod {
     Class clazz = object_getClass([NSURLSession class]);
     return class_getClassMethod(clazz, @selector(sessionWithConfiguration:delegate:delegateQueue:));
@@ -87,6 +89,32 @@
     [self testRecordResponseForRequestBlock:^(NSURLRequest *request) {
         NSURLSessionDataTask *task = [weakSelf.session
                                       dataTaskWithRequest:request
+                                      completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                          completed = YES;
+                                      }];
+        [task resume];
+    } predicateBlock:^BOOL{
+        return completed;
+    }];
+}
+
+- (void)testResponseIsRecordedForDataTaskWithURL {
+    self.delegate.responseDisposition = NSURLSessionResponseAllow;
+    __weak typeof(self) weakSelf = self;
+    [self testRecordResponseForRequestBlock:^(NSURLRequest *request) {
+        NSURLSessionDataTask *task = [weakSelf.session dataTaskWithURL:request.URL];
+        [task resume];
+    } predicateBlock:^BOOL{
+        return weakSelf.delegate.isDone;
+    }];
+}
+
+- (void)testResponseIsRecordedForDataTaskWithURLCompletionHandler {
+    __weak typeof(self) weakSelf = self;
+    __block BOOL completed = NO;
+    [self testRecordResponseForRequestBlock:^(NSURLRequest *request) {
+        NSURLSessionDataTask *task = [weakSelf.session
+                                      dataTaskWithURL:request.URL
                                       completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                                           completed = YES;
                                       }];
