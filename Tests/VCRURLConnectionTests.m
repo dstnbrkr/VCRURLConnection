@@ -63,10 +63,11 @@
 }
 
 - (void)testResponseIsRecorded {
-    [self testRecordResponseForRequestBlock:^id<VCRTestDelegate>(NSURLRequest *request) {
-        VCRURLConnectionTestDelegate *delegate = [[VCRURLConnectionTestDelegate alloc] init];
+    VCRURLConnectionTestDelegate *delegate = [[VCRURLConnectionTestDelegate alloc] init];
+    [self testRecordResponseForRequestBlock:^(NSURLRequest *request) {
         [NSURLConnection connectionWithRequest:request delegate:delegate];
-        return delegate;
+    } predicateBlock:^BOOL{
+        return delegate.isDone;
     }];
 }
 

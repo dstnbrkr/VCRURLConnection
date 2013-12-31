@@ -16,16 +16,21 @@
 #import <objc/objc-runtime.h>
 
 @interface VCR_NSURLSessionTests : XCTestCase
-
+@property (nonatomic, strong) VCRURLSessionTestDelegate *delegate;
+@property (nonatomic, strong) NSURLSession *sessionWithDelegate;
 @end
 
 @implementation VCR_NSURLSessionTests
 
-- (NSURLSession *)defaultSession
-{
+- (void)setUp {
+    VCRSwizzleNSURLSession();
+    self.delegate = [[VCRURLSessionTestDelegate alloc] init];
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
-    return session;
+    self.sessionWithDelegate = [NSURLSession sessionWithConfiguration:configuration delegate:self.delegate delegateQueue:[NSOperationQueue mainQueue]];
+}
+
+- (void)tearDown {
+    VCRUnswizzleNSURLSession();
 }
 
 - (Method)constructorMethod {
@@ -43,18 +48,14 @@
     XCTAssertNotEqual(method_getImplementation([self constructorMethod]), (IMP)VCR_URLSessionConstructor, @"");
 }
 
-- (void)testResponseIsRecorded {
-    VCRSwizzleNSURLSession();
-    [self testRecordResponseForRequestBlock:^id<VCRTestDelegate>(NSURLRequest *request) {
-        __block VCRURLSessionTestDelegate *delegate = [[VCRURLSessionTestDelegate alloc] init];
-        NSURLSession *session = [self defaultSession];
-        NSURLSessionDataTask *task = [session dataTaskWithRequest:request
-                                                completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                                                    delegate.done = YES;                                                }];
+- (void)testResponseIsRecordedForDataTaskWithRequest {
+    __weak VCRURLSessionTestDelegate *delegate = self.delegate;
+    [self testRecordResponseForRequestBlock:^(NSURLRequest *request) {
+        NSURLSessionDataTask *task = [self.sessionWithDelegate dataTaskWithRequest:request completionHandler:nil];
         [task resume];
-        return delegate;
+    } predicateBlock:^BOOL{
+        return delegate.isDone;
     }];
-    VCRUnswizzleNSURLSession();
 }
 
 @end

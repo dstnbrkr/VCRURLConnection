@@ -11,6 +11,6 @@
 
 @interface XCTestCase (VCR)
 
-- (void)testRecordResponseForRequestBlock:(id<VCRTestDelegate> (^)(NSURLRequest *request))block;
+- (void)testRecordResponseForRequestBlock:(void(^)(NSURLRequest *request))block predicateBlock:(BOOL(^)())predicateBlock;
 
 @end
