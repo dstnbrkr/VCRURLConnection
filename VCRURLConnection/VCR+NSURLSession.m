@@ -68,7 +68,7 @@ NSURLSessionDataTask *VCR_dataTaskWithRequest_completionHandler(id self,
         if (completionHandler) completionHandler(data, response, error);
     };
     
-    return orig_dataTaskWithRequest_completionHandler(self, _cmd, request, wrappedCompletionHandler);
+    return orig_dataTaskWithRequest_completionHandler(self, _cmd, request, completionHandler ? wrappedCompletionHandler : nil);
 }
 
 Method VCRGetURLSessionConstructorMethod() {
@@ -84,12 +84,12 @@ Method VCRGetDataTaskWithRequest_completionHandlerMethod() {
 
 void VCRSwizzleNSURLSession() {
     method_setImplementation(VCRGetURLSessionConstructorMethod(), (IMP)VCR_URLSessionConstructor);
-    //method_setImplementation(VCRGetDataTaskWithRequest_completionHandlerMethod(), (IMP)VCR_dataTaskWithRequest_completionHandler);
+    method_setImplementation(VCRGetDataTaskWithRequest_completionHandlerMethod(), (IMP)VCR_dataTaskWithRequest_completionHandler);
 }
 
 void VCRUnswizzleNSURLSession() {
     method_setImplementation(VCRGetURLSessionConstructorMethod(), (IMP)orig_URLSessionConstructor);
-    //method_setImplementation(VCRGetDataTaskWithRequest_completionHandlerMethod(), (IMP)orig_dataTaskWithRequest_completionHandler);
+    method_setImplementation(VCRGetDataTaskWithRequest_completionHandlerMethod(), (IMP)orig_dataTaskWithRequest_completionHandler);
 }
 
 @implementation VCR (NSURLSession)

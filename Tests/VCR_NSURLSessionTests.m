@@ -48,13 +48,13 @@
 - (void)testSwizzle {
     VCRSwizzleNSURLSession();
     XCTAssertEqual(method_getImplementation([self constructorMethod]), (IMP)VCR_URLSessionConstructor, @"");
-    //XCTAssertEqual(method_getImplementation([self dataTaskMethod]), (IMP)VCR_dataTaskWithRequest_completionHandler, @"");
+    XCTAssertEqual(method_getImplementation([self dataTaskMethod]), (IMP)VCR_dataTaskWithRequest_completionHandler, @"");
 }
 
 - (void)testUnswizzle {
     VCRUnswizzleNSURLSession();
     XCTAssertNotEqual(method_getImplementation([self constructorMethod]), (IMP)VCR_URLSessionConstructor, @"");
-    //XCTAssertNotEqual(method_getImplementation([self dataTaskMethod]), (IMP)VCR_dataTaskWithRequest_completionHandler, @"");
+    XCTAssertNotEqual(method_getImplementation([self dataTaskMethod]), (IMP)VCR_dataTaskWithRequest_completionHandler, @"");
 }
 
 #pragma mark - Test all recording scenarios
@@ -81,7 +81,6 @@
     }];
 }
 
-/*
 - (void)testResponseIsRecordedForDataTaskWithRequestCompletionHandler {
     __weak typeof(self) weakSelf = self;
     __block BOOL completed = NO;
@@ -96,7 +95,6 @@
         return completed;
     }];
 }
-*/
 
 @end
 
