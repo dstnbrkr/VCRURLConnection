@@ -46,6 +46,20 @@
     }];
 }
 
+/*
+ FIXME: fails with -[VCRURLSessionDelegate _URLSession:downloadTaskNeedsDownloadDirectory:]: unrecognized selector sent to instance 0x2ca3850
+- (void)testResponseIsRecordedForDataTaskWithRequestTurnToDownloadTask {
+    self.delegate.responseDisposition = NSURLSessionResponseBecomeDownload;
+    __weak typeof(self) weakSelf = self;
+    [self testRecordResponseForRequestBlock:^(NSURLRequest *request) {
+        NSURLSessionDataTask *task = [weakSelf.session dataTaskWithRequest:request];
+        [task resume];
+    } predicateBlock:^BOOL{
+        return weakSelf.delegate.isDone;
+    }];
+}
+*/
+
 - (void)testResponseIsRecordedForDataTaskWithRequestNilCompletionHandler {
     self.delegate.responseDisposition = NSURLSessionResponseAllow;
     __weak typeof(self) weakSelf = self;
