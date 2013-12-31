@@ -82,6 +82,8 @@
 		B3475B8A167EA2960044511D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3475B87167EA2960044511D /* Default@2x.png */; };
 		B3475B8C167EA37B0044511D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3475B8B167EA37B0044511D /* UIKit.framework */; };
 		B3475BB1167EFFA80044511D /* VCRRecording.m in Sources */ = {isa = PBXBuildFile; fileRef = B3475BAE167EFFA80044511D /* VCRRecording.m */; };
+		B359FCCE18730E0400FA20E2 /* VCR_NSURLSessionDataTaskTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B359FCCD18730E0400FA20E2 /* VCR_NSURLSessionDataTaskTests.m */; };
+		B359FCCF18730E0400FA20E2 /* VCR_NSURLSessionDataTaskTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B359FCCD18730E0400FA20E2 /* VCR_NSURLSessionDataTaskTests.m */; };
 		B3655A8A1871C48600CC3F7F /* VCRTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B3655A891871C48600CC3F7F /* VCRTests.m */; };
 		B3655A8B1871C48600CC3F7F /* VCRTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B3655A891871C48600CC3F7F /* VCRTests.m */; };
 		B3655A901871C7D300CC3F7F /* XCTestCase+VCR.m in Sources */ = {isa = PBXBuildFile; fileRef = B3655A8F1871C7D300CC3F7F /* XCTestCase+VCR.m */; };
@@ -143,6 +145,7 @@
 		B3475BAE167EFFA80044511D /* VCRRecording.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VCRRecording.m; path = VCRURLConnection/VCRRecording.m; sourceTree = "<group>"; };
 		B3475BB7167F12620044511D /* VCRRecordingTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VCRRecordingTests.h; path = Tests/VCRRecordingTests.h; sourceTree = "<group>"; };
 		B3475BB8167F12620044511D /* VCRRecordingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VCRRecordingTests.m; path = Tests/VCRRecordingTests.m; sourceTree = "<group>"; };
+		B359FCCD18730E0400FA20E2 /* VCR_NSURLSessionDataTaskTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VCR_NSURLSessionDataTaskTests.m; path = Tests/VCR_NSURLSessionDataTaskTests.m; sourceTree = "<group>"; };
 		B3655A891871C48600CC3F7F /* VCRTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VCRTests.m; path = Tests/VCRTests.m; sourceTree = "<group>"; };
 		B3655A8D1871C5EC00CC3F7F /* VCRTestDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = VCRTestDelegate.h; path = Tests/VCRTestDelegate.h; sourceTree = "<group>"; };
 		B3655A8E1871C7D300CC3F7F /* XCTestCase+VCR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "XCTestCase+VCR.h"; path = "Tests/XCTestCase+VCR.h"; sourceTree = "<group>"; };
@@ -258,6 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				B32B69AD187116A200098AAA /* VCR_NSURLSessionTests.m */,
+				B359FCCD18730E0400FA20E2 /* VCR_NSURLSessionDataTaskTests.m */,
 				B31B9DAB187147C6001A59FF /* VCRURLSessionDelegateTests.m */,
 				B31B9DAE18714861001A59FF /* VCRURLSessionTestDelegate.h */,
 				B31B9DAF18714861001A59FF /* VCRURLSessionTestDelegate.m */,
@@ -589,6 +593,7 @@
 				B3B2FF3E186E28CD00AF41E2 /* VCRURLSessionDelegate.m in Sources */,
 				B317B69E186E13DD00A7C0AE /* VCRURLConnectionTests.m in Sources */,
 				B317B6A9186E180900A7C0AE /* VCRError.m in Sources */,
+				B359FCCE18730E0400FA20E2 /* VCR_NSURLSessionDataTaskTests.m in Sources */,
 				B31F56FD1870FD1D00743269 /* VCR+NSURLSession.m in Sources */,
 				B31F57051871109000743269 /* VCR_NSURLConnectionTests.m in Sources */,
 				B32B69BB18711E6600098AAA /* VCRURLConnectionTestDelegate.m in Sources */,
@@ -623,6 +628,7 @@
 				B317B6C4186E1A5100A7C0AE /* VCRError.m in Sources */,
 				B317B6C9186E1A5E00A7C0AE /* VCRRequestKeyTests.m in Sources */,
 				B317B6BD186E1A5100A7C0AE /* VCR.m in Sources */,
+				B359FCCF18730E0400FA20E2 /* VCR_NSURLSessionDataTaskTests.m in Sources */,
 				B31F56FE1870FD1D00743269 /* VCR+NSURLSession.m in Sources */,
 				B31F57061871109000743269 /* VCR_NSURLConnectionTests.m in Sources */,
 				B32B69BC18711E6600098AAA /* VCRURLConnectionTestDelegate.m in Sources */,
