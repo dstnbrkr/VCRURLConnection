@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "VCR+NSURLConnection.h"
+#import "VCRCassetteManager.h"
 #import <objc/objc-runtime.h>
 
 @interface VCR_NSURLConnectionTests : XCTestCase
@@ -15,6 +16,11 @@
 @end
 
 @implementation VCR_NSURLConnectionTests
+
+- (void)setUp {
+    [super setUp];
+    [[VCRCassetteManager defaultManager] setCurrentCassette:nil];
+}
 
 - (void)enumerateImplementationsWithBlock:(void(^)(NSUInteger index, IMP imp))block {
     SEL selectors[2];

@@ -46,7 +46,9 @@
     NSDictionary *headers = @{ @"X-Test-Key" : @"X-Test-Value" };
     NSHTTPURLResponse *response = [[NSHTTPURLResponse alloc] initWithURL:nil statusCode:0 HTTPVersion:@"HTTP/1.1" headerFields:headers];
 
-    [self.outerDelegate URLSession:nil dataTask:self.task didReceiveResponse:response completionHandler:nil];
+    [self.outerDelegate URLSession:nil dataTask:self.task didReceiveResponse:response completionHandler:^(NSURLSessionResponseDisposition disposition) {
+        // do nothing
+    }];
     
     // ensure headers are copied
     XCTAssertNotEqual(self.recording.headerFields, headers, @"");

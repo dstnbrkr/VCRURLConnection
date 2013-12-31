@@ -12,6 +12,7 @@
 #import <XCTest/XCTest.h>
 #import "VCR+NSURLSession.h"
 #import "VCRURLSessionTestDelegate.h"
+#import "VCRCassetteManager.h"
 #import "XCTestCase+VCR.h"
 #import <objc/objc-runtime.h>
 
@@ -23,6 +24,7 @@
 @implementation VCR_NSURLSessionTests
 
 - (void)setUp {
+    [[VCRCassetteManager defaultManager] setCurrentCassette:nil];
     VCRSwizzleNSURLSession();
     self.delegate = [[VCRURLSessionTestDelegate alloc] init];
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -51,7 +53,7 @@
 - (void)testResponseIsRecordedForDataTaskWithRequest {
     __weak VCRURLSessionTestDelegate *delegate = self.delegate;
     [self testRecordResponseForRequestBlock:^(NSURLRequest *request) {
-        NSURLSessionDataTask *task = [self.sessionWithDelegate dataTaskWithRequest:request completionHandler:nil];
+        NSURLSessionDataTask *task = [self.sessionWithDelegate dataTaskWithRequest:request];
         [task resume];
     } predicateBlock:^BOOL{
         return delegate.isDone;
