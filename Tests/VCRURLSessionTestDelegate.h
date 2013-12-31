@@ -15,6 +15,7 @@
 @interface VCRURLSessionTestDelegate : NSObject<VCRTestDelegate, NSURLSessionDelegate, NSURLSessionDataDelegate, NSURLSessionTaskDelegate>
 
 @property (nonatomic, getter = isDone, readwrite) BOOL done;
+@property (nonatomic, assign) NSURLSessionResponseDisposition responseDisposition;
 
 @end
 

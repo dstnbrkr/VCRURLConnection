@@ -26,7 +26,7 @@ didReceiveResponse:(NSURLResponse *)response
  completionHandler:(void (^)(NSURLSessionResponseDisposition))completionHandler {
     
     self.response = (NSHTTPURLResponse *)response;
-    completionHandler(NSURLSessionResponseAllow);
+    completionHandler(self.responseDisposition);
 }
 
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveData:(NSData *)data {

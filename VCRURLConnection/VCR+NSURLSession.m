@@ -26,12 +26,18 @@
 
 #import "VCR+NSURLSession.h"
 #import "VCRURLSessionDelegate.h"
+#import "VCRRecording.h"
+#import "VCRCassetteManager.h"
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
 
 typedef NSURLSession *(*URLSessionConstructor)(id, SEL, NSURLSessionConfiguration *, id<NSURLSessionDelegate>, NSOperationQueue *);
 
+typedef NSURLSessionDataTask *(*URLSessionDataTaskWithRequest)(id, SEL, NSURLRequest *, void (^)(NSData *, NSURLResponse *, NSError *));
+
 URLSessionConstructor orig_URLSessionConstructor;
+
+URLSessionDataTaskWithRequest orig_dataTaskWithRequest_completionHandler;
 
 NSURLSession *VCR_URLSessionConstructor(id self,
                                         SEL _cmd,
@@ -43,27 +49,54 @@ NSURLSession *VCR_URLSessionConstructor(id self,
     return orig_URLSessionConstructor(self, _cmd, configuration, wrappedDelegate, delegateQueue);
 }
 
+NSURLSessionDataTask *VCR_dataTaskWithRequest_completionHandler(id self,
+                                                                SEL _cmd,
+                                                                NSURLRequest *request,
+                                                                void(^completionHandler)(NSData *data, NSURLResponse *response, NSError *error)) {
+    
+    void (^wrappedCompletionHandler)(NSData *, NSURLResponse *, NSError *) = ^(NSData *data, NSURLResponse *response, NSError *error) {
+        VCRRecording *recording = [[VCRRecording alloc] init];
+        recording.method = request.HTTPMethod;
+        recording.URI = [request.URL absoluteString];
+        VCRCassette *cassette = [[VCRCassetteManager defaultManager] currentCassette];
+        [cassette addRecording:recording];
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response; // FIXME
+        recording.headerFields = [httpResponse allHeaderFields];
+        recording.data = data;
+        recording.error = error;
+        
+        if (completionHandler) completionHandler(data, response, error);
+    };
+    
+    return orig_dataTaskWithRequest_completionHandler(self, _cmd, request, wrappedCompletionHandler);
+}
+
 Method VCRGetURLSessionConstructorMethod() {
     Class clazz = object_getClass(NSClassFromString(@"NSURLSession"));
     SEL selector = @selector(sessionWithConfiguration:delegate:delegateQueue:);
     return class_getClassMethod(clazz, selector);
 }
 
+Method VCRGetDataTaskWithRequest_completionHandlerMethod() {
+    Class clazz = [NSURLSession class];
+    return class_getInstanceMethod(clazz, @selector(dataTaskWithRequest:completionHandler:));
+}
+
 void VCRSwizzleNSURLSession() {
-    Method method = VCRGetURLSessionConstructorMethod();
-    method_setImplementation(method, (IMP)VCR_URLSessionConstructor);
+    method_setImplementation(VCRGetURLSessionConstructorMethod(), (IMP)VCR_URLSessionConstructor);
+    //method_setImplementation(VCRGetDataTaskWithRequest_completionHandlerMethod(), (IMP)VCR_dataTaskWithRequest_completionHandler);
 }
 
 void VCRUnswizzleNSURLSession() {
-    Method method = VCRGetURLSessionConstructorMethod();
-    method_setImplementation(method, (IMP)orig_URLSessionConstructor);
+    method_setImplementation(VCRGetURLSessionConstructorMethod(), (IMP)orig_URLSessionConstructor);
+    //method_setImplementation(VCRGetDataTaskWithRequest_completionHandlerMethod(), (IMP)orig_dataTaskWithRequest_completionHandler);
 }
 
 @implementation VCR (NSURLSession)
 
 + (void)load {
-    Method method = VCRGetURLSessionConstructorMethod();
-    orig_URLSessionConstructor = (URLSessionConstructor)method_getImplementation(method);
+    orig_URLSessionConstructor = (URLSessionConstructor)method_getImplementation(VCRGetURLSessionConstructorMethod());
+    orig_dataTaskWithRequest_completionHandler = (URLSessionDataTaskWithRequest)method_getImplementation(VCRGetDataTaskWithRequest_completionHandlerMethod());
 }
 
 @end

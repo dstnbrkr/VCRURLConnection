@@ -36,6 +36,12 @@ NSURLSession *VCR_URLSessionConstructor(id self,
                                         NSURLSessionConfiguration *configuration,
                                         id<NSURLSessionDelegate> delegate,
                                         NSOperationQueue *delegateQueue);
+
+NSURLSessionDataTask *VCR_dataTaskWithRequest_completionHandler(id self,
+                                                                SEL _cmd,
+                                                                NSURLRequest *request,
+                                                                void(^completionHandler)(NSData *data, NSURLResponse *response, NSError *error));
+
 #endif
 
 @end

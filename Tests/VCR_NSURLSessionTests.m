@@ -18,7 +18,7 @@
 
 @interface VCR_NSURLSessionTests : XCTestCase
 @property (nonatomic, strong) VCRURLSessionTestDelegate *delegate;
-@property (nonatomic, strong) NSURLSession *sessionWithDelegate;
+@property (nonatomic, strong) NSURLSession *session;
 @end
 
 @implementation VCR_NSURLSessionTests
@@ -28,7 +28,7 @@
     VCRSwizzleNSURLSession();
     self.delegate = [[VCRURLSessionTestDelegate alloc] init];
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    self.sessionWithDelegate = [NSURLSession sessionWithConfiguration:configuration delegate:self.delegate delegateQueue:[NSOperationQueue mainQueue]];
+    self.session = [NSURLSession sessionWithConfiguration:configuration delegate:self.delegate delegateQueue:[NSOperationQueue mainQueue]];
 }
 
 - (void)tearDown {
@@ -36,29 +36,67 @@
 }
 
 - (Method)constructorMethod {
-    Class clazz = object_getClass(NSClassFromString(@"NSURLSession"));
+    Class clazz = object_getClass([NSURLSession class]);
     return class_getClassMethod(clazz, @selector(sessionWithConfiguration:delegate:delegateQueue:));
+}
+
+- (Method)dataTaskMethod {
+    Class clazz = [NSURLSession class];
+    return class_getInstanceMethod(clazz, @selector(dataTaskWithRequest:completionHandler:));
 }
 
 - (void)testSwizzle {
     VCRSwizzleNSURLSession();
     XCTAssertEqual(method_getImplementation([self constructorMethod]), (IMP)VCR_URLSessionConstructor, @"");
+    //XCTAssertEqual(method_getImplementation([self dataTaskMethod]), (IMP)VCR_dataTaskWithRequest_completionHandler, @"");
 }
 
 - (void)testUnswizzle {
     VCRUnswizzleNSURLSession();
     XCTAssertNotEqual(method_getImplementation([self constructorMethod]), (IMP)VCR_URLSessionConstructor, @"");
+    //XCTAssertNotEqual(method_getImplementation([self dataTaskMethod]), (IMP)VCR_dataTaskWithRequest_completionHandler, @"");
 }
 
+#pragma mark - Test all recording scenarios
+
 - (void)testResponseIsRecordedForDataTaskWithRequest {
-    __weak VCRURLSessionTestDelegate *delegate = self.delegate;
+    self.delegate.responseDisposition = NSURLSessionResponseAllow;
+    __weak typeof(self) weakSelf = self;
     [self testRecordResponseForRequestBlock:^(NSURLRequest *request) {
-        NSURLSessionDataTask *task = [self.sessionWithDelegate dataTaskWithRequest:request];
+        NSURLSessionDataTask *task = [weakSelf.session dataTaskWithRequest:request];
         [task resume];
     } predicateBlock:^BOOL{
-        return delegate.isDone;
+        return weakSelf.delegate.isDone;
     }];
 }
+
+- (void)testResponseIsRecordedForDataTaskWithRequestNilCompletionHandler {
+    self.delegate.responseDisposition = NSURLSessionResponseAllow;
+    __weak typeof(self) weakSelf = self;
+    [self testRecordResponseForRequestBlock:^(NSURLRequest *request) {
+        NSURLSessionDataTask *task = [weakSelf.session dataTaskWithRequest:request completionHandler:nil];
+        [task resume];
+    } predicateBlock:^BOOL{
+        return weakSelf.delegate.isDone;
+    }];
+}
+
+/*
+- (void)testResponseIsRecordedForDataTaskWithRequestCompletionHandler {
+    __weak typeof(self) weakSelf = self;
+    __block BOOL completed = NO;
+    [self testRecordResponseForRequestBlock:^(NSURLRequest *request) {
+        NSURLSessionDataTask *task = [weakSelf.session
+                                      dataTaskWithRequest:request
+                                      completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                          completed = YES;
+                                      }];
+        [task resume];
+    } predicateBlock:^BOOL{
+        return completed;
+    }];
+}
+*/
 
 @end
 
