@@ -43,17 +43,13 @@ static BOOL _VCRIsReplaying;
     return [[VCRCassetteManager defaultManager] currentCassette];
 }
 
-+ (void)setURLProtocolEnabled:(BOOL)enabled class:(Class)class {
-    if (enabled) {
-        [NSURLProtocol registerClass:class];
-    } else {
-        [NSURLProtocol unregisterClass:class];
-    }
++ (void)addProtocols {
+    [NSURLProtocol registerClass:[VCRRecordingURLProtocol class]];
+    [NSURLProtocol registerClass:[VCRReplayingURLProtocol class]];
+    VCRAddProtocolsToNSURLSessionConfiguration();
 }
 
 + (void)setRecording:(BOOL)recording {
-    [self setURLProtocolEnabled:recording class:[VCRRecordingURLProtocol class]];
-    VCRAddProtocolsToNSURLSessionConfiguration();
     _VCRIsRecording = recording;
 }
 
@@ -62,7 +58,6 @@ static BOOL _VCRIsReplaying;
 }
 
 + (void)setReplaying:(BOOL)replaying {
-    [self setURLProtocolEnabled:replaying class:[VCRReplayingURLProtocol class]];
     _VCRIsReplaying = YES;
 }
 
@@ -71,6 +66,7 @@ static BOOL _VCRIsReplaying;
 }
 
 + (void)start {
+    [self addProtocols];
     [self setRecording:YES];
     [self setReplaying:YES];
 }

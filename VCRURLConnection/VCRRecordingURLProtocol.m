@@ -25,6 +25,7 @@
 #import "VCRRecording.h"
 #import "VCRCassette.h"
 #import "VCRCassetteManager.h"
+#import "VCR.h"
 
 static NSString * const VCRIsRecordingRequestKey = @"VCR_recording";
 
@@ -37,7 +38,7 @@ static NSString * const VCRIsRecordingRequestKey = @"VCR_recording";
 + (BOOL)canInitWithRequest:(NSURLRequest *)request {
     BOOL isAlreadyRecordingRequest = [[self propertyForKey:VCRIsRecordingRequestKey inRequest:request] boolValue];
     BOOL isHTTP = [request.URL.scheme isEqualToString:@"https"] || [request.URL.scheme isEqualToString:@"http"];
-    return !isAlreadyRecordingRequest && isHTTP;
+    return [VCR isRecording] && !isAlreadyRecordingRequest && isHTTP;
 }
 
 + (NSURLRequest *)canonicalRequestForRequest:(NSURLRequest *)request {

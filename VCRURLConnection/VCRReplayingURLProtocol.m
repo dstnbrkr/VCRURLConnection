@@ -25,11 +25,12 @@
 #import "VCRCassette.h"
 #import "VCRCassetteManager.h"
 #import "VCRRecording.h"
+#import "VCR.h"
 
 @implementation VCRReplayingURLProtocol
 
 + (BOOL)canInitWithRequest:(NSURLRequest *)request {
-    return [self recordingForRequest:request] && ([request.URL.scheme isEqualToString:@"https"] || [request.URL.scheme isEqualToString:@"http"]);
+    return [VCR isReplaying] && [self recordingForRequest:request] && ([request.URL.scheme isEqualToString:@"https"] || [request.URL.scheme isEqualToString:@"http"]);
 }
 
 + (NSURLRequest *)canonicalRequestForRequest:(NSURLRequest *)request {
