@@ -13,7 +13,7 @@
 
 #import "VCRRecordingURLProtocol.h"
 #import "VCRReplayingURLProtocol.h"
-#import <objc/objc-runtime.h>
+#import <objc/runtime.h>
 
 typedef NSURLSessionConfiguration *(*VCR_NSURLSessionConfigurationConstructor)(id, SEL);
 
