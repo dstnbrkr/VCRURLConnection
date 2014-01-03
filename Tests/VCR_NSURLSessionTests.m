@@ -30,7 +30,9 @@
 #import "VCRCassetteManager.h"
 
 @interface VCR_NSURLSessionTests : XCTestCase
-
+@property (nonatomic, strong) NSURLSession *sharedSession;
+@property (nonatomic, strong) NSURLSession *defaultSession;
+@property (nonatomic, strong) NSURLSession *ephemeralSession;
 @end
 
 @implementation VCR_NSURLSessionTests
@@ -40,9 +42,12 @@
     [super setUp];
     [VCR start];
     [[VCRCassetteManager defaultManager] setCurrentCassette:nil];
+    self.sharedSession = [NSURLSession sharedSession];
+    self.defaultSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    self.ephemeralSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration ephemeralSessionConfiguration]];
 }
 
-- (void)testResponseIsRecorded {
+- (void)testResponseIsRecordedWithSession:(NSURLSession *)session {
     NSURL *url = [NSURL URLWithString:@"http://www.iana.org/domains/reserved"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     __block BOOL completed = NO;
@@ -64,6 +69,18 @@
         
         [self testRecording:recording forRequest:request];
     }];
+}
+              
+- (void)testResponseIsRecordedForSharedSession {
+    [self testResponseIsRecordedWithSession:self.sharedSession];
+}
+
+- (void)testResponseIsRecordedForDefaultSession {
+    [self testResponseIsRecordedWithSession:self.defaultSession];
+}
+
+- (void)testResponseIsRecordedForEphemeralSession {
+    [self testResponseIsRecordedWithSession:self.ephemeralSession];
 }
 
 - (void)testResponseIsReplayed {
