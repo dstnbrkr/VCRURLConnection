@@ -6,7 +6,7 @@
 //
 //
 
-#define __VCR_USE_NSURLSESSION 1
+#define __VCR_USE_NSURLSESSION 0
 
 #import "VCRURLLoader.h"
 
@@ -27,7 +27,29 @@
 
 - (void)loadURL:(NSURL *)url {
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
+#if __VCR_USE_NSURLSESSION
+    __block typeof(self) weakSelf = self;
+    NSURLSessionDataTask *task = [[NSURLSession sharedSession]
+                                  dataTaskWithRequest:request
+                                  completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                      if (response) {
+                                          [weakSelf.delegate URLLoader:weakSelf didReceiveResponse:(NSHTTPURLResponse *)response];
+                                      }
+                                      
+                                      if (data) {
+                                          [weakSelf.delegate URLLoader:weakSelf didLoadData:data];
+                                      }
+                                      
+                                      if (error) {
+                                          [weakSelf.delegate URLLoader:weakSelf didFailWithError:error];
+                                      } else {
+                                          [weakSelf.delegate URLLoaderDidFinishLoading:weakSelf];
+                                      }
+                                  }];
+    [task resume];
+#else
     [NSURLConnection connectionWithRequest:request delegate:self];
+#endif
 }
 
 #pragma mark NSURLConnectionDelegate
