@@ -21,6 +21,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+#import "XCTestCase+VCR.h"
 #import "XCTestCase+SRTAdditions.h"
 #import "VCRURLConnectionTests.h"
 #import "VCRCassetteManager.h"
@@ -68,27 +69,30 @@
     [super tearDown];
 }
 
-- (void)testAsyncConnectionIsRecorded {
-    NSURL *url = [NSURL URLWithString:@"http://www.iana.org/domains/reserved"];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    
-    // request has not been recorded yet
-    XCTAssertNil([self.cassette recordingForRequest:request], @"Should not have recording for request yet");
-    
-    // make and record request
+- (void)testResponse_NSURLConnection_connectionWithRequest_delegate:(void (^)(NSURLRequest *request, VCRRecording *recording))assertionsBlock {
+
+}
+
+- (void)testResponseIsRecorded_NSURLConnection_connectionWithRequest_delegate {
     VCRURLConnectionTestDelegate *delegate = [[VCRURLConnectionTestDelegate alloc] init];
-    [NSURLConnection connectionWithRequest:request delegate:delegate];
-    
-    // wait for request to finish
-    [self runCurrentRunLoopUntilTestPasses:^BOOL{
+    [self recordRequestBlock:^(NSURLRequest *request) {
+        [NSURLConnection connectionWithRequest:request delegate:delegate];
+    } predicateBlock:^BOOL{
         return [delegate isDone];
-    } timeout:60 * 60];
-    
-    VCRRecording *recording = [self.cassette recordingForRequest:request];
-    XCTAssertNotNil(recording, @"Should have recording");
-    XCTAssertEqualObjects(recording.URI, [request.URL absoluteString], @"");
-    XCTAssertNotNil(recording.data, @"Should have recorded response data");
-    XCTAssertEqualObjects(recording.data, delegate.data, @"Recorded data should equal recorded data");
+    } assertionsBlock:^(NSURLRequest *request, VCRRecording *recording) {
+        [self testRecording:recording forRequest:request];
+    }];
+}
+
+- (void)testResponseIsDelegated {
+    VCRURLConnectionTestDelegate *delegate = [[VCRURLConnectionTestDelegate alloc] init];
+    [self recordRequestBlock:^(NSURLRequest *request) {
+        [NSURLConnection connectionWithRequest:request delegate:delegate];
+    } predicateBlock:^BOOL{
+        return [delegate isDone];
+    } assertionsBlock:^(NSURLRequest *request, VCRRecording *recording) {
+        [self testDelegate:(id<VCRTestDelegate>)delegate forRecording:recording];
+    }];
 }
 
 - (void)testAsyncGetRequestIsReplayed {
