@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AABFBEB1187662760012703A /* VCRIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AABFBEB0187662760012703A /* VCRIntegrationTests.m */; };
+		AABFBEB2187662760012703A /* VCRIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AABFBEB0187662760012703A /* VCRIntegrationTests.m */; };
 		B317B687186E13B400A7C0AE /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B317B686186E13B400A7C0AE /* XCTest.framework */; };
 		B317B689186E13B400A7C0AE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B317B688186E13B400A7C0AE /* Foundation.framework */; };
 		B317B68A186E13B400A7C0AE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3475B8B167EA37B0044511D /* UIKit.framework */; };
@@ -73,6 +75,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AABFBEB0187662760012703A /* VCRIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VCRIntegrationTests.m; path = Tests/VCRIntegrationTests.m; sourceTree = "<group>"; };
 		B317B685186E13B400A7C0AE /* Tests-iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests-iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B317B686186E13B400A7C0AE /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		B317B688186E13B400A7C0AE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
@@ -309,6 +312,7 @@
 				B3B8287D167E9B2B00CCEC3C /* cassette-1.json */,
 				B3475B8D167EBF8F0044511D /* test.png */,
 				B3BB251B167F243E00C5E3C6 /* Vendor */,
+				AABFBEB0187662760012703A /* VCRIntegrationTests.m */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -469,6 +473,7 @@
 				B317B6A5186E180900A7C0AE /* VCRConnectionDelegate.m in Sources */,
 				B317B6A2186E180900A7C0AE /* VCR.m in Sources */,
 				B317B6A6186E180900A7C0AE /* VCROrderedMutableDictionary.m in Sources */,
+				AABFBEB1187662760012703A /* VCRIntegrationTests.m in Sources */,
 				B317B6A7186E180900A7C0AE /* VCRRecording.m in Sources */,
 				B317B69E186E13DD00A7C0AE /* VCRURLConnectionTests.m in Sources */,
 				B317B6A9186E180900A7C0AE /* VCRError.m in Sources */,
@@ -492,6 +497,7 @@
 				B317B6BF186E1A5100A7C0AE /* VCRCassetteManager.m in Sources */,
 				B317B6C7186E1A5E00A7C0AE /* VCRCassetteTests.m in Sources */,
 				B317B6C1186E1A5100A7C0AE /* VCROrderedMutableDictionary.m in Sources */,
+				AABFBEB2187662760012703A /* VCRIntegrationTests.m in Sources */,
 				B317B6C6186E1A5E00A7C0AE /* VCRCassetteManagerTests.m in Sources */,
 				B317B6C4186E1A5100A7C0AE /* VCRError.m in Sources */,
 				B317B6C9186E1A5E00A7C0AE /* VCRRequestKeyTests.m in Sources */,

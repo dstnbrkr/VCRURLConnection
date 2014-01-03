@@ -50,7 +50,7 @@
 
 - (void)testInit {
     VCRCassette *cassette = [VCRCassette cassette];
-    XCTAssertNotNil(cassette.responseDictionary, @"Must have response dictionary");
+    XCTAssertNotNil(cassette.responseArray, @"Must have response list");
 }
 
 - (void)testInitWithData {
@@ -120,6 +120,20 @@
     VCRCassette *cassette = [[VCRCassette alloc] initWithJSON:self.recordings];
     NSData *data = [cassette data];
     XCTAssertTrue(data != nil && [data length] > 0, @"Did not serialize to data");
+}
+
+- (void)testOrderedDuplicates {
+    id recordings = @[
+        @{ @"method": @"get", @"uri": @"http://time.com/utc", @"body": @"10:30" },
+        @{ @"method": @"get", @"uri": @"http://time.com/utc", @"body": @"10:31" }
+    ];
+    VCRCassette *cassette = [[VCRCassette alloc] initWithJSON:recordings];
+
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://time.com/utc"]];
+    VCRRecording *firstReturned = [cassette recordingForRequest:request];
+    XCTAssertEqualObjects(firstReturned.body, @"10:30", @"first response");
+    VCRRecording *secondReturned = [cassette recordingForRequest:request];
+    XCTAssertEqualObjects(secondReturned.body, @"10:31", @"second response");
 }
 
 @end
