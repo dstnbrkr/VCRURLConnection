@@ -63,7 +63,7 @@
     [super tearDown];
 }
 
-- (void)testResponseIsRecorded_NSURLConnection_connectionWithRequest_delegate {
+- (void)testResponseIsRecorded {
     NSURL *url = [NSURL URLWithString:@"http://www.iana.org/domains/reserved"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     VCRURLConnectionTestDelegate *delegate = [[VCRURLConnectionTestDelegate alloc] init];
@@ -76,7 +76,7 @@
     }];
 }
 
-- (void)testResponseIsDelegated_NSURLConnection_connectionWithRequest_delegate {
+- (void)testResponseIsDelegated {
     NSURL *url = [NSURL URLWithString:@"http://www.iana.org/domains/reserved"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     VCRURLConnectionTestDelegate *delegate = [[VCRURLConnectionTestDelegate alloc] init];
@@ -89,7 +89,7 @@
     }];
 }
 
-- (void)testResponseIsReplayed_NSURLConnection_connectionWithRequest_delegate {
+- (void)testResponseIsReplayed {
     id json = @{ @"method": @"GET", @"uri": @"http://foo", @"body": @"Foo Bar Baz" };
     VCRURLConnectionTestDelegate *delegate = [[VCRURLConnectionTestDelegate alloc] init];
     [self replayJSON:json requestBlock:^(NSURLRequest *request) {
@@ -101,7 +101,35 @@
     }];
 }
 
-- (void)testErrorIsReplayed_NSURLConnection_connectionWithRequest_delegate {
+- (void)testErrorIsRecorded {
+    NSURL *url = [NSURL URLWithString:@"http://z/foo"]; // non-existant host
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    VCRURLConnectionTestDelegate *delegate = [[VCRURLConnectionTestDelegate alloc] init];
+    [self recordRequest:request requestBlock:^{
+        [NSURLConnection connectionWithRequest:request delegate:delegate];
+    } predicateBlock:^BOOL{
+        return [delegate isDone];
+    } completion:^(VCRRecording *recording) {
+        XCTAssertNotNil(recording);
+        XCTAssertNotNil(recording.error, @"");
+    }];
+}
+
+- (void)testErrorIsDelegated {
+    NSURL *url = [NSURL URLWithString:@"http://z/foo"]; // non-existant host
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    VCRURLConnectionTestDelegate *delegate = [[VCRURLConnectionTestDelegate alloc] init];
+    [self recordRequest:request requestBlock:^{
+        [NSURLConnection connectionWithRequest:request delegate:delegate];
+    } predicateBlock:^BOOL{
+        return [delegate isDone];
+    } completion:^(VCRRecording *recording) {
+        [self testDelegate:(id<VCRTestDelegate>)delegate forRecording:recording];
+        XCTAssertNotNil(delegate.error, @"");
+    }];
+}
+
+- (void)testErrorIsReplayed {
     id json = @{ @"method": @"get", @"uri": @"http://foo", @"status": @404 };
     VCRURLConnectionTestDelegate *delegate = [[VCRURLConnectionTestDelegate alloc] init];
     [self replayJSON:json requestBlock:^(NSURLRequest *request) {
@@ -112,28 +140,6 @@
         [self testDelegate:(id<VCRTestDelegate>)delegate forRecording:recording];
     }];
 }
-
-/*
-- (void)testErrorIsRecorded {
-    NSURL *url = [NSURL URLWithString:@"http://z/foo"]; // non-existant host
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    
-    XCTAssertNil([self.cassette recordingForRequest:request], @"Should not have recording for request yet");
-
-    VCRURLConnectionTestDelegate *delegate = [[VCRURLConnectionTestDelegate alloc] init];
-    [NSURLConnection connectionWithRequest:request delegate:delegate];
-    
-    [self runCurrentRunLoopUntilTestPasses:^BOOL{
-        return delegate.error != nil;
-    } timeout:10];
-    
-    XCTAssertNotNil(delegate.error, @""); // make sure we got an error
-    
-    VCRCassette *cassette = [[VCRCassetteManager defaultManager] currentCassette];
-    VCRRecording *recording = [cassette recordingForRequest:request];
-    XCTAssertNotNil(recording.error, @"");
-}
-*/
 
 @end
 

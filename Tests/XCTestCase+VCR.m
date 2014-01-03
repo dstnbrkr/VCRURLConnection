@@ -34,16 +34,15 @@
 }
 
 - (void)testRecording:(VCRRecording *)recording forRequest:(NSURLRequest *)request {
-    XCTAssertNotNil(recording, @"Should have recording");
-    XCTAssertEqualObjects(recording.method, request.HTTPMethod);
-    XCTAssertEqualObjects(recording.URI, [request.URL absoluteString], @"");
-    XCTAssertNotNil(recording.data, @"Should have recorded response data");
+    XCTAssertNotNil(recording);
+    XCTAssertEqualObjects(recording.method, request.HTTPMethod, @"");
+    XCTAssertEqualObjects(recording.URI, [[request URL] absoluteString], @"");
+    XCTAssert(recording.statusCode != 0, @"");
+    XCTAssertNotNil(recording.headerFields);
 }
 
 - (void)testDelegate:(id<VCRTestDelegate>)delegate forRecording:(VCRRecording *)recording {
-    XCTAssertNotNil(delegate.response, @"Response should not be nil");
     XCTAssertEqualObjects(delegate.data, recording.data, @"Recorded data should equal recorded data");
-    XCTAssertEqualObjects(delegate.response.URL, [recording HTTPURLResponse].URL, @"");
     XCTAssertEqualObjects(delegate.data, recording.data, @"Received data should equal recorded data");
     XCTAssertEqual(delegate.response.statusCode, recording.statusCode, @"");
 }
