@@ -104,7 +104,4 @@
     return [self.responseDictionary allKeys];
 }
 
-#pragma mark - Memory
-
-
 @end

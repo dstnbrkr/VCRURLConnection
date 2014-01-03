@@ -24,7 +24,6 @@
 #import "VCR.h"
 #import "VCRCassette.h"
 #import "VCRCassetteManager.h"
-#import "VCRConnectionDelegate.h"
 #import "VCRRecordingURLProtocol.h"
 #import "VCRReplayingURLProtocol.h"
 #import <objc/runtime.h>
