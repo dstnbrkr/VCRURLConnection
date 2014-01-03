@@ -54,12 +54,12 @@
     __block NSData *receivedData;
     __block NSHTTPURLResponse *httpResponse;
     [self recordRequest:request requestBlock:^{
-        NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:request
-                                                                     completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                                                                         completed = YES;
-                                                                         receivedData = data;
-                                                                         httpResponse = (NSHTTPURLResponse *)response;
-                                                                     }];
+        NSURLSessionDataTask *task = [session dataTaskWithRequest:request
+                                                completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                                    completed = YES;
+                                                    receivedData = data;
+                                                    httpResponse = (NSHTTPURLResponse *)response;
+                                                }];
         [task resume];
     } predicateBlock:^BOOL{
         return completed;
@@ -85,18 +85,18 @@
 
 // FIXME: need bundle id to test background session
 
-- (void)testResponseIsReplayed {
+- (void)testResponseIsReplayedWithSession:(NSURLSession *)session {
     id json = @{ @"method": @"GET", @"uri": @"http://foo", @"body": @"Foo Bar Baz" };
     __block BOOL completed = NO;
     __block NSData *receivedData;
     __block NSHTTPURLResponse *httpResponse;
     [self replayJSON:json requestBlock:^(NSURLRequest *request) {
-        NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:request
-                                                                     completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                                                                         completed = YES;
-                                                                         receivedData = data;
-                                                                         httpResponse = (NSHTTPURLResponse *)response;
-                                                                     }];
+        NSURLSessionDataTask *task = [session dataTaskWithRequest:request
+                                                completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                                    completed = YES;
+                                                    receivedData = data;
+                                                    httpResponse = (NSHTTPURLResponse *)response;
+                                                }];
         [task resume];
     } predicateBlock:^BOOL{
         return completed;
@@ -104,6 +104,18 @@
         XCTAssertEqual(httpResponse.statusCode, recording.statusCode, @"");
         XCTAssertEqualObjects(receivedData, recording.data, @"");
     }];
+}
+
+- (void)testResponseIsReplayedForSharedSession {
+    [self testResponseIsReplayedWithSession:self.sharedSession];
+}
+
+- (void)testResponseIsReplayedForDefaultSession {
+    [self testResponseIsReplayedWithSession:self.defaultSession];
+}
+
+- (void)testResponseIsReplayedForEphemeralSession {
+    [self testResponseIsReplayedWithSession:self.ephemeralSession];
 }
 
 @end
