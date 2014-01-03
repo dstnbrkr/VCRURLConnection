@@ -45,6 +45,7 @@
 }
 
 - (void)tearDown {
+    [VCR stop];
     [super tearDown];
 }
 

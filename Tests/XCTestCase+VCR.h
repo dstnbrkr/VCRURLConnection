@@ -7,8 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-
-@class VCRRecording;
+#import "VCRRecording.h"
 
 @protocol VCRTestDelegate <NSObject>
 
