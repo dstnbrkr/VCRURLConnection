@@ -68,6 +68,7 @@ static NSString * const VCRIsRecordingRequestKey = @"VCR_recording";
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSHTTPURLResponse *)response {
     self.recording.headerFields = response.allHeaderFields;
+    self.recording.statusCode = response.statusCode;
     [self.client URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageNotAllowed];
 }
 

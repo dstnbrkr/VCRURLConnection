@@ -14,17 +14,23 @@
 
 @optional
 - (NSData *)data;
-
+- (NSHTTPURLResponse *)response;
 @end
 
 @interface XCTestCase (VCR)
 
-- (void)recordRequestBlock:(void(^)(NSURLRequest *request))requestBlock
-            predicateBlock:(BOOL(^)())predicateBlock
-           assertionsBlock:(void(^)(NSURLRequest *request, VCRRecording *recording))assertionsBlock;
+- (void)recordRequest:(NSURLRequest *)request
+         requestBlock:(void(^)())requestBlock
+       predicateBlock:(BOOL(^)())predicateBlock
+           completion:(void(^)(VCRRecording *recording))completion;
 
 - (void)testRecording:(VCRRecording *)recording forRequest:(NSURLRequest *)request;
 
 - (void)testDelegate:(id<VCRTestDelegate>)delegate forRecording:(VCRRecording *)recording;
+
+- (void)replayJSON:(id)json
+      requestBlock:(void(^)(NSURLRequest *request))requestBlock
+    predicateBlock:(BOOL(^)())predicateBlock
+        completion:(void(^)(VCRRecording *))completion;
 
 @end

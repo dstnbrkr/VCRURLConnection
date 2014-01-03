@@ -51,107 +51,69 @@
 @end
 
 
-@interface VCRURLConnectionTests ()
-@property (nonatomic, strong) VCRCassette *cassette;
-@end
-
-
 @implementation VCRURLConnectionTests
 
 - (void)setUp {
     [super setUp];
     [VCR start];
-    self.cassette = [[VCRCassetteManager defaultManager] currentCassette];
+    [[VCRCassetteManager defaultManager] setCurrentCassette:nil];
 }
 
 - (void)tearDown {
-    self.cassette = nil;
     [super tearDown];
 }
 
-- (void)testResponse_NSURLConnection_connectionWithRequest_delegate:(void (^)(NSURLRequest *request, VCRRecording *recording))assertionsBlock {
-
-}
-
 - (void)testResponseIsRecorded_NSURLConnection_connectionWithRequest_delegate {
+    NSURL *url = [NSURL URLWithString:@"http://www.iana.org/domains/reserved"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
     VCRURLConnectionTestDelegate *delegate = [[VCRURLConnectionTestDelegate alloc] init];
-    [self recordRequestBlock:^(NSURLRequest *request) {
+    [self recordRequest:request requestBlock:^{
         [NSURLConnection connectionWithRequest:request delegate:delegate];
     } predicateBlock:^BOOL{
         return [delegate isDone];
-    } assertionsBlock:^(NSURLRequest *request, VCRRecording *recording) {
+    } completion:^(VCRRecording *recording) {
         [self testRecording:recording forRequest:request];
     }];
 }
 
-- (void)testResponseIsDelegated {
+- (void)testResponseIsDelegated_NSURLConnection_connectionWithRequest_delegate {
+    NSURL *url = [NSURL URLWithString:@"http://www.iana.org/domains/reserved"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
     VCRURLConnectionTestDelegate *delegate = [[VCRURLConnectionTestDelegate alloc] init];
-    [self recordRequestBlock:^(NSURLRequest *request) {
+    [self recordRequest:request requestBlock:^{
         [NSURLConnection connectionWithRequest:request delegate:delegate];
     } predicateBlock:^BOOL{
         return [delegate isDone];
-    } assertionsBlock:^(NSURLRequest *request, VCRRecording *recording) {
+    } completion:^(VCRRecording *recording) {
         [self testDelegate:(id<VCRTestDelegate>)delegate forRecording:recording];
     }];
 }
 
-- (void)testAsyncGetRequestIsReplayed {
-    id json = @[ @{ @"method": @"GET", @"uri": @"http://foo", @"body": @"Foo Bar Baz" } ];
-    VCRCassette *cassette = [[VCRCassette alloc] initWithJSON:json];
-    [[VCRCassetteManager defaultManager] setCurrentCassette:cassette];
-    
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://foo"]];
-    
-    // cassette has recording for request
-    VCRRecording *recording = [cassette recordingForRequest:request];
-    XCTAssertNotNil(recording, @"Should have recorded response");
-
-    // make and playback request
+- (void)testResponseIsReplayed_NSURLConnection_connectionWithRequest_delegate {
+    id json = @{ @"method": @"GET", @"uri": @"http://foo", @"body": @"Foo Bar Baz" };
     VCRURLConnectionTestDelegate *delegate = [[VCRURLConnectionTestDelegate alloc] init];
-    [NSURLConnection connectionWithRequest:request delegate:delegate];
-
-    // wait for request to finish
-    [self runCurrentRunLoopUntilTestPasses:^BOOL{
+    [self replayJSON:json requestBlock:^(NSURLRequest *request) {
+        [NSURLConnection connectionWithRequest:request delegate:delegate];
+    } predicateBlock:^BOOL{
         return [delegate isDone];
-    } timeout:60 * 60];
-    
-    // delegate got response
-    NSHTTPURLResponse *receivedResponse = delegate.response;
-    XCTAssertNotNil(receivedResponse, @"Response should not be nil");
-    
-    // delegate got correct response
-    NSHTTPURLResponse *httpResponse = [recording HTTPURLResponse];
-    XCTAssertTrue([receivedResponse VCR_isIsomorphic:httpResponse],
-                 @"Received response should be isomorphic to recorded response");
-    
-    NSData *receivedData = delegate.data;
-    XCTAssertEqualObjects(receivedData, recording.data, @"Received data should equal recorded data");
+    } completion:^(VCRRecording *recording) {
+        [self testDelegate:(id<VCRTestDelegate>)delegate forRecording:recording];
+    }];
 }
 
-// FIXME: test with enough data to fire connection:didReceiveData: times (test data appending)
-
-// FIXME: can start and stop VCR
-
-- (void)testAsyncGetRequestWithErrorIsReplayed {
-    id json = @[ @{ @"method": @"get", @"uri": @"http://foo", @"status": @404 } ];
-    VCRCassette *cassette = [[VCRCassette alloc] initWithJSON:json];
-    [[VCRCassetteManager defaultManager] setCurrentCassette:cassette];
-    
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://example.com/foo"]];
-    
-    // make and playback request
+- (void)testErrorIsReplayed_NSURLConnection_connectionWithRequest_delegate {
+    id json = @{ @"method": @"get", @"uri": @"http://foo", @"status": @404 };
     VCRURLConnectionTestDelegate *delegate = [[VCRURLConnectionTestDelegate alloc] init];
-    [NSURLConnection connectionWithRequest:request delegate:delegate];
-    
-    // wait for request to finish
-    [self runCurrentRunLoopUntilTestPasses:^BOOL{
+    [self replayJSON:json requestBlock:^(NSURLRequest *request) {
+        [NSURLConnection connectionWithRequest:request delegate:delegate];
+    } predicateBlock:^BOOL{
         return [delegate isDone];
-    } timeout:60 * 60];
-    
-    NSInteger expectedStatusCode = 404;
-    XCTAssertEqual(delegate.response.statusCode, expectedStatusCode, @"Should get error status code");
+    } completion:^(VCRRecording *recording) {
+        [self testDelegate:(id<VCRTestDelegate>)delegate forRecording:recording];
+    }];
 }
 
+/*
 - (void)testErrorIsRecorded {
     NSURL *url = [NSURL URLWithString:@"http://z/foo"]; // non-existant host
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -171,6 +133,7 @@
     VCRRecording *recording = [cassette recordingForRequest:request];
     XCTAssertNotNil(recording.error, @"");
 }
+*/
 
 @end
 
