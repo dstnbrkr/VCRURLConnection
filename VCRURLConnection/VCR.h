@@ -77,6 +77,11 @@
 + (void)start;
 
 /**
+ Begin recording everything
+ */
++ (void)startRecordingDuplicates;
+
+/**
  Stop recording or replaying HTTP interactions
  */
 + (void)stop;
@@ -87,5 +92,8 @@
  @param path the output path
  */
 + (void)save:(NSString *)path;
+
+
++ (BOOL)recordingDuplicates;
 
 @end

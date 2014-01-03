@@ -27,10 +27,13 @@
 #import "VCRConnectionDelegate.h"
 #import <objc/runtime.h>
 
+
 @implementation VCR
 
 typedef id(*URLConnectionInitializer1)(id, SEL, NSURLRequest *, id<NSURLConnectionDelegate>, BOOL);
 typedef id(*URLConnectionInitializer2)(id, SEL, NSURLRequest *, id<NSURLConnectionDelegate>);
+
+static BOOL recordingDuplicates = NO;
 
 static URLConnectionInitializer1 orig_initWithRequest1;
 static URLConnectionInitializer2 orig_initWithRequest2;
@@ -57,7 +60,7 @@ static void VCRURLConnectionPlayback(id self, VCRRecording *recording, id delega
 static id VCR_initWithRequest1(id self, SEL _cmd, NSURLRequest *request, id<NSURLConnectionDataDelegate> delegate, BOOL startImmediately) {
     VCRCassette *cassette = [[VCRCassetteManager defaultManager] currentCassette];
     VCRRecording *recording = [cassette recordingForRequest:request];
-    if (recording) {
+    if (recording && !VCR.recordingDuplicates) {
         self = [self init];
         dispatch_async(dispatch_get_main_queue(), ^{
             VCRURLConnectionPlayback(self, recording, delegate);
@@ -104,6 +107,7 @@ static IMP VCRSwizzle(SEL selector, IMP newImpl) {
 }
 
 + (void)start {
+    recordingDuplicates = NO;
     SEL sel1 = @selector(initWithRequest:delegate:startImmediately:);
     SEL sel2 = @selector(initWithRequest:delegate:);
     
@@ -119,6 +123,11 @@ static IMP VCRSwizzle(SEL selector, IMP newImpl) {
     }
 }
 
++ (void)startRecordingDuplicates {
+    [VCR start];
+    recordingDuplicates = YES;
+}
+
 + (void)stop {
     VCRSwizzle(@selector(initWithRequest:delegate:startImmediately:), (IMP)orig_initWithRequest1);
     VCRSwizzle(@selector(initWithRequest:delegate:), (IMP)orig_initWithRequest2);
@@ -128,6 +137,8 @@ static IMP VCRSwizzle(SEL selector, IMP newImpl) {
     return [[VCRCassetteManager defaultManager] save:path];
 }
 
++ (BOOL)recordingDuplicates {
+    return recordingDuplicates;
+}
+
 @end
-
-

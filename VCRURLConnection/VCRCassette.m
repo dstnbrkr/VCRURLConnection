@@ -78,7 +78,7 @@
     if (i + 1 > results.count) {
         i = results.count - 1;
     }
-    return [results objectAtIndex:(results.count - i - 1)]; // get the last one first
+    return [results objectAtIndex:i];
 }
 
 - (VCRRecording *)recordingForRequest:(NSURLRequest *)request {

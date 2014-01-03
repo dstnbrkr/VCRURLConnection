@@ -124,16 +124,16 @@
 
 - (void)testOrderedDuplicates {
     id recordings = @[
-        @{ @"method": @"get", @"uri": @"http://time.com/utc", @"body": @"10:31" },
-        @{ @"method": @"get", @"uri": @"http://time.com/utc", @"body": @"10:30" }
-    ];  // JSON files seem to be ordered bottom to top
+        @{ @"method": @"get", @"uri": @"http://time.com/utc", @"body": @"10:30" },
+        @{ @"method": @"get", @"uri": @"http://time.com/utc", @"body": @"10:31" }
+    ];
     VCRCassette *cassette = [[VCRCassette alloc] initWithJSON:recordings];
 
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://time.com/utc"]];
     VCRRecording *firstReturned = [cassette recordingForRequest:request];
-    STAssertEqualObjects(firstReturned.body, @"10:30", @"first response");
+    XCTAssertEqualObjects(firstReturned.body, @"10:30", @"first response");
     VCRRecording *secondReturned = [cassette recordingForRequest:request];
-    STAssertEqualObjects(secondReturned.body, @"10:31", @"second response");
+    XCTAssertEqualObjects(secondReturned.body, @"10:31", @"second response");
 }
 
 @end

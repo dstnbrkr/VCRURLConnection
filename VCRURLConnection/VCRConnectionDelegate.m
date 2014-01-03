@@ -77,6 +77,7 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSHTTPURLResponse *)response {
     self.recording.headerFields = response.allHeaderFields;
+    self.recording.statusCode = response.statusCode;
     if ([_wrapped respondsToSelector:@selector(connection:didReceiveResponse:)]) {
         [_wrapped connection:connection didReceiveResponse:response];
     }
