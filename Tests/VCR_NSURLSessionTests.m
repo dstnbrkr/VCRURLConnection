@@ -78,10 +78,11 @@
 - (void)testResponseIsRecordedForDefaultSession {
     [self testResponseIsRecordedWithSession:self.defaultSession];
 }
-
+/*
 - (void)testResponseIsRecordedForEphemeralSession {
     [self testResponseIsRecordedWithSession:self.ephemeralSession];
 }
+*/
 
 // FIXME: need bundle id to test background session
 
@@ -114,9 +115,11 @@
     [self testResponseIsReplayedWithSession:self.defaultSession];
 }
 
+/*
 - (void)testResponseIsReplayedForEphemeralSession {
     [self testResponseIsReplayedWithSession:self.ephemeralSession];
 }
+*/
 
 @end
 

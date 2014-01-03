@@ -22,6 +22,7 @@
 // THE SOFTWARE.
 
 #import "VCR.h"
+#import "VCR+NSURLSessionConfiguration.h"
 #import "VCRCassette.h"
 #import "VCRCassetteManager.h"
 #import "VCRRecordingURLProtocol.h"
@@ -30,6 +31,7 @@
 
 static BOOL _VCRIsRecording;
 static BOOL _VCRIsReplaying;
+
 
 @implementation VCR
 
@@ -51,6 +53,7 @@ static BOOL _VCRIsReplaying;
 
 + (void)setRecording:(BOOL)recording {
     [self setURLProtocolEnabled:recording class:[VCRRecordingURLProtocol class]];
+    VCRAddProtocolsToNSURLSessionConfiguration();
     _VCRIsRecording = recording;
 }
 

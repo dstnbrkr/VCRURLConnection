@@ -73,6 +73,9 @@
 		B3BB2519167F241E00C5E3C6 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BB2516167F241E00C5E3C6 /* NSData+Base64.m */; };
 		B3DEFB6D1876973900D3FE16 /* VCR_NSURLSessionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B3DEFB6C1876973900D3FE16 /* VCR_NSURLSessionTests.m */; };
 		B3DEFB6E1876973900D3FE16 /* VCR_NSURLSessionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B3DEFB6C1876973900D3FE16 /* VCR_NSURLSessionTests.m */; };
+		B3DEFB761877157300D3FE16 /* VCR+NSURLSessionConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = B3DEFB751877157300D3FE16 /* VCR+NSURLSessionConfiguration.m */; };
+		B3DEFB771877157300D3FE16 /* VCR+NSURLSessionConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = B3DEFB751877157300D3FE16 /* VCR+NSURLSessionConfiguration.m */; };
+		B3DEFB781877157300D3FE16 /* VCR+NSURLSessionConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = B3DEFB751877157300D3FE16 /* VCR+NSURLSessionConfiguration.m */; };
 		B3FCE5091863F2D3009C0E12 /* VCRError.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FCE5061863F2D3009C0E12 /* VCRError.m */; };
 		C393569B17B5DA460025DC53 /* VCROrderedMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = C393569A17B5DA460025DC53 /* VCROrderedMutableDictionary.m */; };
 /* End PBXBuildFile section */
@@ -143,6 +146,8 @@
 		B3BB2515167F241E00C5E3C6 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+Base64.h"; path = "VCRURLConnection/NSData+Base64.h"; sourceTree = "<group>"; };
 		B3BB2516167F241E00C5E3C6 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+Base64.m"; path = "VCRURLConnection/NSData+Base64.m"; sourceTree = "<group>"; };
 		B3DEFB6C1876973900D3FE16 /* VCR_NSURLSessionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VCR_NSURLSessionTests.m; path = Tests/VCR_NSURLSessionTests.m; sourceTree = "<group>"; };
+		B3DEFB741877157300D3FE16 /* VCR+NSURLSessionConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "VCR+NSURLSessionConfiguration.h"; path = "VCRURLConnection/VCR+NSURLSessionConfiguration.h"; sourceTree = "<group>"; };
+		B3DEFB751877157300D3FE16 /* VCR+NSURLSessionConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "VCR+NSURLSessionConfiguration.m"; path = "VCRURLConnection/VCR+NSURLSessionConfiguration.m"; sourceTree = "<group>"; };
 		B3FCE5051863F2D3009C0E12 /* VCRError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VCRError.h; path = VCRURLConnection/VCRError.h; sourceTree = "<group>"; };
 		B3FCE5061863F2D3009C0E12 /* VCRError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VCRError.m; path = VCRURLConnection/VCRError.m; sourceTree = "<group>"; };
 		C393569917B5DA460025DC53 /* VCROrderedMutableDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VCROrderedMutableDictionary.h; path = VCRURLConnection/VCROrderedMutableDictionary.h; sourceTree = "<group>"; };
@@ -247,6 +252,8 @@
 			children = (
 				B3B82896167E9B6800CCEC3C /* VCR.h */,
 				B3B82897167E9B6800CCEC3C /* VCR.m */,
+				B3DEFB741877157300D3FE16 /* VCR+NSURLSessionConfiguration.h */,
+				B3DEFB751877157300D3FE16 /* VCR+NSURLSessionConfiguration.m */,
 				B359FCDF18734EE200FA20E2 /* VCRRecordingURLProtocol.h */,
 				B359FCE018734EE200FA20E2 /* VCRRecordingURLProtocol.m */,
 				B359FCE41876411D00FA20E2 /* VCRReplayingURLProtocol.h */,
@@ -483,6 +490,7 @@
 				B359FCE71876411D00FA20E2 /* VCRReplayingURLProtocol.m in Sources */,
 				B36021B31876615E0029500A /* XCTestCase+VCR.m in Sources */,
 				B317B6A6186E180900A7C0AE /* VCROrderedMutableDictionary.m in Sources */,
+				B3DEFB771877157300D3FE16 /* VCR+NSURLSessionConfiguration.m in Sources */,
 				B317B6A7186E180900A7C0AE /* VCRRecording.m in Sources */,
 				B317B69E186E13DD00A7C0AE /* VCR_NSURLConnectionTests.m in Sources */,
 				B317B6A9186E180900A7C0AE /* VCRError.m in Sources */,
@@ -508,6 +516,7 @@
 				B317B6C1186E1A5100A7C0AE /* VCROrderedMutableDictionary.m in Sources */,
 				B36021B41876615E0029500A /* XCTestCase+VCR.m in Sources */,
 				B359FCE81876411D00FA20E2 /* VCRReplayingURLProtocol.m in Sources */,
+				B3DEFB781877157300D3FE16 /* VCR+NSURLSessionConfiguration.m in Sources */,
 				B317B6C6186E1A5E00A7C0AE /* VCRCassetteManagerTests.m in Sources */,
 				B317B6C4186E1A5100A7C0AE /* VCRError.m in Sources */,
 				B317B6C9186E1A5E00A7C0AE /* VCRRequestKeyTests.m in Sources */,
@@ -522,6 +531,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3DEFB761877157300D3FE16 /* VCR+NSURLSessionConfiguration.m in Sources */,
 				B3475B60167EA0680044511D /* main.m in Sources */,
 				B359FCE118734EE200FA20E2 /* VCRRecordingURLProtocol.m in Sources */,
 				B3475B72167EA0C30044511D /* VCRAppDelegate.m in Sources */,
