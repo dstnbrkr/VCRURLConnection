@@ -58,7 +58,7 @@ static BOOL _VCRIsReplaying;
 }
 
 + (void)setReplaying:(BOOL)replaying {
-    _VCRIsReplaying = YES;
+    _VCRIsReplaying = replaying;
 }
 
 + (BOOL)isReplaying {
