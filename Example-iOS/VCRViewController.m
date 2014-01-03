@@ -22,13 +22,14 @@
 // THE SOFTWARE.
 
 #import "VCRViewController.h"
+#import "VCRURLLoader.h"
 
-@interface VCRViewController () {
+@interface VCRViewController ()<VCRURLLoaderDelegate> {
     IBOutlet UITextField *_textField;
     IBOutlet UIWebView *_webView;
     IBOutlet UIButton *_reloadButton;
 
-    NSMutableData *_responseData;
+    NSData *_responseData;
 }
 @property (nonatomic, strong) NSURL *url;
 @property (nonatomic, strong) NSString *mimeType;
@@ -47,10 +48,10 @@
 }
 
 - (void)load {
-    NSURLRequest *request = [NSURLRequest requestWithURL:_url];
     self.HTMLString = nil;
     _responseData = nil;
-    [NSURLConnection connectionWithRequest:request delegate:self];
+    VCRURLLoader *loader = [[VCRURLLoader alloc] initWithDelegate:self];
+    [loader loadURL:self.url];
 }
 
 - (void)loadData:(NSData *)data {
@@ -83,28 +84,27 @@
     }
 }
 
-#pragma mark - NSURLConnectionDelegate
+#pragma mark VCRURLLoaderDelegate
 
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSHTTPURLResponse *)response {
-    self.mimeType = [response MIMEType];
+- (void)URLLoader:(VCRURLLoader *)loader didReceiveResponse:(NSHTTPURLResponse *)response {
+    self.mimeType = response.MIMEType;
 }
 
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    if (!_responseData) {
-        _responseData = [[NSMutableData alloc] initWithData:data];
-    } else {
-        [_responseData appendData:data];
-    }
+- (void)URLLoader:(VCRURLLoader *)loader didLoadData:(NSData *)data {
+    _responseData = data;
 }
 
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    [self loadData:_responseData];
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    [self loadData:_responseData];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+- (void)URLLoader:(VCRURLLoader *)loader didFailWithError:(NSError *)error {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                    message:error.localizedDescription
+                                                   delegate:nil
+                                          cancelButtonTitle:nil
+                                          otherButtonTitles:@"OK", nil];
     [alert show];
+}
+
+- (void)URLLoaderDidFinishLoading:(VCRURLLoader *)loader {
+    [self loadData:_responseData];
 }
 
 #pragma mark - UI Callbacks
