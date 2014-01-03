@@ -72,6 +72,26 @@
 + (VCRCassette *)cassette;
 
 /**
+ Enable/disable recording of responses
+ */
++ (void)setRecording:(BOOL)recording;
+
+/**
+ Returns YES if recording is enabled
+ */
++ (BOOL)isRecording;
+
+/**
+ Enable/disable replaying of responses
+ */
++ (void)setReplaying:(BOOL)replaying;
+
+/**
+ Returns YES if replaying is enabled
+ */
++ (BOOL)isReplaying;
+
+/**
  Begin recording or replaying HTTP interactions
  */
 + (void)start;

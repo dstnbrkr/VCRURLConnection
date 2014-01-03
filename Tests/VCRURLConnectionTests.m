@@ -133,7 +133,7 @@
     VCRCassette *cassette = [[VCRCassette alloc] initWithJSON:json];
     [[VCRCassetteManager defaultManager] setCurrentCassette:cassette];
     
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://foo"]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://example.com/foo"]];
     
     // make and playback request
     VCRURLConnectionTestDelegate *delegate = [[VCRURLConnectionTestDelegate alloc] init];
@@ -188,6 +188,7 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    _done = YES;
     _error = error;
 }
 
