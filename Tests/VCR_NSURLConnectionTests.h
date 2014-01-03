@@ -23,6 +23,6 @@
 
 #import <XCTest/XCTest.h>
 
-@interface VCRURLConnectionTests : XCTestCase
+@interface VCR_NSURLConnectionTests : XCTestCase
 
 @end

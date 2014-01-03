@@ -21,27 +21,12 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+#import "VCR_NSURLConnectionTests.h"
 #import "XCTestCase+VCR.h"
 #import "XCTestCase+SRTAdditions.h"
-#import "VCRURLConnectionTests.h"
 #import "VCRCassetteManager.h"
 #import "VCRCassette.h"
 #import "VCR.h"
-
-
-@interface NSHTTPURLResponse (VCRConnectionTests)
-- (BOOL)VCR_isIsomorphic:(NSHTTPURLResponse *)response;
-@end
-
-
-@implementation NSHTTPURLResponse (VCRConnectionTests)
-
-- (BOOL)VCR_isIsomorphic:(NSHTTPURLResponse *)response {
-    return [self.URL isEqual:response.URL];
-}
-
-@end
-
 
 @interface VCRURLConnectionTestDelegate : NSObject<NSURLConnectionDelegate>
 @property (nonatomic, strong) NSHTTPURLResponse *response;
@@ -51,7 +36,7 @@
 @end
 
 
-@implementation VCRURLConnectionTests
+@implementation VCR_NSURLConnectionTests
 
 - (void)setUp {
     [super setUp];
