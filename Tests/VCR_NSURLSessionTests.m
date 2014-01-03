@@ -6,9 +6,13 @@
 //
 //
 
+#import <Availability.h>
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000 || __MAC_OS_X_VERSION_MAX_ALLOWED >= 1090
+
 #import <XCTest/XCTest.h>
 #import "XCTestCase+VCR.h"
 #import "VCR.h"
+#import "VCRCassetteManager.h"
 
 @interface VCR_NSURLSessionTests : XCTestCase
 
@@ -20,6 +24,7 @@
 {
     [super setUp];
     [VCR start];
+    [[VCRCassetteManager defaultManager] setCurrentCassette:nil];
 }
 
 - (void)testResponseIsRecorded {
@@ -47,3 +52,5 @@
 }
 
 @end
+
+#endif
