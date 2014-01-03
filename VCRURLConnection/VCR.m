@@ -44,12 +44,16 @@ static BOOL _VCRIsReplaying;
 }
 
 + (void)addProtocols {
-    [NSURLProtocol registerClass:[VCRRecordingURLProtocol class]];
-    [NSURLProtocol registerClass:[VCRReplayingURLProtocol class]];
-    VCRAddProtocolsToNSURLSessionConfiguration();
+    static dispatch_once_t oncePredicate;
+    dispatch_once(&oncePredicate, ^{
+        [NSURLProtocol registerClass:[VCRRecordingURLProtocol class]];
+        [NSURLProtocol registerClass:[VCRReplayingURLProtocol class]];
+        VCRAddProtocolsToNSURLSessionConfiguration();
+    });
 }
 
 + (void)setRecording:(BOOL)recording {
+    if (recording) [self addProtocols];
     _VCRIsRecording = recording;
 }
 
@@ -58,6 +62,7 @@ static BOOL _VCRIsReplaying;
 }
 
 + (void)setReplaying:(BOOL)replaying {
+    if (replaying) [self addProtocols];
     _VCRIsReplaying = replaying;
 }
 
@@ -66,7 +71,6 @@ static BOOL _VCRIsReplaying;
 }
 
 + (void)start {
-    [self addProtocols];
     [self setRecording:YES];
     [self setReplaying:YES];
 }
