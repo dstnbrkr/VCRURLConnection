@@ -66,6 +66,27 @@
     }];
 }
 
+- (void)testResponseIsReplayed {
+    id json = @{ @"method": @"GET", @"uri": @"http://foo", @"body": @"Foo Bar Baz" };
+    __block BOOL completed = NO;
+    __block NSData *receivedData;
+    __block NSHTTPURLResponse *httpResponse;
+    [self replayJSON:json requestBlock:^(NSURLRequest *request) {
+        NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:request
+                                                                     completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                                                         completed = YES;
+                                                                         receivedData = data;
+                                                                         httpResponse = (NSHTTPURLResponse *)response;
+                                                                     }];
+        [task resume];
+    } predicateBlock:^BOOL{
+        return completed;
+    } completion:^(VCRRecording *recording) {
+        XCTAssertEqual(httpResponse.statusCode, recording.statusCode, @"");
+        XCTAssertEqualObjects(receivedData, recording.data, @"");
+    }];
+}
+
 @end
 
 #endif
