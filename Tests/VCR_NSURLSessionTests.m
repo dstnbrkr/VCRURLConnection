@@ -83,6 +83,8 @@
     [self testResponseIsRecordedWithSession:self.ephemeralSession];
 }
 
+// FIXME: need bundle id to test background session
+
 - (void)testResponseIsReplayed {
     id json = @{ @"method": @"GET", @"uri": @"http://foo", @"body": @"Foo Bar Baz" };
     __block BOOL completed = NO;
