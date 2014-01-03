@@ -13,11 +13,15 @@ VCRURLConnection is an iOS and OSX API to record and replay HTTP interactions, i
 NSString *path = @"http://example.com/example";
 NSURL *url = [NSURL URLWithString:path];
 NSURLRequest *request = [NSURLRequest requestWithURL:url];
-[NSURLConnection connectionWithRequest:request delegate:self];
+
+// use either NSURLSession or NSURLConnection
+NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:request];
+[task resume];
  
-// NSURLConnection makes a real network request and VCRURLConnection
+// NSURLSession makes a real network request and VCRURLConnection
 // will record the request/response pair.
- 
+
+// once async request is complete or application is ready to exit:
 [VCR save:@"/path/to/cassette.json"]; // copy the output file into your project
 ```
 
@@ -32,7 +36,10 @@ NSURL *cassetteURL = [NSURL fileURLWithPath:@"/path/to/cassette.json"];
 NSString *path = @"http://example.com/example";
 NSURL *url = [NSURL URLWithString:path];
 NSURLRequest *request = [NSURLRequest requestWithURL:url];
-[NSURLConnection connectionWithRequest:request delegate:self];
+
+// use either NSURLSession or NSURLConnection
+NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:request];
+[task resume];
  
 // The cassette has a recording for this request, so no network request
 // is made. Instead NSURLConnectionDelegate methods are called with the
