@@ -1,2 +1,2 @@
 language: objective-c
-script: brew update; brew upgrade xctool; make test
+script: brew update; brew upgrade xctool; make test_ios
