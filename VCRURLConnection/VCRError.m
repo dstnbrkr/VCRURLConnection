@@ -50,7 +50,7 @@
 }
 
 + (NSDictionary *)deserializedUserInfo:(NSString *)string {
-    NSData *data = [[NSData alloc] initWithBase64Encoding:string];
+    NSData *data = string ? [[NSData alloc] initWithBase64Encoding:string] : [NSData data];
     return [NSKeyedUnarchiver unarchiveObjectWithData:data];
 }
 
