@@ -81,6 +81,9 @@
 		B3DEFB811877329600D3FE16 /* VCRTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B3DEFB7F1877329600D3FE16 /* VCRTests.m */; };
 		B3DEFB841877338A00D3FE16 /* VCRURLLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = B3DEFB831877338A00D3FE16 /* VCRURLLoader.m */; };
 		B3FCE5091863F2D3009C0E12 /* VCRError.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FCE5061863F2D3009C0E12 /* VCRError.m */; };
+		C295E2D018907A5C00E8C144 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C295E2CF18907A5C00E8C144 /* MobileCoreServices.framework */; };
+		C295E2D118907A5C00E8C144 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C295E2CF18907A5C00E8C144 /* MobileCoreServices.framework */; };
+		C295E2D318907AA200E8C144 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C295E2D218907AA200E8C144 /* CoreServices.framework */; };
 		C393569B17B5DA460025DC53 /* VCROrderedMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = C393569A17B5DA460025DC53 /* VCROrderedMutableDictionary.m */; };
 /* End PBXBuildFile section */
 
@@ -157,6 +160,8 @@
 		B3DEFB831877338A00D3FE16 /* VCRURLLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCRURLLoader.m; sourceTree = "<group>"; };
 		B3FCE5051863F2D3009C0E12 /* VCRError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VCRError.h; path = VCRURLConnection/VCRError.h; sourceTree = "<group>"; };
 		B3FCE5061863F2D3009C0E12 /* VCRError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VCRError.m; path = VCRURLConnection/VCRError.m; sourceTree = "<group>"; };
+		C295E2CF18907A5C00E8C144 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/System/Library/Frameworks/MobileCoreServices.framework; sourceTree = DEVELOPER_DIR; };
+		C295E2D218907AA200E8C144 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		C393569917B5DA460025DC53 /* VCROrderedMutableDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VCROrderedMutableDictionary.h; path = VCRURLConnection/VCROrderedMutableDictionary.h; sourceTree = "<group>"; };
 		C393569A17B5DA460025DC53 /* VCROrderedMutableDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VCROrderedMutableDictionary.m; path = VCRURLConnection/VCROrderedMutableDictionary.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -167,6 +172,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B317B687186E13B400A7C0AE /* XCTest.framework in Frameworks */,
+				C295E2D118907A5C00E8C144 /* MobileCoreServices.framework in Frameworks */,
 				B317B68A186E13B400A7C0AE /* UIKit.framework in Frameworks */,
 				B317B689186E13B400A7C0AE /* Foundation.framework in Frameworks */,
 			);
@@ -177,6 +183,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B317B6B0186E1A0100A7C0AE /* XCTest.framework in Frameworks */,
+				C295E2D318907AA200E8C144 /* CoreServices.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -185,6 +192,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3475B8C167EA37B0044511D /* UIKit.framework in Frameworks */,
+				C295E2D018907A5C00E8C144 /* MobileCoreServices.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,7 +262,10 @@
 				B3B82866167E9A6500CCEC3C /* Frameworks */,
 				B3B82865167E9A6500CCEC3C /* Products */,
 			);
+			indentWidth = 4;
 			sourceTree = "<group>";
+			tabWidth = 4;
+			usesTabs = 0;
 		};
 		B3B82858167E996A00CCEC3C /* VCRURLConnection */ = {
 			isa = PBXGroup;
@@ -297,6 +308,8 @@
 		B3B82866167E9A6500CCEC3C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C295E2D218907AA200E8C144 /* CoreServices.framework */,
+				C295E2CF18907A5C00E8C144 /* MobileCoreServices.framework */,
 				B3475B8B167EA37B0044511D /* UIKit.framework */,
 				B3B82867167E9A6500CCEC3C /* SenTestingKit.framework */,
 				B317B686186E13B400A7C0AE /* XCTest.framework */,
