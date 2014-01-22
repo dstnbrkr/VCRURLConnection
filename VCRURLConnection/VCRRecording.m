@@ -24,6 +24,11 @@
 #import "VCRRecording.h"
 #import "VCROrderedMutableDictionary.h"
 #import "VCRError.h"
+#if TARGET_OS_IPHONE
+#import <MobileCoreServices/MobileCoreServices.h>
+#else
+#import <CoreServices/CoreServices.h>
+#endif
 
 // For -[NSData initWithBase64Encoding:] and -[NSData base64Encoding]
 // Remove when targetting iOS 7+, use -[NSData initWithBase64EncodedString:options:] and -[NSData base64EncodedStringWithOptions:] instead
@@ -64,12 +69,13 @@
 }
 
 - (BOOL)isText {
-    NSString *type = [self.headerFields objectForKey:@"Content-Type"] ?: @"text/plain";
-    NSArray *types = @[ @"text/plain", @"text/html", @"application/json", @"application/xml" ];
-    for (NSString *textType in types) {
-        if ([type rangeOfString:textType].location != NSNotFound) return YES;
+    NSString *type = [[self HTTPURLResponse] MIMEType] ?: @"text/plain";
+    CFStringRef uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassMIMEType, (__bridge CFStringRef)type, NULL);
+    BOOL isText = UTTypeConformsTo(uti, kUTTypeText);
+    if (uti) {
+        CFRelease(uti);
     }
-    return NO;
+    return isText;
 }
 
 - (void)setBody:(id)body
