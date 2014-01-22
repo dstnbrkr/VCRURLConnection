@@ -254,7 +254,10 @@
 				B3B82866167E9A6500CCEC3C /* Frameworks */,
 				B3B82865167E9A6500CCEC3C /* Products */,
 			);
+			indentWidth = 4;
 			sourceTree = "<group>";
+			tabWidth = 4;
+			usesTabs = 0;
 		};
 		B3B82858167E996A00CCEC3C /* VCRURLConnection */ = {
 			isa = PBXGroup;
