@@ -22,7 +22,10 @@
 // THE SOFTWARE.
 
 #import "VCRError.h"
-#import "NSData+Base64.h"
+
+// For -[NSData initWithBase64Encoding:] and -[NSData base64Encoding]
+// Remove when targetting iOS 7+, use -[NSData initWithBase64EncodedString:options:] and -[NSData base64EncodedStringWithOptions:] instead
+#pragma clang diagnostic ignored "-Wdeprecated"
 
 @interface VCRError ()
 @property (nonatomic, copy) NSString *vcr_localizedDescription;
@@ -43,11 +46,11 @@
 
 + (NSString *)serializedUserInfo:(NSDictionary *)userInfo {
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:userInfo];
-    return [data base64EncodedString];
+    return [data base64Encoding];
 }
 
 + (NSDictionary *)deserializedUserInfo:(NSString *)string {
-    NSData *data = [NSData dataFromBase64String:string];
+    NSData *data = [[NSData alloc] initWithBase64Encoding:string];
     return [NSKeyedUnarchiver unarchiveObjectWithData:data];
 }
 
