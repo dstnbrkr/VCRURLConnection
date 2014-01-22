@@ -24,7 +24,10 @@
 #import "VCRRecording.h"
 #import "VCROrderedMutableDictionary.h"
 #import "VCRError.h"
-#import "NSData+Base64.h"
+
+// For -[NSData initWithBase64Encoding:] and -[NSData base64Encoding]
+// Remove when targetting iOS 7+, use -[NSData initWithBase64EncodedString:options:] and -[NSData base64EncodedStringWithOptions:] instead
+#pragma clang diagnostic ignored "-Wdeprecated"
 
 @implementation VCRRecording
 
@@ -81,8 +84,8 @@
         self.data = [NSJSONSerialization dataWithJSONObject:body options:0 error:nil];
     } else if ([self isText]) {
         self.data = [body dataUsingEncoding:NSUTF8StringEncoding];
-    } else {
-        self.data = [NSData dataFromBase64String:body];
+    } else if ([body isKindOfClass:[NSString class]]) {
+        self.data = [[NSData alloc] initWithBase64Encoding:body];
     }
 }
 
@@ -90,7 +93,7 @@
     if ([self isText]) {
         return [[NSString alloc] initWithData:self.data encoding:NSUTF8StringEncoding];
     } else {
-        return [self.data base64EncodedString];
+        return [self.data base64Encoding];
     }
 }
 
