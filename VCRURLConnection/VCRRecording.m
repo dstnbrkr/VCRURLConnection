@@ -63,12 +63,6 @@
            [self.body isEqualToString:recording.body];
 }
 
-- (void)recordResponse:(NSHTTPURLResponse *)response {
-    self.URI = [response.URL absoluteString];
-    self.headerFields = [response allHeaderFields];
-    self.statusCode = response.statusCode;
-}
-
 - (BOOL)isText {
     NSString *type = [self.headerFields objectForKey:@"Content-Type"] ?: @"text/plain";
     NSArray *types = @[ @"text/plain", @"text/html", @"application/json", @"application/xml" ];
