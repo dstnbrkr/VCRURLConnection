@@ -70,6 +70,9 @@
 
 - (BOOL)isText {
     NSString *type = [[self HTTPURLResponse] MIMEType] ?: @"text/plain";
+    if ([@[ @"application/x-www-form-urlencoded" ] containsObject:type]) {
+        return YES;
+    }
     CFStringRef uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassMIMEType, (__bridge CFStringRef)type, NULL);
     BOOL isText = UTTypeConformsTo(uti, kUTTypeText);
     if (uti) {
