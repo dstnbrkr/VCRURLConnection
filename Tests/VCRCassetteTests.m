@@ -130,6 +130,24 @@
     XCTAssertNil([cassette recordingForRequest:request]);
 }
 
+- (void)testPreferExactMatchesOverRegularExpressionMatches {
+    NSString *path = @"http://foo?key=xyz";
+    NSURL *url = [NSURL URLWithString:path];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    id json = @{ @"method": @"GET", @"uri": @"http://foo[?]*.*", @"body": @"Foo Bar" };
+    VCRRecording *regexRecording = [[VCRRecording alloc] initWithJSON:json];
+    
+    VCRCassette *cassette = self.cassette;
+    [cassette addRecording:regexRecording];
+
+    json = @{ @"method": @"GET", @"uri": path, @"body": @"Foo Baz" };
+    VCRRecording *pathRecording = [[VCRRecording alloc] initWithJSON:json];
+    [cassette addRecording:pathRecording];
+    
+    XCTAssertEqualObjects([cassette recordingForRequest:request], pathRecording, @"");
+}
+
 - (void)testKeyOrderingForJson {
     id json = @{ @"method": @"get", @"uri": @"http://foo", @"body": @"GET Foo Bar Baz" };
     VCRRecording *recording = [[VCRRecording alloc] initWithJSON:json];
