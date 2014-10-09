@@ -69,7 +69,23 @@
 }
 
 - (VCRRecording *)recordingForRequestKey:(VCRRequestKey *)key {
-    return [self.responseDictionary objectForKey:key];
+    __block VCRRecording *recording = [self.responseDictionary objectForKey:key];
+
+    if (!recording) {
+        [self.responseDictionary enumerateKeysAndObjectsUsingBlock:^(VCRRequestKey *responseKey, id obj, BOOL *stop) {
+            if ([responseKey.method isEqualToString:key.method]) {
+                NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:responseKey.URI
+                                                                                       options:0
+                                                                                         error:NULL];
+                if (regex && [regex numberOfMatchesInString:key.URI options:0 range:NSMakeRange(0, key.URI.length)] > 0) {
+                    recording = obj;
+                    *stop = YES;
+                }
+            }
+        }];
+    }
+
+    return recording;
 }
 
 - (VCRRecording *)recordingForRequest:(NSURLRequest *)request {
