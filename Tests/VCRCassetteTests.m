@@ -108,6 +108,28 @@
     XCTAssertEqualObjects([cassette recordingForRequest:request1], recording, @"");
 }
 
+- (void)testRecordingForRequestByMatchingRegularExpression {
+    NSURL *url = [NSURL URLWithString:@"http://foo?key=abc"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    id json = @{ @"method": @"GET", @"uri": @"http://foo[?]*.*", @"body": @"Foo Bar Baz" };
+    VCRRecording *recording = [[VCRRecording alloc] initWithJSON:json];
+    
+    VCRCassette *cassette = self.cassette;
+    [cassette addRecording:recording];
+    XCTAssertEqualObjects([cassette recordingForRequest:request], recording, @"");
+}
+
+- (void)testRegExRecordingForRequestGreedy {
+    NSURL *url = [NSURL URLWithString:@"http://bar?key=abc"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    id json = @{ @"method": @"GET", @"uri": @"http://foo[?]*.*", @"body": @"Foo Bar Baz" };
+    VCRRecording *recording = [[VCRRecording alloc] initWithJSON:json];
+    
+    VCRCassette *cassette = self.cassette;
+    [cassette addRecording:recording];
+    XCTAssertNil([cassette recordingForRequest:request]);
+}
+
 - (void)testKeyOrderingForJson {
     id json = @{ @"method": @"get", @"uri": @"http://foo", @"body": @"GET Foo Bar Baz" };
     VCRRecording *recording = [[VCRRecording alloc] initWithJSON:json];
