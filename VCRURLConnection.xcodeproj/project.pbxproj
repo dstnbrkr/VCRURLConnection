@@ -19,7 +19,7 @@
 		B386A7031ADA1AB100ABF873 /* VCRRequestKeyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B386A6F31ADA1AB100ABF873 /* VCRRequestKeyTests.m */; };
 		B386A7041ADA1AB100ABF873 /* VCRTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B386A6F41ADA1AB100ABF873 /* VCRTests.m */; };
 		B386A7051ADA1AB100ABF873 /* XCTestCase+SRTAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B386A6F61ADA1AB100ABF873 /* XCTestCase+SRTAdditions.m */; };
-		B386A7061ADA1AB100ABF873 /* XCTestCase+VCR.m in Sources */ = {isa = PBXBuildFile; fileRef = B386A6F81ADA1AB100ABF873 /* XCTestCase+VCR.m */; };
+		B386A7061ADA1AB100ABF873 /* VCRURLConnectionTestHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = B386A6F81ADA1AB100ABF873 /* VCRURLConnectionTestHelpers.m */; };
 		B386A70B1ADA1E1800ABF873 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B386A7091ADA1E0000ABF873 /* MobileCoreServices.framework */; };
 		B3B4FC051ADA178100C997D0 /* libVCRURLConnection.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B3B4FBFA1ADA178000C997D0 /* libVCRURLConnection.a */; };
 		B3B4FC111ADA183400C997D0 /* VCR.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B82897167E9B6800CCEC3C /* VCR.m */; };
@@ -100,8 +100,7 @@
 		B386A6F41ADA1AB100ABF873 /* VCRTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCRTests.m; sourceTree = "<group>"; };
 		B386A6F51ADA1AB100ABF873 /* XCTestCase+SRTAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XCTestCase+SRTAdditions.h"; sourceTree = "<group>"; };
 		B386A6F61ADA1AB100ABF873 /* XCTestCase+SRTAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XCTestCase+SRTAdditions.m"; sourceTree = "<group>"; };
-		B386A6F71ADA1AB100ABF873 /* XCTestCase+VCR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XCTestCase+VCR.h"; sourceTree = "<group>"; };
-		B386A6F81ADA1AB100ABF873 /* XCTestCase+VCR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XCTestCase+VCR.m"; sourceTree = "<group>"; };
+		B386A6F81ADA1AB100ABF873 /* VCRURLConnectionTestHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCRURLConnectionTestHelpers.m; sourceTree = "<group>"; };
 		B386A7091ADA1E0000ABF873 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/MobileCoreServices.framework; sourceTree = DEVELOPER_DIR; };
 		B3B4FBFA1ADA178000C997D0 /* libVCRURLConnection.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libVCRURLConnection.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3B4FC041ADA178100C997D0 /* VCRURLConnectionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VCRURLConnectionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -238,8 +237,7 @@
 				B386A6F41ADA1AB100ABF873 /* VCRTests.m */,
 				B386A6F51ADA1AB100ABF873 /* XCTestCase+SRTAdditions.h */,
 				B386A6F61ADA1AB100ABF873 /* XCTestCase+SRTAdditions.m */,
-				B386A6F71ADA1AB100ABF873 /* XCTestCase+VCR.h */,
-				B386A6F81ADA1AB100ABF873 /* XCTestCase+VCR.m */,
+				B386A6F81ADA1AB100ABF873 /* VCRURLConnectionTestHelpers.m */,
 				B386A6E31ADA1AB100ABF873 /* Resources */,
 				B3BB251B167F243E00C5E3C6 /* Vendor */,
 			);
@@ -398,7 +396,7 @@
 				B386A7011ADA1AB100ABF873 /* VCRRecordingURLProtocolTests.m in Sources */,
 				B386A6FC1ADA1AB100ABF873 /* VCR_NSURLConnectionTests.m in Sources */,
 				B386A6FE1ADA1AB100ABF873 /* VCRCassetteManagerTests.m in Sources */,
-				B386A7061ADA1AB100ABF873 /* XCTestCase+VCR.m in Sources */,
+				B386A7061ADA1AB100ABF873 /* VCRURLConnectionTestHelpers.m in Sources */,
 				B386A6FD1ADA1AB100ABF873 /* VCR_NSURLSessionTests.m in Sources */,
 				B386A7051ADA1AB100ABF873 /* XCTestCase+SRTAdditions.m in Sources */,
 				B386A7041ADA1AB100ABF873 /* VCRTests.m in Sources */,
