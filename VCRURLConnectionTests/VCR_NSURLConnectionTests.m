@@ -25,6 +25,8 @@
 #import "XCTestCase+SRTAdditions.h"
 #import "VCRCassetteManager.h"
 #import "VCRCassette.h"
+#import "VCRRequestKey.h"
+#import "VCRRecording.h"
 #import "VCR.h"
 
 @interface VCRTestConnectionController : NSObject<NSURLConnectionDelegate>

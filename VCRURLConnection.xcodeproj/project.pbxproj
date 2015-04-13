@@ -31,6 +31,10 @@
 		B3B4FC271ADA184800C997D0 /* VCRRecordingURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = B359FCE018734EE200FA20E2 /* VCRRecordingURLProtocol.m */; };
 		B3B4FC281ADA184800C997D0 /* VCRReplayingURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = B359FCE51876411D00FA20E2 /* VCRReplayingURLProtocol.m */; };
 		B3B4FC291ADA184800C997D0 /* VCRRequestKey.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B828A0167E9B6800CCEC3C /* VCRRequestKey.m */; };
+		B3BE0F4D1ADB94C9005D0089 /* VCRRecording.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B3475BAD167EFFA70044511D /* VCRRecording.h */; };
+		B3BE0F4E1ADBA6B4005D0089 /* VCRCassette.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B3B82899167E9B6800CCEC3C /* VCRCassette.h */; };
+		B3BE0F4F1ADBA785005D0089 /* VCR.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B3B82896167E9B6800CCEC3C /* VCR.h */; };
+		B3BE0F501ADBA839005D0089 /* VCRRequestKey.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B3B8289F167E9B6800CCEC3C /* VCRRequestKey.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +54,10 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				B3BE0F501ADBA839005D0089 /* VCRRequestKey.h in CopyFiles */,
+				B3BE0F4F1ADBA785005D0089 /* VCR.h in CopyFiles */,
+				B3BE0F4E1ADBA6B4005D0089 /* VCRCassette.h in CopyFiles */,
+				B3BE0F4D1ADB94C9005D0089 /* VCRRecording.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
