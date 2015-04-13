@@ -56,25 +56,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		B3475B5B167EA0680044511D /* Example-iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Example-iOS-Info.plist"; sourceTree = "<group>"; };
-		B3475B5D167EA0680044511D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B3475B5F167EA0680044511D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		B3475B61167EA0680044511D /* Example-iOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Example-iOS-Prefix.pch"; sourceTree = "<group>"; };
-		B3475B68167EA0C30044511D /* VCRAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCRAppDelegate.h; sourceTree = "<group>"; };
-		B3475B69167EA0C30044511D /* VCRAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCRAppDelegate.m; sourceTree = "<group>"; };
-		B3475B6A167EA0C30044511D /* VCRCassetteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCRCassetteViewController.h; sourceTree = "<group>"; };
-		B3475B6B167EA0C30044511D /* VCRCassetteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCRCassetteViewController.m; sourceTree = "<group>"; };
-		B3475B6C167EA0C30044511D /* VCRCassetteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VCRCassetteViewController.xib; sourceTree = "<group>"; };
-		B3475B6D167EA0C30044511D /* VCRRecordingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCRRecordingViewController.h; sourceTree = "<group>"; };
-		B3475B6E167EA0C30044511D /* VCRRecordingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCRRecordingViewController.m; sourceTree = "<group>"; };
-		B3475B6F167EA0C30044511D /* VCRRecordingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VCRRecordingViewController.xib; sourceTree = "<group>"; };
-		B3475B70167EA0C30044511D /* VCRViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCRViewController.h; sourceTree = "<group>"; };
-		B3475B71167EA0C30044511D /* VCRViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCRViewController.m; sourceTree = "<group>"; };
-		B3475B7F167EA1400044511D /* cassette.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cassette.json; sourceTree = "<group>"; };
-		B3475B81167EA1CF0044511D /* VCRViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VCRViewController.xib; sourceTree = "<group>"; };
-		B3475B85167EA2960044511D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		B3475B86167EA2960044511D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		B3475B87167EA2960044511D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		B3475BAD167EFFA70044511D /* VCRRecording.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCRRecording.h; sourceTree = "<group>"; };
 		B3475BAE167EFFA80044511D /* VCRRecording.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCRRecording.m; sourceTree = "<group>"; };
 		B359FCDF18734EE200FA20E2 /* VCRRecordingURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCRRecordingURLProtocol.h; sourceTree = "<group>"; };
@@ -115,8 +96,6 @@
 		B3BB2512167F23EC00C5E3C6 /* XCTestCase+SRTAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "XCTestCase+SRTAdditions.m"; path = "VCRURLConnectionTests/XCTestCase+SRTAdditions.m"; sourceTree = "<group>"; };
 		B3DEFB741877157300D3FE16 /* VCR+NSURLSessionConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "VCR+NSURLSessionConfiguration.h"; sourceTree = "<group>"; };
 		B3DEFB751877157300D3FE16 /* VCR+NSURLSessionConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "VCR+NSURLSessionConfiguration.m"; sourceTree = "<group>"; };
-		B3DEFB821877338A00D3FE16 /* VCRURLLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCRURLLoader.h; sourceTree = "<group>"; };
-		B3DEFB831877338A00D3FE16 /* VCRURLLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCRURLLoader.m; sourceTree = "<group>"; };
 		B3FCE5051863F2D3009C0E12 /* VCRError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCRError.h; sourceTree = "<group>"; };
 		B3FCE5061863F2D3009C0E12 /* VCRError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCRError.m; sourceTree = "<group>"; };
 		C393569917B5DA460025DC53 /* VCROrderedMutableDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCROrderedMutableDictionary.h; sourceTree = "<group>"; };
@@ -143,42 +122,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B3475B59167EA0680044511D /* Example-iOS */ = {
-			isa = PBXGroup;
-			children = (
-				B3475B68167EA0C30044511D /* VCRAppDelegate.h */,
-				B3475B69167EA0C30044511D /* VCRAppDelegate.m */,
-				B3475B6A167EA0C30044511D /* VCRCassetteViewController.h */,
-				B3475B6B167EA0C30044511D /* VCRCassetteViewController.m */,
-				B3475B6C167EA0C30044511D /* VCRCassetteViewController.xib */,
-				B3475B6D167EA0C30044511D /* VCRRecordingViewController.h */,
-				B3475B6E167EA0C30044511D /* VCRRecordingViewController.m */,
-				B3475B6F167EA0C30044511D /* VCRRecordingViewController.xib */,
-				B3475B70167EA0C30044511D /* VCRViewController.h */,
-				B3475B71167EA0C30044511D /* VCRViewController.m */,
-				B3DEFB821877338A00D3FE16 /* VCRURLLoader.h */,
-				B3DEFB831877338A00D3FE16 /* VCRURLLoader.m */,
-				B3475B81167EA1CF0044511D /* VCRViewController.xib */,
-				B3475B7F167EA1400044511D /* cassette.json */,
-				B3475B85167EA2960044511D /* Default-568h@2x.png */,
-				B3475B86167EA2960044511D /* Default.png */,
-				B3475B87167EA2960044511D /* Default@2x.png */,
-				B3475B5A167EA0680044511D /* Supporting Files */,
-			);
-			path = "Example-iOS";
-			sourceTree = "<group>";
-		};
-		B3475B5A167EA0680044511D /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				B3475B5B167EA0680044511D /* Example-iOS-Info.plist */,
-				B3475B5C167EA0680044511D /* InfoPlist.strings */,
-				B3475B5F167EA0680044511D /* main.m */,
-				B3475B61167EA0680044511D /* Example-iOS-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		B386A6E31ADA1AB100ABF873 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -246,7 +189,6 @@
 			children = (
 				B3B4FBFB1ADA178000C997D0 /* VCRURLConnection */,
 				B3B4FC081ADA178100C997D0 /* VCRURLConnectionTests */,
-				B3475B59167EA0680044511D /* Example-iOS */,
 				B3B82866167E9A6500CCEC3C /* Frameworks */,
 				B3B82865167E9A6500CCEC3C /* Products */,
 			);
@@ -410,17 +352,6 @@
 			targetProxy = B3B4FC061ADA178100C997D0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		B3475B5C167EA0680044511D /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B3475B5D167EA0680044511D /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		B3B4FC0B1ADA178100C997D0 /* Debug */ = {
