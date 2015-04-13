@@ -26,7 +26,6 @@
 #import "VCRCassetteManager.h"
 #import "VCRCassette.h"
 #import "VCR.h"
-#import "VCRURLConnectionTestHelpers.h"
 
 @interface VCRTestConnectionController : NSObject<NSURLConnectionDelegate>
 - (void)sendRequest:(NSURLRequest *)request completion:(void (^)())completion;
