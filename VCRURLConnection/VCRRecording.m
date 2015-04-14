@@ -64,6 +64,15 @@
            [self.body isEqualToString:recording.body];
 }
 
+- (NSUInteger)hash {
+    const NSUInteger prime = 17;
+    NSUInteger hash = 1;
+    hash = prime * hash + [self.method hash];
+    hash = prime * hash + [self.URI hash];
+    hash = prime * hash + [self.body hash];
+    return hash;
+}
+
 - (BOOL)isText {
     NSString *type = [[self HTTPURLResponse] MIMEType] ?: @"text/plain";
     if ([@[ @"application/x-www-form-urlencoded" ] containsObject:type]) {
