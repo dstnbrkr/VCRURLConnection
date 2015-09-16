@@ -74,12 +74,12 @@ static NSString * const VCRIsRecordingRequestKey = @"VCR_recording";
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    if (self.recording.data) {
-        NSMutableData *currentData = [NSMutableData dataWithData:self.recording.data];
+    if (self.recording.responseBodyData) {
+        NSMutableData *currentData = [NSMutableData dataWithData:self.recording.responseBodyData];
         [currentData appendData:data];
-        self.recording.data = currentData;
+        self.recording.responseBodyData = currentData;
     } else {
-        self.recording.data = data;
+        self.recording.responseBodyData = data;
     }
     [self.client URLProtocol:self didLoadData:data];
 }

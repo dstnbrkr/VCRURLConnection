@@ -25,7 +25,8 @@
         @"method": @"GET",
         @"uri": @"http://foo",
         @"status": @200,
-        @"body": @"Foo Bar Baz",
+        @"requestBody": @"Foo Bar Baz",
+        @"responseBody": @"Foo Bar Baz",
         @"headers": @{ @"X-Foo": @"foo" },
         @"error": @{ @"code": @(1001),
                      @"domain": @"NSURLConnectionErrorDomain",
@@ -45,7 +46,8 @@
     
     XCTAssertEqual(recording.statusCode, [[json objectForKey:@"status"] integerValue], @"");
     
-    XCTAssertEqualObjects(recording.body, [json objectForKey:@"body"], @"");
+    XCTAssertEqualObjects(recording.requestBody, [json objectForKey:@"requestBody"], @"");
+    XCTAssertEqualObjects(recording.responseBody, [json objectForKey:@"responseBody"], @"");
     
     XCTAssertEqual(recording.error.code, [json[@"error"][@"code"] integerValue], @"");
     XCTAssertTrue([recording.error.userInfo isKindOfClass:[NSDictionary class]], @"");
@@ -57,13 +59,22 @@
     XCTAssertEqualObjects(json, self.json, @"");
 }
 
-- (void)testInitWithJSONBody {
+- (void)testInitWithJSONRequestBody {
     NSMutableDictionary *json = [self.json mutableCopy];
-    json[@"body"] = @{ @"foo" : @"bar", @"baz" : @"qux" };
+    json[@"requestBody"] = @{ @"foo" : @"bar", @"baz" : @"qux" };
     VCRRecording *recording = [[VCRRecording alloc] initWithJSON:json];
     
     NSString *expected = @"{\"foo\":\"bar\",\"baz\":\"qux\"}";
-    XCTAssertEqualObjects(expected, recording.body, @"");
+    XCTAssertEqualObjects(expected, recording.requestBody, @"");
+}
+
+- (void)testInitWithJSONResponseBody {
+    NSMutableDictionary *json = [self.json mutableCopy];
+    json[@"responseBody"] = @{ @"foo" : @"bar", @"baz" : @"qux" };
+    VCRRecording *recording = [[VCRRecording alloc] initWithJSON:json];
+    
+    NSString *expected = @"{\"foo\":\"bar\",\"baz\":\"qux\"}";
+    XCTAssertEqualObjects(expected, recording.responseBody, @"");
 }
 
 - (void)testIsEqual {
@@ -96,8 +107,8 @@
     NSString *imagePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"test" ofType:@"png"];
     NSURL *imageURL = [NSURL fileURLWithPath:imagePath];
     recording.headerFields = @{ @"Content-Type": @"image/png" };
-    recording.data = [NSData dataWithContentsOfURL:imageURL];
-    XCTAssertTrue(recording.body != nil, @"VCRRecording body should not be nil");
+    recording.responseBodyData = [NSData dataWithContentsOfURL:imageURL];
+    XCTAssertTrue(recording.responseBody != nil, @"VCRRecording body should not be nil");
 }
 
 @end

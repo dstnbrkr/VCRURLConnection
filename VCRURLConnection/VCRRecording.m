@@ -48,9 +48,12 @@
             self.headerFields = [NSDictionary dictionary];
         }
         
-        NSString *body = json[@"body"];
-        [self setBody:body];
-        
+        NSString *responseBody = json[@"responseBody"];
+        [self setResponseBody:responseBody];
+
+        NSString *requestBody = json[@"requestBody"];
+        [self setRequestBody:requestBody];
+
         if (json[@"error"]) {
             self.error = [[VCRError alloc] initWithJSON:json[@"error"]];
         }
@@ -59,9 +62,9 @@
 }
 
 - (BOOL)isEqual:(VCRRecording *)recording {
-    return [self.method isEqualToString:recording.method] &&
-           [self.URI isEqualToString:recording.URI] &&
-           [self.body isEqualToString:recording.body];
+    return  [self.method isEqualToString:recording.method] &&
+            [self.URI isEqualToString:recording.URI] &&
+            ((self.requestBodyData == nil && recording.requestBodyData == nil) || [self.requestBodyData isEqualToData:recording.requestBodyData]);
 }
 
 - (NSUInteger)hash {
@@ -69,7 +72,7 @@
     NSUInteger hash = 1;
     hash = prime * hash + [self.method hash];
     hash = prime * hash + [self.URI hash];
-    hash = prime * hash + [self.body hash];
+    hash = prime * hash + [self.requestBodyData hash];
     return hash;
 }
 
@@ -86,22 +89,41 @@
     return isText;
 }
 
-- (void)setBody:(id)body
+- (void)setResponseBody:(NSString * _Nullable)responseBody
 {
-    if ([body isKindOfClass:[NSDictionary class]]) {
-        self.data = [NSJSONSerialization dataWithJSONObject:body options:0 error:nil];
+    if ([responseBody isKindOfClass:[NSDictionary class]]) {
+        self.responseBodyData = [NSJSONSerialization dataWithJSONObject:responseBody options:0 error:nil];
     } else if ([self isText]) {
-        self.data = [body dataUsingEncoding:NSUTF8StringEncoding];
-    } else if ([body isKindOfClass:[NSString class]]) {
-        self.data = [[NSData alloc] initWithBase64Encoding:body];
+        self.responseBodyData = [responseBody dataUsingEncoding:NSUTF8StringEncoding];
+    } else if ([responseBody isKindOfClass:[NSString class]]) {
+        self.responseBodyData = [[NSData alloc] initWithBase64Encoding:responseBody];
     }
 }
 
-- (NSString *)body {
+- (NSString *)responseBody {
     if ([self isText]) {
-        return [[NSString alloc] initWithData:self.data encoding:NSUTF8StringEncoding];
+        return [[NSString alloc] initWithData:self.responseBodyData encoding:NSUTF8StringEncoding];
     } else {
-        return [self.data base64Encoding];
+        return [self.responseBodyData base64Encoding];
+    }
+}
+
+- (void)setRequestBody:(NSString * _Nullable)requestBody
+{
+    if ([requestBody isKindOfClass:[NSDictionary class]]) {
+        self.requestBodyData = [NSJSONSerialization dataWithJSONObject:requestBody options:0 error:nil];
+    } else if ([self isText]) {
+        self.requestBodyData = [requestBody dataUsingEncoding:NSUTF8StringEncoding];
+    } else if ([requestBody isKindOfClass:[NSString class]]) {
+        self.requestBodyData = [[NSData alloc] initWithBase64Encoding:requestBody];
+    }
+}
+
+- (NSString *)requestBody {
+    if ([self isText]) {
+        return [[NSString alloc] initWithData:self.requestBodyData encoding:NSUTF8StringEncoding];
+    } else {
+        return [self.requestBodyData base64Encoding];
     }
 }
 
@@ -113,8 +135,12 @@
         dictionary[@"headers"] = self.headerFields;
     }
     
-    if (self.body) {
-        dictionary[@"body"] = self.body;
+    if (self.responseBody) {
+        dictionary[@"responseBody"] = self.responseBody;
+    }
+    
+    if (self.requestBody) {
+        dictionary[@"requestBody"] = self.requestBody;
     }
     
     NSError *error = self.error;
@@ -132,7 +158,7 @@
 
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"<VCRRecording %@ %@, data length %li>", self.method, self.URI, (unsigned long)[self.data length]];
+    return [NSString stringWithFormat:@"<VCRRecording %@ %@, request data length %li>", self.method, self.URI, (unsigned long)[self.requestBodyData length]];
 }
 
 - (NSHTTPURLResponse *)HTTPURLResponse {
