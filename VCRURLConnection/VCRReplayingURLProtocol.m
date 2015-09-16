@@ -52,7 +52,7 @@
                                                                  HTTPVersion:@"HTTP/1.1"
                                                                 headerFields:recording.headerFields];
         [self.client URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageNotAllowed];
-        [self.client URLProtocol:self didLoadData:recording.data];
+        [self.client URLProtocol:self didLoadData:recording.responseBodyData];
         [self.client URLProtocolDidFinishLoading:self];
     } else {
         [self.client URLProtocol:self didFailWithError:error];

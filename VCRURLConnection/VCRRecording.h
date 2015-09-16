@@ -33,8 +33,10 @@
 
 @property (nonatomic, strong) NSString *method;
 @property (nonatomic, strong) NSString *URI;
-@property (nonatomic, strong) NSData *data;
-@property (weak, nonatomic, readonly) NSString *body;
+@property (nonatomic, strong) NSData *requestBodyData;
+@property (nonatomic, strong) NSData *responseBodyData;
+@property (weak, nonatomic, readonly) NSString *requestBody;
+@property (weak, nonatomic, readonly) NSString *responseBody;
 @property (nonatomic, strong) NSDictionary *headerFields;
 @property (nonatomic, strong) NSError *error;
 @property (assign) NSInteger statusCode;

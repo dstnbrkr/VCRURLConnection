@@ -36,7 +36,7 @@
 
 - (void)setUp {
     [super setUp];
-    self.recording1 = @{ @"method": @"get", @"uri": @"http://foo", @"body": @"Foo Bar Baz" };
+    self.recording1 = @{ @"method": @"get", @"uri": @"http://foo", @"responseBody": @"Foo Bar Baz", @"requestBody": @"Some request stuff"};
     self.recordings = @[ self.recording1 ];
     self.cassette = [VCRCassette cassette];
 }
@@ -63,7 +63,9 @@
 
 - (void)testInitWithJSON {
     NSURL *url = [NSURL URLWithString:[self.recording1 objectForKey:@"uri"]];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    NSString *requestBody = self.recording1[@"requestBody"];
+    request.HTTPBody = [requestBody dataUsingEncoding:NSUTF8StringEncoding];
     VCRRecording *expectedRecording = [[VCRRecording alloc] initWithJSON:self.recording1];
     VCRCassette *cassette = [[VCRCassette alloc] initWithJSON:self.recordings];
     VCRRecording *actualRecording = [cassette recordingForRequest:request];
@@ -95,8 +97,10 @@
 - (void)testRecordingForRequest {
     NSString *path = @"http://foo";
     NSURL *url = [NSURL URLWithString:path];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    id json = @{ @"method": @"GET", @"uri": path, @"body": @"Foo Bar Baz" };
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    NSString *requestBody = @"request stuff";
+    request.HTTPBody = [requestBody dataUsingEncoding:NSUTF8StringEncoding];
+    id json = @{ @"method": @"GET", @"uri": path, @"responseBody": @"Foo Bar Baz", @"requestBody": requestBody};
     VCRRecording *recording = [[VCRRecording alloc] initWithJSON:json];
     
     VCRCassette *cassette = self.cassette;
@@ -105,14 +109,16 @@
     
     // can retrieve with equivalent mutable request
     NSMutableURLRequest *request1 = [NSMutableURLRequest requestWithURL:url];
+    request1.HTTPBody = [requestBody dataUsingEncoding:NSUTF8StringEncoding];
+
     XCTAssertEqualObjects([cassette recordingForRequest:request1], recording, @"");
 }
 
 - (void)testKeyOrderingForJson {
-    id json = @{ @"method": @"get", @"uri": @"http://foo", @"body": @"GET Foo Bar Baz" };
+    id json = @{ @"method": @"get", @"uri": @"http://foo", @"responseBody": @"Foo Bar Baz", @"requestBody": @"Some request stuff"};
     VCRRecording *recording = [[VCRRecording alloc] initWithJSON:json];
     id result = [recording JSON];
-    NSArray *keys = @[@"body", @"headers", @"method", @"status", @"uri"];
+    NSArray *keys = @[@"headers", @"method", @"requestBody", @"responseBody", @"status", @"uri"];
     XCTAssertEqualObjects([result allKeys], keys, @"Cassette JSON keys should be ordered");
 }
 

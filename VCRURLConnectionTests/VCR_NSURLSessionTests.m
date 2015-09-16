@@ -66,7 +66,7 @@
     
     VCRRecording *recording = [[[VCRCassetteManager defaultManager] currentCassette] recordingForRequest:request];
     XCTAssertEqual(recording.statusCode, httpResponse.statusCode, @"");
-    XCTAssertEqualObjects(recording.data, receivedData, @"");
+    XCTAssertEqualObjects(recording.responseBodyData, receivedData, @"");
     XCTAssertEqualObjects(recording.method, request.HTTPMethod, @"");
     XCTAssertEqualObjects(recording.URI, [[request URL] absoluteString], @"");
     XCTAssert(recording.statusCode != 0, @"");
@@ -90,7 +90,7 @@
 
 - (void)testResponseIsReplayedWithSession:(NSURLSession *)session {
     NSString *uri = @"http://foo";
-    id json = @{ @"method": @"GET", @"uri": uri, @"body": @"Foo Bar Baz" };
+    id json = @{ @"method": @"GET", @"uri": uri, @"responseBody": @"Foo Bar Baz", @"requestBody": @"Some request stuff"};
     VCRCassette *cassette = [[VCRCassette alloc] initWithJSON:@[ json ]];
     [[VCRCassetteManager defaultManager] setCurrentCassette:cassette];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:uri]];
@@ -111,7 +111,7 @@
     
     [self waitForExpectationsWithTimeout:60 handler:nil];
     XCTAssertEqual(httpResponse.statusCode, recording.statusCode, @"");
-    XCTAssertEqualObjects(receivedData, recording.data, @"");
+    XCTAssertEqualObjects(receivedData, recording.responseBodyData, @"");
 }
 
 - (void)testResponseIsReplayedForSharedSession {
