@@ -113,7 +113,7 @@
 #pragma Helpers
 
 - (VCRTestConnectionController *)sendRequest:(NSURLRequest *)request {
-    XCTestExpectation *expectation = [self expectationWithDescription:nil];
+    XCTestExpectation *expectation = [self expectationWithDescription:@""];
     VCRTestConnectionController *controller = [[VCRTestConnectionController alloc] init];
     [controller sendRequest:request completion:^{
         [expectation fulfill];
