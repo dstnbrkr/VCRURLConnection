@@ -53,7 +53,7 @@
     __block BOOL completed = NO;
     __block NSData *receivedData;
     __block NSHTTPURLResponse *httpResponse;
-    XCTestExpectation *expectation = [self expectationWithDescription:nil];
+    XCTestExpectation *expectation = [self expectationWithDescription:@""];
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request
                                             completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                                                 completed = YES;
@@ -99,7 +99,7 @@
     __block BOOL completed = NO;
     __block NSData *receivedData;
     __block NSHTTPURLResponse *httpResponse;
-    XCTestExpectation *expectation = [self expectationWithDescription:nil];
+    XCTestExpectation *expectation = [self expectationWithDescription:@""];
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request
                                             completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                                                 completed = YES;

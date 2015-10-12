@@ -63,9 +63,12 @@ NSString *DescriptionForObject(NSObject *object, id locale, NSUInteger indent) {
     return self;
 }
 
-- (instancetype)initWithCapacity:(NSUInteger)numItems
-{
-    return [self init];
+- (instancetype)initWithCapacity:(NSUInteger)numItems {
+    if ((self = [super init])) {
+        _dictionary = [NSMutableDictionary new];
+        _array = [NSMutableArray new];
+    }
+    return self;
 }
 
 - (instancetype)copy {
