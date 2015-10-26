@@ -12,7 +12,7 @@ test:
 	test
 
 test_iphonesimulator:
-	$(MAKE) SDK=iphonesimulator9.0  SCHEME=libVCRURLConnection DEST="\"platform=iOS Simulator,name=iPhone 6\""
+	$(MAKE) SDK=iphonesimulator SCHEME=libVCRURLConnection DEST="\"platform=iOS Simulator,name=iPhone 6\""
 
 test_osx:
 	$(MAKE) SCHEME=VCRURLConnection SDK=macosx DEST="arch=x86_64"
