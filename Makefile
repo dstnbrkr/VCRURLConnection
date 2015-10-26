@@ -6,16 +6,23 @@ test:
 	-sdk $(SDK) \
 	-derivedDataPath $(BUILD_DIR) \
 	-project $(NAME).xcodeproj \
-	-scheme $(NAME) \
+	-scheme $(SCHEME) \
 	-configuration Debug \
 	 -destination $(DEST) \
 	test
 
 test_iphonesimulator:
-	$(MAKE) SDK=iphonesimulator DEST="\"platform=iOS Simulator,name=iPhone 6\""
+	$(MAKE) SDK=iphonesimulator9.0  SCHEME=libVCRURLConnection DEST="\"platform=iOS Simulator,name=iPhone 6\""
 
 test_osx:
-	$(MAKE) SDK=macosx DEST="arch=x86_64"
+	$(MAKE) SCHEME=VCRURLConnection SDK=macosx DEST="arch=x86_64"
+
+ci: test_iphonesimulator test_osx
+
+clean:
+	rm -rf build
+
+
 
 
 
