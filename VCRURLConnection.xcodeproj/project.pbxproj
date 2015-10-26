@@ -32,6 +32,7 @@
 		B3D88C5B1BDDCBBB0001357A /* VCRReplayingURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = B359FCE51876411D00FA20E2 /* VCRReplayingURLProtocol.m */; };
 		B3D88C5C1BDDCBBB0001357A /* VCRRequestKey.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B828A0167E9B6800CCEC3C /* VCRRequestKey.m */; };
 		B3D88C5E1BDDCC1A0001357A /* VCRURLConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = B3D88C5D1BDDCC1A0001357A /* VCRURLConnection.h */; settings = {ASSET_TAGS = (); }; };
+		B3D88C6C1BDDCCB50001357A /* VCRURLConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3D88C491BDDCB1A0001357A /* VCRURLConnection.framework */; };
 		B3FA96871BDDC284007870A4 /* VCRURLConnectionTestsOSX.m in Sources */ = {isa = PBXBuildFile; fileRef = B3FA96861BDDC284007870A4 /* VCRURLConnectionTestsOSX.m */; };
 		B3FA968C1BDDC2FF007870A4 /* VCR_NSURLConnectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B386A6E81ADA1AB100ABF873 /* VCR_NSURLConnectionTests.m */; settings = {ASSET_TAGS = (); }; };
 		B3FA968D1BDDC30A007870A4 /* VCR_NSURLSessionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B386A6E91ADA1AB100ABF873 /* VCR_NSURLSessionTests.m */; settings = {ASSET_TAGS = (); }; };
@@ -88,6 +89,7 @@
 		B3BB2512167F23EC00C5E3C6 /* XCTestCase+SRTAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "XCTestCase+SRTAdditions.m"; path = "VCRURLConnectionTests/XCTestCase+SRTAdditions.m"; sourceTree = "<group>"; };
 		B3D88C491BDDCB1A0001357A /* VCRURLConnection.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VCRURLConnection.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3D88C5D1BDDCC1A0001357A /* VCRURLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCRURLConnection.h; sourceTree = "<group>"; };
+		B3D88C631BDDCC940001357A /* libVCRURLConnection.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libVCRURLConnection.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3DEFB741877157300D3FE16 /* VCR+NSURLSessionConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "VCR+NSURLSessionConfiguration.h"; sourceTree = "<group>"; };
 		B3DEFB751877157300D3FE16 /* VCR+NSURLSessionConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "VCR+NSURLSessionConfiguration.m"; sourceTree = "<group>"; };
 		B3FA96841BDDC284007870A4 /* VCRURLConnectionTestsOSX.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VCRURLConnectionTestsOSX.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -112,6 +114,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B3D88C601BDDCC940001357A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B3D88C6C1BDDCCB50001357A /* VCRURLConnection.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,6 +219,7 @@
 				B3B4FC041ADA178100C997D0 /* VCRURLConnectionTests.xctest */,
 				B3FA96841BDDC284007870A4 /* VCRURLConnectionTestsOSX.xctest */,
 				B3D88C491BDDCB1A0001357A /* VCRURLConnection.framework */,
+				B3D88C631BDDCC940001357A /* libVCRURLConnection.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -251,6 +262,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B3D88C611BDDCC940001357A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -289,6 +307,23 @@
 			productReference = B3D88C491BDDCB1A0001357A /* VCRURLConnection.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		B3D88C621BDDCC940001357A /* libVCRURLConnection */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B3D88C691BDDCC940001357A /* Build configuration list for PBXNativeTarget "libVCRURLConnection" */;
+			buildPhases = (
+				B3D88C5F1BDDCC940001357A /* Sources */,
+				B3D88C601BDDCC940001357A /* Frameworks */,
+				B3D88C611BDDCC940001357A /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = libVCRURLConnection;
+			productName = libVCRURLConnection;
+			productReference = B3D88C631BDDCC940001357A /* libVCRURLConnection.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		B3FA96831BDDC284007870A4 /* VCRURLConnectionTestsOSX */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B3FA968B1BDDC284007870A4 /* Build configuration list for PBXNativeTarget "VCRURLConnectionTestsOSX" */;
@@ -320,6 +355,9 @@
 					B3D88C481BDDCB1A0001357A = {
 						CreatedOnToolsVersion = 7.0.1;
 					};
+					B3D88C621BDDCC940001357A = {
+						CreatedOnToolsVersion = 7.0.1;
+					};
 					B3FA96831BDDC284007870A4 = {
 						CreatedOnToolsVersion = 7.0.1;
 					};
@@ -340,6 +378,7 @@
 				B3B4FC031ADA178100C997D0 /* VCRURLConnectionTests */,
 				B3FA96831BDDC284007870A4 /* VCRURLConnectionTestsOSX */,
 				B3D88C481BDDCB1A0001357A /* VCRURLConnection */,
+				B3D88C621BDDCC940001357A /* libVCRURLConnection */,
 			);
 		};
 /* End PBXProject section */
@@ -405,6 +444,13 @@
 				B3D88C5A1BDDCBBB0001357A /* VCRRecordingURLProtocol.m in Sources */,
 				B3D88C5B1BDDCBBB0001357A /* VCRReplayingURLProtocol.m in Sources */,
 				B3D88C5C1BDDCBBB0001357A /* VCRRequestKey.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B3D88C5F1BDDCC940001357A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -631,6 +677,81 @@
 			};
 			name = Release;
 		};
+		B3D88C6A1BDDCC940001357A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXECUTABLE_PREFIX = lib;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = VCRURLConnection;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		B3D88C6B1BDDCC940001357A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXECUTABLE_PREFIX = lib;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = VCRURLConnection;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 		B3FA96891BDDC284007870A4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -738,6 +859,14 @@
 			buildConfigurations = (
 				B3D88C4F1BDDCB1A0001357A /* Debug */,
 				B3D88C501BDDCB1A0001357A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		B3D88C691BDDCC940001357A /* Build configuration list for PBXNativeTarget "libVCRURLConnection" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B3D88C6A1BDDCC940001357A /* Debug */,
+				B3D88C6B1BDDCC940001357A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
