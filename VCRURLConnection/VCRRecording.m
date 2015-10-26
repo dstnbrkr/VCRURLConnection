@@ -24,7 +24,9 @@
 #import "VCRRecording.h"
 #import "VCROrderedMutableDictionary.h"
 #import "VCRError.h"
+#if TARGET_OS_IPHONE
 #import <MobileCoreServices/MobileCoreServices.h>
+#endif
 
 // For -[NSData initWithBase64Encoding:] and -[NSData base64Encoding]
 // Remove when targetting iOS 7+, use -[NSData initWithBase64EncodedString:options:] and -[NSData base64EncodedStringWithOptions:] instead

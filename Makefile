@@ -8,11 +8,14 @@ test:
 	-project $(NAME).xcodeproj \
 	-scheme $(NAME) \
 	-configuration Debug \
+	 -destination $(DEST) \
 	test
 
 test_iphonesimulator:
-	$(MAKE) SDK=iphonesimulator
+	$(MAKE) SDK=iphonesimulator DEST="\"platform=iOS Simulator,name=iPhone 6\""
 
 test_osx:
-	$(MAKE) SDK=macosx
+	$(MAKE) SDK=macosx DEST="arch=x86_64"
+
+
 

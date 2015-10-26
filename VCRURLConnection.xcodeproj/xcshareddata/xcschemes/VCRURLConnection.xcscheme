@@ -52,6 +52,16 @@
                ReferencedContainer = "container:VCRURLConnection.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B3FA96831BDDC284007870A4"
+               BuildableName = "VCRURLConnectionTestsOSX.xctest"
+               BlueprintName = "VCRURLConnectionTestsOSX"
+               ReferencedContainer = "container:VCRURLConnection.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

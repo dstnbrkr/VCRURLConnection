@@ -44,15 +44,8 @@
 }
 
 - (void)testSetCurrentCassetteWithURL {
-
-#if TARGET_OS_IPHONE
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"cassette-1" ofType:@"json"];
-#else
-    NSString *path = @"Tests/cassette-1.json";
-#endif
-    
     NSURL *url = [NSURL fileURLWithPath:path];
-    
     NSData *data = [NSData dataWithContentsOfURL:url];
     XCTAssertTrue(data != nil, @"Could not load cassette %@", url);
     VCRCassette *expectedCassette = [[VCRCassette alloc] initWithData:data];
