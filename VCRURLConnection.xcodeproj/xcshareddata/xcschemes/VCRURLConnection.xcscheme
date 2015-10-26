@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B3B4FBF91ADA178000C997D0"
-               BuildableName = "libVCRURLConnection.a"
+               BlueprintIdentifier = "B3D88C481BDDCB1A0001357A"
+               BuildableName = "VCRURLConnection.framework"
                BlueprintName = "VCRURLConnection"
                ReferencedContainer = "container:VCRURLConnection.xcodeproj">
             </BuildableReference>
@@ -66,8 +66,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B3B4FBF91ADA178000C997D0"
-            BuildableName = "libVCRURLConnection.a"
+            BlueprintIdentifier = "B3D88C481BDDCB1A0001357A"
+            BuildableName = "VCRURLConnection.framework"
             BlueprintName = "VCRURLConnection"
             ReferencedContainer = "container:VCRURLConnection.xcodeproj">
          </BuildableReference>
@@ -88,8 +88,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B3B4FBF91ADA178000C997D0"
-            BuildableName = "libVCRURLConnection.a"
+            BlueprintIdentifier = "B3D88C481BDDCB1A0001357A"
+            BuildableName = "VCRURLConnection.framework"
             BlueprintName = "VCRURLConnection"
             ReferencedContainer = "container:VCRURLConnection.xcodeproj">
          </BuildableReference>
@@ -106,8 +106,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B3B4FBF91ADA178000C997D0"
-            BuildableName = "libVCRURLConnection.a"
+            BlueprintIdentifier = "B3D88C481BDDCB1A0001357A"
+            BuildableName = "VCRURLConnection.framework"
             BlueprintName = "VCRURLConnection"
             ReferencedContainer = "container:VCRURLConnection.xcodeproj">
          </BuildableReference>
