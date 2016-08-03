@@ -26,5 +26,6 @@
 @interface VCRCassette ()
 
 @property (nonatomic, strong) NSMutableDictionary *responseDictionary;
+@property (nonatomic, strong) NSMutableArray *regexRecordings;
 
 @end

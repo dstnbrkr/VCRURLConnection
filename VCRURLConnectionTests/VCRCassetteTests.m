@@ -111,7 +111,7 @@
 - (void)testRecordingForRequestByMatchingRegularExpression {
     NSURL *url = [NSURL URLWithString:@"http://foo?key=abc"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    id json = @{ @"method": @"GET", @"uri": @"http://foo[?]*.*", @"body": @"Foo Bar Baz" };
+    id json = @{ @"method": @"GET", @"uri-regex": @"http://foo[?]*.*", @"body": @"Foo Bar Baz" };
     VCRRecording *recording = [[VCRRecording alloc] initWithJSON:json];
     
     VCRCassette *cassette = self.cassette;
@@ -122,7 +122,7 @@
 - (void)testRegExRecordingForRequestGreedy {
     NSURL *url = [NSURL URLWithString:@"http://bar?key=abc"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    id json = @{ @"method": @"GET", @"uri": @"http://foo[?]*.*", @"body": @"Foo Bar Baz" };
+    id json = @{ @"method": @"GET", @"uri-regex": @"http://foo[?]*.*", @"body": @"Foo Bar Baz" };
     VCRRecording *recording = [[VCRRecording alloc] initWithJSON:json];
     
     VCRCassette *cassette = self.cassette;
@@ -135,7 +135,7 @@
     NSURL *url = [NSURL URLWithString:path];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
-    id json = @{ @"method": @"GET", @"uri": @"http://foo[?]*.*", @"body": @"Foo Bar" };
+    id json = @{ @"method": @"GET", @"uri-regex": @"http://foo[?]*.*", @"body": @"Foo Bar" };
     VCRRecording *regexRecording = [[VCRRecording alloc] initWithJSON:json];
     
     VCRCassette *cassette = self.cassette;
@@ -160,6 +160,13 @@
     VCRCassette *cassette = [[VCRCassette alloc] initWithJSON:self.recordings];
     NSData *data = [cassette data];
     XCTAssertTrue(data != nil && [data length] > 0, @"Did not serialize to data");
+}
+
+- (void)testDataIncludesRegexRecordings {
+    id json = @{ @"method": @"get", @"uri-regex": @"http://foo/(bar|baz)", @"body": @"GET Foo Bar (or Baz)" };
+    VCRCassette *cassette = [[VCRCassette alloc] initWithJSON:@[json]];
+    id array = [NSJSONSerialization JSONObjectWithData:[cassette data] options:0 error:nil];
+    XCTAssertEqual([array count], 1, @"Serialized cassette should have 1 recording");
 }
 
 @end

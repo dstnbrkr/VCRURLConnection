@@ -57,6 +57,15 @@
     XCTAssertEqualObjects(json, self.json, @"");
 }
 
+- (void)testJSONRegex {
+    self.json = [self.json mutableCopy];
+    [self.json removeObjectForKey:@"uri"];
+    self.json[@"uri-regex"] = @"http://foo[?]";
+    VCRRecording *recording = [[VCRRecording alloc] initWithJSON:self.json];
+    id json = [recording JSON];
+    XCTAssertEqualObjects(json, self.json, @"");
+}
+
 - (void)testInitWithJSONBody {
     NSMutableDictionary *json = [self.json mutableCopy];
     json[@"body"] = @{ @"foo" : @"bar", @"baz" : @"qux" };
@@ -67,6 +76,15 @@
 }
 
 - (void)testIsEqual {
+    VCRRecording *recording1 = [[VCRRecording alloc] initWithJSON:self.json];
+    VCRRecording *recording2 = [[VCRRecording alloc] initWithJSON:self.json];
+    XCTAssertEqualObjects(recording1, recording2, @"VCRRecording objects should be equal");
+}
+
+- (void)testIsEqualRegex {
+    self.json = [self.json mutableCopy];
+    [self.json removeObjectForKey:@"uri"];
+    self.json[@"uri-regex"] = @"http://foo[?]";
     VCRRecording *recording1 = [[VCRRecording alloc] initWithJSON:self.json];
     VCRRecording *recording2 = [[VCRRecording alloc] initWithJSON:self.json];
     XCTAssertEqualObjects(recording1, recording2, @"VCRRecording objects should be equal");

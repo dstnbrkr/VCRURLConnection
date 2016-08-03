@@ -40,6 +40,7 @@
 - (id)init {
     if ((self = [super init])) {
         self.responseDictionary = [NSMutableDictionary dictionary];
+        self.regexRecordings = [NSMutableArray array];
     }
     return self;
 }
@@ -64,23 +65,22 @@
 }
 
 - (void)addRecording:(VCRRecording *)recording {
-    VCRRequestKey *key = [VCRRequestKey keyForObject:recording];
-    [self.responseDictionary setObject:recording forKey:key];
+    if (recording.URI) {
+        VCRRequestKey *key = [VCRRequestKey keyForObject:recording];
+        [self.responseDictionary setObject:recording forKey:key];
+    } else {
+        [self.regexRecordings addObject:recording];
+    }
 }
 
 - (VCRRecording *)recordingForRequestKey:(VCRRequestKey *)key {
     __block VCRRecording *recording = [self.responseDictionary objectForKey:key];
 
     if (!recording) {
-        [self.responseDictionary enumerateKeysAndObjectsUsingBlock:^(VCRRequestKey *responseKey, id obj, BOOL *stop) {
-            if ([responseKey.method isEqualToString:key.method]) {
-                NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:responseKey.URI
-                                                                                       options:0
-                                                                                         error:NULL];
-                if (regex && [regex numberOfMatchesInString:key.URI options:0 range:NSMakeRange(0, key.URI.length)] > 0) {
-                    recording = obj;
-                    *stop = YES;
-                }
+        [self.regexRecordings enumerateObjectsUsingBlock:^(VCRRecording *obj, NSUInteger idx, BOOL *stop) {
+            if ([obj.method isEqualToString:key.method] && [obj.URIRegex numberOfMatchesInString:key.URI options:0 range:NSMakeRange(0, key.URI.length)] > 0) {
+                recording = obj;
+                *stop = YES;
             }
         }];
     }
@@ -96,6 +96,9 @@
 - (id)JSON {
     NSMutableArray *recordings = [NSMutableArray array];
     for (VCRRecording *recording in self.responseDictionary.allValues) {
+        [recordings addObject:[recording JSON]];
+    }
+    for (VCRRecording *recording in self.regexRecordings) {
         [recordings addObject:[recording JSON]];
     }
     return recordings;
