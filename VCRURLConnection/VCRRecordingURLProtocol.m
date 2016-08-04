@@ -67,6 +67,14 @@ static NSString * const VCRIsRecordingRequestKey = @"VCR_recording";
 
 #pragma mark = NSURLConnectionDelegate
 
+- (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace {
+    return YES;
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+    [self.client URLProtocol:self didReceiveAuthenticationChallenge:challenge];
+}
+
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSHTTPURLResponse *)response {
     self.recording.headerFields = response.allHeaderFields;
     self.recording.statusCode = response.statusCode;
