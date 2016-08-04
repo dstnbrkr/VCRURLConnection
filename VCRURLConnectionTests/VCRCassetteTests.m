@@ -108,6 +108,46 @@
     XCTAssertEqualObjects([cassette recordingForRequest:request1], recording, @"");
 }
 
+- (void)testRecordingForRequestByMatchingRegularExpression {
+    NSURL *url = [NSURL URLWithString:@"http://foo?key=abc"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    id json = @{ @"method": @"GET", @"uri-regex": @"http://foo[?]*.*", @"body": @"Foo Bar Baz" };
+    VCRRecording *recording = [[VCRRecording alloc] initWithJSON:json];
+    
+    VCRCassette *cassette = self.cassette;
+    [cassette addRecording:recording];
+    XCTAssertEqualObjects([cassette recordingForRequest:request], recording, @"");
+}
+
+- (void)testRegExRecordingForRequestGreedy {
+    NSURL *url = [NSURL URLWithString:@"http://bar?key=abc"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    id json = @{ @"method": @"GET", @"uri-regex": @"http://foo[?]*.*", @"body": @"Foo Bar Baz" };
+    VCRRecording *recording = [[VCRRecording alloc] initWithJSON:json];
+    
+    VCRCassette *cassette = self.cassette;
+    [cassette addRecording:recording];
+    XCTAssertNil([cassette recordingForRequest:request]);
+}
+
+- (void)testPreferExactMatchesOverRegularExpressionMatches {
+    NSString *path = @"http://foo?key=xyz";
+    NSURL *url = [NSURL URLWithString:path];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    id json = @{ @"method": @"GET", @"uri-regex": @"http://foo[?]*.*", @"body": @"Foo Bar" };
+    VCRRecording *regexRecording = [[VCRRecording alloc] initWithJSON:json];
+    
+    VCRCassette *cassette = self.cassette;
+    [cassette addRecording:regexRecording];
+
+    json = @{ @"method": @"GET", @"uri": path, @"body": @"Foo Baz" };
+    VCRRecording *pathRecording = [[VCRRecording alloc] initWithJSON:json];
+    [cassette addRecording:pathRecording];
+    
+    XCTAssertEqualObjects([cassette recordingForRequest:request], pathRecording, @"");
+}
+
 - (void)testKeyOrderingForJson {
     id json = @{ @"method": @"get", @"uri": @"http://foo", @"body": @"GET Foo Bar Baz" };
     VCRRecording *recording = [[VCRRecording alloc] initWithJSON:json];
@@ -120,6 +160,13 @@
     VCRCassette *cassette = [[VCRCassette alloc] initWithJSON:self.recordings];
     NSData *data = [cassette data];
     XCTAssertTrue(data != nil && [data length] > 0, @"Did not serialize to data");
+}
+
+- (void)testDataIncludesRegexRecordings {
+    id json = @{ @"method": @"get", @"uri-regex": @"http://foo/(bar|baz)", @"body": @"GET Foo Bar (or Baz)" };
+    VCRCassette *cassette = [[VCRCassette alloc] initWithJSON:@[json]];
+    id array = [NSJSONSerialization JSONObjectWithData:[cassette data] options:0 error:nil];
+    XCTAssertEqual([array count], 1, @"Serialized cassette should have 1 recording");
 }
 
 @end

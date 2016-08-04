@@ -41,7 +41,12 @@
         NSAssert(self.method, @"VCRRecording: method is required");
         
         self.URI = json[@"uri"];
-        NSAssert(self.URI, @"VCRRecording: uri is required");
+        if (json[@"uri-regex"]) {
+            NSError *error;
+            self.URIRegex = [NSRegularExpression regularExpressionWithPattern:json[@"uri-regex"] options:0 error:&error];
+            NSAssert(error == nil, @"VCRRecording: uri-regex “%@” is invalid: %@", json[@"uri-regex"], [error localizedDescription]);
+        }
+        NSAssert(self.URI || self.URIRegex, @"VCRRecording: uri or uri-regex is required");
 
         self.statusCode = [json[@"status"] intValue];
 
@@ -62,7 +67,8 @@
 
 - (BOOL)isEqual:(VCRRecording *)recording {
     return [self.method isEqualToString:recording.method] &&
-           [self.URI isEqualToString:recording.URI] &&
+           ((self.URI != nil && [self.URI isEqualToString:recording.URI]) ||
+            (self.URIRegex != nil && [self.URIRegex.pattern isEqualToString:recording.URIRegex.pattern])) &&
            [self.body isEqualToString:recording.body];
 }
 
@@ -70,7 +76,7 @@
     const NSUInteger prime = 17;
     NSUInteger hash = 1;
     hash = prime * hash + [self.method hash];
-    hash = prime * hash + [self.URI hash];
+    hash = prime * hash + (self.URI ? [self.URI hash] : [self.URIRegex.pattern hash]);
     hash = prime * hash + [self.body hash];
     return hash;
 }
@@ -108,9 +114,15 @@
 }
 
 - (id)JSON {
-    NSDictionary *infoDict = @{@"method": self.method, @"status": @(self.statusCode), @"uri": self.URI};
+    NSDictionary *infoDict = @{@"method": self.method, @"status": @(self.statusCode)};
     VCROrderedMutableDictionary *dictionary = [VCROrderedMutableDictionary dictionaryWithDictionary:infoDict];
-    
+
+    if (self.URI) {
+        dictionary[@"uri"] = self.URI;
+    } else {
+        dictionary[@"uri-regex"] = self.URIRegex.pattern;
+    }
+
     if (self.headerFields) {
         dictionary[@"headers"] = self.headerFields;
     }
@@ -132,9 +144,8 @@
     return sortedDict;
 }
 
-
 - (NSString *)description {
-    return [NSString stringWithFormat:@"<VCRRecording %@ %@, data length %li>", self.method, self.URI, (unsigned long)[self.data length]];
+    return [NSString stringWithFormat:@"<VCRRecording %@ %@, data length %li>", self.method, self.URI ?: self.URIRegex, (unsigned long)[self.data length]];
 }
 
 - (NSHTTPURLResponse *)HTTPURLResponse {
