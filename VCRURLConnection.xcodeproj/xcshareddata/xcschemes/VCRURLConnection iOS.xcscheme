@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B3D88C801BDDD09C0001357A"
-               BuildableName = "libVCRURLConnection.a"
-               BlueprintName = "libVCRURLConnection"
+               BlueprintIdentifier = "9016CE9E1DCAFEC500E30595"
+               BuildableName = "VCRURLConnection.framework"
+               BlueprintName = "VCRURLConnection iOS"
                ReferencedContainer = "container:VCRURLConnection.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B3F466211BDDD50F004624A9"
-               BuildableName = "VCRURLConnectionTests.xctest"
-               BlueprintName = "VCRURLConnectionTests"
+               BlueprintIdentifier = "9016CEA61DCAFEC500E30595"
+               BuildableName = "VCRURLConnection iOSTests.xctest"
+               BlueprintName = "VCRURLConnection iOSTests"
                ReferencedContainer = "container:VCRURLConnection.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -42,9 +42,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B3D88C801BDDD09C0001357A"
-            BuildableName = "libVCRURLConnection.a"
-            BlueprintName = "libVCRURLConnection"
+            BlueprintIdentifier = "9016CE9E1DCAFEC500E30595"
+            BuildableName = "VCRURLConnection.framework"
+            BlueprintName = "VCRURLConnection iOS"
             ReferencedContainer = "container:VCRURLConnection.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -64,9 +64,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B3D88C801BDDD09C0001357A"
-            BuildableName = "libVCRURLConnection.a"
-            BlueprintName = "libVCRURLConnection"
+            BlueprintIdentifier = "9016CE9E1DCAFEC500E30595"
+            BuildableName = "VCRURLConnection.framework"
+            BlueprintName = "VCRURLConnection iOS"
             ReferencedContainer = "container:VCRURLConnection.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -82,9 +82,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B3D88C801BDDD09C0001357A"
-            BuildableName = "libVCRURLConnection.a"
-            BlueprintName = "libVCRURLConnection"
+            BlueprintIdentifier = "9016CE9E1DCAFEC500E30595"
+            BuildableName = "VCRURLConnection.framework"
+            BlueprintName = "VCRURLConnection iOS"
             ReferencedContainer = "container:VCRURLConnection.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

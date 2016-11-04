@@ -46,13 +46,28 @@ NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:r
 // previously recorded response.
 ```
 
-## How to get started
+## Installation
+### [Carthage](https://github.com/Carthage/Carthage)
+
+Add the following to your Cartfile:
+
+```
+github "dstnbrkr/VCRURLConnection"
+```
+
+Then run `$ carthage update`.
+
+Follow the current instructions in [Carthage's README](https://github.com/Carthage/Carthage)
+for up to date installation instructions.
+
+### Manual
 - [Download VCRURLConnection](https://github.com/dstnbrkr/VCRURLConnection/zipball/master) and try out the included example app
 - Include the files in the VCRURLConnection folder in your test target
+
+### Getting Started
 - Run your tests once to record all HTTP interactions
 - Copy the recorded json file (the file whose path is returned by `[VCR save]`) into your project
 - Subsequent test runs will use the recorded HTTP interactions instead of the network
-
 - All recordings are stored in a single JSON file, which you can edit by hand
 
 ## License
