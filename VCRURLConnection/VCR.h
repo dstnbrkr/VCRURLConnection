@@ -62,6 +62,11 @@
 @interface VCR : NSObject
 
 /**
+ Set a delay for network-responses. Can be used to simulate bad network connections. Default: 0 (no delay)
+ */
+@property (class, nonatomic, assign) NSTimeInterval responseDelay;
+
+/**
  Load all recorded HTTP interactions from cassette JSON file at `url`
  */
 + (void)loadCassetteWithContentsOfURL:(NSURL *)url;
