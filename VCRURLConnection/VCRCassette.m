@@ -82,7 +82,7 @@
 
 - (VCRRecording *)recordingForRequestKey:(VCRRequestKey *)key replaying:(BOOL)replaying {
     __block VCRRecording *recording;
-    __block NSMutableArray *recordings = [self.responseDictionary objectForKey:key];
+    NSMutableArray *recordings = [self.responseDictionary objectForKey:key];
 
     if (recordings != NULL && recordings.count > 0) {
         recording = [recordings objectAtIndex:0];
