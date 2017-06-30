@@ -48,6 +48,9 @@
 }
 
 - (void)testResponseIsRecordedWithSession:(NSURLSession *)session {
+    [VCR setRecording:YES];
+    [VCR setReplaying:NO];
+
     NSURL *url = [NSURL URLWithString:@"http://www.iana.org/domains/reserved"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     __block BOOL completed = NO;
@@ -80,6 +83,7 @@
 - (void)testResponseIsRecordedForDefaultSession {
     [self testResponseIsRecordedWithSession:self.defaultSession];
 }
+
 /*
 - (void)testResponseIsRecordedForEphemeralSession {
     [self testResponseIsRecordedWithSession:self.ephemeralSession];
@@ -89,12 +93,15 @@
 // FIXME: need bundle id to test background session
 
 - (void)testResponseIsReplayedWithSession:(NSURLSession *)session {
+    [VCR setReplaying:YES];
+    [VCR setRecording:NO];
+
     NSString *uri = @"http://foo";
     id json = @{ @"method": @"GET", @"uri": uri, @"body": @"Foo Bar Baz" };
     VCRCassette *cassette = [[VCRCassette alloc] initWithJSON:@[ json ]];
     [[VCRCassetteManager defaultManager] setCurrentCassette:cassette];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:uri]];
-    VCRRecording *recording = [[[VCRCassetteManager defaultManager] currentCassette] recordingForRequest:request];
+    VCRRecording *recording = [[[VCRCassetteManager defaultManager] currentCassette] recordingForRequest:request replaying:YES];
     
     __block BOOL completed = NO;
     __block NSData *receivedData;
@@ -114,12 +121,79 @@
     XCTAssertEqualObjects(receivedData, recording.data, @"");
 }
 
+- (void)testMultipleResponsesAreReplayedWithSession:(NSURLSession *)session {
+    [VCR setReplaying:YES];
+    [VCR setRecording:NO];
+
+    NSString *uri = @"http://foo";
+    id json1 = @{ @"method": @"GET", @"uri": uri, @"body": @"body 1" };
+    id json2 = @{ @"method": @"GET", @"uri": uri, @"body": @"body 2" };
+
+    VCRCassette *cassette = [[VCRCassette alloc] initWithJSON:@[ json1, json2 ]];
+    [[VCRCassetteManager defaultManager] setCurrentCassette:cassette];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:uri]];
+
+    __block BOOL completed = NO;
+    __block NSString *receivedData;
+    __block NSHTTPURLResponse *httpResponse;
+    XCTestExpectation *expectation;
+    NSURLSessionDataTask *task;
+
+    expectation = [self expectationWithDescription:@""];
+    task = [session dataTaskWithRequest:request
+                      completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                          completed = YES;
+                          receivedData = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                          httpResponse = (NSHTTPURLResponse *)response;
+                          [expectation fulfill];
+                      }];
+    [task resume];
+
+    [self waitForExpectationsWithTimeout:60 handler:nil];
+    XCTAssertEqualObjects(receivedData, @"body 1", @"");
+
+    expectation = [self expectationWithDescription:@""];
+    task = [session dataTaskWithRequest:request
+                      completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                          completed = YES;
+                          receivedData = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                          httpResponse = (NSHTTPURLResponse *)response;
+                          [expectation fulfill];
+                      }];
+    [task resume];
+
+    [self waitForExpectationsWithTimeout:60 handler:nil];
+    XCTAssertEqualObjects(receivedData, @"body 2", @"");
+
+    // The last recording is reused
+    expectation = [self expectationWithDescription:@""];
+    task = [session dataTaskWithRequest:request
+                      completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                          completed = YES;
+                          receivedData = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                          httpResponse = (NSHTTPURLResponse *)response;
+                          [expectation fulfill];
+                      }];
+    [task resume];
+
+    [self waitForExpectationsWithTimeout:60 handler:nil];
+    XCTAssertEqualObjects(receivedData, @"body 2", @"");
+}
+
 - (void)testResponseIsReplayedForSharedSession {
     [self testResponseIsReplayedWithSession:self.sharedSession];
 }
 
 - (void)testResponseIsReplayedForDefaultSession {
     [self testResponseIsReplayedWithSession:self.defaultSession];
+}
+
+- (void)testMultipleResponsesAreReplayedForSharedSession {
+    [self testMultipleResponsesAreReplayedWithSession:self.sharedSession];
+}
+
+- (void)testMultipleResponsesAreReplayedForDefaultSession {
+    [self testMultipleResponsesAreReplayedWithSession:self.defaultSession];
 }
 
 /*
