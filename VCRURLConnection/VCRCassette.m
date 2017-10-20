@@ -67,14 +67,30 @@
 - (void)addRecording:(VCRRecording *)recording {
     if (recording.URI) {
         VCRRequestKey *key = [VCRRequestKey keyForObject:recording];
-        [self.responseDictionary setObject:recording forKey:key];
+        NSMutableArray * recordings = [self.responseDictionary objectForKey:key];
+
+        if (recordings == NULL) {
+            recordings = [[NSMutableArray alloc] init];
+            [self.responseDictionary setObject:recordings forKey:key];
+        }
+
+        [recordings addObject:recording];
     } else {
         [self.regexRecordings addObject:recording];
     }
 }
 
-- (VCRRecording *)recordingForRequestKey:(VCRRequestKey *)key {
-    __block VCRRecording *recording = [self.responseDictionary objectForKey:key];
+- (VCRRecording *)recordingForRequestKey:(VCRRequestKey *)key replaying:(BOOL)replaying {
+    __block VCRRecording *recording;
+    NSMutableArray *recordings = [self.responseDictionary objectForKey:key];
+
+    if (recordings != NULL && recordings.count > 0) {
+        recording = [recordings objectAtIndex:0];
+
+        if (recordings.count > 1 && replaying) {
+            [recordings removeObjectAtIndex:0];
+        }
+    }
 
     if (!recording) {
         [self.regexRecordings enumerateObjectsUsingBlock:^(VCRRecording *obj, NSUInteger idx, BOOL *stop) {
@@ -88,16 +104,27 @@
     return recording;
 }
 
-- (VCRRecording *)recordingForRequest:(NSURLRequest *)request {
+- (VCRRecording *)recordingForRequestKey:(VCRRequestKey *)key {
+    return [self recordingForRequestKey:key replaying:NO];
+}
+
+- (VCRRecording *)recordingForRequest:(NSURLRequest *)request replaying:(BOOL)replaying {
     VCRRequestKey *key = [VCRRequestKey keyForObject:request];
-    return [self recordingForRequestKey:key];
+    return [self recordingForRequestKey:key replaying:replaying];
+}
+
+- (VCRRecording *)recordingForRequest:(NSURLRequest *)request {
+    return [self recordingForRequest:request replaying:NO];
 }
 
 - (id)JSON {
     NSMutableArray *recordings = [NSMutableArray array];
-    for (VCRRecording *recording in self.responseDictionary.allValues) {
-        [recordings addObject:[recording JSON]];
+    for (NSArray *requestRecordings in self.responseDictionary.allValues) {
+        for (VCRRecording *recording in requestRecordings) {
+            [recordings addObject:[recording JSON]];
+        }
     }
+    
     for (VCRRecording *recording in self.regexRecordings) {
         [recordings addObject:[recording JSON]];
     }
