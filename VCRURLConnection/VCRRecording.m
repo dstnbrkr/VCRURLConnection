@@ -22,6 +22,7 @@
 // THE SOFTWARE.
 
 #import "VCRRecording.h"
+#import "VCR.h"
 #import "VCROrderedMutableDictionary.h"
 #import "VCRError.h"
 #if TARGET_OS_IPHONE
@@ -83,7 +84,7 @@
 
 - (BOOL)isText {
     NSString *type = [[self HTTPURLResponse] MIMEType] ?: @"text/plain";
-    if ([@[ @"application/x-www-form-urlencoded" ] containsObject:type]) {
+    if ([VCR.textContentTypes containsObject:type]) {
         return YES;
     }
     CFStringRef uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassMIMEType, (__bridge CFStringRef)type, NULL);

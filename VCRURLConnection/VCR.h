@@ -62,6 +62,12 @@
 @interface VCR : NSObject
 
 /**
+ Provide a list of content types that should be considered text (e.g., "application/json"), so that the response
+ bodies won't get base64-encoded when saving them to file. Defaults to ["application/x-www-form-urlencoded"].
+ */
+@property (class) NSArray<NSString *> *textContentTypes;
+
+/**
  Load all recorded HTTP interactions from cassette JSON file at `url`
  */
 + (void)loadCassetteWithContentsOfURL:(NSURL *)url;
