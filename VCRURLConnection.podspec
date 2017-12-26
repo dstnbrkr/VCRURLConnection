@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "VCRURLConnection"
-  s.version      = "0.2.3"
+  s.version      = "0.2.4"
   s.summary      = "VCRURLConnection is an iOS and OSX API to record and replay HTTP interactions, inspired by VCR."
   s.homepage     = "https://github.com/dstnbrkr/VCRURLConnection"
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
