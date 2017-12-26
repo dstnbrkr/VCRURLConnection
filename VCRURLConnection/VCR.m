@@ -32,8 +32,21 @@
 static BOOL _VCRIsRecording;
 static BOOL _VCRIsReplaying;
 
-
 @implementation VCR
+
+static NSArray<NSString *> *_textContentTypes;
+
++ (NSArray<NSString *> *)textContentTypes {
+    return _textContentTypes;
+}
+
++ (void)setTextContentTypes:(NSArray<NSString *> *)textContentTypes {
+    _textContentTypes = textContentTypes;
+}
+
++ (void)initialize {
+    _textContentTypes = @[ @"application/x-www-form-urlencoded" ];
+}
 
 + (void)loadCassetteWithContentsOfURL:(NSURL *)url {
     [[VCRCassetteManager defaultManager] setCurrentCassetteURL:url];
