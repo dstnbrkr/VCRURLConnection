@@ -33,7 +33,6 @@ static BOOL _VCRIsRecording;
 static BOOL _VCRIsReplaying;
 static NSTimeInterval _responseDelay = 0;
 
-
 @implementation VCR
 
 + (void)setResponseDelay:(NSTimeInterval)responseDelay {
@@ -42,6 +41,20 @@ static NSTimeInterval _responseDelay = 0;
 
 + (NSTimeInterval)responseDelay {
     return _responseDelay;
+}
+
+static NSArray<NSString *> *_textContentTypes;
+
++ (NSArray<NSString *> *)textContentTypes {
+    return _textContentTypes;
+}
+
++ (void)setTextContentTypes:(NSArray<NSString *> *)textContentTypes {
+    _textContentTypes = textContentTypes;
+}
+
++ (void)initialize {
+    _textContentTypes = @[ @"application/x-www-form-urlencoded" ];
 }
 
 + (void)loadCassetteWithContentsOfURL:(NSURL *)url {
