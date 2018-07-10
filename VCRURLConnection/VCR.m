@@ -31,8 +31,17 @@
 
 static BOOL _VCRIsRecording;
 static BOOL _VCRIsReplaying;
+static NSTimeInterval _responseDelay = 0;
 
 @implementation VCR
+
++ (void)setResponseDelay:(NSTimeInterval)responseDelay {
+    _responseDelay = responseDelay;
+}
+
++ (NSTimeInterval)responseDelay {
+    return _responseDelay;
+}
 
 static NSArray<NSString *> *_textContentTypes;
 

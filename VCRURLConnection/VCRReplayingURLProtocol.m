@@ -43,19 +43,29 @@
 }
 
 - (void)startLoading {
-    VCRRecording *recording = [[self class] recordingForRequest:self.request replaying:YES];
-    NSError *error = recording.error;
-    if (!error) {
-        NSURL *url = [NSURL URLWithString:recording.URI];
-        NSHTTPURLResponse *response = [[NSHTTPURLResponse alloc] initWithURL:url
-                                                                  statusCode:recording.statusCode
-                                                                 HTTPVersion:@"HTTP/1.1"
-                                                                headerFields:recording.headerFields];
-        [self.client URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageNotAllowed];
-        [self.client URLProtocol:self didLoadData:recording.data];
-        [self.client URLProtocolDidFinishLoading:self];
+    void (^callback)() = ^() {
+        VCRRecording *recording = [[self class] recordingForRequest:self.request replaying:YES];
+        NSError *error = recording.error;
+        if (!error) {
+            NSURL *url = [NSURL URLWithString:recording.URI];
+            NSHTTPURLResponse *response = [[NSHTTPURLResponse alloc] initWithURL:url
+                                                                      statusCode:recording.statusCode
+                                                                     HTTPVersion:@"HTTP/1.1"
+                                                                    headerFields:recording.headerFields];
+            [self.client URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageNotAllowed];
+            [self.client URLProtocol:self didLoadData:recording.data];
+            [self.client URLProtocolDidFinishLoading:self];
+        } else {
+            [self.client URLProtocol:self didFailWithError:error];
+        }
+    };
+    
+    if ([VCR responseDelay] == 0) {
+        callback();
     } else {
-        [self.client URLProtocol:self didFailWithError:error];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)([VCR responseDelay] * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            callback();
+        });
     }
 }
 
