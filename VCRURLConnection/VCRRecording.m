@@ -56,6 +56,8 @@
             self.headerFields = [NSDictionary dictionary];
         }
         
+        self.requestData = [json[@"requestData"] dataUsingEncoding:NSUTF8StringEncoding];
+        
         NSString *body = json[@"body"];
         [self setBody:body];
         

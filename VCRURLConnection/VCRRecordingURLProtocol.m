@@ -54,6 +54,7 @@ static NSString * const VCRIsRecordingRequestKey = @"VCR_recording";
     VCRRecording *recording = [[VCRRecording alloc] init];
     recording.method = request.HTTPMethod;
     recording.URI = [[request URL] absoluteString];
+    recording.requestData = request.HTTPBody;
     self.recording = recording;
     
     NSMutableURLRequest *mutableRequest = [request mutableCopy];

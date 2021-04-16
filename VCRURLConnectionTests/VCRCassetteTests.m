@@ -27,8 +27,8 @@
 #import "VCRRequestKey.h" // FIXME: don't import
 
 @interface VCRCassetteTests ()
-@property (nonatomic, strong) id recording1;
-@property (nonatomic, strong) id recordings;
+@property (nonatomic, strong) NSDictionary<NSString *, NSString *> *recording1;
+@property (nonatomic, strong) NSArray<NSDictionary<NSString *, NSString *> *> *recordings;
 @property (nonatomic, strong) VCRCassette *cassette;
 @end
 
@@ -36,7 +36,7 @@
 
 - (void)setUp {
     [super setUp];
-    self.recording1 = @{ @"method": @"get", @"uri": @"http://foo", @"body": @"Foo Bar Baz" };
+    self.recording1 = @{ @"method": @"get", @"uri": @"http://foo", @"requestData": @"Quux", @"body": @"Foo Bar Baz" };
     self.recordings = @[ self.recording1 ];
     self.cassette = [VCRCassette cassette];
 }
@@ -63,7 +63,8 @@
 
 - (void)testInitWithJSON {
     NSURL *url = [NSURL URLWithString:[self.recording1 objectForKey:@"uri"]];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    request.HTTPBody = [self.recording1[@"requestData"] dataUsingEncoding:NSUTF8StringEncoding];
     VCRRecording *expectedRecording = [[VCRRecording alloc] initWithJSON:self.recording1];
     VCRCassette *cassette = [[VCRCassette alloc] initWithJSON:self.recordings];
     VCRRecording *actualRecording = [cassette recordingForRequest:request];
@@ -94,9 +95,12 @@
 
 - (void)testRecordingForRequest {
     NSString *path = @"http://foo";
+    NSString *requestBody = @"Quux";
+    NSString *body = @"Foo Bar Baz";
     NSURL *url = [NSURL URLWithString:path];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    id json = @{ @"method": @"GET", @"uri": path, @"body": @"Foo Bar Baz" };
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    request.HTTPBody = [requestBody dataUsingEncoding:NSUTF8StringEncoding];
+    id json = @{ @"method": @"GET", @"uri": path, @"requestData" : requestBody, @"body": body };
     VCRRecording *recording = [[VCRRecording alloc] initWithJSON:json];
     
     VCRCassette *cassette = self.cassette;
@@ -105,6 +109,7 @@
     
     // can retrieve with equivalent mutable request
     NSMutableURLRequest *request1 = [NSMutableURLRequest requestWithURL:url];
+    request1.HTTPBody = [requestBody dataUsingEncoding:NSUTF8StringEncoding];
     XCTAssertEqualObjects([cassette recordingForRequest:request1], recording, @"");
 }
 
@@ -132,16 +137,19 @@
 
 - (void)testPreferExactMatchesOverRegularExpressionMatches {
     NSString *path = @"http://foo?key=xyz";
+    NSString *requestBody = @"Quux";
+    NSString *body = @"Foo Bar";
     NSURL *url = [NSURL URLWithString:path];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    request.HTTPBody = [requestBody dataUsingEncoding:NSUTF8StringEncoding];
     
-    id json = @{ @"method": @"GET", @"uri-regex": @"http://foo[?]*.*", @"body": @"Foo Bar" };
+    id json = @{ @"method": @"GET", @"uri-regex": @"http://foo[?]*.*", @"requestData": requestBody, @"body": body };
     VCRRecording *regexRecording = [[VCRRecording alloc] initWithJSON:json];
     
     VCRCassette *cassette = self.cassette;
     [cassette addRecording:regexRecording];
 
-    json = @{ @"method": @"GET", @"uri": path, @"body": @"Foo Baz" };
+    json = @{ @"method": @"GET", @"uri": path, @"requestData": requestBody, @"body": body };
     VCRRecording *pathRecording = [[VCRRecording alloc] initWithJSON:json];
     [cassette addRecording:pathRecording];
     
