@@ -24,6 +24,7 @@
     self.json = @{
         @"method": @"GET",
         @"uri": @"http://foo",
+        @"requestData" : @"quux",
         @"status": @200,
         @"body": @"Foo Bar Baz",
         @"headers": @{ @"X-Foo": @"foo" },
@@ -42,6 +43,8 @@
     VCRRecording *recording = [[VCRRecording alloc] initWithJSON:json];
     
     XCTAssertEqualObjects(recording.URI, [json objectForKey:@"uri"], @"");
+    
+    XCTAssertEqualObjects(recording.requestData, [[json objectForKey:@"requestData"] dataUsingEncoding:NSUTF8StringEncoding], @"");
     
     XCTAssertEqual(recording.statusCode, [[json objectForKey:@"status"] integerValue], @"");
     

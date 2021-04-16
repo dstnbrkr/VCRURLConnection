@@ -125,6 +125,10 @@
     } else {
         dictionary[@"uri-regex"] = self.URIRegex.pattern;
     }
+    
+    if (self.requestData) {
+        dictionary[@"requestData"] = [[NSString alloc] initWithData:self.requestData encoding:NSUTF8StringEncoding];
+    }
 
     if (self.headerFields) {
         dictionary[@"headers"] = self.headerFields;
