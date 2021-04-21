@@ -25,4 +25,6 @@
 
 @interface VCRRecordingURLProtocol : NSURLProtocol
 
+@property (class, readonly) NSMutableDictionary *foo;
+
 @end

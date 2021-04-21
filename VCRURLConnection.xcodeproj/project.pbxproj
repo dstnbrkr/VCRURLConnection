@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		27DE8674262FA49500B7814D /* NSMutableURLRequest+VCR.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DE8672262FA49500B7814D /* NSMutableURLRequest+VCR.m */; };
+		27DE8675262FA49500B7814D /* NSMutableURLRequest+VCR.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DE8673262FA49500B7814D /* NSMutableURLRequest+VCR.h */; };
 		9016CEB91DCB007600E30595 /* VCR.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B82897167E9B6800CCEC3C /* VCR.m */; };
 		9016CEBB1DCB007600E30595 /* VCR+NSURLSessionConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = B3DEFB751877157300D3FE16 /* VCR+NSURLSessionConfiguration.m */; };
 		9016CEBE1DCB007600E30595 /* VCRCassette.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B8289A167E9B6800CCEC3C /* VCRCassette.m */; };
@@ -98,6 +100,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		27DE8672262FA49500B7814D /* NSMutableURLRequest+VCR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableURLRequest+VCR.m"; sourceTree = "<group>"; };
+		27DE8673262FA49500B7814D /* NSMutableURLRequest+VCR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableURLRequest+VCR.h"; sourceTree = "<group>"; };
 		9016CE9F1DCAFEC500E30595 /* VCRURLConnection.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VCRURLConnection.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3475BAD167EFFA70044511D /* VCRRecording.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCRRecording.h; sourceTree = "<group>"; };
 		B3475BAE167EFFA80044511D /* VCRRecording.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCRRecording.m; sourceTree = "<group>"; };
@@ -226,6 +230,8 @@
 				B359FCE51876411D00FA20E2 /* VCRReplayingURLProtocol.m */,
 				B3B8289F167E9B6800CCEC3C /* VCRRequestKey.h */,
 				B3B828A0167E9B6800CCEC3C /* VCRRequestKey.m */,
+				27DE8673262FA49500B7814D /* NSMutableURLRequest+VCR.h */,
+				27DE8672262FA49500B7814D /* NSMutableURLRequest+VCR.m */,
 			);
 			path = VCRURLConnection;
 			sourceTree = "<group>";
@@ -324,6 +330,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27DE8675262FA49500B7814D /* NSMutableURLRequest+VCR.h in Headers */,
 				B3D88C5E1BDDCC1A0001357A /* VCRURLConnection.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -453,6 +460,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = B3B8284C167E990F00CCEC3C;
@@ -532,6 +540,7 @@
 				B3D88C561BDDCBBB0001357A /* VCRCassetteManager.m in Sources */,
 				B3D88C571BDDCBBB0001357A /* VCRError.m in Sources */,
 				B3D88C581BDDCBBB0001357A /* VCROrderedMutableDictionary.m in Sources */,
+				27DE8674262FA49500B7814D /* NSMutableURLRequest+VCR.m in Sources */,
 				B3D88C591BDDCBBB0001357A /* VCRRecording.m in Sources */,
 				B3D88C5A1BDDCBBB0001357A /* VCRRecordingURLProtocol.m in Sources */,
 				B3D88C5B1BDDCBBB0001357A /* VCRReplayingURLProtocol.m in Sources */,

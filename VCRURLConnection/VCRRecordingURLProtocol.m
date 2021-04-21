@@ -34,6 +34,8 @@ static NSString * const VCRIsRecordingRequestKey = @"VCR_recording";
 @end
 
 @implementation VCRRecordingURLProtocol
+static NSMutableDictionary *_foo = nil;
+
 
 + (BOOL)canInitWithRequest:(NSURLRequest *)request {
     BOOL isAlreadyRecordingRequest = [[self propertyForKey:VCRIsRecordingRequestKey inRequest:request] boolValue];
@@ -45,6 +47,14 @@ static NSString * const VCRIsRecordingRequestKey = @"VCR_recording";
     return request;
 }
 
++ (void)load {
+    _foo = [[NSMutableDictionary alloc] init];
+}
+
++ (NSMutableDictionary *)foo {
+    return _foo;
+}
+
 - (id)initWithRequest:(NSURLRequest *)request cachedResponse:(NSCachedURLResponse *)cachedResponse client:(id<NSURLProtocolClient >)client {
     return [super initWithRequest:request cachedResponse:nil client:client];
 }
@@ -54,7 +64,7 @@ static NSString * const VCRIsRecordingRequestKey = @"VCR_recording";
     VCRRecording *recording = [[VCRRecording alloc] init];
     recording.method = request.HTTPMethod;
     recording.URI = [[request URL] absoluteString];
-    recording.requestData = request.HTTPBody;
+    recording.requestData = [_foo objectForKey:@"foo"];//[NSURLProtocol propertyForKey:@"HTTPBody" inRequest: request];
     self.recording = recording;
     
     NSMutableURLRequest *mutableRequest = [request mutableCopy];
